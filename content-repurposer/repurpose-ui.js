@@ -180,6 +180,19 @@ export class RepurposeUI {
               <p class="visual-text"></p>
             </div>
             
+            <div class="infographic-prompt hidden">
+              <h5>🎨 Infographic Prompt:</h5>
+              <div class="prompt-content" contenteditable="true"></div>
+              <button class="copy-prompt-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                Copy Prompt
+              </button>
+              <p class="prompt-instruction">Use this in DALL-E 3, Midjourney, or any AI image generator</p>
+            </div>
+            
             <div class="result-metadata">
               <span class="word-count"></span>
               <span class="read-time"></span>
@@ -255,6 +268,11 @@ export class RepurposeUI {
         btn.innerHTML = originalHTML;
         btn.disabled = false;
       });
+    });
+
+    // Copy prompt button
+    modal.querySelector('.copy-prompt-btn')?.addEventListener('click', () => {
+      this.copyPromptToClipboard(modal);
     });
   }
 
@@ -370,6 +388,16 @@ export class RepurposeUI {
       visualSection.querySelector('.visual-text').textContent = result.visualSuggestion.suggestion;
     }
 
+    // Infographic prompt
+    if (result.infographicPrompt) {
+      const promptSection = modal.querySelector('.infographic-prompt');
+      promptSection.classList.remove('hidden');
+      promptSection.querySelector('.prompt-content').textContent = result.infographicPrompt;
+      
+      // Store prompt for copying
+      this.currentInfographicPrompt = result.infographicPrompt;
+    }
+
     // Metadata
     modal.querySelector('.word-count').textContent = `${result.metadata.wordCount} words`;
     modal.querySelector('.read-time').textContent = `~${result.metadata.estimatedReadTime} min read`;
@@ -397,6 +425,35 @@ export class RepurposeUI {
       
     } catch (error) {
       console.error('Failed to copy:', error);
+    }
+  }
+
+  /**
+   * Copy infographic prompt to clipboard
+   */
+  async copyPromptToClipboard(modal) {
+    if (!this.currentInfographicPrompt) return;
+    
+    try {
+      await navigator.clipboard.writeText(this.currentInfographicPrompt);
+      
+      // Show feedback
+      const btn = modal.querySelector('.copy-prompt-btn');
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        Copied!
+      `;
+      btn.classList.add('copied');
+      
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.classList.remove('copied');
+      }, 2000);
+    } catch (error) {
+      console.error('Failed to copy prompt:', error);
     }
   }
 

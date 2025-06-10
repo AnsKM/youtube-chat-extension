@@ -81,6 +81,7 @@ Remember: Great LinkedIn posts feel like conversations, not broadcasts.
     return {
       post: final.content || 'Content generation failed. Please try again.',
       visualSuggestion: final.visual,
+      infographicPrompt: this.generateInfographicPrompt(insights, selectedTemplate, generationAttempt),
       metadata: {
         template: selectedTemplate,
         wordCount: final.content ? final.content.split(' ').length : 0,
@@ -1118,6 +1119,166 @@ Write something you'd actually stop scrolling to read:`;
     };
 
     return suggestions[type] || suggestions.tips;
+  }
+
+  /**
+   * Generate infographic prompt based on content
+   */
+  generateInfographicPrompt(insights, template, attempt = 1) {
+    const contentType = this.detectContentType(insights);
+    const visualStyle = this.selectVisualStyle(contentType, attempt);
+    
+    return this.buildInfographicPrompt({
+      mainConcept: insights.mainInsight,
+      keyPoints: insights.supportingPoints,
+      problem: insights.problemSolved,
+      style: visualStyle,
+      format: this.selectFormat(template, attempt),
+      contentType: contentType
+    });
+  }
+
+  /**
+   * Detect content type from insights
+   */
+  detectContentType(insights) {
+    const mainInsight = insights.mainInsight || '';
+    const combined = mainInsight + ' ' + (insights.problemSolved || '');
+    
+    if (combined.includes('AI') && (combined.includes('design') || combined.includes('creative'))) {
+      return 'ai-creative';
+    } else if (combined.includes('browser') || combined.includes('automation') || combined.includes('agent')) {
+      return 'automation';
+    } else if (combined.match(/\$\d+|\d+%|growth|revenue|cost/i)) {
+      return 'data';
+    } else if (combined.includes('how to') || combined.includes('step') || combined.includes('process')) {
+      return 'process';
+    } else if (combined.includes('vs') || combined.includes('versus') || combined.includes('compare')) {
+      return 'comparison';
+    }
+    return 'concept';
+  }
+
+  /**
+   * Select visual style based on content and attempt
+   */
+  selectVisualStyle(contentType, attempt) {
+    const styles = {
+      'ai-creative': ['modern gradient design', 'neon tech aesthetic', 'minimalist flat illustration'],
+      'automation': ['isometric robot illustration', 'flowchart diagram', 'tech blueprint style'],
+      'data': ['dashboard visualization', 'infographic chart style', 'data-driven design'],
+      'process': ['step-by-step timeline', 'circular flow diagram', 'numbered pathway'],
+      'comparison': ['split-screen comparison', 'versus battle layout', 'side-by-side table'],
+      'concept': ['central hub diagram', 'mind map style', 'abstract conceptual art']
+    };
+    
+    const typeStyles = styles[contentType] || styles.concept;
+    return typeStyles[(attempt - 1) % typeStyles.length];
+  }
+
+  /**
+   * Select format based on template and attempt
+   */
+  selectFormat(template, attempt) {
+    const formats = [
+      '1200x627px LinkedIn optimal',
+      '1080x1080px square format',
+      '1200x675px Facebook/Twitter'
+    ];
+    return formats[(attempt - 1) % formats.length];
+  }
+
+  /**
+   * Build the actual infographic prompt
+   */
+  buildInfographicPrompt(params) {
+    const { mainConcept, keyPoints, problem, style, format, contentType } = params;
+    
+    // Extract key visual elements
+    const numbers = mainConcept.match(/\$?\d+[KMB]?%?/g) || [];
+    const mainIdea = mainConcept.replace(/\$?\d+[KMB]?%?/g, '').trim();
+    
+    // Select color scheme based on content type
+    const colorSchemes = {
+      'ai-creative': 'purple to pink gradient with dark background',
+      'automation': 'blue to teal gradient with white background',
+      'data': 'professional navy and orange on white',
+      'process': 'green progression gradient',
+      'comparison': 'contrasting blue vs red',
+      'concept': 'LinkedIn blue (#0077B5) with accent colors'
+    };
+    
+    const colorScheme = colorSchemes[contentType] || colorSchemes.concept;
+    
+    // Build the prompt
+    let prompt = `Create a ${style} infographic for LinkedIn posting.
+
+Main Message: "${mainIdea}"`;
+
+    if (numbers.length > 0) {
+      prompt += `\nKey Metric to Highlight: ${numbers[0]}`;
+    }
+
+    prompt += `\n\nVisual Elements Required:`;
+    
+    // Add specific elements based on content type
+    if (contentType === 'ai-creative') {
+      prompt += `
+- Central illustration of AI/robot creating art or designs
+- Floating design elements (color palettes, shapes, tools)
+- Text: "No Design Skills Required" prominently displayed`;
+    } else if (contentType === 'automation') {
+      prompt += `
+- Robot or AI character interacting with browser windows
+- Visual flow showing: Human command → AI processing → Task complete
+- Icons representing different websites/platforms`;
+    } else if (contentType === 'data') {
+      prompt += `
+- Large number display: ${numbers[0] || 'Key Metric'}
+- Supporting chart or graph showing growth/impact
+- 3 smaller stat boxes with related metrics`;
+    } else if (contentType === 'process') {
+      prompt += `
+- ${keyPoints.length || 3}-step visual flow
+- Icons for each step
+- Arrows or connectors showing progression`;
+    } else {
+      prompt += `
+- Central concept visualization
+- ${Math.min(keyPoints.length, 3)} supporting elements
+- Clean, professional layout`;
+    }
+
+    // Add key points if available
+    if (keyPoints && keyPoints.length > 0) {
+      prompt += `\n\nKey Points to Include:`;
+      keyPoints.slice(0, 3).forEach((point, i) => {
+        const cleaned = point.replace(/[*:→]/g, '').trim();
+        prompt += `\n${i + 1}. ${cleaned.substring(0, 50)}${cleaned.length > 50 ? '...' : ''}`;
+      });
+    }
+
+    prompt += `\n\nStyle Guidelines:
+- Visual Style: ${style}
+- Color Scheme: ${colorScheme}
+- Typography: Bold sans-serif headers (Montserrat/Helvetica), clean body text
+- Layout: Clear hierarchy, plenty of white space
+- Mood: Professional yet eye-catching
+
+Format: ${format}
+
+Important Instructions:
+- NO stock photos or generic business people
+- Use icons and illustrations only
+- Ensure text is large and readable on mobile
+- Maximum 3-5 text elements total
+- Focus on visual storytelling over text
+- Modern, clean, shareable design
+- High contrast for accessibility
+
+The goal: Create an infographic that makes someone stop scrolling and instantly understand the concept.`;
+
+    return prompt;
   }
 
   /**
