@@ -625,6 +625,16 @@
   margin: 0 0.1em;
 }
 
+/* Hide tables in chat */
+.message-content table,
+.message-content th,
+.message-content td,
+.message-content tr,
+.message-content tbody,
+.message-content thead {
+  display: none !important;
+}
+
 /* Clickable timestamps */
 .markdown-timestamp {
   background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-light));

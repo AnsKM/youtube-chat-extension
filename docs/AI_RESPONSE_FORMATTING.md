@@ -12,13 +12,13 @@ The extension sends comprehensive formatting instructions to Gemini, so it autom
 **You ask:** "What are the 5 best post formats?"
 **Gemini automatically responds:**
 ```markdown
-1. The Framework Post [3:15]: Brief description here.
+1. The Framework Post: Brief description here.
 
-What it is: As explained [3:25], detailed explanation of the concept.
+What it is: The speaker introduces this concept [3:15] as a way to create step-by-step processes that solve specific problems.
 
-Key points [4:10]:
+Key points:
 - Important detail one
-- Important detail two [4:22]
+- Important detail two
 
 2. Educated Opinions [5:30]: Brief description here.
 
@@ -31,11 +31,11 @@ What it is: Detailed explanation.
 ```markdown
 ## Step-by-Step Process
 
-1. First Step [2:30] (Phase 1): Description of what to do.
+1. First Step (Phase 1): Description of what to do.
 
-How to do it: As demonstrated [2:45], specific actionable instructions.
+How to do it: The speaker demonstrates this technique [2:45] with specific actionable instructions.
 
-Why it matters [3:10]: Brief explanation of importance.
+Why it matters: Brief explanation of importance.
 ```
 
 ### Explanatory Queries
@@ -44,13 +44,13 @@ Why it matters [3:10]: Brief explanation of importance.
 ```markdown
 ## Topic Overview
 
-What it is [1:15]: Clear definition or explanation.
+What it is: Clear definition or explanation.
 
-How it works: The speaker explains [1:45] the mechanism or process.
+How it works: The speaker explains the mechanism [1:45] with practical examples.
 
-Key benefits [2:20]:
-- Benefit one [2:35]
-- Benefit two [2:50]
+Key benefits:
+- Benefit one
+- Benefit two
 ```
 
 ### Simple Fact Queries
@@ -59,18 +59,24 @@ Key benefits [2:20]:
 
 ## Clickable Timestamps
 
-One of the most powerful features is **clickable timestamps**. When Gemini references specific moments in the video, timestamps appear as clickable blue pills that will jump directly to that moment in the video.
+Timestamps appear as **clickable blue pills** that jump directly to that moment in the video. They are used selectively for maximum value.
 
 ### How Timestamps Work:
 - **Format**: `[MM:SS]` for videos under 1 hour, `[H:MM:SS]` for longer videos
 - **Appearance**: Blue gradient pills with hover effects
 - **Functionality**: Click to instantly seek to that exact moment
-- **Integration**: Naturally embedded within responses
+- **Usage**: Only when introducing new concepts, examples, or key moments
 
-### Example with Timestamps:
-> "The speaker introduces the main concept `[2:15]` and then provides three key examples `[3:30]`. The most important strategy is explained in detail `[5:45]`."
+### When Timestamps Appear:
+✅ **Good usage** (adds value):
+- "The speaker introduces the framework `[3:15]`"
+- "As demonstrated `[8:20]`, this technique works well"
+- "The key insight happens `[12:45]` when he explains..."
 
-All three timestamps would be clickable and take you directly to those moments.
+❌ **Avoided** (too much clutter):
+- Adding timestamps to every sentence
+- Timestamps on conclusions or summaries
+- Multiple timestamps in a single sentence
 
 ## Smart Length Detection
 

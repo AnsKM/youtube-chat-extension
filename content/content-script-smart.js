@@ -729,12 +729,26 @@ class SmartYouTubeChatExtension {
 
   addTimestampClickHandlers(element) {
     const timestamps = element.querySelectorAll('.markdown-timestamp');
-    timestamps.forEach(timestamp => {
+    console.log(`[YouTube Chat] Adding click handlers to ${timestamps.length} timestamps`);
+    
+    timestamps.forEach((timestamp, index) => {
+      const timeStr = timestamp.getAttribute('data-time');
+      console.log(`[YouTube Chat] Timestamp ${index + 1}: ${timeStr}`);
+      
+      // Remove any existing handlers
+      timestamp.removeEventListener('click', this.timestampClickHandler);
+      
+      // Add new handler
       timestamp.addEventListener('click', (e) => {
         e.preventDefault();
-        const timeStr = timestamp.getAttribute('data-time');
+        e.stopPropagation();
+        console.log(`[YouTube Chat] Timestamp clicked: ${timeStr}`);
         this.seekToTimestamp(timeStr);
       });
+      
+      // Add visual feedback for debugging
+      timestamp.style.cursor = 'pointer';
+      timestamp.title = `Click to jump to ${timeStr}`;
     });
   }
 
@@ -767,52 +781,123 @@ class SmartYouTubeChatExtension {
   }
 
   controlYouTubePlayer(seconds) {
-    // Method 1: Try to find and control the YouTube player directly
-    const player = document.querySelector('video');
-    if (player) {
-      player.currentTime = seconds;
-      console.log('[YouTube Chat] Controlled player directly');
-      return;
-    }
-
-    // Method 2: Try YouTube's postMessage API
-    const iframe = document.querySelector('iframe#movie_player');
-    if (iframe && iframe.contentWindow) {
+    console.log('[YouTube Chat] Attempting to seek to:', seconds, 'seconds');
+    
+    // Method 1: YouTube's global player object (most reliable)
+    if (window.ytPlayer && typeof window.ytPlayer.seekTo === 'function') {
       try {
-        iframe.contentWindow.postMessage(
-          `{"event":"command","func":"seekTo","args":[${seconds}, true]}`,
-          'https://www.youtube.com'
-        );
-        console.log('[YouTube Chat] Used postMessage API');
+        window.ytPlayer.seekTo(seconds, true);
+        console.log('[YouTube Chat] Used global ytPlayer');
         return;
       } catch (error) {
-        console.log('[YouTube Chat] postMessage failed:', error);
+        console.log('[YouTube Chat] Global ytPlayer failed:', error);
       }
     }
 
-    // Method 3: Try to trigger YouTube's internal player
-    if (window.ytInitialPlayerResponse && window.ytInitialPlayerResponse.videoDetails) {
-      // Try to access YouTube's internal player object
-      const ytPlayer = document.querySelector('#movie_player');
-      if (ytPlayer && ytPlayer.seekTo) {
-        ytPlayer.seekTo(seconds, true);
-        console.log('[YouTube Chat] Used YouTube internal API');
+    // Method 2: Direct video element control
+    const player = document.querySelector('video');
+    if (player) {
+      try {
+        player.currentTime = seconds;
+        console.log('[YouTube Chat] Controlled video element directly');
+        return;
+      } catch (error) {
+        console.log('[YouTube Chat] Direct video control failed:', error);
+      }
+    }
+
+    // Method 3: YouTube's movie_player element
+    const moviePlayer = document.querySelector('#movie_player');
+    if (moviePlayer && moviePlayer.seekTo) {
+      try {
+        moviePlayer.seekTo(seconds, true);
+        console.log('[YouTube Chat] Used movie_player.seekTo');
+        return;
+      } catch (error) {
+        console.log('[YouTube Chat] movie_player.seekTo failed:', error);
+      }
+    }
+
+    // Method 4: Try accessing YouTube's internal APIs
+    if (window.yt && window.yt.player && window.yt.player.getPlayerByElement) {
+      try {
+        const playerElement = document.querySelector('#movie_player');
+        const player = window.yt.player.getPlayerByElement(playerElement);
+        if (player && player.seekTo) {
+          player.seekTo(seconds, true);
+          console.log('[YouTube Chat] Used yt.player API');
+          return;
+        }
+      } catch (error) {
+        console.log('[YouTube Chat] yt.player API failed:', error);
+      }
+    }
+
+    // Method 5: Keyboard shortcut simulation (fallback)
+    try {
+      // Focus the video player first
+      const video = document.querySelector('video');
+      if (video) {
+        video.focus();
+        
+        // Create a synthetic key event for 't' which opens timestamp input
+        const keyEvent = new KeyboardEvent('keydown', {
+          key: 't',
+          code: 'KeyT',
+          keyCode: 84,
+          which: 84,
+          bubbles: true
+        });
+        document.dispatchEvent(keyEvent);
+        
+        // Wait a bit then try to input the timestamp
+        setTimeout(() => {
+          const timestampInput = document.querySelector('input[type="text"]');
+          if (timestampInput) {
+            timestampInput.value = this.secondsToTimestamp(seconds);
+            timestampInput.dispatchEvent(new Event('input', { bubbles: true }));
+            timestampInput.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+          }
+        }, 100);
+        
+        console.log('[YouTube Chat] Used keyboard shortcut method');
         return;
       }
+    } catch (error) {
+      console.log('[YouTube Chat] Keyboard shortcut failed:', error);
     }
 
-    // Method 4: Simulate URL hash change (fallback)
+    // Method 6: URL parameter change (last resort)
     try {
-      const url = new URL(window.location);
-      url.searchParams.set('t', `${seconds}s`);
-      window.history.pushState({}, '', url);
-      
-      // Trigger a page navigation to the timestamp
-      window.dispatchEvent(new PopStateEvent('popstate'));
-      console.log('[YouTube Chat] Used URL parameter method');
+      const currentUrl = new URL(window.location);
+      currentUrl.searchParams.set('t', `${seconds}s`);
+      window.location.href = currentUrl.toString();
+      console.log('[YouTube Chat] Used URL reload method');
     } catch (error) {
       console.error('[YouTube Chat] All timestamp methods failed:', error);
+      
+      // Show user feedback
+      this.showTimestampError(seconds);
     }
+  }
+
+  secondsToTimestamp(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = Math.floor(seconds % 60);
+    
+    if (hours > 0) {
+      return `${hours}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    } else {
+      return `${minutes}:${secs.toString().padStart(2, '0')}`;
+    }
+  }
+
+  showTimestampError(seconds) {
+    const timestamp = this.secondsToTimestamp(seconds);
+    console.warn(`[YouTube Chat] Could not seek to ${timestamp}. Try manually seeking to this time.`);
+    
+    // Could add a visual notification here if needed
   }
 
   hideChat() {

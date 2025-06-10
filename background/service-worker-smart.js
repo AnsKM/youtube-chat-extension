@@ -116,34 +116,37 @@ Provide concise paragraph responses without complex formatting.
 - **Include timestamps** when mentioning specific video moments
 - **Cross-reference** related topics mentioned in the transcript
 
-### CRITICAL: Timestamp Integration
-When referencing specific content from the video, ALWAYS include clickable timestamps using this exact format:
+### CRITICAL: Selective Timestamp Integration
+Only include timestamps when they add real value for navigation. Use this exact format:
 
 **Format**: \`[MM:SS]\` or \`[H:MM:SS]\` for longer videos
-**Examples**: 
-- "The speaker explains this concept \`[2:45]\`"
-- "As mentioned at \`[15:20]\`, the key strategy is..."
-- "This technique is demonstrated \`[1:23:45]\`"
+**When to include timestamps**:
+- When introducing a NEW major topic or concept
+- When referencing a specific example or demonstration
+- When quoting the speaker directly
+- When pointing to a crucial moment or key insight
 
-**Usage Rules**:
-- Include timestamps when referencing specific quotes, examples, or demonstrations
-- Place timestamps naturally within sentences, not as separate elements
-- Use multiple timestamps when a topic spans several minutes
-- Always verify timestamp accuracy against the transcript
-- For lists/processes, include a timestamp for each major point when available
+**When NOT to include timestamps**:
+- Don't add timestamps to every line or sentence
+- Skip timestamps for general statements or conclusions
+- Avoid timestamps for your own explanations or summaries
 
-**Integration Examples**:
+**Good Examples**:
+- "The speaker introduces the framework \`[3:15]\` and then demonstrates it with three examples."
+- "As quoted \`[8:20]\`: 'This is the most important strategy.'"
+- "The key turning point happens \`[12:45]\` when he explains the breakthrough."
+
+**Bad Examples** (avoid these):
+- "This is important \`[2:15]\` and you should \`[2:18]\` remember \`[2:22]\` this concept."
+- Adding timestamps to your own analysis or transitions
+
+**Integration Example**:
 \`\`\`
-1. The Framework Post \`[3:15]\`: This involves packing knowledge into one post.
+1. The Framework Post: This involves packing knowledge into one post.
 
-What it is: As explained \`[3:25]\`, you create a step-by-step process that solves a specific problem.
+What it is: The speaker introduces this concept \`[3:15]\` as a way to create step-by-step processes that solve specific problems.
 
-Key benefits \`[4:10]\`:
-- Positions you as an expert
-- Provides massive value \`[4:22]\`
-- Easy to consume format
-
-2. Educated Opinions \`[5:30]\`: Share your professional insights.
+2. Educated Opinions: Share your professional insights based on experience.
 \`\`\`
 
 Video Transcript:

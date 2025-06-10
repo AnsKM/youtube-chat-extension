@@ -56,3 +56,11 @@
 - Integration with video player through direct control, postMessage API, and URL parameters
 - Enhanced debug logging to track timestamp detection and click events
 - Updated all documentation with timestamp examples and usage guides
+
+## 2025-01-10: Refined timestamps and removed tables
+- Hide all HTML tables in chat interface to prevent layout issues
+- Made timestamps more selective - only when they add real navigation value
+- Improved timestamp click functionality with multiple YouTube player control methods
+- Enhanced debug logging to troubleshoot click events
+- Updated prompt to avoid timestamp overuse and focus on key moments
+- Refined documentation to show better timestamp usage examples
