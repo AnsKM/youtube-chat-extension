@@ -179,6 +179,12 @@ export class ChatUI {
     contentEl.innerHTML = this.formatMessage(content);
     
     messageEl.appendChild(contentEl);
+    
+    // Add repurpose button for substantial assistant messages
+    if (role === 'assistant' && content.length > 100) {
+      this.addRepurposeButton(messageEl, content);
+    }
+    
     this.messagesContainer.appendChild(messageEl);
     
     // Add to messages array
@@ -386,5 +392,60 @@ export class ChatUI {
 
   getMessages() {
     return this.messages;
+  }
+
+  addRepurposeButton(messageEl, content) {
+    const buttonContainer = document.createElement('div');
+    buttonContainer.className = 'repurpose-button-container';
+    
+    const button = document.createElement('button');
+    button.className = 'repurpose-button';
+    button.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2L2 7L12 12L22 7L12 2Z"></path>
+        <path d="M2 17L12 22L22 17"></path>
+        <path d="M2 12L12 17L22 12"></path>
+      </svg>
+      <span>Repurpose</span>
+    `;
+    
+    button.addEventListener('click', () => {
+      this.handleRepurposeClick(content);
+    });
+    
+    buttonContainer.appendChild(button);
+    messageEl.appendChild(buttonContainer);
+  }
+
+  async handleRepurposeClick(content) {
+    try {
+      // Dynamically import the repurpose UI modules
+      const [{ RepurposeUI }, { ContentTransformer }] = await Promise.all([
+        import('../content-repurposer/repurpose-ui.js'),
+        import('../content-repurposer/content-transformer.js')
+      ]);
+      
+      // Create transformer and UI instances
+      const transformer = new ContentTransformer();
+      const repurposeUI = new RepurposeUI(transformer);
+      
+      // Set the content context
+      repurposeUI.currentContent = content;
+      
+      // Pass the conversation history
+      repurposeUI.conversationHistory = this.messages;
+      
+      // Pass video transcript if available
+      if (window.videoTranscript) {
+        repurposeUI.videoTranscript = window.videoTranscript;
+      }
+      
+      // Open the modal
+      repurposeUI.openRepurposeModal();
+      
+    } catch (error) {
+      console.error('Error loading repurpose feature:', error);
+      this.showError('Failed to load repurpose feature. Please try again.');
+    }
   }
 }

@@ -1387,4 +1387,54 @@
   width: 28px;
   height: 28px;
 }
+
+/* Repurpose Button Styles */
+.repurpose-wrapper {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Show button on hover of the message or the wrapper */
+.message.assistant:hover + .repurpose-wrapper,
+.repurpose-wrapper:hover {
+  opacity: 1;
+}
+
+.repurpose-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--accent-blue);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.repurpose-button:hover {
+  background: var(--accent-blue-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.repurpose-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Ensure messages maintain their full width */
+.message {
+  width: 100%;
+}
+
+.message .content {
+  display: block;
+  width: 100%;
+}
 EOF < /dev/null

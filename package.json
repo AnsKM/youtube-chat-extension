@@ -1,0 +1,10 @@
+{
+  "name": "youtube-chat-extension",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "YouTube Chat Extension with Content Repurposing",
+  "scripts": {
+    "test": "node test-repurpose-cli.js",
+    "test-html": "open test-repurpose.html"
+  }
+}

@@ -1,5 +1,74 @@
 # Changelog
 
+## 2025-06-10: LinkedIn Repurposing Feature Fixes
+- Fixed timestamp removal: Added cleanTimestamps method to remove [MM:SS] patterns from transcripts
+- Fixed content cutoff: Changed display method to use textContent instead of innerHTML to avoid truncation
+- Fixed regeneration: Added variation mechanism that creates different versions on each click
+- Enhanced timestamp cleaning: Added multiple layers of timestamp removal to catch all cases
+- Improved variation: Each regeneration now produces different hooks, insights, and CTAs
+- Updated fetchFromYouTubeAPI to optionally exclude timestamps for repurposing
+- Added cleanTimestamps to content-transformer for additional safety
+- Fixed display method in repurpose-ui to show full content without HTML escaping
+
+## 2025-06-10: Fixed Content Truncation in LinkedIn Posts
+- Removed substring(0, 200) limit on mainInsight that was cutting off content
+- Removed substring(0, 150) limit on problemSolved
+- Removed substring(0, 97) limit on supporting points
+- Removed substring(0, 100) limits in hooks and content lines
+- Fixed video title extraction with multiple selector fallbacks for different YouTube layouts
+- Added debug logging to track metadata extraction
+- Content now displays in full without arbitrary character limits
+
+## 2025-06-10: Fixed Regenerate Button Functionality
+- Fixed regenerate button not working by NOT hiding results section during regeneration
+- Added isRegeneration check to preserve results visibility
+- Added visual feedback with mini spinner in regenerate button during processing
+- Added disabled state to prevent multiple simultaneous regenerations
+- Enhanced debug logging to track regeneration attempts
+- Regenerate button now properly creates different variations without UI glitches
+
+## 2025-06-10: Enhanced Content Variation System
+- Added multiple hook variations for each template type (5 variations each)
+- Added 8 generic hook variations for fallback cases
+- Added variation to main insight presentation (8 different intros)
+- Added variation to supporting points introduction (8 different headers)
+- Added variation to problem/solution presentation (8 different formats)
+- Each regeneration now produces visibly different content structure
+- Variation index based on generation attempt ensures consistent progression
+
+## 2025-06-10: Fixed LinkedIn Post Formatting Issues
+- Fixed word joining issues (goalHe, creativesHe) by preserving spaces when removing markdown
+- Fixed incomplete "I discovered" sentence by changing personal story to source reference
+- Improved supporting points extraction with proper space preservation
+- Added intelligent markdown removal that maintains word boundaries
+- Enhanced LLM prompting for more flexible and natural output
+- Restructured insights display to show as numbered list instead of comma-separated
+- Simplified requirements to allow more creative and natural post generation
+- Added debug logging to track formatting issues
+- Video source now appears as P.S. at end of post instead of incomplete sentence
+- Cleaned up asterisk and formatting artifacts in final output
+
+## 2025-06-10: Fixed Content Repurposing LinkedIn Post Generation
+- Fixed content repurposing feature not generating proper LinkedIn posts
+- Improved content extraction from AI responses and conversation history  
+- Enhanced mock draft generation with specific handling for AI/tech content
+- Added better conversation context passing to repurpose UI
+- Fixed template structure handling in content transformer
+- Improved insight extraction to handle truncated content properly
+- Updated `generateMockDraft` to create engaging LinkedIn posts based on actual content
+- Enhanced `extractInsightsManually` to better parse conversation context
+- Added example LinkedIn post structure to AI prompts for better guidance
+
+## 2025-01-06: Fixed LinkedIn Repurpose Feature
+- Fixed LinkedIn post content generation in repurpose modal showing empty content
+- Updated mock responses in content-transformer.js to return properly formatted LinkedIn posts
+- Added debug logging to trace content transformation pipeline
+- Improved error handling and fallback content for repurpose feature
+- Updated web_accessible_resources in manifest to include nested content-repurposer files
+- Enhanced mock LinkedIn post content with realistic examples and formatting
+- Added better error messages when content generation fails
+- Improved content transformation pipeline with proper fallbacks
+
 ## 2025-06-10: Major Project Cleanup
 - Removed 6 unrelated project folders to focus solely on YouTube Chat Extension:
   - ai_job_hunter (AI job hunting application)
@@ -14,7 +83,7 @@
 - Removed 10 test/demo files from root directory
 - Project is now a clean, focused Chrome extension without unrelated code
 
-## 2025-01-10: Enhanced markdown formatting with blue theme
+## 2025-06-10: Enhanced markdown formatting with blue theme
 - Implemented comprehensive markdown parser with modular feature flags
 - Added support for H1-H6 headers with gradient blue styling and icons
 - Implemented ordered/unordered lists with animated blue theme
@@ -26,7 +95,7 @@
 - All features use configurable blue color scheme with smooth animations
 - Created comprehensive documentation in docs/MARKDOWN_FEATURES.md
 
-## 2025-01-10: Added section headers and improved spacing
+## 2025-06-10: Added section headers and improved spacing
 - Added pattern recognition for numbered headers with (Step X) format
 - Created markdown-section-header CSS class with proper spacing
 - Section headers now have 1.5em top margin for clear separation
@@ -34,35 +103,35 @@
 - Fixed numbered list parsing to exclude section headers
 - Updated documentation with new features
 
-## 2025-01-10: Fixed parsing order issues
+## 2025-06-10: Fixed parsing order issues
 - Fixed bold subheading patterns (**What it is:**) by processing before HTML escaping
 - Moved placeholder replacements after line break conversion
 - Added support for multi-word subheading patterns (Key Rule:, Three Roles of a Hook:)
 - Fixed section header regex to work with multiline content
 - Added debug logging to help troubleshoot formatting issues
 
-## 2025-01-10: Fixed table-like column splitting
+## 2025-06-10: Fixed table-like column splitting
 - Added tab character normalization to prevent column-like display
 - Normalized multiple spaces to prevent text splitting
 - Fixed subheading CSS to use block display
 - Enhanced debug logging to detect remaining bold markers
 - Improved whitespace handling while preserving line breaks
 
-## 2025-01-10: Added support for simple numbered headers
+## 2025-06-10: Added support for simple numbered headers
 - Added pattern to recognize "1. Title:" format as headers
 - Support bold text within numbered headers
 - Created AI response formatting guide for better output
 - Headers now work with or without "(Step X)" suffix
 - Improved flexibility for various AI response formats
 
-## 2025-01-10: Enhanced Gemini prompt for better formatting
+## 2025-06-10: Enhanced Gemini prompt for better formatting
 - Added formatting instructions to Gemini prompt
 - Encourages numbered lists with colons (1. Title: Description)
 - Requests subheadings like "What it is:", "How to do it:"
 - Promotes use of bold text and structured responses
 - Should improve consistency of AI response formatting
 
-## 2025-01-10: Added clickable timestamps functionality
+## 2025-06-10: Added clickable timestamps functionality
 - Comprehensive prompt engineering for Gemini to include timestamps
 - Automatic detection and parsing of [MM:SS] and [H:MM:SS] format timestamps
 - Clickable blue gradient timestamp pills with hover effects
@@ -71,7 +140,7 @@
 - Enhanced debug logging to track timestamp detection and click events
 - Updated all documentation with timestamp examples and usage guides
 
-## 2025-01-10: Refined timestamps and removed tables
+## 2025-06-10: Refined timestamps and removed tables
 - Hide all HTML tables in chat interface to prevent layout issues
 - Made timestamps more selective - only when they add real navigation value
 - Improved timestamp click functionality with multiple YouTube player control methods

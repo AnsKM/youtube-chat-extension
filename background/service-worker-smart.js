@@ -439,6 +439,12 @@ async function handleMessageWithRetry(request, sender, sendResponse, retryCount 
 
 async function handleMessage(request, sender, sendResponse) {
   try {
+    // Handle repurpose requests
+    if (request.type === 'repurpose') {
+      await handleRepurposeRequest(request, sendResponse);
+      return;
+    }
+    
     switch (request.action) {
       case 'initializeGemini':
         await initializeGeminiClient(request.apiKey);
@@ -562,6 +568,41 @@ async function handleMessage(request, sender, sendResponse) {
   } catch (error) {
     console.error('Service worker error:', error);
     sendResponse({ success: false, error: error.message });
+  }
+}
+
+// Helper function to get API key from storage
+async function getApiKey() {
+  const { apiKey } = await chrome.storage.local.get('apiKey');
+  return apiKey;
+}
+
+// Lazy load repurpose handler
+let repurposeHandler = null;
+async function getRepurposeHandler() {
+  if (!repurposeHandler) {
+    const { ContentRepurposeHandler } = await import('./content-repurpose-handler.js');
+    const apiKey = await getApiKey();
+    if (!apiKey) {
+      console.warn('[Service Worker] No API key found for repurpose handler');
+      // Still create handler but it will use mock responses
+    }
+    repurposeHandler = new ContentRepurposeHandler(apiKey);
+  }
+  return repurposeHandler;
+}
+
+async function handleRepurposeRequest(request, sendResponse) {
+  try {
+    const handler = await getRepurposeHandler();
+    const result = await handler.handleRepurposeRequest(request);
+    sendResponse(result);
+  } catch (error) {
+    console.error('[Repurpose Handler] Error:', error);
+    sendResponse({ 
+      success: false, 
+      error: error.message 
+    });
   }
 }
 

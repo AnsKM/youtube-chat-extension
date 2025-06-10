@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Content Repurposing</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+        }
+        .chat-message {
+            background: #f9f9f9;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        .message-content {
+            margin-bottom: 8px;
+        }
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .primary-btn {
+            background: #0077b5;
+            color: white;
+        }
+        .primary-btn:hover {
+            background: #005885;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f8ff;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Content Repurposing Test</h1>
+        
+        <div class="test-section">
+            <h2>1. Test Templates</h2>
+            <p>Load and display available LinkedIn templates:</p>
+            <button class="primary-btn" onclick="testTemplates()">Load Templates</button>
+            <div id="templates-output" class="output" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>2. Test UI Component</h2>
+            <p>Test the repurpose button and modal:</p>
+            <div class="chat-message">
+                <div class="message-content">
+                    This is a sample AI response about the video. It contains valuable insights about productivity, 
+                    time management, and how to achieve work-life balance. The key points discussed include setting 
+                    boundaries, prioritizing tasks, and taking regular breaks.
+                </div>
+                <div id="test-button-container"></div>
+            </div>
+            <button class="primary-btn" onclick="testUIComponent()">Add Repurpose Button</button>
+        </div>
+
+        <div class="test-section">
+            <h2>3. Test Content Transformation</h2>
+            <p>Transform sample content to LinkedIn post:</p>
+            <textarea id="sample-content" rows="5" style="width: 100%; margin: 10px 0;">
+The video discusses 5 key productivity techniques:
+1. Time blocking - Schedule specific time slots for tasks
+2. Pomodoro technique - Work in 25-minute focused sessions
+3. Eisenhower matrix - Prioritize tasks by urgency and importance
+4. Digital minimalism - Reduce distractions from devices
+5. Morning routines - Start your day with intention
+            </textarea>
+            <br>
+            <button class="primary-btn" onclick="testTransformation()">Transform Content</button>
+            <div id="transform-output" class="output" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>4. Test Background Handler</h2>
+            <p>Test the background service communication:</p>
+            <button class="primary-btn" onclick="testBackgroundHandler()">Test Handler</button>
+            <div id="handler-output" class="output" style="display: none;"></div>
+        </div>
+
+        <div id="status-messages"></div>
+    </div>
+
+    <script type="module">
+        // Make functions globally accessible
+        window.testTemplates = async function() {
+            try {
+                const { linkedInTemplates, humanPatterns, hookFormulas } = await import('./content-repurposer/linkedin-templates.js');
+                
+                const output = document.getElementById('templates-output');
+                output.style.display = 'block';
+                output.textContent = JSON.stringify({
+                    templates: Object.keys(linkedInTemplates),
+                    templateDetails: linkedInTemplates,
+                    humanPatterns: humanPatterns,
+                    hookFormulas: hookFormulas
+                }, null, 2);
+                
+                showStatus('Templates loaded successfully!', 'success');
+            } catch (error) {
+                showStatus(`Error loading templates: ${error.message}`, 'error');
+            }
+        };
+
+        window.testUIComponent = async function() {
+            try {
+                const { RepurposeUI } = await import('./content-repurposer/repurpose-ui.js');
+                const { ContentTransformer } = await import('./content-repurposer/content-transformer.js');
+                
+                const transformer = new ContentTransformer();
+                const repurposeUI = new RepurposeUI(transformer);
+                
+                const messageEl = document.querySelector('.chat-message');
+                repurposeUI.addRepurposeButton(messageEl);
+                
+                showStatus('Repurpose button added! Click it to test the modal.', 'success');
+            } catch (error) {
+                showStatus(`Error loading UI component: ${error.message}`, 'error');
+            }
+        };
+
+        window.testTransformation = async function() {
+            try {
+                const { ContentTransformer } = await import('./content-repurposer/content-transformer.js');
+                const transformer = new ContentTransformer();
+                
+                // Mock the AI call for testing
+                transformer.callAI = async (prompt) => {
+                    return JSON.stringify({
+                        mainInsight: "Time management techniques can transform your productivity",
+                        supportingPoints: [
+                            "Time blocking creates focused work sessions",
+                            "Pomodoro technique prevents burnout",
+                            "Eisenhower matrix helps prioritize effectively",
+                            "Digital minimalism reduces distractions",
+                            "Morning routines set the tone for success"
+                        ],
+                        personalStory: "I tried all 5 techniques for 30 days",
+                        problemSolved: "Feeling overwhelmed and unproductive",
+                        actionableTakeaways: ["Start with just one technique", "Track your results", "Adjust based on what works"]
+                    });
+                };
+                
+                const content = document.getElementById('sample-content').value;
+                const result = await transformer.transformToLinkedIn(content, {
+                    title: "Productivity Techniques Video",
+                    channel: "Test Channel"
+                }, {
+                    template: 'numberList',
+                    tone: 'conversational'
+                });
+                
+                const output = document.getElementById('transform-output');
+                output.style.display = 'block';
+                output.textContent = JSON.stringify(result, null, 2);
+                
+                showStatus('Content transformed successfully!', 'success');
+            } catch (error) {
+                showStatus(`Error transforming content: ${error.message}`, 'error');
+                console.error(error);
+            }
+        };
+
+        window.testBackgroundHandler = async function() {
+            try {
+                // This would normally communicate with the background script
+                // For testing, we'll simulate the handler
+                const output = document.getElementById('handler-output');
+                output.style.display = 'block';
+                output.textContent = `Background Handler Test:
+- Content Repurpose Handler is set up in /background/
+- It handles: fetchTranscript, transformContent, getVideoMetadata
+- Integrates with Gemini API for AI transformation
+- Includes transcript caching for performance
+
+To fully test:
+1. Load the extension in Chrome
+2. Navigate to a YouTube video
+3. The background handler will process repurpose requests`;
+                
+                showStatus('Handler information displayed', 'success');
+            } catch (error) {
+                showStatus(`Error: ${error.message}`, 'error');
+            }
+        };
+
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('status-messages');
+            const statusEl = document.createElement('div');
+            statusEl.className = `status ${type}`;
+            statusEl.textContent = message;
+            statusDiv.appendChild(statusEl);
+            
+            setTimeout(() => statusEl.remove(), 5000);
+        }
+    </script>
+</body>
+</html>

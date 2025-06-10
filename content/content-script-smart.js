@@ -615,9 +615,11 @@ class SmartYouTubeChatExtension {
     const contentDiv = document.createElement('div');
     contentDiv.className = 'content';
     
+    // Store original content for repurpose feature
+    const originalContent = content;
+    
     if (role === 'assistant') {
       // Process timestamps first, then simple markdown (like the working archive version)
-      const originalContent = content;
       content = this.processTimestamps(content);
       content = this.processSimpleMarkdown(content);
       
@@ -631,9 +633,15 @@ class SmartYouTubeChatExtension {
     }
     
     contentDiv.innerHTML = content;
-    
     messageDiv.appendChild(contentDiv);
+    
     messagesContainer.appendChild(messageDiv);
+    
+    // Add repurpose button AFTER the message is added to DOM
+    if (role === 'assistant' && originalContent.length > 100) {
+      console.log('[YouTube Chat] Adding repurpose button, content length:', originalContent.length);
+      this.addRepurposeButtonAfterMessage(messageDiv, originalContent);
+    }
     
     // Auto-scroll
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
@@ -1243,6 +1251,67 @@ class SmartYouTubeChatExtension {
           this.chatUI.classList.remove('minimized');
         }
       }
+    }
+  }
+
+  addRepurposeButtonAfterMessage(messageEl, content) {
+    // Create a separate container for the button that goes AFTER the message
+    const buttonWrapper = document.createElement('div');
+    buttonWrapper.className = 'repurpose-wrapper';
+    
+    const button = document.createElement('button');
+    button.className = 'repurpose-button';
+    button.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      </svg>
+      <span>Repurpose for LinkedIn</span>
+    `;
+    
+    button.addEventListener('click', () => {
+      this.handleRepurposeClick(content);
+    });
+    
+    buttonWrapper.appendChild(button);
+    
+    // Insert the button wrapper AFTER the message element
+    messageEl.insertAdjacentElement('afterend', buttonWrapper);
+  }
+
+  async handleRepurposeClick(content) {
+    try {
+      // Dynamically import the repurpose UI modules
+      const baseUrl = chrome.runtime.getURL('');
+      const [repurposeUIModule, transformerModule] = await Promise.all([
+        import(`${baseUrl}content-repurposer/repurpose-ui.js`),
+        import(`${baseUrl}content-repurposer/content-transformer.js`)
+      ]);
+      
+      const { RepurposeUI } = repurposeUIModule;
+      const { ContentTransformer } = transformerModule;
+      
+      // Create transformer and UI instances
+      const transformer = new ContentTransformer();
+      const repurposeUI = new RepurposeUI(transformer);
+      
+      // Set the content context with additional metadata
+      repurposeUI.currentContent = content;
+      repurposeUI.conversationHistory = this.conversationHistory;
+      repurposeUI.videoId = this.currentVideoId;
+      repurposeUI.videoTranscript = this.transcript;
+      
+      console.log('[YouTube Chat] Passing context to RepurposeUI:', {
+        contentLength: content.length,
+        historyLength: this.conversationHistory.length,
+        hasTranscript: !!this.transcript
+      });
+      
+      // Open the modal
+      repurposeUI.openRepurposeModal();
+      
+    } catch (error) {
+      console.error('[YouTube Chat] Error loading repurpose feature:', error);
+      this.addMessage('system', 'Failed to load repurpose feature. Please try again.');
     }
   }
 }
