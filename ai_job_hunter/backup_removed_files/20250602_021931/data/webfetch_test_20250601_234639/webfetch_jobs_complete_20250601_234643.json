@@ -1,0 +1,83 @@
+{
+  "stepstone": [
+    {
+      "source": "stepstone",
+      "title": "Senior AI Engineer - Computer Vision",
+      "company": "BMW Group",
+      "location": "Munich, Germany",
+      "description": "Develop computer vision algorithms for autonomous driving. PyTorch, TensorFlow, Python required. 5+ years experience.",
+      "salary": "€75,000 - €95,000",
+      "employment_type": "Vollzeit",
+      "url": "https://www.stepstone.de/stellenangebote--senior-ai-engineer-computer-vision-muenchen-bmw-group--123456.html",
+      "scraped_at": "2025-06-01T23:46:39.282931",
+      "search_keyword": "AI Engineer"
+    },
+    {
+      "source": "stepstone",
+      "title": "Machine Learning Engineer IoT",
+      "company": "Siemens AG",
+      "location": "München",
+      "description": "ML models for industrial IoT. Time series, predictive maintenance. Python, scikit-learn, Docker, AWS.",
+      "salary": "€65,000 - €80,000",
+      "employment_type": "Vollzeit",
+      "url": "https://www.stepstone.de/stellenangebote--machine-learning-engineer-iot-muenchen-siemens--789012.html",
+      "scraped_at": "2025-06-01T23:46:39.282933",
+      "search_keyword": "AI Engineer"
+    },
+    {
+      "source": "stepstone",
+      "title": "AI Engineer MLOps",
+      "company": "Allianz SE",
+      "location": "Munich",
+      "description": "ML infrastructure for insurance models. MLflow, Kubeflow, CI/CD. Python, Kubernetes, 3+ years MLOps.",
+      "salary": "€68,000 - €85,000",
+      "employment_type": "Vollzeit",
+      "url": "https://www.stepstone.de/stellenangebote--ai-engineer-mlops-muenchen-allianz--345678.html",
+      "scraped_at": "2025-06-01T23:46:39.282934",
+      "search_keyword": "AI Engineer"
+    }
+  ],
+  "indeed": [
+    {
+      "source": "indeed",
+      "title": "AI Engineer - Natural Language Processing",
+      "company": "SAP SE",
+      "location": "Munich, Bayern",
+      "description": "NLP solutions for enterprise software. BERT, GPT models, conversational AI. Master's in CS/AI, 3+ years NLP.",
+      "salary": "€70,000 - €90,000",
+      "employment_type": "Full-time",
+      "url": "https://de.indeed.com/viewjob?jk=abc123def456",
+      "company_rating": "4.2",
+      "scraped_at": "2025-06-01T23:46:41.287965",
+      "search_keyword": "AI Engineer"
+    },
+    {
+      "source": "indeed",
+      "title": "AI Research Engineer",
+      "company": "Google Munich",
+      "location": "Munich, Germany",
+      "description": "Research next-gen AI algorithms. Reinforcement learning, multi-agent systems. PhD preferred, TensorFlow/JAX.",
+      "salary": "€90,000 - €120,000",
+      "employment_type": "Full-time",
+      "url": "https://de.indeed.com/viewjob?jk=xyz789ghi012",
+      "company_rating": "4.5",
+      "scraped_at": "2025-06-01T23:46:41.287979",
+      "search_keyword": "AI Engineer"
+    }
+  ],
+  "summary": {
+    "total_jobs": 5,
+    "by_platform": {
+      "stepstone": 3,
+      "indeed": 2
+    },
+    "by_keyword": {},
+    "search_completed_at": "2025-06-01T23:46:39.282906",
+    "cost_analysis": {
+      "webfetch_calls": 2,
+      "estimated_cost": 0.0,
+      "cost_breakdown": "WebFetch: Free (made 2 search requests)",
+      "cost_comparison": "Apify alternative would cost: ~$0.025"
+    }
+  }
+}

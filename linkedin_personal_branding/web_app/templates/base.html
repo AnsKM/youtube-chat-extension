@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}LinkedIn Personal Branding{% endblock %}</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <style>
+        :root {
+            --primary-blue: #1E3A8A;
+            --secondary-green: #059669;
+            --accent-orange: #F59E0B;
+            --light-gray: #F3F4F6;
+        }
+        
+        .bg-primary { background-color: var(--primary-blue); }
+        .bg-secondary { background-color: var(--secondary-green); }
+        .bg-accent { background-color: var(--accent-orange); }
+        .text-primary { color: var(--primary-blue); }
+        .text-secondary { color: var(--secondary-green); }
+        .text-accent { color: var(--accent-orange); }
+        
+        .sidebar-link {
+            @apply flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary transition-colors;
+        }
+        
+        .sidebar-link.active {
+            @apply bg-blue-50 text-primary border-r-2 border-primary;
+        }
+        
+        .card {
+            @apply bg-white rounded-lg shadow-md p-6;
+        }
+        
+        .metric-card {
+            @apply card text-center;
+        }
+        
+        .btn-primary {
+            @apply bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition-colors;
+        }
+        
+        .btn-secondary {
+            @apply bg-secondary text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors;
+        }
+        
+        .btn-accent {
+            @apply bg-accent text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition-colors;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white shadow-lg">
+            <div class="p-4 border-b">
+                <h1 class="text-xl font-bold text-primary">
+                    <i class="fab fa-linkedin mr-2"></i>
+                    Personal Branding
+                </h1>
+                <p class="text-sm text-gray-600">AI Expert Transformation</p>
+            </div>
+            
+            <nav class="mt-4">
+                <a href="{{ url_for('dashboard') }}" class="sidebar-link {% if request.endpoint == 'dashboard' %}active{% endif %}">
+                    <i class="fas fa-chart-pie mr-3"></i>
+                    Dashboard
+                </a>
+                <a href="{{ url_for('profile_analysis') }}" class="sidebar-link {% if request.endpoint == 'profile_analysis' %}active{% endif %}">
+                    <i class="fas fa-user-circle mr-3"></i>
+                    Profile Analysis
+                </a>
+                <a href="{{ url_for('content_planning') }}" class="sidebar-link {% if request.endpoint == 'content_planning' %}active{% endif %}">
+                    <i class="fas fa-edit mr-3"></i>
+                    Content Planning
+                </a>
+                <a href="{{ url_for('progress_tracking') }}" class="sidebar-link {% if request.endpoint == 'progress_tracking' %}active{% endif %}">
+                    <i class="fas fa-chart-line mr-3"></i>
+                    Progress Tracking
+                </a>
+                <a href="{{ url_for('tools_center') }}" class="sidebar-link {% if request.endpoint == 'tools_center' %}active{% endif %}">
+                    <i class="fas fa-tools mr-3"></i>
+                    Tools Center
+                </a>
+                <a href="{{ url_for('daily_logs') }}" class="sidebar-link {% if request.endpoint == 'daily_logs' %}active{% endif %}">
+                    <i class="fas fa-journal-whills mr-3"></i>
+                    Daily Logs
+                </a>
+                <a href="{{ url_for('settings') }}" class="sidebar-link {% if request.endpoint == 'settings' %}active{% endif %}">
+                    <i class="fas fa-cog mr-3"></i>
+                    Settings
+                </a>
+            </nav>
+            
+            <!-- Quick Stats -->
+            <div class="absolute bottom-0 left-0 w-64 p-4 border-t bg-gray-50">
+                <div class="text-sm text-gray-600">
+                    <div class="flex justify-between">
+                        <span>Connections:</span>
+                        <span class="font-semibold">366</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Followers:</span>
+                        <span class="font-semibold">405</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>This Week:</span>
+                        <span class="font-semibold text-secondary">0 posts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex-1 overflow-auto">
+            <!-- Header -->
+            <header class="bg-white shadow-sm border-b px-6 py-4">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900">
+                            {% block header %}Dashboard{% endblock %}
+                        </h2>
+                        <p class="text-gray-600">
+                            {% block subtitle %}Overview of your LinkedIn transformation journey{% endblock %}
+                        </p>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <!-- Quick Actions -->
+                        <button class="btn-primary" onclick="openDailyLog()">
+                            <i class="fas fa-plus mr-2"></i>
+                            Daily Log
+                        </button>
+                        
+                        <div class="relative">
+                            <button onclick="toggleNotifications()" class="p-2 text-gray-600 hover:text-primary" id="notificationBell">
+                                <i class="fas fa-bell"></i>
+                                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center" id="notificationCount">3</span>
+                            </button>
+                            
+                            <!-- Notifications Dropdown -->
+                            <div id="notificationDropdown" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                                <div class="p-4 border-b">
+                                    <div class="flex justify-between items-center">
+                                        <h3 class="font-semibold text-gray-900">Notifications</h3>
+                                        <button onclick="markAllAsRead()" class="text-sm text-blue-600 hover:text-blue-800">
+                                            Mark all read
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="max-h-96 overflow-y-auto">
+                                    <div class="p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer" onclick="selectNotification('profile-update')">
+                                        <div class="flex items-start space-x-3">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="flex-1">
+                                                <p class="text-sm font-medium text-gray-900">Profile data updated</p>
+                                                <p class="text-sm text-gray-600">Your LinkedIn profile was successfully scraped with new data.</p>
+                                                <p class="text-xs text-gray-400 mt-1">2 hours ago</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer" onclick="selectNotification('goal-reminder')">
+                                        <div class="flex items-start space-x-3">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="flex-1">
+                                                <p class="text-sm font-medium text-gray-900">Weekly goal reminder</p>
+                                                <p class="text-sm text-gray-600">You have 2 pending goals for this week. Stay on track!</p>
+                                                <p class="text-xs text-gray-400 mt-1">1 day ago</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer" onclick="selectNotification('content-suggestion')">
+                                        <div class="flex items-start space-x-3">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-yellow-500 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="flex-1">
+                                                <p class="text-sm font-medium text-gray-900">New content ideas available</p>
+                                                <p class="text-sm text-gray-600">AI has generated 5 new content suggestions based on your niche.</p>
+                                                <p class="text-xs text-gray-400 mt-1">2 days ago</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="p-3 border-t">
+                                    <a href="/notifications" class="text-sm text-blue-600 hover:text-blue-800">
+                                        View all notifications
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <img src="https://via.placeholder.com/32" alt="Profile" class="w-8 h-8 rounded-full mr-2">
+                            <span class="text-sm font-medium">Ans Khalid</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Page Content -->
+            <main class="p-6">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="mb-4">
+                            {% for message in messages %}
+                                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-2">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+    </div>
+    
+    <!-- Daily Log Modal -->
+    <div id="dailyLogModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center h-full p-4">
+            <div class="bg-white rounded-lg w-full max-w-md">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold">Daily Log Entry</h3>
+                        <button onclick="closeDailyLog()" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <form id="dailyLogForm">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">
+                                    Mood/Energy (1-10)
+                                </label>
+                                <input type="range" name="mood" min="1" max="10" value="5" class="w-full">
+                                <div class="text-center text-sm text-gray-600" id="moodValue">5</div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">
+                                    LinkedIn Time (minutes)
+                                </label>
+                                <input type="number" name="time_invested" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">
+                                    Key Observations
+                                </label>
+                                <textarea name="observations" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md"></textarea>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">
+                                    Tomorrow's Priority
+                                </label>
+                                <textarea name="tomorrow_priority" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="What's your main focus for tomorrow?"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 flex justify-end space-x-3">
+                            <button type="button" onclick="closeDailyLog()" class="px-4 py-2 text-gray-600 hover:text-gray-800">
+                                Cancel
+                            </button>
+                            <button type="submit" class="btn-primary">
+                                Save Entry
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    
+    <script>
+        // Toast notification function
+        function showSuccessToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed top-4 right-4 z-50 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transition-all duration-300 transform translate-x-full';
+            toast.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Animate in
+            setTimeout(() => {
+                toast.classList.remove('translate-x-full');
+            }, 100);
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                toast.classList.add('translate-x-full');
+                setTimeout(() => {
+                    if (toast.parentElement) {
+                        toast.remove();
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Notification Functions
+        function toggleNotifications() {
+            const dropdown = document.getElementById('notificationDropdown');
+            const isHidden = dropdown.classList.contains('hidden');
+            
+            if (isHidden) {
+                dropdown.classList.remove('hidden');
+                // Close when clicking outside
+                setTimeout(() => {
+                    document.addEventListener('click', closeNotificationsOnClickOutside);
+                }, 100);
+            } else {
+                dropdown.classList.add('hidden');
+                document.removeEventListener('click', closeNotificationsOnClickOutside);
+            }
+        }
+
+        function closeNotificationsOnClickOutside(event) {
+            const dropdown = document.getElementById('notificationDropdown');
+            const bell = document.getElementById('notificationBell');
+            
+            if (!dropdown.contains(event.target) && !bell.contains(event.target)) {
+                dropdown.classList.add('hidden');
+                document.removeEventListener('click', closeNotificationsOnClickOutside);
+            }
+        }
+
+        function markAllAsRead() {
+            const notificationCount = document.getElementById('notificationCount');
+            const dots = document.querySelectorAll('#notificationDropdown .w-2.h-2');
+            
+            // Hide notification count
+            notificationCount.style.display = 'none';
+            
+            // Change all notification dots to gray (read)
+            dots.forEach(dot => {
+                dot.className = 'w-2 h-2 bg-gray-300 rounded-full mt-2';
+            });
+            
+            // Show success message
+            showSuccessToast('All notifications marked as read');
+            
+            // Close dropdown
+            document.getElementById('notificationDropdown').classList.add('hidden');
+        }
+
+        function selectNotification(type) {
+            // Handle different notification types
+            const actions = {
+                'profile-update': () => window.location.href = '/profile',
+                'goal-reminder': () => window.location.href = '/',
+                'content-suggestion': () => window.location.href = '/content'
+            };
+            
+            if (actions[type]) {
+                actions[type]();
+            }
+            
+            // Close dropdown
+            document.getElementById('notificationDropdown').classList.add('hidden');
+        }
+
+        // Daily Log Modal Functions
+        function openDailyLog() {
+            document.getElementById('dailyLogModal').classList.remove('hidden');
+        }
+        
+        function closeDailyLog() {
+            document.getElementById('dailyLogModal').classList.add('hidden');
+        }
+        
+        // Mood slider
+        document.querySelector('input[name="mood"]').addEventListener('input', function(e) {
+            document.getElementById('moodValue').textContent = e.target.value;
+        });
+        
+        // Daily Log Form Submit
+        document.getElementById('dailyLogForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = {
+                mood: formData.get('mood'),
+                time_invested: formData.get('time_invested'),
+                observations: formData.get('observations').split('\n').filter(obs => obs.trim()),
+                tomorrow_priority: formData.get('tomorrow_priority')
+            };
+            
+            fetch('/api/daily-log', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    // Show success notification
+                    showSuccessToast('Daily log saved successfully! ✅');
+                    // Clear form
+                    e.target.reset();
+                    document.getElementById('moodValue').textContent = '5';
+                    // Close modal after short delay
+                    setTimeout(() => {
+                        closeDailyLog();
+                    }, 1500);
+                } else {
+                    alert('Error saving daily log: ' + result.error);
+                }
+            });
+        });
+    </script>
+    
+    {% block scripts %}{% endblock %}
+</body>
+</html>

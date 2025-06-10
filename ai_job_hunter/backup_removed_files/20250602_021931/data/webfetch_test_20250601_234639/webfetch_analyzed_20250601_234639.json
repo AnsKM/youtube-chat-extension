@@ -1,0 +1,169 @@
+[
+  {
+    "source": "stepstone",
+    "title": "Senior AI Engineer - Computer Vision",
+    "company": "BMW Group",
+    "location": "Munich, Germany",
+    "description": "Develop computer vision algorithms for autonomous driving. PyTorch, TensorFlow, Python required. 5+ years experience.",
+    "salary": "€75,000 - €95,000",
+    "employment_type": "Vollzeit",
+    "url": "https://www.stepstone.de/stellenangebote--senior-ai-engineer-computer-vision-muenchen-bmw-group--123456.html",
+    "scraped_at": "2025-06-01T23:46:39.282931",
+    "search_keyword": "AI Engineer",
+    "ai_analysis": {
+      "required_skills": [],
+      "experience_level": "",
+      "ai_ml_focus": [],
+      "responsibilities": "",
+      "qualifications": "",
+      "company_type": "",
+      "work_arrangement": "",
+      "salary_insights": "",
+      "career_growth": "",
+      "attractiveness_score": 8,
+      "full_analysis": "## Analysis of AI/Tech Job Posting: Senior AI Engineer - Computer Vision at BMW Group\n\n**1. Required Skills:**\n\n* **Programming Languages:** Python\n* **Deep Learning Frameworks:** PyTorch, TensorFlow\n* **Specific Skills:** Computer Vision algorithms, autonomous driving development\n\n\n**2. Experience Level:**\n\n* Senior-level position (5+ years experience specified)\n\n\n**3. AI/ML Focus Areas:**\n\n* Computer Vision\n* Deep Learning (implied by the use of PyTorch and TensorFlow)\n* Autonomous Driving (application area)\n\n\n**4. Responsibilities:**\n\n* Develop computer vision algorithms for autonomous driving applications.\n\n\n**5. Qualifications:**\n\n* The posting doesn't explicitly state education requirements or certifications, but a Master's degree or PhD in a relevant field is highly likely to be a prerequisite for a senior-level role.\n\n\n**6. Company Type:**\n\n* Enterprise (BMW Group is a large, established automotive manufacturer)\n\n\n**7. Work Arrangement:**\n\n* The job posting does not specify the work arrangement (remote, on-site, or hybrid).  This would need to be clarified by further inquiry.\n\n\n**8. Salary Insights:**\n\n* No salary information is provided.\n\n\n**9. Career Growth Potential:**\n\n* High potential for career growth within a large organization like BMW Group, especially given the importance of autonomous driving technology.  Opportunities for advancement to principal engineer or technical leadership roles are likely.\n\n\n**10. Job Attractiveness Score:**\n\n* **8/10:**  The role is at a reputable company working on cutting-edge technology.  The lack of salary information and work arrangement details slightly lowers the score.  However, the experience and career growth potential are strong points.\n",
+      "original_job": {
+        "title": "Senior AI Engineer - Computer Vision",
+        "company": "BMW Group",
+        "source": "stepstone",
+        "url": "https://www.stepstone.de/stellenangebote--senior-ai-engineer-computer-vision-muenchen-bmw-group--123456.html"
+      },
+      "analysis_date": "2025-06-01T23:46:46.312971",
+      "analyzer_version": "1.0.0"
+    }
+  },
+  {
+    "source": "stepstone",
+    "title": "Machine Learning Engineer IoT",
+    "company": "Siemens AG",
+    "location": "München",
+    "description": "ML models for industrial IoT. Time series, predictive maintenance. Python, scikit-learn, Docker, AWS.",
+    "salary": "€65,000 - €80,000",
+    "employment_type": "Vollzeit",
+    "url": "https://www.stepstone.de/stellenangebote--machine-learning-engineer-iot-muenchen-siemens--789012.html",
+    "scraped_at": "2025-06-01T23:46:39.282933",
+    "search_keyword": "AI Engineer",
+    "ai_analysis": {
+      "required_skills": [],
+      "experience_level": "",
+      "ai_ml_focus": [],
+      "responsibilities": "",
+      "qualifications": "",
+      "company_type": "",
+      "work_arrangement": "",
+      "salary_insights": "",
+      "career_growth": "",
+      "attractiveness_score": 7,
+      "full_analysis": "## Analysis of Machine Learning Engineer IoT Job Posting (Siemens AG)\n\n**1. Required Skills:**\n\n* **Programming Languages:** Python\n* **Tools/Libraries:** scikit-learn, Docker, AWS\n* **Technical Skills:** Machine Learning model development, Time series analysis, Predictive maintenance, Industrial IoT (IIoT)\n\n\n**2. Experience Level:**\n\nMid-level to Senior. The requirement for developing ML models for industrial applications suggests experience beyond entry-level.\n\n\n**3. AI/ML Focus Areas:**\n\n* Time series analysis\n* Predictive maintenance\n* Machine Learning model development (likely encompassing various techniques beyond just scikit-learn)\n\n\n**4. Responsibilities:**\n\nDeveloping and deploying machine learning models for industrial IoT applications, focusing on predictive maintenance using time series data.\n\n\n**5. Qualifications:**\n\nThe job posting doesn't explicitly state education requirements or certifications.  However, a Master's degree in a relevant field (e.g., Computer Science, Engineering) is highly likely to be preferred, along with relevant experience.\n\n\n**6. Company Type:**\n\nEnterprise (Siemens AG is a large multinational conglomerate).\n\n\n**7. Work Arrangement:**\n\nThe job posting doesn't specify the work arrangement (remote, on-site, or hybrid).  This would need to be clarified during the application process.\n\n\n**8. Salary Insights:**\n\nNo salary information is provided.\n\n\n**9. Career Growth Potential:**\n\nSiemens is a large company with many opportunities for career advancement within its various divisions.  Growth potential is likely good, depending on performance and the specific team.  Exposure to large-scale industrial applications could be highly beneficial for career progression.\n\n\n**10. Job Attractiveness Score:**\n\n7/10.  The role is in a relevant and impactful field (industrial IoT and predictive maintenance), with a reputable company. However, the lack of salary information and work arrangement details slightly lowers the score.  The specific team and manager would also heavily influence the final attractiveness.\n",
+      "original_job": {
+        "title": "Machine Learning Engineer IoT",
+        "company": "Siemens AG",
+        "source": "stepstone",
+        "url": "https://www.stepstone.de/stellenangebote--machine-learning-engineer-iot-muenchen-siemens--789012.html"
+      },
+      "analysis_date": "2025-06-01T23:46:49.388022",
+      "analyzer_version": "1.0.0"
+    }
+  },
+  {
+    "source": "stepstone",
+    "title": "AI Engineer MLOps",
+    "company": "Allianz SE",
+    "location": "Munich",
+    "description": "ML infrastructure for insurance models. MLflow, Kubeflow, CI/CD. Python, Kubernetes, 3+ years MLOps.",
+    "salary": "€68,000 - €85,000",
+    "employment_type": "Vollzeit",
+    "url": "https://www.stepstone.de/stellenangebote--ai-engineer-mlops-muenchen-allianz--345678.html",
+    "scraped_at": "2025-06-01T23:46:39.282934",
+    "search_keyword": "AI Engineer",
+    "ai_analysis": {
+      "required_skills": [],
+      "experience_level": "",
+      "ai_ml_focus": [],
+      "responsibilities": "",
+      "qualifications": "",
+      "company_type": "",
+      "work_arrangement": "",
+      "salary_insights": "",
+      "career_growth": "",
+      "attractiveness_score": 7,
+      "full_analysis": "## Analysis of AI Engineer MLOps Job Posting (Allianz SE)\n\n**1. Required Skills:**\n\n* Programming Languages: Python\n* Tools: MLflow, Kubeflow, CI/CD, Kubernetes\n* Other Skills:  MLOps infrastructure, experience with insurance models.\n\n\n**2. Experience Level:**\n\nMid-level. The requirement of \"3+ years MLOps\" indicates experience beyond entry-level.\n\n\n**3. AI/ML Focus Areas:**\n\nMLOps, specifically focused on deploying and managing machine learning models within an insurance context.\n\n\n**4. Responsibilities:**\n\nBuilding and maintaining ML infrastructure for insurance models, likely involving implementing CI/CD pipelines, managing model deployments using tools like MLflow and Kubeflow, and ensuring the operational reliability of these models within a Kubernetes environment.\n\n\n**5. Qualifications:**\n\nNo explicit education requirements or certifications are mentioned.  However, 3+ years of relevant experience strongly implies a Bachelor's degree (or equivalent) in a relevant field (Computer Science, Data Science, etc.).\n\n\n**6. Company Type:**\n\nEnterprise. Allianz SE is a large, established multinational insurance company.\n\n\n**7. Work Arrangement:**\n\nNot specified in the provided description.\n\n\n**8. Salary Insights:**\n\nNo salary information is provided.\n\n\n**9. Career Growth Potential:**\n\nPotential for growth within Allianz SE's data science and engineering teams.  Opportunities to learn and specialize in MLOps within a large enterprise environment are likely.\n\n\n**10. Job Attractiveness Score:**\n\n7/10.  Allianz is a reputable company, offering stability. The role is focused on a high-demand skillset (MLOps). However, the lack of salary information and work arrangement details lowers the score slightly.  The specific insurance context might be a plus or minus depending on individual preferences.\n",
+      "original_job": {
+        "title": "AI Engineer MLOps",
+        "company": "Allianz SE",
+        "source": "stepstone",
+        "url": "https://www.stepstone.de/stellenangebote--ai-engineer-mlops-muenchen-allianz--345678.html"
+      },
+      "analysis_date": "2025-06-01T23:46:52.269136",
+      "analyzer_version": "1.0.0"
+    }
+  },
+  {
+    "source": "indeed",
+    "title": "AI Engineer - Natural Language Processing",
+    "company": "SAP SE",
+    "location": "Munich, Bayern",
+    "description": "NLP solutions for enterprise software. BERT, GPT models, conversational AI. Master's in CS/AI, 3+ years NLP.",
+    "salary": "€70,000 - €90,000",
+    "employment_type": "Full-time",
+    "url": "https://de.indeed.com/viewjob?jk=abc123def456",
+    "company_rating": "4.2",
+    "scraped_at": "2025-06-01T23:46:41.287965",
+    "search_keyword": "AI Engineer",
+    "ai_analysis": {
+      "required_skills": [],
+      "experience_level": "",
+      "ai_ml_focus": [],
+      "responsibilities": "",
+      "qualifications": "",
+      "company_type": "",
+      "work_arrangement": "",
+      "salary_insights": "",
+      "career_growth": "",
+      "attractiveness_score": 7,
+      "full_analysis": "## Analysis of AI Engineer - Natural Language Processing Job Posting\n\n**1. Required Skills:**\n\n* Natural Language Processing (NLP)\n* BERT\n* GPT models\n* Conversational AI\n\nProgramming languages and tools are not explicitly mentioned.\n\n**2. Experience Level:**\n\nMid-level.  The requirement of 3+ years of NLP experience indicates this is not an entry-level position.\n\n**3. AI/ML Focus Areas:**\n\n* Natural Language Processing (NLP)\n* Deep Learning (implied due to BERT and GPT model mention)\n\n**4. Responsibilities:**\n\nDeveloping NLP solutions for enterprise software.  The specifics are not detailed, but it involves working with BERT and GPT models and building conversational AI systems.\n\n**5. Qualifications:**\n\n* Master's degree in Computer Science or Artificial Intelligence.\n\n**6. Company Type:**\n\nEnterprise (SAP SE is a large, established enterprise software company).\n\n**7. Work Arrangement:**\n\nNot specified in the provided description.\n\n**8. Salary Insights:**\n\nNo salary information is provided.\n\n**9. Career Growth Potential:**\n\nPotential for growth within SAP's AI/NLP teams is likely, given SAP's size and investment in AI.  However, the specific opportunities are not detailed.\n\n**10. Job Attractiveness Score:**\n\n7/10.  The job is attractive due to working with cutting-edge NLP technologies at a large, reputable company like SAP. However, the lack of salary information and work arrangement details lowers the score.  The potential for career growth is good but not explicitly stated.\n",
+      "original_job": {
+        "title": "AI Engineer - Natural Language Processing",
+        "company": "SAP SE",
+        "source": "indeed",
+        "url": "https://de.indeed.com/viewjob?jk=abc123def456"
+      },
+      "analysis_date": "2025-06-01T23:46:54.756038",
+      "analyzer_version": "1.0.0"
+    }
+  },
+  {
+    "source": "indeed",
+    "title": "AI Research Engineer",
+    "company": "Google Munich",
+    "location": "Munich, Germany",
+    "description": "Research next-gen AI algorithms. Reinforcement learning, multi-agent systems. PhD preferred, TensorFlow/JAX.",
+    "salary": "€90,000 - €120,000",
+    "employment_type": "Full-time",
+    "url": "https://de.indeed.com/viewjob?jk=xyz789ghi012",
+    "company_rating": "4.5",
+    "scraped_at": "2025-06-01T23:46:41.287979",
+    "search_keyword": "AI Engineer",
+    "ai_analysis": {
+      "required_skills": [],
+      "experience_level": "",
+      "ai_ml_focus": [],
+      "responsibilities": "",
+      "qualifications": "",
+      "company_type": "",
+      "work_arrangement": "",
+      "salary_insights": "",
+      "career_growth": "",
+      "attractiveness_score": 9,
+      "full_analysis": "## Analysis of AI Research Engineer Job Posting at Google Munich\n\n**1. Required Skills:**\n\n* Reinforcement learning\n* Multi-agent systems\n* TensorFlow\n* JAX\n\n\n**2. Experience Level:**\n\nSenior-level.  The requirement of a PhD strongly suggests significant experience beyond entry-level.\n\n\n**3. AI/ML Focus Areas:**\n\n* Reinforcement Learning\n* Multi-agent systems\n\n\n**4. Responsibilities:**\n\nResearch and development of next-generation AI algorithms in reinforcement learning and multi-agent systems.\n\n\n**5. Qualifications:**\n\n* PhD preferred (implies a Master's degree might be considered, but less likely)\n\n\n**6. Company Type:**\n\nTech company (specifically a large, established enterprise).\n\n\n**7. Work Arrangement:**\n\nNot specified in the provided description.  It's likely on-site in Munich, given the location specified, but this needs confirmation.\n\n\n**8. Salary Insights:**\n\nNo salary information provided.  However, given Google's reputation and the senior-level nature of the role, a highly competitive salary is expected.\n\n\n**9. Career Growth Potential:**\n\nHigh. Google offers significant opportunities for career advancement within its research and engineering teams.  Exposure to cutting-edge AI research and collaboration with leading experts is valuable for career progression.\n\n\n**10. Job Attractiveness Score:**\n\n9/10.  The role at Google, a highly reputable company, working on cutting-edge research in a promising field, scores highly. The lack of specified work arrangement and salary information slightly reduces the score.\n",
+      "original_job": {
+        "title": "AI Research Engineer",
+        "company": "Google Munich",
+        "source": "indeed",
+        "url": "https://de.indeed.com/viewjob?jk=xyz789ghi012"
+      },
+      "analysis_date": "2025-06-01T23:46:57.253004",
+      "analyzer_version": "1.0.0"
+    }
+  }
+]

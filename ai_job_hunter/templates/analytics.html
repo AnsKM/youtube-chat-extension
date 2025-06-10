@@ -1,0 +1,366 @@
+{% extends "base.html" %}
+
+{% block title %}Analytics - AI Job Hunter{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-6 py-8">
+    <!-- Header -->
+    <div class="mb-12">
+        <h1 class="text-4xl font-bold mb-4">Advanced Market Analytics</h1>
+        <p class="text-xl text-gray-600">Deep insights into Munich's AI consulting job market</p>
+    </div>
+    
+    <!-- Salary Analysis -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-semibold mb-6">Salary Analysis by Experience Level</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Salary by Experience Chart -->
+            <div class="card p-6">
+                <h3 class="text-lg font-medium mb-4">Average Salary Distribution</h3>
+                <div style="height: 300px;">
+                    <canvas id="salaryByExpChart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Salary Insights -->
+            <div class="card p-6">
+                <h3 class="text-lg font-medium mb-4">Key Salary Insights</h3>
+                <div class="space-y-4">
+                    {% for level, avg_salary in analytics.salary_by_level.items() %}
+                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                        <span class="font-medium text-gray-700">{{ level }}</span>
+                        <span class="text-xl font-bold text-green-600">€{{ "{:,}".format(avg_salary) }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                    <p class="text-sm text-blue-800">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        The salary gap between entry and principal levels is approximately 
+                        <span class="font-bold">€{{ "{:,}".format(stats.salary_range.max - stats.salary_range.min) }}</span>,
+                        representing a <span class="font-bold">{{ ((stats.salary_range.max - stats.salary_range.min) / stats.salary_range.min * 100)|round|int }}%</span> 
+                        increase potential over career progression.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Competition Analysis -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-semibold mb-6">Competition Analysis</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Applications by Company -->
+            <div class="card p-6">
+                <h3 class="text-lg font-medium mb-4">Average Applications by Company</h3>
+                <div style="height: 300px;">
+                    <canvas id="applicationsByCompanyChart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Company Competitiveness Score -->
+            <div class="card p-6">
+                <h3 class="text-lg font-medium mb-4">Company Competitiveness Index</h3>
+                <div class="space-y-3 max-h-80 overflow-y-auto">
+                    {% for company, score in analytics.company_competitiveness.items() %}
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-700">{{ company }}</span>
+                        <div class="flex items-center">
+                            <div class="w-32 bg-gray-200 rounded-full h-2 mr-3">
+                                <div class="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full" 
+                                     style="width: {{ score * 10 }}%"></div>
+                            </div>
+                            <span class="font-bold text-sm">{{ score }}/10</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Skills Demand Analysis -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-semibold mb-6">Skills Demand Analysis</h2>
+        <div class="card p-6">
+            <div style="height: 400px;">
+                <canvas id="skillsDemandChart"></canvas>
+            </div>
+        </div>
+        
+        <!-- Skills Categories -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            <div class="card p-6 bg-gradient-to-br from-blue-50 to-blue-100">
+                <h4 class="font-semibold text-blue-800 mb-3">
+                    <i class="fas fa-code mr-2"></i>Technical Skills
+                </h4>
+                <div class="space-y-2">
+                    <div class="flex justify-between text-sm">
+                        <span>Python</span>
+                        <span class="font-bold">95%</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span>Machine Learning</span>
+                        <span class="font-bold">88%</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span>Cloud Platforms</span>
+                        <span class="font-bold">75%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card p-6 bg-gradient-to-br from-green-50 to-green-100">
+                <h4 class="font-semibold text-green-800 mb-3">
+                    <i class="fas fa-users mr-2"></i>Soft Skills
+                </h4>
+                <div class="space-y-2">
+                    <div class="flex justify-between text-sm">
+                        <span>Consulting</span>
+                        <span class="font-bold">82%</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span>Communication</span>
+                        <span class="font-bold">78%</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span>Leadership</span>
+                        <span class="font-bold">65%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card p-6 bg-gradient-to-br from-purple-50 to-purple-100">
+                <h4 class="font-semibold text-purple-800 mb-3">
+                    <i class="fas fa-industry mr-2"></i>Domain Knowledge
+                </h4>
+                <div class="space-y-2">
+                    <div class="flex justify-between text-sm">
+                        <span>Financial Services</span>
+                        <span class="font-bold">45%</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span>Automotive</span>
+                        <span class="font-bold">38%</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span>Healthcare</span>
+                        <span class="font-bold">32%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Market Trends -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-semibold mb-6">Market Trends & Predictions</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Job Growth Timeline -->
+            <div class="card p-6">
+                <h3 class="text-lg font-medium mb-4">7-Day Job Posting Trend</h3>
+                <div style="height: 300px;">
+                    <canvas id="jobGrowthChart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Market Insights -->
+            <div class="card p-6">
+                <h3 class="text-lg font-medium mb-4">Key Market Insights</h3>
+                <div class="space-y-4">
+                    <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-semibold text-green-800 mb-1">Growing Demand</h4>
+                        <p class="text-sm text-green-700">
+                            AI consulting roles have increased by 25% compared to last quarter
+                        </p>
+                    </div>
+                    
+                    <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-semibold text-blue-800 mb-1">Skill Evolution</h4>
+                        <p class="text-sm text-blue-700">
+                            MLOps and AI Ethics are emerging as critical skills in 2024
+                        </p>
+                    </div>
+                    
+                    <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-500">
+                        <h4 class="font-semibold text-purple-800 mb-1">Industry Focus</h4>
+                        <p class="text-sm text-purple-700">
+                            Automotive and FinTech sectors leading in AI adoption
+                        </p>
+                    </div>
+                    
+                    <div class="p-4 bg-orange-50 rounded-lg border-l-4 border-orange-500">
+                        <h4 class="font-semibold text-orange-800 mb-1">Salary Trends</h4>
+                        <p class="text-sm text-orange-700">
+                            Average salaries up 12% YoY, with senior roles seeing 18% growth
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Download Report -->
+    <div class="text-center">
+        <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
+            <i class="fas fa-download mr-2"></i>
+            Download Complete Market Report (PDF)
+        </button>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Store chart instances to prevent duplicates
+let analyticsCharts = {};
+
+// Destroy existing charts before creating new ones
+function destroyAnalyticsChart(chartId) {
+    if (analyticsCharts[chartId]) {
+        analyticsCharts[chartId].destroy();
+        delete analyticsCharts[chartId];
+    }
+}
+
+// Prepare analytics data
+const salaryByLevel = {{ analytics.salary_by_level | tojson }};
+const applicationsByCompany = {{ analytics.applications_by_company | tojson }};
+const jobGrowthData = {{ analytics.job_growth_timeline | tojson }};
+const skillsDemand = {{ analytics.skills_demand | tojson }};
+
+// Chart configurations
+const modernChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            display: false
+        }
+    },
+    scales: {
+        y: {
+            beginAtZero: true,
+            grid: {
+                color: 'rgba(0, 0, 0, 0.05)'
+            }
+        },
+        x: {
+            grid: {
+                display: false
+            }
+        }
+    }
+};
+
+// Salary by Experience Chart
+destroyAnalyticsChart('salaryByExpChart');
+analyticsCharts['salaryByExpChart'] = new Chart(document.getElementById('salaryByExpChart'), {
+    type: 'bar',
+    data: {
+        labels: Object.keys(salaryByLevel),
+        datasets: [{
+            data: Object.values(salaryByLevel),
+            backgroundColor: [
+                'rgba(59, 130, 246, 0.8)',
+                'rgba(16, 185, 129, 0.8)',
+                'rgba(139, 92, 246, 0.8)',
+                'rgba(245, 158, 11, 0.8)',
+                'rgba(239, 68, 68, 0.8)'
+            ],
+            borderRadius: 8
+        }]
+    },
+    options: {
+        ...modernChartOptions,
+        plugins: {
+            ...modernChartOptions.plugins,
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return '€' + context.parsed.y.toLocaleString();
+                    }
+                }
+            }
+        }
+    }
+});
+
+// Applications by Company Chart
+destroyAnalyticsChart('applicationsByCompanyChart');
+analyticsCharts['applicationsByCompanyChart'] = new Chart(document.getElementById('applicationsByCompanyChart'), {
+    type: 'bar',
+    data: {
+        labels: Object.keys(applicationsByCompany),
+        datasets: [{
+            data: Object.values(applicationsByCompany),
+            backgroundColor: 'rgba(139, 92, 246, 0.8)',
+            borderRadius: 8
+        }]
+    },
+    options: {
+        ...modernChartOptions,
+        indexAxis: 'y'
+    }
+});
+
+// Skills Demand Chart
+destroyAnalyticsChart('skillsDemandChart');
+analyticsCharts['skillsDemandChart'] = new Chart(document.getElementById('skillsDemandChart'), {
+    type: 'radar',
+    data: {
+        labels: skillsDemand.map(s => s[0]),
+        datasets: [{
+            label: 'Skill Mentions',
+            data: skillsDemand.map(s => s[1]),
+            backgroundColor: 'rgba(59, 130, 246, 0.2)',
+            borderColor: 'rgba(59, 130, 246, 1)',
+            pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(59, 130, 246, 1)'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        scales: {
+            r: {
+                beginAtZero: true,
+                grid: {
+                    color: 'rgba(0, 0, 0, 0.05)'
+                }
+            }
+        }
+    }
+});
+
+// Job Growth Timeline
+destroyAnalyticsChart('jobGrowthChart');
+analyticsCharts['jobGrowthChart'] = new Chart(document.getElementById('jobGrowthChart'), {
+    type: 'line',
+    data: {
+        labels: Object.keys(jobGrowthData),
+        datasets: [{
+            label: 'Jobs Posted',
+            data: Object.values(jobGrowthData),
+            borderColor: 'rgba(16, 185, 129, 1)',
+            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+            tension: 0.4,
+            fill: true,
+            pointRadius: 6,
+            pointBackgroundColor: 'rgba(16, 185, 129, 1)',
+            pointBorderColor: '#fff',
+            pointBorderWidth: 2
+        }]
+    },
+    options: modernChartOptions
+});
+</script>
+{% endblock %}

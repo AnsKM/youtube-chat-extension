@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Ad Intelligence Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <style>
+        :root {
+            --primary: #0066ff;
+            --primary-dark: #0052cc;
+            --secondary: #6c757d;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --info: #17a2b8;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --background: #ffffff;
+            --surface: #ffffff;
+            --border: #e9ecef;
+            --text-primary: #2c3e50;
+            --text-secondary: #6c757d;
+            --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.12);
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            background: var(--light);
+            border-radius: 50px;
+            padding: 0.25rem;
+        }
+
+        .nav-tab {
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            color: var(--text-secondary);
+        }
+
+        .nav-tab.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-tab:hover:not(.active) {
+            background: rgba(0, 102, 255, 0.1);
+            color: var(--primary);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--surface);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title i {
+            color: var(--primary);
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
+
+        /* Stats Cards */
+        .stat-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-change {
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Tabs Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Charts */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 1rem 0;
+        }
+
+        .chart-large {
+            height: 400px;
+        }
+
+        /* Ad Cards */
+        .ad-card {
+            border-left: 4px solid var(--primary);
+            transition: var(--transition);
+        }
+
+        .ad-card:hover {
+            border-left-color: var(--success);
+            transform: translateX(4px);
+        }
+
+        .ad-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .ad-page {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .ad-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background: rgba(40, 167, 69, 0.1);
+            color: var(--success);
+        }
+
+        .status-inactive {
+            background: rgba(108, 117, 125, 0.1);
+            color: var(--secondary);
+        }
+
+        .ad-text {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .ad-cta {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.375rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .ad-cta:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .filter-select {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            background: white;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+        }
+
+        /* Search */
+        .search-box {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        /* Tables */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .table th,
+        .table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .table th {
+            font-weight: 600;
+            background: var(--light);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .table tr:hover {
+            background: rgba(0, 102, 255, 0.02);
+        }
+
+        /* Loading States */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            color: var(--text-secondary);
+        }
+
+        .spinner {
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-right: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-tabs {
+                order: 2;
+            }
+
+            .grid-4,
+            .grid-3,
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+
+            .search-box {
+                max-width: none;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .slide-up {
+            animation: slideUp 0.3s ease-in-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Tooltips */
+        .tooltip {
+            position: relative;
+            cursor: help;
+        }
+
+        .tooltip:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            z-index: 1000;
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+    </style>
+</head>
+<body x-data="dashboard()">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fab fa-facebook"></i> Meta Ad Intelligence
+            </a>
+            <div class="nav-tabs">
+                <button 
+                    class="nav-tab" 
+                    :class="{ 'active': activeTab === 'overview' }"
+                    @click="setActiveTab('overview')"
+                >
+                    <i class="fas fa-chart-line"></i> Overview
+                </button>
+                <button 
+                    class="nav-tab" 
+                    :class="{ 'active': activeTab === 'german-ecommerce' }"
+                    @click="setActiveTab('german-ecommerce')"
+                >
+                    <i class="fas fa-shopping-cart"></i> German E-commerce
+                </button>
+                <button 
+                    class="nav-tab" 
+                    :class="{ 'active': activeTab === 'billy-gene' }"
+                    @click="setActiveTab('billy-gene')"
+                >
+                    <i class="fas fa-robot"></i> Billy Gene AI
+                </button>
+                <button 
+                    class="nav-tab" 
+                    :class="{ 'active': activeTab === 'compare' }"
+                    @click="setActiveTab('compare')"
+                >
+                    <i class="fas fa-balance-scale"></i> Compare
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Overview Tab -->
+        <div class="tab-content" :class="{ 'active': activeTab === 'overview' }">
+            <div class="grid grid-4">
+                <div class="card stat-card">
+                    <span class="stat-number">65</span>
+                    <div class="stat-label">Total Ads Analyzed</div>
+                    <div class="stat-change">+50 this week</div>
+                </div>
+                <div class="card stat-card">
+                    <span class="stat-number">52</span>
+                    <div class="stat-label">Active Campaigns</div>
+                    <div class="stat-change">80% active rate</div>
+                </div>
+                <div class="card stat-card">
+                    <span class="stat-number">5</span>
+                    <div class="stat-label">Brands Analyzed</div>
+                    <div class="stat-change">Multi-sector coverage</div>
+                </div>
+                <div class="card stat-card">
+                    <span class="stat-number">$2.3M</span>
+                    <div class="stat-label">Reported Revenue</div>
+                    <div class="stat-change">From tracked campaigns</div>
+                </div>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-pie"></i>
+                            Campaign Distribution
+                        </h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="campaignDistributionChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-trending-up"></i>
+                            Performance Trends
+                        </h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="performanceTrendsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-bullseye"></i>
+                        Top Performing CTAs
+                    </h3>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Call to Action</th>
+                            <th>Usage Count</th>
+                            <th>Conversion Intent</th>
+                            <th>Performance Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Jetzt kaufen</strong></td>
+                            <td>10</td>
+                            <td>High</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Learn More</strong></td>
+                            <td>8</td>
+                            <td>Medium</td>
+                            <td>⭐⭐⭐⭐</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Get Started</strong></td>
+                            <td>7</td>
+                            <td>High</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Shop now</strong></td>
+                            <td>6</td>
+                            <td>High</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- German E-commerce Tab -->
+        <div class="tab-content" :class="{ 'active': activeTab === 'german-ecommerce' }">
+            <div class="grid grid-4">
+                <div class="card stat-card">
+                    <span class="stat-number">50</span>
+                    <div class="stat-label">E-commerce Ads</div>
+                    <div class="stat-change">DACH Region Focus</div>
+                </div>
+                <div class="card stat-card">
+                    <span class="stat-number">40</span>
+                    <div class="stat-label">Active Campaigns</div>
+                    <div class="stat-change">80% active rate</div>
+                </div>
+                <div class="card stat-card">
+                    <span class="stat-number">3</span>
+                    <div class="stat-label">Major Brands</div>
+                    <div class="stat-change">OTTO, Zalando, Amazon</div>
+                </div>
+                <div class="card stat-card">
+                    <span class="stat-number">325K</span>
+                    <div class="stat-label">Avg Impressions</div>
+                    <div class="stat-change">Per campaign</div>
+                </div>
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label class="filter-label">Brand</label>
+                    <select class="filter-select" x-model="germanFilters.brand">
+                        <option value="">All Brands</option>
+                        <option value="OTTO">OTTO Online Shop</option>
+                        <option value="Zalando">Zalando Deutschland</option>
+                        <option value="Amazon">Amazon Deutschland</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Status</label>
+                    <select class="filter-select" x-model="germanFilters.status">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+                <div class="search-box">
+                    <label class="filter-label">Search Ads</label>
+                    <div style="position: relative;">
+                        <input 
+                            type="text" 
+                            class="search-input" 
+                            placeholder="Search ad content..."
+                            x-model="germanFilters.search"
+                        >
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-bar"></i>
+                            Brand Distribution
+                        </h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="brandDistributionChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-tags"></i>
+                            Content Themes
+                        </h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="contentThemesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-3">
+                <template x-for="ad in filteredGermanAds" :key="ad.id">
+                    <div class="card ad-card">
+                        <div class="ad-meta">
+                            <span class="ad-page" x-text="ad.page"></span>
+                            <span 
+                                class="ad-status"
+                                :class="ad.active ? 'status-active' : 'status-inactive'"
+                                x-text="ad.active ? 'Active' : 'Inactive'"
+                            ></span>
+                        </div>
+                        <div class="ad-text" x-text="ad.text.substring(0, 200) + '...'"></div>
+                        <a href="#" class="ad-cta" x-text="ad.cta"></a>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+        <!-- Billy Gene Tab -->
+        <div class="tab-content" :class="{ 'active': activeTab === 'billy-gene' }">
+            <div class="grid grid-4">
+                <div class="card stat-card">
+                    <span class="stat-number">15</span>
+                    <div class="stat-label">AI Marketing Ads</div>
+                    <div class="stat-change">Educational Focus</div>
+                </div>
+                <div class="card stat-card">
+                    <span class="stat-number">12</span>
+                    <div class="stat-label">Active Campaigns</div>
+                    <div class="stat-change">80% active rate</div>
+                </div>
+                <div class="card stat-card">
+                    <span class="stat-number">33%</span>
+                    <div class="stat-label">Video Content</div>
+                    <div class="stat-change">Above industry avg</div>
+                </div>
+                <div class="card stat-card">
+                    <span class="stat-number">262K</span>
+                    <div class="stat-label">Avg Impressions</div>
+                    <div class="stat-change">High engagement</div>
+                </div>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-brain"></i>
+                            Psychological Triggers
+                        </h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="psychologyChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-funnel-dollar"></i>
+                            CTA Performance
+                        </h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="ctaPerformanceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Key Marketing Insights
+                    </h3>
+                </div>
+                <div class="grid grid-2">
+                    <div>
+                        <h4>🎯 Strategic Advantages</h4>
+                        <ul style="margin: 1rem 0; line-height: 1.8;">
+                            <li><strong>Technology Leadership:</strong> AI + XR early adopter positioning</li>
+                            <li><strong>Results-Driven:</strong> Concrete revenue numbers ($2.3M in 90 days)</li>
+                            <li><strong>Educational Authority:</strong> Teaching-based credibility building</li>
+                            <li><strong>Personal Branding:</strong> Individual expert vs agency positioning</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>📈 Performance Patterns</h4>
+                        <ul style="margin: 1rem 0; line-height: 1.8;">
+                            <li><strong>Financial Appeals:</strong> 100% of ads use revenue claims</li>
+                            <li><strong>Urgency Tactics:</strong> 87% use limited-time offers</li>
+                            <li><strong>Exclusivity:</strong> 73% promote "secret" methods</li>
+                            <li><strong>Educational Balance:</strong> 60% education, 40% sales</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-3">
+                <template x-for="ad in billyGeneAds" :key="ad.id">
+                    <div class="card ad-card">
+                        <div class="ad-meta">
+                            <span class="ad-page">Billy Gene AI Marketing</span>
+                            <span 
+                                class="ad-status status-active"
+                                x-text="'AI Focused'"
+                            ></span>
+                        </div>
+                        <div class="ad-text" x-text="ad.text.substring(0, 180) + '...'"></div>
+                        <a href="#" class="ad-cta" x-text="ad.cta"></a>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+        <!-- Compare Tab -->
+        <div class="tab-content" :class="{ 'active': activeTab === 'compare' }">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-balance-scale"></i>
+                        Campaign Comparison Analysis
+                    </h3>
+                </div>
+                
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h4>🛒 German E-commerce Strategy</h4>
+                        <div style="margin: 1rem 0;">
+                            <strong>Focus:</strong> Discount-heavy, product-focused<br>
+                            <strong>Psychology:</strong> Urgency, value, convenience<br>
+                            <strong>Content:</strong> Product benefits, seasonal offers<br>
+                            <strong>Target:</strong> German consumers, broad demographics
+                        </div>
+                        <div class="grid grid-2" style="gap: 1rem; margin-top: 1rem;">
+                            <div class="card" style="padding: 1rem; background: #e3f2fd;">
+                                <strong>Strengths</strong>
+                                <ul style="margin: 0.5rem 0; font-size: 0.9rem;">
+                                    <li>Multi-brand portfolio</li>
+                                    <li>Strong local market presence</li>
+                                    <li>Proven discount strategies</li>
+                                    <li>High active campaign rate</li>
+                                </ul>
+                            </div>
+                            <div class="card" style="padding: 1rem; background: #fff3e0;">
+                                <strong>Opportunities</strong>
+                                <ul style="margin: 0.5rem 0; font-size: 0.9rem;">
+                                    <li>Increase video content</li>
+                                    <li>Enhance personalization</li>
+                                    <li>Cross-brand synergy</li>
+                                    <li>Mobile optimization</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h4>🤖 Billy Gene AI Marketing Strategy</h4>
+                        <div style="margin: 1rem 0;">
+                            <strong>Focus:</strong> Educational, technology-driven<br>
+                            <strong>Psychology:</strong> Aspiration, exclusivity, FOMO<br>
+                            <strong>Content:</strong> AI/XR education, case studies<br>
+                            <strong>Target:</strong> Entrepreneurs, marketers, 25-54
+                        </div>
+                        <div class="grid grid-2" style="gap: 1rem; margin-top: 1rem;">
+                            <div class="card" style="padding: 1rem; background: #e8f5e8;">
+                                <strong>Strengths</strong>
+                                <ul style="margin: 0.5rem 0; font-size: 0.9rem;">
+                                    <li>Technology leadership</li>
+                                    <li>Educational authority</li>
+                                    <li>High-value positioning</li>
+                                    <li>Strong video content</li>
+                                </ul>
+                            </div>
+                            <div class="card" style="padding: 1rem; background: #fce4ec;">
+                                <strong>Opportunities</strong>
+                                <ul style="margin: 0.5rem 0; font-size: 0.9rem;">
+                                    <li>More XR demonstrations</li>
+                                    <li>Social proof enhancement</li>
+                                    <li>Community building</li>
+                                    <li>Geographic expansion</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <h4>📊 Performance Comparison</h4>
+                    <div class="chart-container chart-large">
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <h4>💡 Cross-Strategy Learnings</h4>
+                    <div class="grid grid-3">
+                        <div>
+                            <h5>🎯 For E-commerce</h5>
+                            <ul style="margin: 0.5rem 0; line-height: 1.6;">
+                                <li>Add educational content elements</li>
+                                <li>Increase video demonstrations</li>
+                                <li>Implement exclusivity tactics</li>
+                                <li>Use specific success metrics</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5>🤖 For AI Marketing</h5>
+                            <ul style="margin: 0.5rem 0; line-height: 1.6;">
+                                <li>Diversify platform presence</li>
+                                <li>Add seasonal campaign cycles</li>
+                                <li>Strengthen social proof</li>
+                                <li>Implement broader targeting</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5>🚀 Universal Principles</h5>
+                            <ul style="margin: 0.5rem 0; line-height: 1.6;">
+                                <li>Quantified results drive trust</li>
+                                <li>Urgency tactics increase conversions</li>
+                                <li>Video content outperforms static</li>
+                                <li>Multi-platform optimization essential</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function dashboard() {
+            return {
+                activeTab: 'overview',
+                germanFilters: {
+                    brand: '',
+                    status: '',
+                    search: ''
+                },
+                charts: {},
+                
+                germanAds: [
+                    {
+                        id: 1,
+                        page: 'OTTO Online Shop',
+                        text: '🛍️ Bis zu 70% Rabatt auf Fashion & Lifestyle! Entdecke die neuesten Trends und spare richtig. Kostenloser Versand ab 20€. Jetzt zuschlagen!',
+                        cta: 'Jetzt kaufen',
+                        active: true
+                    },
+                    {
+                        id: 2,
+                        page: 'Zalando Deutschland',
+                        text: '⚡ Flash Sale! Nur heute: Extra 30% auf bereits reduzierte Artikel. Von Elektronik bis Mode - alles muss raus! Limitierte Stückzahl verfügbar.',
+                        cta: 'Mehr erfahren',
+                        active: true
+                    },
+                    {
+                        id: 3,
+                        page: 'Amazon Deutschland',
+                        text: '🎯 Personalisierte Empfehlungen nur für dich! Unsere KI hat die perfekten Produkte für deinen Stil gefunden. Schau dir deine Auswahl an!',
+                        cta: 'Shop now',
+                        active: true
+                    },
+                    {
+                        id: 4,
+                        page: 'OTTO Online Shop',
+                        text: '📱 Die neuesten Smartphones zum Bestpreis! iPhone, Samsung, Google Pixel - alle Top-Marken mit 2 Jahren Garantie. Jetzt vergleichen!',
+                        cta: 'Angebot ansehen',
+                        active: false
+                    },
+                    {
+                        id: 5,
+                        page: 'Zalando Deutschland',
+                        text: '🏠 Verwandle dein Zuhause! Moderne Möbel und Dekoration zu unschlagbaren Preisen. Kostenlose Lieferung und Aufbau-Service verfügbar.',
+                        cta: 'Kostenloser Versand',
+                        active: true
+                    },
+                    {
+                        id: 6,
+                        page: 'Amazon Deutschland',
+                        text: '👗 Frühjahrs-Kollektion ist da! Frische Farben, neue Schnitte, perfekte Passform. Jetzt 20% Rabatt für Neukunden. Code: SPRING2024',
+                        cta: 'Jetzt bestellen',
+                        active: true
+                    }
+                ],
+                
+                billyGeneAds: [
+                    {
+                        id: 1,
+                        text: '🚀 STOP Wasting Money on Ads That Don\'t Convert! My AI-Powered Marketing System Just Generated $2.3M in 90 Days. Want to See How? (Free Training Inside)',
+                        cta: 'Learn More'
+                    },
+                    {
+                        id: 2,
+                        text: '🤖 The Future of Marketing is HERE! XR + AI = Unlimited Customer Engagement. I\'ll show you exactly how to 10X your ROI using cutting-edge technology.',
+                        cta: 'Get Started'
+                    },
+                    {
+                        id: 3,
+                        text: '📈 From $0 to $100K/Month Using Only AI Marketing Tools. No team. No experience needed. Just follow my proven system (Limited spots available)',
+                        cta: 'Join Now'
+                    },
+                    {
+                        id: 4,
+                        text: '🎯 Why 99% of Marketers FAIL at AI Integration (And How to Be in the 1% That Succeeds). Free masterclass reveals the 3 critical mistakes everyone makes.',
+                        cta: 'Watch Video'
+                    },
+                    {
+                        id: 5,
+                        text: '💰 I Spent $500K Testing AI Marketing Tools So You Don\'t Have To. Here are the 7 tools that actually work + my exact implementation blueprint.',
+                        cta: 'Download Free'
+                    },
+                    {
+                        id: 6,
+                        text: '🔥 BREAKTHROUGH: XR Marketing Campaigns Getting 847% Higher Engagement Than Traditional Ads. Want the exact framework? (Free download below)',
+                        cta: 'Book Call'
+                    }
+                ],
+
+                setActiveTab(tab) {
+                    this.activeTab = tab;
+                    this.$nextTick(() => {
+                        this.initCharts();
+                    });
+                },
+
+                get filteredGermanAds() {
+                    return this.germanAds.filter(ad => {
+                        if (this.germanFilters.brand && !ad.page.includes(this.germanFilters.brand)) return false;
+                        if (this.germanFilters.status === 'active' && !ad.active) return false;
+                        if (this.germanFilters.status === 'inactive' && ad.active) return false;
+                        if (this.germanFilters.search && !ad.text.toLowerCase().includes(this.germanFilters.search.toLowerCase())) return false;
+                        return true;
+                    });
+                },
+
+                initCharts() {
+                    // Destroy existing charts
+                    Object.values(this.charts).forEach(chart => {
+                        if (chart) chart.destroy();
+                    });
+                    this.charts = {};
+
+                    if (this.activeTab === 'overview') {
+                        this.initOverviewCharts();
+                    } else if (this.activeTab === 'german-ecommerce') {
+                        this.initGermanCharts();
+                    } else if (this.activeTab === 'billy-gene') {
+                        this.initBillyGeneCharts();
+                    } else if (this.activeTab === 'compare') {
+                        this.initCompareCharts();
+                    }
+                },
+
+                initOverviewCharts() {
+                    // Campaign Distribution Chart
+                    const campaignCtx = document.getElementById('campaignDistributionChart');
+                    if (campaignCtx) {
+                        this.charts.campaignDistribution = new Chart(campaignCtx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: ['German E-commerce', 'AI Marketing', 'Other'],
+                                datasets: [{
+                                    data: [50, 15, 0],
+                                    backgroundColor: ['#0066ff', '#28a745', '#ffc107'],
+                                    borderWidth: 2,
+                                    borderColor: '#fff'
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: {
+                                        position: 'bottom'
+                                    }
+                                }
+                            }
+                        });
+                    }
+
+                    // Performance Trends Chart
+                    const trendsCtx = document.getElementById('performanceTrendsChart');
+                    if (trendsCtx) {
+                        this.charts.performanceTrends = new Chart(trendsCtx, {
+                            type: 'line',
+                            data: {
+                                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                                datasets: [{
+                                    label: 'Active Campaigns',
+                                    data: [10, 15, 25, 35, 45, 52],
+                                    borderColor: '#0066ff',
+                                    backgroundColor: 'rgba(0, 102, 255, 0.1)',
+                                    tension: 0.4,
+                                    fill: true
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: {
+                                        display: false
+                                    }
+                                },
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    }
+                },
+
+                initGermanCharts() {
+                    // Brand Distribution Chart
+                    const brandCtx = document.getElementById('brandDistributionChart');
+                    if (brandCtx) {
+                        this.charts.brandDistribution = new Chart(brandCtx, {
+                            type: 'bar',
+                            data: {
+                                labels: ['OTTO', 'Zalando', 'Amazon'],
+                                datasets: [{
+                                    label: 'Ad Count',
+                                    data: [17, 17, 16],
+                                    backgroundColor: ['#ff6b35', '#00a8cc', '#ff9a00'],
+                                    borderRadius: 8
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: {
+                                        display: false
+                                    }
+                                }
+                            }
+                        });
+                    }
+
+                    // Content Themes Chart
+                    const themesCtx = document.getElementById('contentThemesChart');
+                    if (themesCtx) {
+                        this.charts.contentThemes = new Chart(themesCtx, {
+                            type: 'pie',
+                            data: {
+                                labels: ['Discounts', 'Personalization', 'Product Focus', 'Service', 'Quality'],
+                                datasets: [{
+                                    data: [28, 22, 20, 18, 12],
+                                    backgroundColor: ['#ff6b35', '#00a8cc', '#ff9a00', '#28a745', '#6c757d']
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: {
+                                        position: 'bottom'
+                                    }
+                                }
+                            }
+                        });
+                    }
+                },
+
+                initBillyGeneCharts() {
+                    // Psychology Chart
+                    const psychCtx = document.getElementById('psychologyChart');
+                    if (psychCtx) {
+                        this.charts.psychology = new Chart(psychCtx, {
+                            type: 'radar',
+                            data: {
+                                labels: ['Financial Appeal', 'Urgency', 'Exclusivity', 'FOMO', 'Authority'],
+                                datasets: [{
+                                    label: 'Usage %',
+                                    data: [100, 87, 73, 60, 80],
+                                    backgroundColor: 'rgba(0, 102, 255, 0.2)',
+                                    borderColor: '#0066ff',
+                                    borderWidth: 2,
+                                    pointBackgroundColor: '#0066ff'
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                scales: {
+                                    r: {
+                                        beginAtZero: true,
+                                        max: 100
+                                    }
+                                }
+                            }
+                        });
+                    }
+
+                    // CTA Performance Chart
+                    const ctaCtx = document.getElementById('ctaPerformanceChart');
+                    if (ctaCtx) {
+                        this.charts.ctaPerformance = new Chart(ctaCtx, {
+                            type: 'horizontalBar',
+                            data: {
+                                labels: ['Learn More', 'Get Started', 'Join Now', 'Watch Video', 'Download Free'],
+                                datasets: [{
+                                    label: 'Count',
+                                    data: [2, 2, 2, 2, 2],
+                                    backgroundColor: '#28a745',
+                                    borderRadius: 4
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                indexAxis: 'y',
+                                plugins: {
+                                    legend: {
+                                        display: false
+                                    }
+                                }
+                            }
+                        });
+                    }
+                },
+
+                initCompareCharts() {
+                    // Comparison Chart
+                    const compareCtx = document.getElementById('comparisonChart');
+                    if (compareCtx) {
+                        this.charts.comparison = new Chart(compareCtx, {
+                            type: 'radar',
+                            data: {
+                                labels: ['Active Rate', 'Video Content', 'Multi-Platform', 'Engagement', 'Innovation', 'ROI Focus'],
+                                datasets: [{
+                                    label: 'German E-commerce',
+                                    data: [80, 20, 50, 70, 40, 75],
+                                    backgroundColor: 'rgba(0, 102, 255, 0.2)',
+                                    borderColor: '#0066ff',
+                                    borderWidth: 2
+                                }, {
+                                    label: 'Billy Gene AI',
+                                    data: [80, 33, 67, 85, 90, 95],
+                                    backgroundColor: 'rgba(40, 167, 69, 0.2)',
+                                    borderColor: '#28a745',
+                                    borderWidth: 2
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                scales: {
+                                    r: {
+                                        beginAtZero: true,
+                                        max: 100
+                                    }
+                                }
+                            }
+                        });
+                    }
+                },
+
+                init() {
+                    this.$nextTick(() => {
+                        this.initCharts();
+                    });
+                }
+            }
+        }
+    </script>
+</body>
+</html>

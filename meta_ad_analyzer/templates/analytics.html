@@ -1,0 +1,239 @@
+{% extends "base.html" %}
+
+{% block title %}Analytics - Meta Ad Library{% endblock %}
+
+{% block extra_css %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="fas fa-chart-bar me-2"></i>Ad Analytics
+        </h1>
+    </div>
+</div>
+
+<!-- Overview Stats -->
+<div class="row mb-4">
+    <div class="col-md-3 mb-3">
+        <div class="card">
+            <div class="card-body text-center">
+                <h3 class="text-primary">{{ analysis.total_ads }}</h3>
+                <p class="mb-0">Total Ads</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card">
+            <div class="card-body text-center">
+                <h3 class="text-success">{{ analysis.active_ads }}</h3>
+                <p class="mb-0">Active Ads</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card">
+            <div class="card-body text-center">
+                <h3 class="text-info">{{ analysis.media_analysis.video_percentage }}%</h3>
+                <p class="mb-0">Video Ads</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card">
+            <div class="card-body text-center">
+                <h3 class="text-warning">{{ analysis.keyword_analysis.total_unique_keywords }}</h3>
+                <p class="mb-0">Unique Keywords</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Charts -->
+<div class="row">
+    <!-- CTA Distribution -->
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Top Call-to-Actions</h5>
+            </div>
+            <div class="card-body">
+                <div id="ctaChart"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Platform Distribution -->
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Platform Distribution</h5>
+            </div>
+            <div class="card-body">
+                <div id="platformChart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Top Keywords -->
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Top Keywords</h5>
+            </div>
+            <div class="card-body">
+                <div id="keywordChart"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Temporal Patterns -->
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Ads Over Time</h5>
+            </div>
+            <div class="card-body">
+                <div id="temporalChart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Top Pages Table -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Top Pages by Ad Count</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Page Name</th>
+                                <th>Ad Count</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i, page in enumerate(analysis.top_pages[:20], 1) %}
+                            <tr>
+                                <td>{{ i }}</td>
+                                <td>{{ page.page_name }}</td>
+                                <td>
+                                    <span class="badge bg-primary">{{ page.ad_count }}</span>
+                                </td>
+                                <td>
+                                    <a href="/ads?page={{ page.page_name }}" class="btn btn-sm btn-outline-primary">
+                                        View Ads
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Export Options -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5>Export Data</h5>
+                <button class="btn btn-success" onclick="exportCSV()">
+                    <i class="fas fa-file-csv me-1"></i>Export to CSV
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// CTA Chart
+var ctaData = [{
+    x: {{ charts.cta_chart.values|tojson }},
+    y: {{ charts.cta_chart.labels|tojson }},
+    type: 'bar',
+    orientation: 'h',
+    marker: {color: '#1877f2'}
+}];
+var ctaLayout = {
+    margin: {l: 100, r: 20, t: 20, b: 40},
+    xaxis: {title: 'Count'},
+    height: 400
+};
+Plotly.newPlot('ctaChart', ctaData, ctaLayout);
+
+// Platform Chart
+var platformData = [{
+    labels: {{ charts.platform_chart.labels|tojson }},
+    values: {{ charts.platform_chart.values|tojson }},
+    type: 'pie',
+    hole: .4,
+    marker: {
+        colors: ['#1877f2', '#42b883', '#ff6384', '#36a2eb', '#ffce56']
+    }
+}];
+var platformLayout = {
+    height: 400,
+    margin: {l: 20, r: 20, t: 40, b: 20}
+};
+Plotly.newPlot('platformChart', platformData, platformLayout);
+
+// Keyword Chart
+var keywordData = [{
+    x: {{ charts.keyword_chart.labels|tojson }},
+    y: {{ charts.keyword_chart.values|tojson }},
+    type: 'bar',
+    marker: {color: '#42b883'}
+}];
+var keywordLayout = {
+    margin: {l: 40, r: 20, t: 20, b: 100},
+    xaxis: {tickangle: -45},
+    yaxis: {title: 'Frequency'},
+    height: 400
+};
+Plotly.newPlot('keywordChart', keywordData, keywordLayout);
+
+// Temporal Chart
+var temporalData = [{
+    x: {{ charts.temporal_chart.labels|tojson }},
+    y: {{ charts.temporal_chart.values|tojson }},
+    type: 'scatter',
+    mode: 'lines+markers',
+    line: {color: '#ff6384'}
+}];
+var temporalLayout = {
+    margin: {l: 40, r: 20, t: 20, b: 60},
+    xaxis: {title: 'Month'},
+    yaxis: {title: 'Ad Count'},
+    height: 400
+};
+Plotly.newPlot('temporalChart', temporalData, temporalLayout);
+
+// Export function
+async function exportCSV() {
+    try {
+        const response = await fetch('/api/export/csv');
+        const result = await response.json();
+        
+        if (result.success) {
+            alert(`Data exported to: ${result.filename}`);
+        }
+    } catch (error) {
+        alert('Export failed: ' + error.message);
+    }
+}
+</script>
+{% endblock %}

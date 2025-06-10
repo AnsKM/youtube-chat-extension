@@ -1,0 +1,40 @@
+[
+  {
+    "ad_id": "mock_ad_100142840161003_1",
+    "page_name": "OTTO Online Shop",
+    "page_id": "100142840161003",
+    "ad_text": "🛍️ Bis zu 70% Rabatt auf Fashion & Lifestyle! Entdecke die neuesten Trends und spare richtig. Kostenloser Versand ab 20€. Jetzt zuschlagen!",
+    "cta_text": "Jetzt kaufen",
+    "cta_type": "SHOP_NOW",
+    "platforms": ["Facebook", "Instagram"],
+    "is_active": true,
+    "start_date": "2024-01-01",
+    "end_date": null,
+    "images": ["https://example.com/ad_image_1.jpg"],
+    "video_url": "https://example.com/ad_video_1.mp4",
+    "impressions": 50000,
+    "reach": 30000,
+    "regions": ["Germany", "Austria", "Switzerland"],
+    "scraped_at": "2025-06-01T16:13:06.123456",
+    "ad_library_url": "https://www.facebook.com/ads/library/?id=100142840161003_1"
+  },
+  {
+    "ad_id": "mock_ad_100142840161003_2",
+    "page_name": "Zalando Deutschland",
+    "page_id": "100142840161003",
+    "ad_text": "⚡ Flash Sale! Nur heute: Extra 30% auf bereits reduzierte Artikel. Von Elektronik bis Mode - alles muss raus! Limitierte Stückzahl verfügbar.",
+    "cta_text": "Mehr erfahren",
+    "cta_type": "SHOP_NOW",
+    "platforms": ["Facebook"],
+    "is_active": true,
+    "start_date": "2024-02-02",
+    "end_date": null,
+    "images": [],
+    "video_url": null,
+    "impressions": null,
+    "reach": null,
+    "regions": ["Germany", "Austria", "Switzerland"],
+    "scraped_at": "2025-06-01T16:13:06.123456",
+    "ad_library_url": "https://www.facebook.com/ads/library/?id=100142840161003_2"
+  }
+]

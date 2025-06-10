@@ -1,0 +1,28 @@
+[
+  {
+    "source": "indeed",
+    "title": "AI Engineer - Natural Language Processing",
+    "company": "SAP SE",
+    "location": "Munich, Bayern",
+    "description": "Join our AI/ML team to develop NLP solutions for enterprise software. You'll work with BERT, GPT models and build conversational AI systems. Required: Master's in CS/AI, 3+ years NLP experience, proficiency in Python, experience with transformers.",
+    "salary": "€70,000 - €90,000",
+    "employment_type": "Full-time",
+    "url": "https://indeed.com/job/sap-nlp-engineer-456",
+    "company_rating": "4.2",
+    "scraped_at": "2025-06-01T23:35:05.969582",
+    "search_keyword": "AI Engineer"
+  },
+  {
+    "source": "indeed",
+    "title": "AI Research Engineer",
+    "company": "Google Munich",
+    "location": "Munich, Germany",
+    "description": "Research and develop next-generation AI algorithms. Focus on reinforcement learning and multi-agent systems. PhD in AI/ML preferred, publications in top venues, strong mathematical background, TensorFlow/JAX expertise.",
+    "salary": "€90,000 - €120,000",
+    "employment_type": "Full-time",
+    "url": "https://indeed.com/job/google-ai-research-101",
+    "company_rating": "4.5",
+    "scraped_at": "2025-06-01T23:35:05.969584",
+    "search_keyword": "AI Engineer"
+  }
+]

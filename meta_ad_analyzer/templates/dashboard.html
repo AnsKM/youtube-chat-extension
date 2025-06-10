@@ -1,0 +1,246 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Meta Ad Library{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="fas fa-tachometer-alt me-2"></i>Meta Ad Library Dashboard
+        </h1>
+    </div>
+</div>
+
+<!-- Stats Cards -->
+<div class="row mb-4">
+    <div class="col-md-3 mb-3">
+        <div class="card stat-card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-ad fa-3x mb-3"></i>
+                <h2>{{ analysis.total_ads }}</h2>
+                <p class="mb-0">Total Ads</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card stat-card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-check-circle fa-3x mb-3"></i>
+                <h2>{{ analysis.active_ads }}</h2>
+                <p class="mb-0">Active Ads</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card stat-card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-building fa-3x mb-3"></i>
+                <h2>{{ analysis.unique_pages }}</h2>
+                <p class="mb-0">Unique Pages</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card stat-card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-clock fa-3x mb-3"></i>
+                <h2>{{ last_update }}</h2>
+                <p class="mb-0">Last Update</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Top Pages -->
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-trophy me-2"></i>Top Pages by Ad Count</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Page</th>
+                                <th class="text-end">Ads</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for page in analysis.top_pages[:10] %}
+                            <tr>
+                                <td>
+                                    <a href="/ads?page={{ page.page_name }}" class="text-decoration-none">
+                                        {{ page.page_name }}
+                                    </a>
+                                </td>
+                                <td class="text-end">
+                                    <span class="badge bg-primary">{{ page.ad_count }}</span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Ads -->
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-clock me-2"></i>Recent Ads</h5>
+            </div>
+            <div class="card-body">
+                {% for ad in recent_ads %}
+                <div class="ad-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">{{ ad.page_name }}</h6>
+                            <p class="mb-2 text-muted">{{ ad.ad_text[:100] }}{% if ad.ad_text|length > 100 %}...{% endif %}</p>
+                            <div>
+                                {% if ad.cta_text %}
+                                <span class="cta-badge me-2">{{ ad.cta_text }}</span>
+                                {% endif %}
+                                {% for platform in ad.platforms[:3] %}
+                                <span class="platform-badge">{{ platform }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="ms-3">
+                            {% if ad.is_active %}
+                            <span class="badge bg-success">Active</span>
+                            {% else %}
+                            <span class="badge bg-secondary">Inactive</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <small class="text-muted">
+                            <i class="fas fa-calendar me-1"></i>{{ ad.start_date or 'Unknown date' }}
+                            <a href="/ad/{{ ad.ad_id }}" class="ms-3 text-decoration-none">
+                                <i class="fas fa-eye me-1"></i>View Details
+                            </a>
+                        </small>
+                    </div>
+                </div>
+                {% endfor %}
+                
+                <div class="text-center mt-3">
+                    <a href="/ads" class="btn btn-primary">View All Ads</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-bolt me-2"></i>Quick Actions</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <h6>Scrape Page Ads</h6>
+                        <form id="scrapeForm" class="d-flex">
+                            <input type="url" class="form-control me-2" id="pageUrl" placeholder="https://facebook.com/pagename" required>
+                            <input type="number" class="form-control me-2" id="maxAds" placeholder="Max ads" value="100" style="width: 100px;">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-download me-1"></i>Scrape
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <h6>Search Ads</h6>
+                        <form id="searchForm" class="d-flex">
+                            <input type="text" class="form-control me-2" id="searchQuery" placeholder="Search query" required>
+                            <select class="form-select me-2" id="country" style="width: 100px;">
+                                <option value="US">US</option>
+                                <option value="UK">UK</option>
+                                <option value="CA">CA</option>
+                                <option value="AU">AU</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search me-1"></i>Search
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Handle scrape form
+document.getElementById('scrapeForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const url = document.getElementById('pageUrl').value;
+    const maxAds = document.getElementById('maxAds').value;
+    
+    const btn = e.target.querySelector('button');
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Scraping...';
+    btn.disabled = true;
+    
+    try {
+        const response = await fetch('/api/scrape', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({url: url, max_ads: parseInt(maxAds)})
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            alert(`Success! Scraped ${result.result.new_ads} new ads.`);
+            location.reload();
+        } else {
+            alert(`Error: ${result.error}`);
+        }
+    } catch (error) {
+        alert(`Error: ${error.message}`);
+    } finally {
+        btn.innerHTML = '<i class="fas fa-download me-1"></i>Scrape';
+        btn.disabled = false;
+    }
+});
+
+// Handle search form
+document.getElementById('searchForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const query = document.getElementById('searchQuery').value;
+    const country = document.getElementById('country').value;
+    
+    const btn = e.target.querySelector('button');
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Searching...';
+    btn.disabled = true;
+    
+    try {
+        const response = await fetch('/api/search', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({query: query, country: country, max_ads: 100})
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            alert(`Success! Found ${result.result.new_ads} new ads.`);
+            location.reload();
+        } else {
+            alert(`Error: ${result.error}`);
+        }
+    } catch (error) {
+        alert(`Error: ${error.message}`);
+    } finally {
+        btn.innerHTML = '<i class="fas fa-search me-1"></i>Search';
+        btn.disabled = false;
+    }
+});
+</script>
+{% endblock %}

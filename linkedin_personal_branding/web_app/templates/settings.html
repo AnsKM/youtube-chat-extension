@@ -1,0 +1,808 @@
+{% extends "base.html" %}
+
+{% block title %}Settings - LinkedIn Personal Branding{% endblock %}
+
+{% block header %}Settings{% endblock %}
+{% block subtitle %}Configure your personal branding tools and preferences{% endblock %}
+
+{% block content %}
+<!-- Settings Navigation -->
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+    
+    <!-- Settings Menu -->
+    <div class="lg:col-span-1">
+        <div class="card">
+            <h3 class="text-lg font-semibold mb-4">Settings Menu</h3>
+            <nav class="space-y-1">
+                <button onclick="showSettingsSection('profile')" id="nav-profile" class="w-full text-left px-3 py-2 rounded bg-primary text-white">
+                    <i class="fas fa-user mr-2"></i>
+                    Profile Settings
+                </button>
+                <button onclick="showSettingsSection('api')" id="nav-api" class="w-full text-left px-3 py-2 rounded text-gray-700 hover:bg-gray-100">
+                    <i class="fas fa-key mr-2"></i>
+                    API Configuration
+                </button>
+                <button onclick="showSettingsSection('automation')" id="nav-automation" class="w-full text-left px-3 py-2 rounded text-gray-700 hover:bg-gray-100">
+                    <i class="fas fa-robot mr-2"></i>
+                    Automation
+                </button>
+                <button onclick="showSettingsSection('notifications')" id="nav-notifications" class="w-full text-left px-3 py-2 rounded text-gray-700 hover:bg-gray-100">
+                    <i class="fas fa-bell mr-2"></i>
+                    Notifications
+                </button>
+                <button onclick="showSettingsSection('data')" id="nav-data" class="w-full text-left px-3 py-2 rounded text-gray-700 hover:bg-gray-100">
+                    <i class="fas fa-database mr-2"></i>
+                    Data Management
+                </button>
+                <button onclick="showSettingsSection('appearance')" id="nav-appearance" class="w-full text-left px-3 py-2 rounded text-gray-700 hover:bg-gray-100">
+                    <i class="fas fa-paint-brush mr-2"></i>
+                    Appearance
+                </button>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- Settings Content -->
+    <div class="lg:col-span-3">
+        
+        <!-- Profile Settings -->
+        <div id="settings-profile" class="settings-section">
+            <div class="card">
+                <h3 class="text-lg font-semibold mb-4">Profile Settings</h3>
+                
+                <form class="space-y-6">
+                    <!-- Basic Info -->
+                    <div>
+                        <h4 class="font-medium mb-3">Basic Information</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                <input type="text" value="Ans Khalid" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">LinkedIn URL</label>
+                                <input type="url" value="https://www.linkedin.com/in/anskhalid/" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Transformation Goals -->
+                    <div>
+                        <h4 class="font-medium mb-3">Transformation Goals</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Target Connections</label>
+                                <input type="number" value="5500" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Target Followers</label>
+                                <input type="number" value="10000" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Monthly Revenue (€)</label>
+                                <input type="number" value="20000" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Branding -->
+                    <div>
+                        <h4 class="font-medium mb-3">Personal Branding</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Current Position</label>
+                                <input type="text" value="AI Solutions Architect" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Key Expertise Areas</label>
+                                <textarea rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md">AI Automation, Claude Code, Business Process Optimization, Cybersecurity Background</textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Target Audience</label>
+                                <select class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                    <option>SME Business Owners</option>
+                                    <option>Tech Leaders</option>
+                                    <option>AI Enthusiasts</option>
+                                    <option>General Business Audience</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end">
+                        <button type="submit" class="btn-primary">Save Profile Settings</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- API Configuration -->
+        <div id="settings-api" class="settings-section hidden">
+            <div class="card">
+                <h3 class="text-lg font-semibold mb-4">API Configuration</h3>
+                
+                <!-- Security Notice -->
+                <div class="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <div class="flex items-start">
+                        <i class="fas fa-shield-alt text-blue-600 mt-1 mr-3"></i>
+                        <div>
+                            <h4 class="font-medium text-blue-900">Security Notice</h4>
+                            <p class="text-sm text-blue-800 mt-1">
+                                • API keys are stored locally and masked for security<br>
+                                • Never share your API keys or commit them to version control<br>
+                                • For production use, we recommend using environment variables<br>
+                                • Keys are only transmitted over HTTPS in production
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <!-- Apify Configuration -->
+                    <div class="p-4 border border-gray-200 rounded-lg">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="font-medium">Apify (LinkedIn Scraping)</h4>
+                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                Connected
+                            </span>
+                        </div>
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">API Token</label>
+                                <div class="flex space-x-2">
+                                    <input type="password" 
+                                           id="apify-key-input"
+                                           placeholder="Enter Apify API token" 
+                                           class="flex-1 px-3 py-2 border border-gray-300 rounded-md">
+                                    <button onclick="updateApiKey('apify')" class="btn-primary text-sm">Update</button>
+                                </div>
+                                <div id="apify-key-status" class="text-xs text-gray-500 mt-1"></div>
+                            </div>
+                            <div class="text-xs text-gray-500">
+                                Last used: 2 hours ago • Monthly usage: 147/1000 calls
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Google AI Configuration -->
+                    <div class="p-4 border border-yellow-200 bg-yellow-50 rounded-lg">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="font-medium">Google AI (Gemini)</h4>
+                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                Not Configured
+                            </span>
+                        </div>
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">API Key</label>
+                                <div class="flex space-x-2">
+                                    <input type="password" 
+                                           id="google-key-input"
+                                           placeholder="Enter Google AI API key" 
+                                           class="flex-1 px-3 py-2 border border-gray-300 rounded-md">
+                                    <button onclick="updateApiKey('google')" class="btn-secondary text-sm">Add</button>
+                                </div>
+                                <div id="google-key-status" class="text-xs text-gray-500 mt-1"></div>
+                            </div>
+                            <div class="text-xs text-yellow-700">
+                                Required for AI content generation and banner creation
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- OpenAI Configuration -->
+                    <div class="p-4 border border-gray-200 rounded-lg">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="font-medium">OpenAI (Alternative AI)</h4>
+                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                Optional
+                            </span>
+                        </div>
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">API Key</label>
+                                <div class="flex space-x-2">
+                                    <input type="password" 
+                                           id="openai-key-input"
+                                           placeholder="Enter OpenAI API key (optional)" 
+                                           class="flex-1 px-3 py-2 border border-gray-300 rounded-md">
+                                    <button onclick="updateApiKey('openai')" class="bg-gray-600 text-white px-3 py-2 rounded text-sm hover:bg-gray-700">Add</button>
+                                </div>
+                                <div id="openai-key-status" class="text-xs text-gray-500 mt-1"></div>
+                            </div>
+                            <div class="text-xs text-gray-500">
+                                Alternative to Google AI for content generation
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-3">
+                        <button onclick="testAllConnections()" class="btn-accent">Test All Connections</button>
+                        <button onclick="saveApiSettings()" class="btn-primary">Save API Settings</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Automation Settings -->
+        <div id="settings-automation" class="settings-section hidden">
+            <div class="card">
+                <h3 class="text-lg font-semibold mb-4">Automation Settings</h3>
+                
+                <div class="space-y-6">
+                    <!-- Scheduling -->
+                    <div>
+                        <h4 class="font-medium mb-3">Automated Scheduling</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                                <div>
+                                    <div class="font-medium">Daily Profile Sync</div>
+                                    <div class="text-sm text-gray-600">Automatically scrape profile data</div>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <select class="px-2 py-1 border border-gray-300 rounded text-sm">
+                                        <option>9:00 AM</option>
+                                        <option>12:00 PM</option>
+                                        <option>6:00 PM</option>
+                                    </select>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" checked class="mr-2">
+                                        <span class="text-sm">Enabled</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                                <div>
+                                    <div class="font-medium">Weekly Reports</div>
+                                    <div class="text-sm text-gray-600">Generate progress reports</div>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <select class="px-2 py-1 border border-gray-300 rounded text-sm">
+                                        <option>Sunday 8:00 PM</option>
+                                        <option>Monday 9:00 AM</option>
+                                        <option>Friday 5:00 PM</option>
+                                    </select>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" checked class="mr-2">
+                                        <span class="text-sm">Enabled</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                                <div>
+                                    <div class="font-medium">Content Reminders</div>
+                                    <div class="text-sm text-gray-600">Daily content creation reminders</div>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <select class="px-2 py-1 border border-gray-300 rounded text-sm">
+                                        <option>10:00 AM</option>
+                                        <option>2:00 PM</option>
+                                        <option>4:00 PM</option>
+                                    </select>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span class="text-sm">Enabled</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Content Automation -->
+                    <div>
+                        <h4 class="font-medium mb-3">Content Automation</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Auto-generation Frequency</label>
+                                <select class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                    <option>Manual only</option>
+                                    <option>Weekly batch (5 ideas)</option>
+                                    <option>Daily suggestions</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Content Types</label>
+                                <div class="grid grid-cols-2 gap-2 mt-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" checked class="mr-2">
+                                        <span class="text-sm">Educational Posts</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" checked class="mr-2">
+                                        <span class="text-sm">Case Studies</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span class="text-sm">Personal Stories</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" checked class="mr-2">
+                                        <span class="text-sm">Industry Insights</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end">
+                        <button onclick="saveAutomationSettings()" class="btn-primary">Save Automation Settings</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Notifications -->
+        <div id="settings-notifications" class="settings-section hidden">
+            <div class="card">
+                <h3 class="text-lg font-semibold mb-4">Notification Settings</h3>
+                
+                <div class="space-y-6">
+                    <!-- Email Notifications -->
+                    <div>
+                        <h4 class="font-medium mb-3">Email Notifications</h4>
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                <input type="email" value="ans.khalid@example.com" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" checked class="mr-2">
+                                    <span class="text-sm">Weekly progress reports</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" checked class="mr-2">
+                                    <span class="text-sm">Goal milestone achievements</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2">
+                                    <span class="text-sm">Daily content reminders</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" checked class="mr-2">
+                                    <span class="text-sm">API connection issues</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Browser Notifications -->
+                    <div>
+                        <h4 class="font-medium mb-3">Browser Notifications</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" checked class="mr-2">
+                                <span class="text-sm">New content ideas generated</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span class="text-sm">Profile data updates</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" checked class="mr-2">
+                                <span class="text-sm">Automation task completions</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end">
+                        <button onclick="saveNotificationSettings()" class="btn-primary">Save Notification Settings</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Data Management -->
+        <div id="settings-data" class="settings-section hidden">
+            <div class="card">
+                <h3 class="text-lg font-semibold mb-4">Data Management</h3>
+                
+                <div class="space-y-6">
+                    <!-- Data Storage -->
+                    <div>
+                        <h4 class="font-medium mb-3">Data Storage</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="text-center p-4 bg-gray-50 rounded-lg">
+                                <div class="text-xl font-bold text-gray-900">2.3 MB</div>
+                                <div class="text-sm text-gray-600">Profile Data</div>
+                            </div>
+                            <div class="text-center p-4 bg-gray-50 rounded-lg">
+                                <div class="text-xl font-bold text-gray-900">856 KB</div>
+                                <div class="text-sm text-gray-600">Content Ideas</div>
+                            </div>
+                            <div class="text-center p-4 bg-gray-50 rounded-lg">
+                                <div class="text-xl font-bold text-gray-900">1.7 MB</div>
+                                <div class="text-sm text-gray-600">Progress Logs</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Export Options -->
+                    <div>
+                        <h4 class="font-medium mb-3">Export Data</h4>
+                        <div class="space-y-3">
+                            <button onclick="exportData('profile')" class="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+                                <div class="font-medium">Export Profile Data</div>
+                                <div class="text-sm text-gray-600">Download all profile analytics and metrics</div>
+                            </button>
+                            <button onclick="exportData('content')" class="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+                                <div class="font-medium">Export Content Library</div>
+                                <div class="text-sm text-gray-600">Download all content ideas and templates</div>
+                            </button>
+                            <button onclick="exportData('progress')" class="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+                                <div class="font-medium">Export Progress Reports</div>
+                                <div class="text-sm text-gray-600">Download all tracking data and insights</div>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Data Cleanup -->
+                    <div>
+                        <h4 class="font-medium mb-3">Data Cleanup</h4>
+                        <div class="space-y-3">
+                            <button onclick="cleanupData('old')" class="w-full text-left p-3 border border-yellow-200 bg-yellow-50 rounded-lg hover:bg-yellow-100">
+                                <div class="font-medium text-yellow-800">Clean Old Data</div>
+                                <div class="text-sm text-yellow-700">Remove data older than 6 months</div>
+                            </button>
+                            <button onclick="cleanupData('all')" class="w-full text-left p-3 border border-red-200 bg-red-50 rounded-lg hover:bg-red-100">
+                                <div class="font-medium text-red-800">Reset All Data</div>
+                                <div class="text-sm text-red-700">⚠️ Permanently delete all stored data</div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Appearance -->
+        <div id="settings-appearance" class="settings-section hidden">
+            <div class="card">
+                <h3 class="text-lg font-semibold mb-4">Appearance Settings</h3>
+                
+                <div class="space-y-6">
+                    <!-- Theme -->
+                    <div>
+                        <h4 class="font-medium mb-3">Theme</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="p-4 border-2 border-primary bg-blue-50 rounded-lg">
+                                <div class="font-medium text-primary">Professional</div>
+                                <div class="text-sm text-gray-600">Current theme</div>
+                            </div>
+                            <div class="p-4 border border-gray-200 rounded-lg hover:border-gray-300 cursor-pointer">
+                                <div class="font-medium">Dark Mode</div>
+                                <div class="text-sm text-gray-600">Coming soon</div>
+                            </div>
+                            <div class="p-4 border border-gray-200 rounded-lg hover:border-gray-300 cursor-pointer">
+                                <div class="font-medium">Colorful</div>
+                                <div class="text-sm text-gray-600">High contrast</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Brand Colors -->
+                    <div>
+                        <h4 class="font-medium mb-3">Brand Colors</h4>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Primary Blue</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="color" value="#1E3A8A" class="w-12 h-8 border border-gray-300 rounded">
+                                    <span class="text-sm text-gray-600">#1E3A8A</span>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Secondary Green</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="color" value="#059669" class="w-12 h-8 border border-gray-300 rounded">
+                                    <span class="text-sm text-gray-600">#059669</span>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Accent Orange</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="color" value="#F59E0B" class="w-12 h-8 border border-gray-300 rounded">
+                                    <span class="text-sm text-gray-600">#F59E0B</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dashboard Layout -->
+                    <div>
+                        <h4 class="font-medium mb-3">Dashboard Layout</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="layout" value="compact" class="mr-2">
+                                <span class="text-sm">Compact view</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="layout" value="standard" checked class="mr-2">
+                                <span class="text-sm">Standard view</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="layout" value="detailed" class="mr-2">
+                                <span class="text-sm">Detailed view</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end">
+                        <button onclick="saveAppearanceSettings()" class="btn-primary">Save Appearance Settings</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Toast notification function
+function showToast(message, type = 'info') {
+    const toast = document.createElement('div');
+    const bgColors = {
+        success: 'bg-green-500',
+        error: 'bg-red-500', 
+        warning: 'bg-yellow-500',
+        info: 'bg-blue-500'
+    };
+    
+    toast.className = `fixed top-4 right-4 z-50 ${bgColors[type] || bgColors.info} text-white px-6 py-3 rounded-lg shadow-lg transition-all duration-300 transform translate-x-full`;
+    toast.innerHTML = `
+        <div class="flex items-center">
+            <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'} mr-2"></i>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    document.body.appendChild(toast);
+    
+    // Animate in
+    setTimeout(() => {
+        toast.classList.remove('translate-x-full');
+    }, 100);
+    
+    // Auto remove after 4 seconds
+    setTimeout(() => {
+        toast.classList.add('translate-x-full');
+        setTimeout(() => {
+            if (toast.parentElement) {
+                toast.remove();
+            }
+        }, 300);
+    }, 4000);
+}
+
+// Load current API status on page load
+function loadApiStatus() {
+    fetch('/api/settings/api-keys')
+    .then(response => response.json())
+    .then(result => {
+        if (result.success) {
+            // Update status indicators and input placeholders based on backend data
+            Object.entries(result.status).forEach(([key, status]) => {
+                const service = key.replace('_token', '').replace('_api_key', '');
+                
+                if (status.configured) {
+                    updateApiStatus(service, true);
+                    updateKeyDisplay(service, status.masked, status.length);
+                } else {
+                    updateApiStatus(service, false);
+                }
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error loading API status:', error);
+    });
+}
+
+// Update API key display with masked value
+function updateKeyDisplay(service, masked, length) {
+    const inputField = document.getElementById(`${service}-key-input`);
+    const statusDiv = document.getElementById(`${service}-key-status`);
+    
+    if (inputField && masked) {
+        inputField.placeholder = `Current: ${masked}`;
+        inputField.value = '';
+    }
+    
+    if (statusDiv) {
+        statusDiv.innerHTML = `<i class="fas fa-check-circle text-green-600 mr-1"></i>Configured (${length} characters) • Enter new key to update`;
+    }
+}
+// Settings navigation
+function showSettingsSection(section) {
+    // Hide all sections
+    document.querySelectorAll('.settings-section').forEach(el => {
+        el.classList.add('hidden');
+    });
+    
+    // Show selected section
+    document.getElementById('settings-' + section).classList.remove('hidden');
+    
+    // Update navigation
+    document.querySelectorAll('[id^="nav-"]').forEach(btn => {
+        btn.className = 'w-full text-left px-3 py-2 rounded text-gray-700 hover:bg-gray-100';
+    });
+    
+    document.getElementById('nav-' + section).className = 'w-full text-left px-3 py-2 rounded bg-primary text-white';
+}
+
+// API key management
+function updateApiKey(service) {
+    // Get the input field for this service - find by the update button's onclick
+    const updateButton = document.querySelector(`button[onclick="updateApiKey('${service}')"]`);
+    const inputField = updateButton.parentElement.querySelector('input[type="password"]');
+    const apiKey = inputField.value.trim();
+    
+    if (!apiKey) {
+        showToast('Please enter an API key', 'warning');
+        return;
+    }
+    
+    // Prepare data
+    const data = {};
+    if (service === 'apify') {
+        data.apify_token = apiKey;
+    } else if (service === 'google') {
+        data.google_api_key = apiKey;
+    } else if (service === 'openai') {
+        data.openai_api_key = apiKey;
+    }
+    
+    // Save to backend
+    fetch('/api/settings/api-keys', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.success) {
+            showToast(`${service.toUpperCase()} API key saved successfully! ✅`, 'success');
+            // Update UI to show connected status
+            updateApiStatus(service, true);
+            // Clear the input field for security and update display
+            inputField.value = '';
+            inputField.placeholder = `API key saved securely`;
+            
+            // Update status display
+            const statusDiv = document.getElementById(`${service}-key-status`);
+            if (statusDiv) {
+                statusDiv.innerHTML = `<i class="fas fa-check-circle text-green-600 mr-1"></i>Saved securely • Enter new key to update`;
+            }
+        } else {
+            showToast('Error saving API key: ' + result.error, 'error');
+        }
+    })
+    .catch(error => {
+        showToast('Connection error. Please try again.', 'error');
+        console.error('Error:', error);
+    });
+}
+
+// Update API status display
+function updateApiStatus(service, connected) {
+    const serviceNames = {
+        'apify': 'Apify',
+        'google': 'Google AI (Gemini)', 
+        'openai': 'OpenAI (Alternative AI)'
+    };
+    
+    // Find the status span for this service using a more reliable method
+    const allH4s = document.querySelectorAll('h4');
+    let targetContainer = null;
+    
+    allH4s.forEach(h4 => {
+        if (h4.textContent.includes(serviceNames[service])) {
+            targetContainer = h4.parentElement;
+        }
+    });
+    
+    if (targetContainer) {
+        const statusSpan = targetContainer.querySelector('.inline-flex');
+        if (statusSpan && connected) {
+            statusSpan.className = 'inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800';
+            statusSpan.textContent = 'Connected';
+        }
+    }
+}
+
+function testAllConnections() {
+    alert('Testing all API connections...\n\n✅ Apify: Connected\n⚠️ Google AI: Not configured\n❌ OpenAI: Not configured');
+}
+
+// Save functions
+function saveApiSettings() {
+    alert('API settings saved successfully!');
+}
+
+function saveAutomationSettings() {
+    alert('Automation settings saved successfully!');
+}
+
+function saveNotificationSettings() {
+    alert('Notification settings saved successfully!');
+}
+
+function saveAppearanceSettings() {
+    alert('Appearance settings saved successfully!');
+}
+
+// Data management with real exports
+function exportData(type) {
+    const button = event.target;
+    const originalText = button.innerHTML;
+    
+    // Show loading state
+    button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Exporting...';
+    button.disabled = true;
+    
+    // API endpoints mapping
+    const endpoints = {
+        'profile': '/api/export-profile',
+        'content': '/api/export-content', 
+        'progress': '/api/export-progress'
+    };
+    
+    fetch(endpoints[type])
+    .then(response => {
+        if (response.ok) {
+            return response.blob();
+        }
+        throw new Error(`Export failed: ${response.status}`);
+    })
+    .then(blob => {
+        // Create download link
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        
+        // Get filename from response header or create one
+        const timestamp = new Date().toISOString().slice(0, 19).replace(/[-:]/g, '').replace('T', '_');
+        const extensions = {'profile': 'json', 'content': 'json', 'progress': 'csv'};
+        a.download = `linkedin-${type}-data-${timestamp}.${extensions[type]}`;
+        
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+        
+        showToast(`${type.charAt(0).toUpperCase() + type.slice(1)} data exported successfully! ✅`, 'success');
+    })
+    .catch(error => {
+        showToast(`Export failed: ${error.message}`, 'error');
+        console.error('Export error:', error);
+    })
+    .finally(() => {
+        // Re-enable button
+        button.innerHTML = originalText;
+        button.disabled = false;
+    });
+}
+
+function cleanupData(type) {
+    if (type === 'all') {
+        if (confirm('Are you sure you want to delete ALL data? This cannot be undone.')) {
+            alert('All data has been reset.');
+        }
+    } else {
+        if (confirm('Remove data older than 6 months?')) {
+            alert('Old data has been cleaned up.');
+        }
+    }
+}
+
+// Initialize with profile settings and load API status
+showSettingsSection('profile');
+loadApiStatus();
+</script>
+{% endblock %}

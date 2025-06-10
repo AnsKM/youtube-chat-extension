@@ -1,0 +1,34 @@
+# LinkedIn Personal Branding Requirements
+# Core dependencies for LinkedIn profile analysis
+
+# HTTP requests for Apify API
+requests>=2.31.0
+
+# Environment variable management
+python-dotenv>=1.0.0
+
+# Data processing
+pandas>=2.0.0
+
+# JSON handling
+ujson>=5.8.0
+
+# Date/time handling
+python-dateutil>=2.8.2
+
+# Progress bars for long operations
+tqdm>=4.66.0
+
+# Markdown report generation
+markdown>=3.5.0
+
+# Rich terminal output
+rich>=13.7.0
+
+# Data validation
+pydantic>=2.5.0
+
+# Optional: For advanced analysis
+# numpy>=1.24.0
+# matplotlib>=3.7.0
+# seaborn>=0.13.0

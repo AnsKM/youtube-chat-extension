@@ -1,0 +1,485 @@
+{% extends "base.html" %}
+
+{% block title %}Profile Analysis - LinkedIn Personal Branding{% endblock %}
+
+{% block header %}Profile Analysis{% endblock %}
+{% block subtitle %}Transform your LinkedIn profile into an AI expert authority{% endblock %}
+
+{% block content %}
+<!-- Profile Overview -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+    
+    <!-- Current Profile Stats -->
+    <div class="lg:col-span-2">
+        <div class="card">
+            <h3 class="text-lg font-semibold mb-4">Current Profile Analysis</h3>
+            
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-2xl font-bold text-gray-900">{{ profile.connections }}</div>
+                    <div class="text-sm text-gray-600">Connections</div>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <div class="text-2xl font-bold text-gray-900">{{ profile.followers }}</div>
+                    <div class="text-sm text-gray-600">Followers</div>
+                </div>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Current Headline</label>
+                    <div class="p-3 bg-gray-50 rounded border text-sm">
+                        {{ profile.headline }}
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Profile Completeness</label>
+                    <div class="flex items-center space-x-3">
+                        <div class="flex-1 bg-gray-200 rounded-full h-3">
+                            <div class="bg-primary h-3 rounded-full" style="width: {{ profile.completeness_score }}%"></div>
+                        </div>
+                        <span class="text-sm font-medium">{{ profile.completeness_score }}%</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">About Section Length</label>
+                    <div class="flex items-center space-x-3">
+                        <div class="flex-1 bg-gray-200 rounded-full h-3">
+                            <div class="h-3 rounded-full {% if profile.about_section_length >= 1000 %}bg-green-500{% else %}bg-secondary{% endif %}" style="width: {{ [100, (profile.about_section_length / 1000 * 100)|round(1)]|min }}%"></div>
+                        </div>
+                        <span class="text-sm font-medium">{{ profile.about_section_length }}/1000 chars</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Quick Actions -->
+    <div class="lg:col-span-1">
+        <div class="card">
+            <h3 class="text-lg font-semibold mb-4">Quick Actions</h3>
+            <div class="space-y-3">
+                <button onclick="scrapeProfile()" class="w-full btn-primary">
+                    <i class="fas fa-download mr-2"></i>
+                    Refresh Profile Data
+                </button>
+                <button onclick="generateHeadline()" class="w-full btn-secondary">
+                    <i class="fas fa-magic mr-2"></i>
+                    Generate New Headline
+                </button>
+                <button onclick="generateAbout()" class="w-full btn-accent">
+                    <i class="fas fa-edit mr-2"></i>
+                    Generate About Section
+                </button>
+                <a href="{{ url_for('tools_center') }}" class="w-full bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors text-center block">
+                    <i class="fas fa-tools mr-2"></i>
+                    More Tools
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Transformation Checklist -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+    
+    <!-- Checklist -->
+    <div class="card transformation-checklist">
+        <h3 class="text-lg font-semibold mb-4">Transformation Checklist</h3>
+        <div class="space-y-3">
+            {% for item in checklist %}
+            <div class="flex items-center space-x-3 p-3 border border-gray-100 rounded-lg">
+                <input type="checkbox" 
+                       class="h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary"
+                       {% if item.completed %}checked{% endif %}
+                       onchange="toggleChecklistItem('{{ loop.index0 }}', this.checked)">
+                <div class="flex-1">
+                    <span class="text-sm font-medium {% if item.completed %}text-gray-500 line-through{% else %}text-gray-900{% endif %}">
+                        {{ item.task }}
+                    </span>
+                    <div class="flex items-center mt-1">
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium
+                                   {% if item.priority == 'high' %}bg-red-100 text-red-800
+                                   {% elif item.priority == 'medium' %}bg-yellow-100 text-yellow-800
+                                   {% else %}bg-green-100 text-green-800{% endif %}">
+                            {{ item.priority|title }} Priority
+                        </span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="mt-4 pt-4 border-t">
+            <div class="flex items-center justify-between text-sm">
+                <span class="text-gray-600">Progress</span>
+                <span id="checklist-progress-text" class="font-medium">{{ (checklist|selectattr('completed')|list|length / checklist|length * 100)|round(0) if checklist else 0 }}%</span>
+            </div>
+            <div class="mt-2 bg-gray-200 rounded-full h-2">
+                <div id="checklist-progress-bar" class="bg-primary h-2 rounded-full" style="width: {{ (checklist|selectattr('completed')|list|length / checklist|length * 100)|round(0) if checklist else 0 }}%"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Optimization Suggestions -->
+    <div class="card">
+        <h3 class="text-lg font-semibold mb-4">Optimization Suggestions</h3>
+        <div class="space-y-3">
+            {% for suggestion in profile.optimization_suggestions %}
+            <div class="flex items-start space-x-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                <i class="fas fa-lightbulb text-blue-600 mt-1"></i>
+                <div>
+                    <p class="text-sm text-blue-800">{{ suggestion }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Profile Template Sections -->
+<div class="space-y-6">
+    
+    <!-- New Headline Section -->
+    <div class="card">
+        <h3 class="text-lg font-semibold mb-4">Recommended Headline</h3>
+        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+            <p class="text-sm font-medium text-green-800 mb-2">AI-Optimized Headline:</p>
+            <p class="text-green-900 font-medium">
+                AI Solutions Architect | Building Business-Ready AI Agents | From Cybersecurity to AI Innovation | Helping Companies Automate & Scale
+            </p>
+            <div class="mt-3 flex space-x-3">
+                <button onclick="copyToClipboard('headline')" class="btn-primary text-sm">
+                    <i class="fas fa-copy mr-1"></i>
+                    Copy
+                </button>
+                <button onclick="previewHeadline()" class="bg-gray-600 text-white px-3 py-1 rounded text-sm hover:bg-gray-700 transition-colors">
+                    <i class="fas fa-eye mr-1"></i>
+                    Preview
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- New About Section -->
+    <div class="card">
+        <h3 class="text-lg font-semibold mb-4">Recommended About Section</h3>
+        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+            <p class="text-sm font-medium text-green-800 mb-2">AI-Optimized About Section:</p>
+            <div class="text-green-900 text-sm space-y-2">
+                <p><strong>🚀 Transforming Businesses Through AI Automation</strong></p>
+                <p>I help companies build AI agents that actually work for their business. From manual processes to intelligent automation, I bridge the gap between complex AI technology and practical business solutions.</p>
+                
+                <p><strong>💡 My Journey:</strong></p>
+                <p>• Started as Automotive Engineer at BMW (problem-solving mindset)<br>
+                • Transitioned to Cybersecurity (security-first approach)<br>
+                • Now: AI Solutions Architect (combining all expertise)</p>
+                
+                <p><strong>🛠️ What I Build:</strong></p>
+                <p>• Claude Code-powered development workflows<br>
+                • Business process automation<br>
+                • AI agents for sales, marketing, and operations<br>
+                • Custom AI solutions for SMEs</p>
+                
+                <p><strong>📈 Results I Deliver:</strong></p>
+                <p>• 80% reduction in manual tasks<br>
+                • 300% faster content creation<br>
+                • ROI-positive AI implementations</p>
+                
+                <p><strong>🎯 Let's Connect If:</strong></p>
+                <p>• You want to automate repetitive business processes<br>
+                • You're curious about AI but don't know where to start<br>
+                • You need AI solutions that actually generate ROI</p>
+                
+                <p>💬 <strong>DM me "AI AUDIT"</strong> for a free 15-minute consultation on how AI can transform your business.</p>
+            </div>
+            <div class="mt-3 flex space-x-3">
+                <button onclick="copyToClipboard('about')" class="btn-primary text-sm">
+                    <i class="fas fa-copy mr-1"></i>
+                    Copy
+                </button>
+                <button onclick="previewAbout()" class="bg-gray-600 text-white px-3 py-1 rounded text-sm hover:bg-gray-700 transition-colors">
+                    <i class="fas fa-eye mr-1"></i>
+                    Preview
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Generated Content Modal -->
+<div id="contentModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+    <div class="flex items-center justify-center h-full p-4">
+        <div class="bg-white rounded-lg w-full max-w-2xl max-h-96 overflow-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold" id="modalTitle">Generated Content</h3>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="modalContent" class="text-sm text-gray-700"></div>
+                <div class="mt-4 flex justify-end space-x-3">
+                    <button onclick="closeModal()" class="px-4 py-2 text-gray-600 hover:text-gray-800">
+                        Close
+                    </button>
+                    <button onclick="copyModalContent()" class="btn-primary">
+                        Copy to Clipboard
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Toast notification function (same as base.html)
+function showToast(message, type = 'info') {
+    const toast = document.createElement('div');
+    const bgColors = {
+        success: 'bg-green-500',
+        error: 'bg-red-500', 
+        warning: 'bg-yellow-500',
+        info: 'bg-blue-500'
+    };
+    
+    toast.className = `fixed top-4 right-4 z-50 ${bgColors[type] || bgColors.info} text-white px-6 py-3 rounded-lg shadow-lg transition-all duration-300 transform translate-x-full`;
+    toast.innerHTML = `
+        <div class="flex items-center">
+            <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'} mr-2"></i>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    document.body.appendChild(toast);
+    
+    // Animate in
+    setTimeout(() => {
+        toast.classList.remove('translate-x-full');
+    }, 100);
+    
+    // Auto remove after 4 seconds
+    setTimeout(() => {
+        toast.classList.add('translate-x-full');
+        setTimeout(() => {
+            if (toast.parentElement) {
+                toast.remove();
+            }
+        }, 300);
+    }, 4000);
+}
+// Profile scraping
+function scrapeProfile() {
+    // Show loading state
+    showToast('Starting LinkedIn profile scrape...', 'info');
+    
+    // Disable button to prevent multiple runs
+    const button = event.target;
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Scraping...';
+    button.disabled = true;
+    
+    // Show progress message after 5 seconds
+    setTimeout(() => {
+        if (button.disabled) {
+            showToast('Scraping in progress... This may take up to 2 minutes.', 'info');
+        }
+    }, 5000);
+    
+    // Use saved token from settings
+    fetch('/api/scrape-profile', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}) // No token needed - uses saved one
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showToast('Profile data updated successfully! ✅', 'success');
+            // Update UI with new data
+            updateProfileData(data.data);
+        } else {
+            if (data.action === 'configure_token') {
+                showToast('Apify token required. Please configure in Settings.', 'warning');
+                // Show button to go to settings
+                showTokenConfigModal();
+            } else {
+                showToast('Error: ' + data.error, 'error');
+            }
+        }
+    })
+    .catch(error => {
+        showToast('Connection error. Please try again.', 'error');
+        console.error('Error:', error);
+    })
+    .finally(() => {
+        // Re-enable button
+        button.innerHTML = originalText;
+        button.disabled = false;
+    });
+}
+
+// Show modal to configure token
+function showTokenConfigModal() {
+    const modal = document.createElement('div');
+    modal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
+    modal.innerHTML = `
+        <div class="bg-white rounded-lg max-w-md w-full p-6">
+            <h3 class="text-lg font-semibold mb-4">API Token Required</h3>
+            <p class="text-gray-600 mb-4">Your Apify token is not configured. Please set it up in Settings to scrape profile data.</p>
+            <div class="flex justify-end space-x-3">
+                <button onclick="this.closest('.fixed').remove()" class="px-4 py-2 text-gray-600 hover:text-gray-800">
+                    Cancel
+                </button>
+                <a href="/settings" class="btn-primary">
+                    Go to Settings
+                </a>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+// Update profile data in UI
+function updateProfileData(data) {
+    if (data.connections) {
+        const connectionsEl = document.querySelector('[data-profile="connections"]');
+        if (connectionsEl) connectionsEl.textContent = data.connections;
+    }
+    
+    if (data.followers) {
+        const followersEl = document.querySelector('[data-profile="followers"]');
+        if (followersEl) followersEl.textContent = data.followers;
+    }
+    
+    // Update timestamp
+    const timestampEl = document.querySelector('[data-profile="timestamp"]');
+    if (timestampEl) {
+        const now = new Date().toLocaleString();
+        timestampEl.textContent = `Last updated: ${now}`;
+    }
+}
+
+// Content generation functions
+function generateHeadline() {
+    showModal('Generated Headlines', 'Generating AI-optimized headlines...');
+    // Simulate AI generation
+    setTimeout(() => {
+        const headlines = [
+            'AI Solutions Architect | Building Business-Ready AI Agents | From Cybersecurity to AI Innovation',
+            'Transforming Businesses Through AI Automation | Claude Code Expert | Ex-BMW Engineer',
+            'AI Agent Developer | Helping SMEs Automate 80% of Manual Tasks | Cybersecurity Background'
+        ];
+        showModal('Generated Headlines', headlines.map(h => `• ${h}`).join('<br><br>'));
+    }, 2000);
+}
+
+function generateAbout() {
+    showModal('Generated About Section', 'Creating AI-optimized About section...');
+    // This would call the AI generation API
+}
+
+// Copy functions
+function copyToClipboard(type) {
+    let text;
+    if (type === 'headline') {
+        text = 'AI Solutions Architect | Building Business-Ready AI Agents | From Cybersecurity to AI Innovation | Helping Companies Automate & Scale';
+    } else if (type === 'about') {
+        text = document.querySelector('.bg-green-50 .text-green-900').innerText;
+    }
+    
+    navigator.clipboard.writeText(text).then(() => {
+        alert('Copied to clipboard!');
+    });
+}
+
+// Preview functions
+function previewHeadline() {
+    showModal('Headline Preview', 'AI Solutions Architect | Building Business-Ready AI Agents | From Cybersecurity to AI Innovation | Helping Companies Automate & Scale');
+}
+
+function previewAbout() {
+    const aboutText = document.querySelector('.bg-green-50 .text-green-900').innerHTML;
+    showModal('About Section Preview', aboutText);
+}
+
+// Modal functions
+function showModal(title, content) {
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalContent').innerHTML = content;
+    document.getElementById('contentModal').classList.remove('hidden');
+}
+
+function closeModal() {
+    document.getElementById('contentModal').classList.add('hidden');
+}
+
+function copyModalContent() {
+    const content = document.getElementById('modalContent').innerText;
+    navigator.clipboard.writeText(content).then(() => {
+        alert('Copied to clipboard!');
+        closeModal();
+    });
+}
+
+// Checklist toggle with real-time progress update
+function toggleChecklistItem(index, completed) {
+    const checkbox = event.target;
+    const taskElement = checkbox.nextElementSibling.querySelector('span:first-child');
+    
+    fetch('/api/toggle-checklist', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            index: index,
+            completed: completed
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Update progress bar without page reload - use specific IDs
+            const progressBar = document.getElementById('checklist-progress-bar');
+            const progressText = document.getElementById('checklist-progress-text');
+            
+            if (progressBar) {
+                progressBar.style.width = data.progress + '%';
+            }
+            if (progressText) {
+                progressText.textContent = data.progress + '%';
+            }
+            
+            // Update task styling
+            if (completed) {
+                taskElement.classList.add('text-gray-500', 'line-through');
+                taskElement.classList.remove('text-gray-900');
+            } else {
+                taskElement.classList.remove('text-gray-500', 'line-through');
+                taskElement.classList.add('text-gray-900');
+            }
+            
+            // Show success toast
+            showToast(`Progress updated: ${data.completed_count}/${data.total_count} completed`, 'success');
+        } else {
+            // Revert checkbox on error
+            checkbox.checked = !completed;
+            showToast('Error updating checklist', 'error');
+        }
+    })
+    .catch(error => {
+        // Revert checkbox on error
+        checkbox.checked = !completed;
+        showToast('Connection error', 'error');
+        console.error('Error:', error);
+    });
+}
+</script>
+{% endblock %}

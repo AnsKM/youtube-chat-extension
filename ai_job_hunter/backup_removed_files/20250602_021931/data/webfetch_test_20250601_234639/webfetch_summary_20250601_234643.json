@@ -1,0 +1,15 @@
+{
+  "total_jobs": 5,
+  "by_platform": {
+    "stepstone": 3,
+    "indeed": 2
+  },
+  "by_keyword": {},
+  "search_completed_at": "2025-06-01T23:46:39.282906",
+  "cost_analysis": {
+    "webfetch_calls": 2,
+    "estimated_cost": 0.0,
+    "cost_breakdown": "WebFetch: Free (made 2 search requests)",
+    "cost_comparison": "Apify alternative would cost: ~$0.025"
+  }
+}

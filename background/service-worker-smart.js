@@ -373,6 +373,11 @@ async function handleMessage(request, sender, sendResponse) {
         sendResponse({ success: true });
         break;
         
+      case 'getAllChats':
+        const allChats = await getAllChats();
+        sendResponse({ success: true, chats: allChats });
+        break;
+        
       case 'exportChat':
         const exportData = await exportVideoChat(request.videoId, request.format);
         sendResponse({ success: true, exportData });
@@ -461,6 +466,25 @@ async function loadVideoChat(videoId) {
 async function clearVideoChat(videoId) {
   const key = `chat_${videoId}`;
   await chrome.storage.local.remove(key);
+}
+
+async function getAllChats() {
+  const result = await chrome.storage.local.get();
+  const chats = [];
+  
+  for (const [key, value] of Object.entries(result)) {
+    if (key.startsWith('chat_')) {
+      const videoId = key.replace('chat_', '');
+      chats.push({
+        videoId,
+        ...value
+      });
+    }
+  }
+  
+  // Sort by last updated, most recent first
+  chats.sort((a, b) => new Date(b.lastUpdated) - new Date(a.lastUpdated));
+  return chats;
 }
 
 async function exportVideoChat(videoId, format = 'json') {

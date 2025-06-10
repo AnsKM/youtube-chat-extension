@@ -1,0 +1,38 @@
+[
+  {
+    "source": "stepstone",
+    "title": "Senior AI Engineer - Computer Vision",
+    "company": "BMW Group",
+    "location": "Munich, Germany",
+    "description": "We are looking for a Senior AI Engineer to join our autonomous driving team. You will develop computer vision algorithms for vehicle perception systems using PyTorch and TensorFlow. Requirements: 5+ years experience in ML/AI, strong Python skills, experience with deep learning frameworks.",
+    "salary": "€75,000 - €95,000",
+    "employment_type": "Full-time",
+    "url": "https://stepstone.de/job/bmw-ai-engineer-123",
+    "scraped_at": "2025-06-01T23:35:05.969578",
+    "search_keyword": "AI Engineer"
+  },
+  {
+    "source": "stepstone",
+    "title": "Machine Learning Engineer",
+    "company": "Siemens AG",
+    "location": "München",
+    "description": "Develop ML models for industrial IoT applications. Work with time series data, predictive maintenance algorithms. Tech stack: Python, scikit-learn, Docker, Kubernetes, AWS. Looking for 2+ years ML experience.",
+    "salary": "€65,000 - €80,000",
+    "employment_type": "Full-time",
+    "url": "https://stepstone.de/job/siemens-ml-engineer-789",
+    "scraped_at": "2025-06-01T23:35:05.969583",
+    "search_keyword": "AI Engineer"
+  },
+  {
+    "source": "stepstone",
+    "title": "AI Engineer - MLOps",
+    "company": "Allianz SE",
+    "location": "Munich",
+    "description": "Build and maintain ML infrastructure for insurance risk models. Experience with MLflow, Kubeflow, CI/CD pipelines. Python, Docker, Kubernetes required. 3+ years DevOps/MLOps experience.",
+    "salary": "€68,000 - €85,000",
+    "employment_type": "Full-time",
+    "url": "https://stepstone.de/job/allianz-mlops-engineer-202",
+    "scraped_at": "2025-06-01T23:35:05.969585",
+    "search_keyword": "AI Engineer"
+  }
+]

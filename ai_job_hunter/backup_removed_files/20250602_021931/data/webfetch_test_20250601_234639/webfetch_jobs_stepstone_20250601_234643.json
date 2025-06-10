@@ -1,0 +1,38 @@
+[
+  {
+    "source": "stepstone",
+    "title": "Senior AI Engineer - Computer Vision",
+    "company": "BMW Group",
+    "location": "Munich, Germany",
+    "description": "Develop computer vision algorithms for autonomous driving. PyTorch, TensorFlow, Python required. 5+ years experience.",
+    "salary": "€75,000 - €95,000",
+    "employment_type": "Vollzeit",
+    "url": "https://www.stepstone.de/stellenangebote--senior-ai-engineer-computer-vision-muenchen-bmw-group--123456.html",
+    "scraped_at": "2025-06-01T23:46:39.282931",
+    "search_keyword": "AI Engineer"
+  },
+  {
+    "source": "stepstone",
+    "title": "Machine Learning Engineer IoT",
+    "company": "Siemens AG",
+    "location": "München",
+    "description": "ML models for industrial IoT. Time series, predictive maintenance. Python, scikit-learn, Docker, AWS.",
+    "salary": "€65,000 - €80,000",
+    "employment_type": "Vollzeit",
+    "url": "https://www.stepstone.de/stellenangebote--machine-learning-engineer-iot-muenchen-siemens--789012.html",
+    "scraped_at": "2025-06-01T23:46:39.282933",
+    "search_keyword": "AI Engineer"
+  },
+  {
+    "source": "stepstone",
+    "title": "AI Engineer MLOps",
+    "company": "Allianz SE",
+    "location": "Munich",
+    "description": "ML infrastructure for insurance models. MLflow, Kubeflow, CI/CD. Python, Kubernetes, 3+ years MLOps.",
+    "salary": "€68,000 - €85,000",
+    "employment_type": "Vollzeit",
+    "url": "https://www.stepstone.de/stellenangebote--ai-engineer-mlops-muenchen-allianz--345678.html",
+    "scraped_at": "2025-06-01T23:46:39.282934",
+    "search_keyword": "AI Engineer"
+  }
+]

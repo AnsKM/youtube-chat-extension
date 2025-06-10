@@ -1,0 +1,7632 @@
+[
+  {
+    "video_id": "vid_@MrBeast_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:15:06.623388"
+  },
+  {
+    "video_id": "vid_@MrBeast_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:15:06.623702"
+  },
+  {
+    "video_id": "vid_@MrBeast_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:15:06.624008"
+  },
+  {
+    "video_id": "vid_@MrBeast_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:15:06.624666"
+  },
+  {
+    "video_id": "vid_@MrBeast_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:15:06.625022"
+  },
+  {
+    "video_id": "vid_@mkbhd_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:15:06.625401"
+  },
+  {
+    "video_id": "vid_@mkbhd_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:15:06.625718"
+  },
+  {
+    "video_id": "vid_@mkbhd_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:15:06.626008"
+  },
+  {
+    "video_id": "vid_@mkbhd_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:15:06.626310"
+  },
+  {
+    "video_id": "vid_@mkbhd_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:15:06.626689"
+  },
+  {
+    "video_id": "vid_@MrBeast_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:15:57.405695"
+  },
+  {
+    "video_id": "vid_@MrBeast_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:15:57.406211"
+  },
+  {
+    "video_id": "vid_@MrBeast_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:15:57.406611"
+  },
+  {
+    "video_id": "vid_@MrBeast_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:15:57.406954"
+  },
+  {
+    "video_id": "vid_@MrBeast_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:15:57.407846"
+  },
+  {
+    "video_id": "vid_@mkbhd_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:15:57.408655"
+  },
+  {
+    "video_id": "vid_@mkbhd_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:15:57.409178"
+  },
+  {
+    "video_id": "vid_@mkbhd_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:15:57.409722"
+  },
+  {
+    "video_id": "vid_@mkbhd_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:15:57.410213"
+  },
+  {
+    "video_id": "vid_@mkbhd_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:15:57.410674"
+  },
+  {
+    "video_id": "vid_@testchannel_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:15:57.411374"
+  },
+  {
+    "video_id": "vid_@testchannel_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:15:57.412038"
+  },
+  {
+    "video_id": "vid_@testchannel_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:15:57.412704"
+  },
+  {
+    "video_id": "vid_@testchannel_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:15:57.414153"
+  },
+  {
+    "video_id": "vid_@testchannel_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:15:57.415017"
+  },
+  {
+    "video_id": "vid_@MrBeast_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:16:19.749830"
+  },
+  {
+    "video_id": "vid_@MrBeast_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:16:19.750256"
+  },
+  {
+    "video_id": "vid_@MrBeast_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:16:19.750636"
+  },
+  {
+    "video_id": "vid_@MrBeast_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:16:19.751011"
+  },
+  {
+    "video_id": "vid_@MrBeast_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:16:19.751391"
+  },
+  {
+    "video_id": "vid_@mkbhd_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:16:19.751794"
+  },
+  {
+    "video_id": "vid_@mkbhd_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:16:19.752177"
+  },
+  {
+    "video_id": "vid_@mkbhd_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:16:19.752562"
+  },
+  {
+    "video_id": "vid_@mkbhd_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:16:19.752974"
+  },
+  {
+    "video_id": "vid_@mkbhd_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:16:19.753385"
+  },
+  {
+    "video_id": "vid_@testchannel_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:16:19.754519"
+  },
+  {
+    "video_id": "vid_@testchannel_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:16:19.756414"
+  },
+  {
+    "video_id": "vid_@testchannel_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:16:19.756865"
+  },
+  {
+    "video_id": "vid_@testchannel_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:16:19.757320"
+  },
+  {
+    "video_id": "vid_@testchannel_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:16:19.757765"
+  },
+  {
+    "video_id": "vid_@test_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:16:19.758423"
+  },
+  {
+    "video_id": "vid_@test_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:16:19.759098"
+  },
+  {
+    "video_id": "vid_@test_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:16:19.759762"
+  },
+  {
+    "video_id": "vid_@test_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:16:19.760432"
+  },
+  {
+    "video_id": "vid_@test_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:16:19.761117"
+  },
+  {
+    "video_id": "vid_@MrBeast_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:18:58.300807"
+  },
+  {
+    "video_id": "vid_@MrBeast_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:18:58.303827"
+  },
+  {
+    "video_id": "vid_@MrBeast_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:18:58.307529"
+  },
+  {
+    "video_id": "vid_@MrBeast_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:18:58.309725"
+  },
+  {
+    "video_id": "vid_@MrBeast_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:18:58.310927"
+  },
+  {
+    "video_id": "vid_@mkbhd_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:18:58.312101"
+  },
+  {
+    "video_id": "vid_@mkbhd_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:18:58.313217"
+  },
+  {
+    "video_id": "vid_@mkbhd_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:18:58.314326"
+  },
+  {
+    "video_id": "vid_@mkbhd_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:18:58.315442"
+  },
+  {
+    "video_id": "vid_@mkbhd_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:18:58.316795"
+  },
+  {
+    "video_id": "vid_@testchannel_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:18:58.318158"
+  },
+  {
+    "video_id": "vid_@testchannel_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:18:58.319485"
+  },
+  {
+    "video_id": "vid_@testchannel_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:18:58.320819"
+  },
+  {
+    "video_id": "vid_@testchannel_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:18:58.322184"
+  },
+  {
+    "video_id": "vid_@testchannel_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:18:58.324969"
+  },
+  {
+    "video_id": "vid_@test_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:18:58.326934"
+  },
+  {
+    "video_id": "vid_@test_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:18:58.328477"
+  },
+  {
+    "video_id": "vid_@test_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:18:58.329744"
+  },
+  {
+    "video_id": "vid_@test_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:18:58.331021"
+  },
+  {
+    "video_id": "vid_@test_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:18:58.332280"
+  },
+  {
+    "video_id": "vid_@MrBeast_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:19:02.321777"
+  },
+  {
+    "video_id": "vid_@MrBeast_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:19:02.325226"
+  },
+  {
+    "video_id": "vid_@MrBeast_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:19:02.328321"
+  },
+  {
+    "video_id": "vid_@MrBeast_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:19:02.330643"
+  },
+  {
+    "video_id": "vid_@MrBeast_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:19:02.332838"
+  },
+  {
+    "video_id": "vid_@mkbhd_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:19:02.334872"
+  },
+  {
+    "video_id": "vid_@mkbhd_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:19:02.336747"
+  },
+  {
+    "video_id": "vid_@mkbhd_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:19:02.338213"
+  },
+  {
+    "video_id": "vid_@mkbhd_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:19:02.340231"
+  },
+  {
+    "video_id": "vid_@mkbhd_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:19:02.342182"
+  },
+  {
+    "video_id": "vid_@testchannel_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:19:02.343808"
+  },
+  {
+    "video_id": "vid_@testchannel_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:19:02.347556"
+  },
+  {
+    "video_id": "vid_@testchannel_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:19:02.348921"
+  },
+  {
+    "video_id": "vid_@testchannel_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:19:02.350195"
+  },
+  {
+    "video_id": "vid_@testchannel_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:19:02.351842"
+  },
+  {
+    "video_id": "vid_@test_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:19:02.353178"
+  },
+  {
+    "video_id": "vid_@test_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:19:02.354453"
+  },
+  {
+    "video_id": "vid_@test_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:19:02.355725"
+  },
+  {
+    "video_id": "vid_@test_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:19:02.356897"
+  },
+  {
+    "video_id": "vid_@test_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:19:02.358035"
+  },
+  {
+    "video_id": "vid_@MrBeast_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.024082"
+  },
+  {
+    "video_id": "vid_@MrBeast_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.025227"
+  },
+  {
+    "video_id": "vid_@MrBeast_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.025965"
+  },
+  {
+    "video_id": "vid_@MrBeast_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.026659"
+  },
+  {
+    "video_id": "vid_@MrBeast_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.027674"
+  },
+  {
+    "video_id": "vid_@mkbhd_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.028375"
+  },
+  {
+    "video_id": "vid_@mkbhd_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.029048"
+  },
+  {
+    "video_id": "vid_@mkbhd_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.029720"
+  },
+  {
+    "video_id": "vid_@mkbhd_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.030416"
+  },
+  {
+    "video_id": "vid_@mkbhd_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.031116"
+  },
+  {
+    "video_id": "vid_@testchannel_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.031819"
+  },
+  {
+    "video_id": "vid_@testchannel_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.032535"
+  },
+  {
+    "video_id": "vid_@testchannel_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.033243"
+  },
+  {
+    "video_id": "vid_@testchannel_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.033948"
+  },
+  {
+    "video_id": "vid_@testchannel_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.034657"
+  },
+  {
+    "video_id": "vid_@test_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.035386"
+  },
+  {
+    "video_id": "vid_@test_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.036304"
+  },
+  {
+    "video_id": "vid_@test_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.037039"
+  },
+  {
+    "video_id": "vid_@test_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.037776"
+  },
+  {
+    "video_id": "vid_@test_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.038505"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.039512"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.040592"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.041783"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.043051"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.044098"
+  },
+  {
+    "video_id": "vid_@lexfridman_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.045188"
+  },
+  {
+    "video_id": "vid_@lexfridman_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.046283"
+  },
+  {
+    "video_id": "vid_@lexfridman_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.047375"
+  },
+  {
+    "video_id": "vid_@lexfridman_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.048466"
+  },
+  {
+    "video_id": "vid_@lexfridman_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.049648"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.050836"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.052057"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.053320"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.054561"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.055809"
+  },
+  {
+    "video_id": "vid_@mattwolfe_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.057099"
+  },
+  {
+    "video_id": "vid_@mattwolfe_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.058397"
+  },
+  {
+    "video_id": "vid_@mattwolfe_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.060141"
+  },
+  {
+    "video_id": "vid_@mattwolfe_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.061702"
+  },
+  {
+    "video_id": "vid_@mattwolfe_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.062991"
+  },
+  {
+    "video_id": "vid_@yannickilcher_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.064278"
+  },
+  {
+    "video_id": "vid_@yannickilcher_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.065593"
+  },
+  {
+    "video_id": "vid_@yannickilcher_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.066921"
+  },
+  {
+    "video_id": "vid_@yannickilcher_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.068226"
+  },
+  {
+    "video_id": "vid_@yannickilcher_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.069558"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.071141"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.072613"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.074219"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.075832"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.077423"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.079000"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.080427"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.082614"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.084062"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.085491"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.087108"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.088556"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.089982"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.091478"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.093286"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.095082"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.096673"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.098289"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.099874"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.102484"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.104151"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.105743"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.107377"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.108996"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.110642"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.112321"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.114038"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.115734"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.117428"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.119134"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.121283"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.123246"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.125032"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.126803"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.128610"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.130407"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.132628"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.134679"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.136799"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.138906"
+  },
+  {
+    "video_id": "vid_@coreyms_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.141163"
+  },
+  {
+    "video_id": "vid_@coreyms_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.143239"
+  },
+  {
+    "video_id": "vid_@coreyms_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.145307"
+  },
+  {
+    "video_id": "vid_@coreyms_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.147286"
+  },
+  {
+    "video_id": "vid_@coreyms_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.149244"
+  },
+  {
+    "video_id": "vid_@3blue1brown_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.151754"
+  },
+  {
+    "video_id": "vid_@3blue1brown_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.153706"
+  },
+  {
+    "video_id": "vid_@3blue1brown_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.155889"
+  },
+  {
+    "video_id": "vid_@3blue1brown_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.157898"
+  },
+  {
+    "video_id": "vid_@3blue1brown_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.159862"
+  },
+  {
+    "video_id": "vid_@sentdex_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.162503"
+  },
+  {
+    "video_id": "vid_@sentdex_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.164530"
+  },
+  {
+    "video_id": "vid_@sentdex_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.166550"
+  },
+  {
+    "video_id": "vid_@sentdex_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.168806"
+  },
+  {
+    "video_id": "vid_@sentdex_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.170843"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.173268"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.175360"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.177733"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.179824"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.182369"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.184598"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.186742"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.189006"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.191192"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.193360"
+  },
+  {
+    "video_id": "vid_@webscraping_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.196156"
+  },
+  {
+    "video_id": "vid_@webscraping_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.198654"
+  },
+  {
+    "video_id": "vid_@webscraping_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.201293"
+  },
+  {
+    "video_id": "vid_@webscraping_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.204172"
+  },
+  {
+    "video_id": "vid_@webscraping_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.206624"
+  },
+  {
+    "video_id": "vid_@aibrews_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.208926"
+  },
+  {
+    "video_id": "vid_@aibrews_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.211681"
+  },
+  {
+    "video_id": "vid_@aibrews_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.214007"
+  },
+  {
+    "video_id": "vid_@aibrews_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.216336"
+  },
+  {
+    "video_id": "vid_@aibrews_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.218688"
+  },
+  {
+    "video_id": "vid_@openai_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:21:24.221171"
+  },
+  {
+    "video_id": "vid_@openai_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:21:24.223662"
+  },
+  {
+    "video_id": "vid_@openai_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:21:24.226368"
+  },
+  {
+    "video_id": "vid_@openai_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:21:24.228919"
+  },
+  {
+    "video_id": "vid_@openai_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:21:24.231327"
+  },
+  {
+    "video_id": "vid_@MrBeast_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.304749"
+  },
+  {
+    "video_id": "vid_@MrBeast_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.311230"
+  },
+  {
+    "video_id": "vid_@MrBeast_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.316740"
+  },
+  {
+    "video_id": "vid_@MrBeast_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.320740"
+  },
+  {
+    "video_id": "vid_@MrBeast_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.324212"
+  },
+  {
+    "video_id": "vid_@mkbhd_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.329962"
+  },
+  {
+    "video_id": "vid_@mkbhd_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.335362"
+  },
+  {
+    "video_id": "vid_@mkbhd_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.338424"
+  },
+  {
+    "video_id": "vid_@mkbhd_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.341390"
+  },
+  {
+    "video_id": "vid_@mkbhd_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.344477"
+  },
+  {
+    "video_id": "vid_@testchannel_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.347240"
+  },
+  {
+    "video_id": "vid_@testchannel_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.350039"
+  },
+  {
+    "video_id": "vid_@testchannel_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.353901"
+  },
+  {
+    "video_id": "vid_@testchannel_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.356423"
+  },
+  {
+    "video_id": "vid_@testchannel_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.359713"
+  },
+  {
+    "video_id": "vid_@test_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.362524"
+  },
+  {
+    "video_id": "vid_@test_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.365238"
+  },
+  {
+    "video_id": "vid_@test_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.368858"
+  },
+  {
+    "video_id": "vid_@test_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.373067"
+  },
+  {
+    "video_id": "vid_@test_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.376071"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.378416"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.381056"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.383208"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.385183"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.387551"
+  },
+  {
+    "video_id": "vid_@lexfridman_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.389887"
+  },
+  {
+    "video_id": "vid_@lexfridman_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.393797"
+  },
+  {
+    "video_id": "vid_@lexfridman_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.395909"
+  },
+  {
+    "video_id": "vid_@lexfridman_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.398141"
+  },
+  {
+    "video_id": "vid_@lexfridman_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.400079"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.401961"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.403937"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.405796"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.407645"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.409508"
+  },
+  {
+    "video_id": "vid_@mattwolfe_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.412357"
+  },
+  {
+    "video_id": "vid_@mattwolfe_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.414378"
+  },
+  {
+    "video_id": "vid_@mattwolfe_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.416272"
+  },
+  {
+    "video_id": "vid_@mattwolfe_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.418134"
+  },
+  {
+    "video_id": "vid_@mattwolfe_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.419958"
+  },
+  {
+    "video_id": "vid_@yannickilcher_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.421808"
+  },
+  {
+    "video_id": "vid_@yannickilcher_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.423668"
+  },
+  {
+    "video_id": "vid_@yannickilcher_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.425486"
+  },
+  {
+    "video_id": "vid_@yannickilcher_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.427331"
+  },
+  {
+    "video_id": "vid_@yannickilcher_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.429165"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.431941"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.434029"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.436181"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.438071"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.439944"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.441868"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.443797"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.445739"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.447618"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.449496"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.452177"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.454213"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.456137"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.458249"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.460195"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.462128"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.464058"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.466023"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.467975"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.469949"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.472812"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.474817"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.476768"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.478748"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.480735"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.482862"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.484859"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.486855"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.488870"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.491618"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.493889"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.495972"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.498031"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.500055"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.502097"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.504204"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.506292"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.508605"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.510666"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.513327"
+  },
+  {
+    "video_id": "vid_@coreyms_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.515483"
+  },
+  {
+    "video_id": "vid_@coreyms_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.517591"
+  },
+  {
+    "video_id": "vid_@coreyms_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.519705"
+  },
+  {
+    "video_id": "vid_@coreyms_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.521800"
+  },
+  {
+    "video_id": "vid_@coreyms_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.523915"
+  },
+  {
+    "video_id": "vid_@3blue1brown_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.526063"
+  },
+  {
+    "video_id": "vid_@3blue1brown_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.528209"
+  },
+  {
+    "video_id": "vid_@3blue1brown_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.530344"
+  },
+  {
+    "video_id": "vid_@3blue1brown_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.532993"
+  },
+  {
+    "video_id": "vid_@3blue1brown_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.535844"
+  },
+  {
+    "video_id": "vid_@sentdex_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.538153"
+  },
+  {
+    "video_id": "vid_@sentdex_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.540300"
+  },
+  {
+    "video_id": "vid_@sentdex_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.542445"
+  },
+  {
+    "video_id": "vid_@sentdex_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.544655"
+  },
+  {
+    "video_id": "vid_@sentdex_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.546814"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.549021"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.551466"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.553780"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.555947"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.558150"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.560390"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.562846"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.565086"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.567303"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.569581"
+  },
+  {
+    "video_id": "vid_@webscraping_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.572330"
+  },
+  {
+    "video_id": "vid_@webscraping_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.574713"
+  },
+  {
+    "video_id": "vid_@webscraping_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.576959"
+  },
+  {
+    "video_id": "vid_@webscraping_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.579218"
+  },
+  {
+    "video_id": "vid_@webscraping_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.581480"
+  },
+  {
+    "video_id": "vid_@aibrews_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.584137"
+  },
+  {
+    "video_id": "vid_@aibrews_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.586456"
+  },
+  {
+    "video_id": "vid_@aibrews_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.588711"
+  },
+  {
+    "video_id": "vid_@aibrews_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.591203"
+  },
+  {
+    "video_id": "vid_@aibrews_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.593617"
+  },
+  {
+    "video_id": "vid_@openai_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:27:18.596140"
+  },
+  {
+    "video_id": "vid_@openai_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:27:18.598423"
+  },
+  {
+    "video_id": "vid_@openai_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:27:18.600754"
+  },
+  {
+    "video_id": "vid_@openai_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:27:18.603081"
+  },
+  {
+    "video_id": "vid_@openai_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:27:18.605698"
+  },
+  {
+    "video_id": "vid_@MrBeast_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.318154"
+  },
+  {
+    "video_id": "vid_@MrBeast_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.331686"
+  },
+  {
+    "video_id": "vid_@MrBeast_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.336961"
+  },
+  {
+    "video_id": "vid_@MrBeast_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.341840"
+  },
+  {
+    "video_id": "vid_@MrBeast_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.346545"
+  },
+  {
+    "video_id": "vid_@mkbhd_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.353093"
+  },
+  {
+    "video_id": "vid_@mkbhd_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.357285"
+  },
+  {
+    "video_id": "vid_@mkbhd_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.361650"
+  },
+  {
+    "video_id": "vid_@mkbhd_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.365173"
+  },
+  {
+    "video_id": "vid_@mkbhd_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.368622"
+  },
+  {
+    "video_id": "vid_@testchannel_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.374120"
+  },
+  {
+    "video_id": "vid_@testchannel_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.385154"
+  },
+  {
+    "video_id": "vid_@testchannel_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.388833"
+  },
+  {
+    "video_id": "vid_@testchannel_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.393468"
+  },
+  {
+    "video_id": "vid_@testchannel_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.396495"
+  },
+  {
+    "video_id": "vid_@test_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.399305"
+  },
+  {
+    "video_id": "vid_@test_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.402012"
+  },
+  {
+    "video_id": "vid_@test_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.405471"
+  },
+  {
+    "video_id": "vid_@test_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.408597"
+  },
+  {
+    "video_id": "vid_@test_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.411990"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.414878"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.417505"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.420090"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.422669"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.425269"
+  },
+  {
+    "video_id": "vid_@lexfridman_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.427981"
+  },
+  {
+    "video_id": "vid_@lexfridman_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.431305"
+  },
+  {
+    "video_id": "vid_@lexfridman_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.433914"
+  },
+  {
+    "video_id": "vid_@lexfridman_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.436464"
+  },
+  {
+    "video_id": "vid_@lexfridman_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.439243"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.441822"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.444314"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.446780"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.449311"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.452615"
+  },
+  {
+    "video_id": "vid_@mattwolfe_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.455192"
+  },
+  {
+    "video_id": "vid_@mattwolfe_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.457728"
+  },
+  {
+    "video_id": "vid_@mattwolfe_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.460256"
+  },
+  {
+    "video_id": "vid_@mattwolfe_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.463152"
+  },
+  {
+    "video_id": "vid_@mattwolfe_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.465981"
+  },
+  {
+    "video_id": "vid_@yannickilcher_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.468860"
+  },
+  {
+    "video_id": "vid_@yannickilcher_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.472261"
+  },
+  {
+    "video_id": "vid_@yannickilcher_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.475105"
+  },
+  {
+    "video_id": "vid_@yannickilcher_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.477720"
+  },
+  {
+    "video_id": "vid_@yannickilcher_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.480299"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.482915"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.485504"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.488129"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.491512"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.494196"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.497045"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.499727"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.502345"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.504956"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.507914"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.514727"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.517387"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.520044"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.522718"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.525405"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.528063"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.531552"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.534308"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.537317"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.540013"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.542728"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.545489"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.548240"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.551436"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.554185"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.556995"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.559996"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.562723"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.565470"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.568267"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.571719"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.574561"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.577340"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.580148"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.583255"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.586062"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.588930"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.592042"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.594838"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.597651"
+  },
+  {
+    "video_id": "vid_@coreyms_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.600488"
+  },
+  {
+    "video_id": "vid_@coreyms_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.603318"
+  },
+  {
+    "video_id": "vid_@coreyms_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.606404"
+  },
+  {
+    "video_id": "vid_@coreyms_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.609482"
+  },
+  {
+    "video_id": "vid_@coreyms_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.612582"
+  },
+  {
+    "video_id": "vid_@3blue1brown_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.615872"
+  },
+  {
+    "video_id": "vid_@3blue1brown_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.618713"
+  },
+  {
+    "video_id": "vid_@3blue1brown_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.621578"
+  },
+  {
+    "video_id": "vid_@3blue1brown_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.624425"
+  },
+  {
+    "video_id": "vid_@3blue1brown_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.627319"
+  },
+  {
+    "video_id": "vid_@sentdex_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.630403"
+  },
+  {
+    "video_id": "vid_@sentdex_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.633341"
+  },
+  {
+    "video_id": "vid_@sentdex_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.636259"
+  },
+  {
+    "video_id": "vid_@sentdex_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.639168"
+  },
+  {
+    "video_id": "vid_@sentdex_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.642295"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.645225"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.648144"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.651234"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.654215"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.657189"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.660168"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.663133"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.666156"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.669644"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.673186"
+  },
+  {
+    "video_id": "vid_@webscraping_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.676298"
+  },
+  {
+    "video_id": "vid_@webscraping_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.679280"
+  },
+  {
+    "video_id": "vid_@webscraping_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.682292"
+  },
+  {
+    "video_id": "vid_@webscraping_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.686636"
+  },
+  {
+    "video_id": "vid_@webscraping_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.690027"
+  },
+  {
+    "video_id": "vid_@aibrews_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.693348"
+  },
+  {
+    "video_id": "vid_@aibrews_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.696788"
+  },
+  {
+    "video_id": "vid_@aibrews_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.699828"
+  },
+  {
+    "video_id": "vid_@aibrews_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.702828"
+  },
+  {
+    "video_id": "vid_@aibrews_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.705837"
+  },
+  {
+    "video_id": "vid_@openai_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:32:26.709259"
+  },
+  {
+    "video_id": "vid_@openai_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T17:32:26.712512"
+  },
+  {
+    "video_id": "vid_@openai_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T17:32:26.715915"
+  },
+  {
+    "video_id": "vid_@openai_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T17:32:26.719136"
+  },
+  {
+    "video_id": "vid_@openai_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T17:32:26.722552"
+  },
+  {
+    "video_id": null,
+    "views": 0,
+    "likes": 0,
+    "comments": 0,
+    "view_multiple": 0.0,
+    "is_trending": false,
+    "trending_score": 0.0,
+    "recorded_at": "2025-05-31T17:35:02.093345"
+  },
+  {
+    "video_id": null,
+    "views": 0,
+    "likes": 0,
+    "comments": 0,
+    "view_multiple": 0.0,
+    "is_trending": false,
+    "trending_score": 0.0,
+    "recorded_at": "2025-05-31T17:35:02.096979"
+  },
+  {
+    "video_id": null,
+    "views": 0,
+    "likes": 0,
+    "comments": 0,
+    "view_multiple": 0.0,
+    "is_trending": false,
+    "trending_score": 0.0,
+    "recorded_at": "2025-05-31T17:35:02.100230"
+  },
+  {
+    "video_id": "4OyB3hFb2AA",
+    "views": 104013,
+    "likes": 2800,
+    "comments": 453,
+    "view_multiple": 10.4,
+    "is_trending": true,
+    "trending_score": 104.0,
+    "recorded_at": "2025-05-31T17:35:02.104399"
+  },
+  {
+    "video_id": "j7W2v_FmCuE",
+    "views": 2014523,
+    "likes": 69000,
+    "comments": 4271,
+    "view_multiple": 201.45,
+    "is_trending": true,
+    "trending_score": 2014.5,
+    "recorded_at": "2025-05-31T17:35:02.108536"
+  },
+  {
+    "video_id": "KFqTwqWZK-4",
+    "views": 1599,
+    "likes": 83,
+    "comments": 5,
+    "view_multiple": 0.16,
+    "is_trending": false,
+    "trending_score": 1.6,
+    "recorded_at": "2025-05-31T17:35:02.113935"
+  },
+  {
+    "video_id": "5nKLu2CSxx8",
+    "views": 1337528,
+    "likes": 50000,
+    "comments": 3738,
+    "view_multiple": 133.75,
+    "is_trending": true,
+    "trending_score": 1337.5,
+    "recorded_at": "2025-05-31T17:35:02.118242"
+  },
+  {
+    "video_id": "DZIASl9q90s",
+    "views": 95209542,
+    "likes": 2900000,
+    "comments": 70322,
+    "view_multiple": 9520.95,
+    "is_trending": true,
+    "trending_score": 95209.5,
+    "recorded_at": "2025-05-31T17:35:02.122472"
+  },
+  {
+    "video_id": "cp1lprZUQcE",
+    "views": 480173,
+    "likes": 8700,
+    "comments": 1576,
+    "view_multiple": 48.02,
+    "is_trending": true,
+    "trending_score": 480.2,
+    "recorded_at": "2025-05-31T17:35:02.126885"
+  },
+  {
+    "video_id": "jXJODqfaJto",
+    "views": 2092021,
+    "likes": 80000,
+    "comments": 3593,
+    "view_multiple": 209.2,
+    "is_trending": true,
+    "trending_score": 2092.0,
+    "recorded_at": "2025-05-31T17:35:02.131999"
+  },
+  {
+    "video_id": "F4Y-bCZNQcA",
+    "views": 94997,
+    "likes": 3900,
+    "comments": 572,
+    "view_multiple": 9.5,
+    "is_trending": true,
+    "trending_score": 95.0,
+    "recorded_at": "2025-05-31T17:35:02.136759"
+  },
+  {
+    "video_id": "-Nkf4PHZMJE",
+    "views": 942,
+    "likes": 36,
+    "comments": 6,
+    "view_multiple": 0.09,
+    "is_trending": false,
+    "trending_score": 0.9,
+    "recorded_at": "2025-05-31T17:35:02.141282"
+  },
+  {
+    "video_id": "-4GmbBoYQjE",
+    "views": 81819934,
+    "likes": 2500000,
+    "comments": 74148,
+    "view_multiple": 8181.99,
+    "is_trending": true,
+    "trending_score": 81819.9,
+    "recorded_at": "2025-05-31T17:35:02.147959"
+  },
+  {
+    "video_id": "figrl0aOULs",
+    "views": 60167434,
+    "likes": 3900000,
+    "comments": 72012,
+    "view_multiple": 6016.74,
+    "is_trending": true,
+    "trending_score": 60167.4,
+    "recorded_at": "2025-05-31T17:35:02.153062"
+  },
+  {
+    "video_id": "uyiG6uw-6pA",
+    "views": 132786067,
+    "likes": 2700000,
+    "comments": 41066,
+    "view_multiple": 13278.61,
+    "is_trending": true,
+    "trending_score": 132786.1,
+    "recorded_at": "2025-05-31T17:35:02.157436"
+  },
+  {
+    "video_id": "aKq8bkY5eTU",
+    "views": 121506762,
+    "likes": 2800000,
+    "comments": 53485,
+    "view_multiple": 12150.68,
+    "is_trending": true,
+    "trending_score": 121506.8,
+    "recorded_at": "2025-05-31T17:35:02.162198"
+  },
+  {
+    "video_id": "XbXXKhfvSF0",
+    "views": 3351349,
+    "likes": 118000,
+    "comments": 6453,
+    "view_multiple": 335.13,
+    "is_trending": true,
+    "trending_score": 3351.3,
+    "recorded_at": "2025-05-31T17:35:02.167337"
+  },
+  {
+    "video_id": "gs8qfL9PNac",
+    "views": 172052031,
+    "likes": 4400000,
+    "comments": 50110,
+    "view_multiple": 17205.2,
+    "is_trending": true,
+    "trending_score": 172052.0,
+    "recorded_at": "2025-05-31T17:35:02.172660"
+  },
+  {
+    "video_id": "SM66GDRyIVY",
+    "views": 103503188,
+    "likes": 2800000,
+    "comments": 53584,
+    "view_multiple": 10350.32,
+    "is_trending": true,
+    "trending_score": 103503.2,
+    "recorded_at": "2025-05-31T17:35:02.177149"
+  },
+  {
+    "video_id": "sF5LYGgKbUA",
+    "views": 117364687,
+    "likes": 2800000,
+    "comments": 72661,
+    "view_multiple": 11736.47,
+    "is_trending": true,
+    "trending_score": 117364.7,
+    "recorded_at": "2025-05-31T17:35:02.181652"
+  },
+  {
+    "video_id": "yWBz2qZJ8zY",
+    "views": 4082462,
+    "likes": 104000,
+    "comments": 8594,
+    "view_multiple": 408.25,
+    "is_trending": true,
+    "trending_score": 4082.5,
+    "recorded_at": "2025-05-31T17:35:02.186145"
+  },
+  {
+    "video_id": "zajUgQLviwk",
+    "views": 140479388,
+    "likes": 2600000,
+    "comments": 77854,
+    "view_multiple": 14047.94,
+    "is_trending": true,
+    "trending_score": 140479.4,
+    "recorded_at": "2025-05-31T17:35:02.191968"
+  },
+  {
+    "video_id": "NDsO1LT_0lw",
+    "views": 194057657,
+    "likes": 5100000,
+    "comments": 100192,
+    "view_multiple": 19405.77,
+    "is_trending": true,
+    "trending_score": 194057.7,
+    "recorded_at": "2025-05-31T17:35:02.196991"
+  },
+  {
+    "video_id": "hIzjHBwjGCk",
+    "views": 1721054,
+    "likes": 49000,
+    "comments": 2321,
+    "view_multiple": 172.11,
+    "is_trending": true,
+    "trending_score": 1721.1,
+    "recorded_at": "2025-05-31T17:35:02.201792"
+  },
+  {
+    "video_id": "7EA5JM1DI9Y",
+    "views": 118571,
+    "likes": 5000,
+    "comments": 292,
+    "view_multiple": 11.86,
+    "is_trending": true,
+    "trending_score": 118.6,
+    "recorded_at": "2025-05-31T17:35:02.206491"
+  },
+  {
+    "video_id": "tj3l1BGkRJI",
+    "views": 56351,
+    "likes": 2300,
+    "comments": 211,
+    "view_multiple": 5.64,
+    "is_trending": true,
+    "trending_score": 56.4,
+    "recorded_at": "2025-05-31T17:35:02.212085"
+  },
+  {
+    "video_id": "g32Candon3A",
+    "views": 39894,
+    "likes": 2000,
+    "comments": 84,
+    "view_multiple": 3.99,
+    "is_trending": true,
+    "trending_score": 39.9,
+    "recorded_at": "2025-05-31T17:35:02.216863"
+  },
+  {
+    "video_id": "p24qhUFIe68",
+    "views": 2599915,
+    "likes": 80000,
+    "comments": 5055,
+    "view_multiple": 259.99,
+    "is_trending": true,
+    "trending_score": 2599.9,
+    "recorded_at": "2025-05-31T17:35:02.221726"
+  },
+  {
+    "video_id": "VTs8wnMsh0k",
+    "views": 2427370,
+    "likes": 87000,
+    "comments": 5359,
+    "view_multiple": 242.74,
+    "is_trending": true,
+    "trending_score": 2427.4,
+    "recorded_at": "2025-05-31T17:35:02.226741"
+  },
+  {
+    "video_id": "hUVfAVjsfL4",
+    "views": 253936,
+    "likes": 10000,
+    "comments": 475,
+    "view_multiple": 25.39,
+    "is_trending": true,
+    "trending_score": 253.9,
+    "recorded_at": "2025-05-31T17:35:02.232269"
+  },
+  {
+    "video_id": "ZE0JZYgiaGc",
+    "views": 58941,
+    "likes": 2600,
+    "comments": 184,
+    "view_multiple": 5.89,
+    "is_trending": true,
+    "trending_score": 58.9,
+    "recorded_at": "2025-05-31T17:35:02.236872"
+  },
+  {
+    "video_id": "T0eWBlFhFzc",
+    "views": 162347,
+    "likes": 6200,
+    "comments": 600,
+    "view_multiple": 16.23,
+    "is_trending": true,
+    "trending_score": 162.3,
+    "recorded_at": "2025-05-31T17:35:02.241582"
+  },
+  {
+    "video_id": "rSUdTAw53Mc",
+    "views": 78126,
+    "likes": 3600,
+    "comments": 211,
+    "view_multiple": 7.81,
+    "is_trending": true,
+    "trending_score": 78.1,
+    "recorded_at": "2025-05-31T17:35:02.246307"
+  },
+  {
+    "video_id": "Py4OWWvbBSM",
+    "views": 433126,
+    "likes": 12000,
+    "comments": 1559,
+    "view_multiple": 43.31,
+    "is_trending": true,
+    "trending_score": 433.1,
+    "recorded_at": "2025-05-31T17:35:02.251501"
+  },
+  {
+    "video_id": "ZAPhN6o3e3o",
+    "views": 668305,
+    "likes": 25000,
+    "comments": 2031,
+    "view_multiple": 66.83,
+    "is_trending": true,
+    "trending_score": 668.3,
+    "recorded_at": "2025-05-31T17:35:02.256296"
+  },
+  {
+    "video_id": "o4J3naLM-1o",
+    "views": 293516,
+    "likes": 9600,
+    "comments": 1017,
+    "view_multiple": 29.35,
+    "is_trending": true,
+    "trending_score": 293.5,
+    "recorded_at": "2025-05-31T17:35:02.260999"
+  },
+  {
+    "video_id": "-Wt83a0DpNw",
+    "views": 1453609,
+    "likes": 36000,
+    "comments": 3101,
+    "view_multiple": 145.36,
+    "is_trending": true,
+    "trending_score": 1453.6,
+    "recorded_at": "2025-05-31T17:35:02.266199"
+  },
+  {
+    "video_id": "b75Okixf2No",
+    "views": 601481,
+    "likes": 18000,
+    "comments": 2598,
+    "view_multiple": 60.15,
+    "is_trending": true,
+    "trending_score": 601.5,
+    "recorded_at": "2025-05-31T17:35:02.271645"
+  },
+  {
+    "video_id": "rvfWjjfFT70",
+    "views": 325409,
+    "likes": 11000,
+    "comments": 1173,
+    "view_multiple": 32.54,
+    "is_trending": true,
+    "trending_score": 325.4,
+    "recorded_at": "2025-05-31T17:35:02.278459"
+  },
+  {
+    "video_id": "WgYYZBRk6Vw",
+    "views": 757562,
+    "likes": 23000,
+    "comments": 2398,
+    "view_multiple": 75.76,
+    "is_trending": true,
+    "trending_score": 757.6,
+    "recorded_at": "2025-05-31T17:35:02.283979"
+  },
+  {
+    "video_id": "eIJTBzi4AY0",
+    "views": 1388514,
+    "likes": 58000,
+    "comments": 4654,
+    "view_multiple": 138.85,
+    "is_trending": true,
+    "trending_score": 1388.5,
+    "recorded_at": "2025-05-31T17:35:02.289320"
+  },
+  {
+    "video_id": "pC8wRC-1PmQ",
+    "views": 83317,
+    "likes": 4000,
+    "comments": 340,
+    "view_multiple": 8.33,
+    "is_trending": true,
+    "trending_score": 83.3,
+    "recorded_at": "2025-05-31T17:35:02.295305"
+  },
+  {
+    "video_id": "wq8BgIfOxnk",
+    "views": 79103,
+    "likes": 5000,
+    "comments": 317,
+    "view_multiple": 7.91,
+    "is_trending": true,
+    "trending_score": 79.1,
+    "recorded_at": "2025-05-31T17:35:02.300258"
+  },
+  {
+    "video_id": "ns_bc27T5Cg",
+    "views": 2587,
+    "likes": 122,
+    "comments": 24,
+    "view_multiple": 0.26,
+    "is_trending": false,
+    "trending_score": 2.6,
+    "recorded_at": "2025-05-31T17:35:02.305201"
+  },
+  {
+    "video_id": "COa2nBbS91U",
+    "views": 3044,
+    "likes": 71,
+    "comments": 14,
+    "view_multiple": 0.3,
+    "is_trending": false,
+    "trending_score": 3.0,
+    "recorded_at": "2025-05-31T17:35:02.310890"
+  },
+  {
+    "video_id": "Xsn_GaXB4Vk",
+    "views": 1717,
+    "likes": 79,
+    "comments": 12,
+    "view_multiple": 0.17,
+    "is_trending": false,
+    "trending_score": 1.7,
+    "recorded_at": "2025-05-31T17:35:02.316230"
+  },
+  {
+    "video_id": "Rtd6bPF4H6A",
+    "views": 1773,
+    "likes": 60,
+    "comments": 2,
+    "view_multiple": 0.18,
+    "is_trending": false,
+    "trending_score": 1.8,
+    "recorded_at": "2025-05-31T17:35:02.321445"
+  },
+  {
+    "video_id": "HvI42TyE5Ww",
+    "views": 1054452,
+    "likes": 18000,
+    "comments": 6092,
+    "view_multiple": 105.45,
+    "is_trending": true,
+    "trending_score": 1054.5,
+    "recorded_at": "2025-05-31T17:35:02.326373"
+  },
+  {
+    "video_id": "A6m4iJIw_84",
+    "views": 549490,
+    "likes": 9500,
+    "comments": 1080,
+    "view_multiple": 54.95,
+    "is_trending": true,
+    "trending_score": 549.5,
+    "recorded_at": "2025-05-31T17:35:02.331887"
+  },
+  {
+    "video_id": "xJoT3bJyHuA",
+    "views": 733459,
+    "likes": 5400,
+    "comments": 646,
+    "view_multiple": 73.35,
+    "is_trending": true,
+    "trending_score": 733.5,
+    "recorded_at": "2025-05-31T17:35:02.336836"
+  },
+  {
+    "video_id": "3W5FWUN5w2Q",
+    "views": 462894,
+    "likes": 6200,
+    "comments": 1600,
+    "view_multiple": 46.29,
+    "is_trending": true,
+    "trending_score": 462.9,
+    "recorded_at": "2025-05-31T17:35:02.341998"
+  },
+  {
+    "video_id": "UWYyEzQGpBQ",
+    "views": 1570,
+    "likes": 52,
+    "comments": 13,
+    "view_multiple": 0.16,
+    "is_trending": false,
+    "trending_score": 1.6,
+    "recorded_at": "2025-05-31T17:35:02.347419"
+  },
+  {
+    "video_id": "FF8jxFOBriw",
+    "views": 1398,
+    "likes": 39,
+    "comments": 2,
+    "view_multiple": 0.14,
+    "is_trending": false,
+    "trending_score": 1.4,
+    "recorded_at": "2025-05-31T17:35:02.353106"
+  },
+  {
+    "video_id": "477qF6QNSvc",
+    "views": 414639,
+    "likes": 9200,
+    "comments": 1349,
+    "view_multiple": 41.46,
+    "is_trending": true,
+    "trending_score": 414.6,
+    "recorded_at": "2025-05-31T17:35:02.358118"
+  },
+  {
+    "video_id": "1V0bJfqEaa4",
+    "views": 831143,
+    "likes": 14000,
+    "comments": 4861,
+    "view_multiple": 83.11,
+    "is_trending": true,
+    "trending_score": 831.1,
+    "recorded_at": "2025-05-31T17:35:02.363389"
+  },
+  {
+    "video_id": "IMgTd2VSyvY",
+    "views": 7224,
+    "likes": 291,
+    "comments": 29,
+    "view_multiple": 0.72,
+    "is_trending": false,
+    "trending_score": 7.2,
+    "recorded_at": "2025-05-31T17:35:02.368783"
+  },
+  {
+    "video_id": "tNZnLkRBYA8",
+    "views": 1586339,
+    "likes": 32000,
+    "comments": 3120,
+    "view_multiple": 158.63,
+    "is_trending": true,
+    "trending_score": 1586.3,
+    "recorded_at": "2025-05-31T17:35:02.374382"
+  },
+  {
+    "video_id": "DTPSeeKokdo",
+    "views": 861062,
+    "likes": 7700,
+    "comments": 2377,
+    "view_multiple": 86.11,
+    "is_trending": true,
+    "trending_score": 861.1,
+    "recorded_at": "2025-05-31T17:35:02.379648"
+  },
+  {
+    "video_id": "eM_Tg8_BGx4",
+    "views": 9357,
+    "likes": 191,
+    "comments": 29,
+    "view_multiple": 0.94,
+    "is_trending": false,
+    "trending_score": 9.4,
+    "recorded_at": "2025-05-31T17:35:02.385121"
+  },
+  {
+    "video_id": "lhIQ-UoiqyU",
+    "views": 5970,
+    "likes": 169,
+    "comments": 13,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T17:35:02.390834"
+  },
+  {
+    "video_id": "V71AJoYAtBQ",
+    "views": 11978,
+    "likes": 376,
+    "comments": 50,
+    "view_multiple": 1.2,
+    "is_trending": false,
+    "trending_score": 12.0,
+    "recorded_at": "2025-05-31T17:35:02.396503"
+  },
+  {
+    "video_id": "tgRffdkLg5I",
+    "views": 13162,
+    "likes": 271,
+    "comments": 19,
+    "view_multiple": 1.32,
+    "is_trending": false,
+    "trending_score": 13.2,
+    "recorded_at": "2025-05-31T17:35:02.401851"
+  },
+  {
+    "video_id": "Kxp1hNwzHc8",
+    "views": 9978,
+    "likes": 163,
+    "comments": 18,
+    "view_multiple": 1.0,
+    "is_trending": false,
+    "trending_score": 10.0,
+    "recorded_at": "2025-05-31T17:35:02.407464"
+  },
+  {
+    "video_id": "gfU5y7qCxF0",
+    "views": 18671,
+    "likes": 510,
+    "comments": 61,
+    "view_multiple": 1.87,
+    "is_trending": false,
+    "trending_score": 18.7,
+    "recorded_at": "2025-05-31T17:35:02.413480"
+  },
+  {
+    "video_id": "Uw0Z6DZj534",
+    "views": 42529,
+    "likes": 966,
+    "comments": 203,
+    "view_multiple": 4.25,
+    "is_trending": true,
+    "trending_score": 42.5,
+    "recorded_at": "2025-05-31T17:35:02.418891"
+  },
+  {
+    "video_id": "XzrvOTkqk4U",
+    "views": 21965,
+    "likes": 399,
+    "comments": 30,
+    "view_multiple": 2.2,
+    "is_trending": true,
+    "trending_score": 22.0,
+    "recorded_at": "2025-05-31T17:35:02.424112"
+  },
+  {
+    "video_id": "bAWV_yrqx4w",
+    "views": 150628,
+    "likes": 4100,
+    "comments": 185,
+    "view_multiple": 15.06,
+    "is_trending": true,
+    "trending_score": 150.6,
+    "recorded_at": "2025-05-31T17:35:02.430286"
+  },
+  {
+    "video_id": "loaTGpqfctI",
+    "views": 44303,
+    "likes": 1400,
+    "comments": 95,
+    "view_multiple": 4.43,
+    "is_trending": true,
+    "trending_score": 44.3,
+    "recorded_at": "2025-05-31T17:35:02.436317"
+  },
+  {
+    "video_id": "Tbss1k3OKI8",
+    "views": 30660,
+    "likes": 484,
+    "comments": 89,
+    "view_multiple": 3.07,
+    "is_trending": true,
+    "trending_score": 30.7,
+    "recorded_at": "2025-05-31T17:35:02.441699"
+  },
+  {
+    "video_id": "-r0XPC7TLzY",
+    "views": 12201,
+    "likes": 360,
+    "comments": 70,
+    "view_multiple": 1.22,
+    "is_trending": false,
+    "trending_score": 12.2,
+    "recorded_at": "2025-05-31T17:35:02.447676"
+  },
+  {
+    "video_id": "Bs6eyNQjGpo",
+    "views": 20160,
+    "likes": 645,
+    "comments": 156,
+    "view_multiple": 2.02,
+    "is_trending": true,
+    "trending_score": 20.2,
+    "recorded_at": "2025-05-31T17:35:02.453773"
+  },
+  {
+    "video_id": "wOBqh9JqCDY",
+    "views": 72120,
+    "likes": 3000,
+    "comments": 457,
+    "view_multiple": 7.21,
+    "is_trending": true,
+    "trending_score": 72.1,
+    "recorded_at": "2025-05-31T17:35:02.459658"
+  },
+  {
+    "video_id": null,
+    "views": 0,
+    "likes": 0,
+    "comments": 0,
+    "view_multiple": 0.0,
+    "is_trending": false,
+    "trending_score": 0.0,
+    "recorded_at": "2025-05-31T17:35:02.463986"
+  },
+  {
+    "video_id": "rArxtyb-Mio",
+    "views": 60016,
+    "likes": 2500,
+    "comments": 340,
+    "view_multiple": 6.0,
+    "is_trending": true,
+    "trending_score": 60.0,
+    "recorded_at": "2025-05-31T17:35:02.469578"
+  },
+  {
+    "video_id": "Y9mVlNwj_ic",
+    "views": 135577,
+    "likes": 4900,
+    "comments": 435,
+    "view_multiple": 13.56,
+    "is_trending": true,
+    "trending_score": 135.6,
+    "recorded_at": "2025-05-31T17:35:02.475433"
+  },
+  {
+    "video_id": "RH4hAgvYSzg",
+    "views": 74411,
+    "likes": 3300,
+    "comments": 326,
+    "view_multiple": 7.44,
+    "is_trending": true,
+    "trending_score": 74.4,
+    "recorded_at": "2025-05-31T17:35:02.480901"
+  },
+  {
+    "video_id": "3aRRYQEb99s",
+    "views": 92605,
+    "likes": 3500,
+    "comments": 414,
+    "view_multiple": 9.26,
+    "is_trending": true,
+    "trending_score": 92.6,
+    "recorded_at": "2025-05-31T17:35:02.486401"
+  },
+  {
+    "video_id": "jE9jAZC42NE",
+    "views": 57657,
+    "likes": 1400,
+    "comments": 82,
+    "view_multiple": 5.77,
+    "is_trending": true,
+    "trending_score": 57.7,
+    "recorded_at": "2025-05-31T17:35:02.492965"
+  },
+  {
+    "video_id": "yPxavsb2rgk",
+    "views": 56685,
+    "likes": 2200,
+    "comments": 215,
+    "view_multiple": 5.67,
+    "is_trending": true,
+    "trending_score": 56.7,
+    "recorded_at": "2025-05-31T17:35:02.498581"
+  },
+  {
+    "video_id": "QrB5i_W-Igs",
+    "views": 925,
+    "likes": 11,
+    "comments": 9,
+    "view_multiple": 0.09,
+    "is_trending": false,
+    "trending_score": 0.9,
+    "recorded_at": "2025-05-31T17:35:02.504158"
+  },
+  {
+    "video_id": "Lo0FDmSbTp4",
+    "views": 98106,
+    "likes": 4700,
+    "comments": 567,
+    "view_multiple": 9.81,
+    "is_trending": true,
+    "trending_score": 98.1,
+    "recorded_at": "2025-05-31T17:35:02.510174"
+  },
+  {
+    "video_id": "kTslCsPBGHw",
+    "views": 107964,
+    "likes": 3900,
+    "comments": 431,
+    "view_multiple": 10.8,
+    "is_trending": true,
+    "trending_score": 108.0,
+    "recorded_at": "2025-05-31T17:35:02.516354"
+  },
+  {
+    "video_id": "AfAmwIP2ntY",
+    "views": 29129,
+    "likes": 772,
+    "comments": 84,
+    "view_multiple": 2.91,
+    "is_trending": true,
+    "trending_score": 29.1,
+    "recorded_at": "2025-05-31T17:35:02.522651"
+  },
+  {
+    "video_id": "WwbukAcMM4k",
+    "views": 18223,
+    "likes": 464,
+    "comments": 26,
+    "view_multiple": 1.82,
+    "is_trending": false,
+    "trending_score": 18.2,
+    "recorded_at": "2025-05-31T17:35:02.528873"
+  },
+  {
+    "video_id": null,
+    "views": 0,
+    "likes": 0,
+    "comments": 0,
+    "view_multiple": 0.0,
+    "is_trending": false,
+    "trending_score": 0.0,
+    "recorded_at": "2025-05-31T17:35:02.533750"
+  },
+  {
+    "video_id": null,
+    "views": 0,
+    "likes": 0,
+    "comments": 0,
+    "view_multiple": 0.0,
+    "is_trending": false,
+    "trending_score": 0.0,
+    "recorded_at": "2025-05-31T17:35:02.537785"
+  },
+  {
+    "video_id": "bSXw7l5sUV8",
+    "views": 4846,
+    "likes": 330,
+    "comments": 76,
+    "view_multiple": 0.48,
+    "is_trending": false,
+    "trending_score": 4.8,
+    "recorded_at": "2025-05-31T17:35:02.543504"
+  },
+  {
+    "video_id": "q64Iczdhb-Y",
+    "views": 18125,
+    "likes": 1100,
+    "comments": 517,
+    "view_multiple": 1.81,
+    "is_trending": false,
+    "trending_score": 18.1,
+    "recorded_at": "2025-05-31T17:35:02.549149"
+  },
+  {
+    "video_id": "iaTavrWIGDM",
+    "views": 3128,
+    "likes": 1100,
+    "comments": 31,
+    "view_multiple": 0.31,
+    "is_trending": false,
+    "trending_score": 3.1,
+    "recorded_at": "2025-05-31T17:35:02.556616"
+  },
+  {
+    "video_id": "KwDNKEwkcDI",
+    "views": 18106,
+    "likes": 358,
+    "comments": 50,
+    "view_multiple": 1.81,
+    "is_trending": false,
+    "trending_score": 18.1,
+    "recorded_at": "2025-05-31T17:35:02.562431"
+  },
+  {
+    "video_id": "TOx0RmdH1q4",
+    "views": 10633,
+    "likes": 709,
+    "comments": 191,
+    "view_multiple": 1.06,
+    "is_trending": false,
+    "trending_score": 10.6,
+    "recorded_at": "2025-05-31T17:35:02.568183"
+  },
+  {
+    "video_id": "InN8JOCRyXI",
+    "views": 18068,
+    "likes": 1000,
+    "comments": 422,
+    "view_multiple": 1.81,
+    "is_trending": false,
+    "trending_score": 18.1,
+    "recorded_at": "2025-05-31T17:35:02.575157"
+  },
+  {
+    "video_id": "SJsGBKGy4Do",
+    "views": 27614,
+    "likes": 716,
+    "comments": 111,
+    "view_multiple": 2.76,
+    "is_trending": true,
+    "trending_score": 27.6,
+    "recorded_at": "2025-05-31T17:35:02.580972"
+  },
+  {
+    "video_id": null,
+    "views": 0,
+    "likes": 0,
+    "comments": 0,
+    "view_multiple": 0.0,
+    "is_trending": false,
+    "trending_score": 0.0,
+    "recorded_at": "2025-05-31T17:35:02.586334"
+  },
+  {
+    "video_id": "7rqw6rVClWo",
+    "views": 29555,
+    "likes": 1900,
+    "comments": 628,
+    "view_multiple": 2.96,
+    "is_trending": true,
+    "trending_score": 29.6,
+    "recorded_at": "2025-05-31T17:35:02.593069"
+  },
+  {
+    "video_id": "jh-ySsfuudM",
+    "views": 16936,
+    "likes": 812,
+    "comments": 257,
+    "view_multiple": 1.69,
+    "is_trending": false,
+    "trending_score": 16.9,
+    "recorded_at": "2025-05-31T17:35:02.599048"
+  },
+  {
+    "video_id": "yxa-DJuuTBI",
+    "views": 44161,
+    "likes": 1900,
+    "comments": 90,
+    "view_multiple": 4.42,
+    "is_trending": true,
+    "trending_score": 44.2,
+    "recorded_at": "2025-05-31T17:35:02.604821"
+  },
+  {
+    "video_id": "ECt0TAl41Zk",
+    "views": 30190,
+    "likes": 1100,
+    "comments": 78,
+    "view_multiple": 3.02,
+    "is_trending": true,
+    "trending_score": 30.2,
+    "recorded_at": "2025-05-31T17:35:02.611065"
+  },
+  {
+    "video_id": "AD-3nVI3-_U",
+    "views": 30424,
+    "likes": 1000,
+    "comments": 83,
+    "view_multiple": 3.04,
+    "is_trending": true,
+    "trending_score": 30.4,
+    "recorded_at": "2025-05-31T17:35:02.617186"
+  },
+  {
+    "video_id": "X5yyKZpZ4vU",
+    "views": 32711,
+    "likes": 1100,
+    "comments": 86,
+    "view_multiple": 3.27,
+    "is_trending": true,
+    "trending_score": 32.7,
+    "recorded_at": "2025-05-31T17:35:02.622887"
+  },
+  {
+    "video_id": "828S-DMQog8",
+    "views": 32020,
+    "likes": 1400,
+    "comments": 75,
+    "view_multiple": 3.2,
+    "is_trending": true,
+    "trending_score": 32.0,
+    "recorded_at": "2025-05-31T17:35:02.628564"
+  },
+  {
+    "video_id": "sJYlJlIEBpg",
+    "views": 32542,
+    "likes": 1000,
+    "comments": 231,
+    "view_multiple": 3.25,
+    "is_trending": true,
+    "trending_score": 32.5,
+    "recorded_at": "2025-05-31T17:35:02.635227"
+  },
+  {
+    "video_id": "cmnJhOWp2z4",
+    "views": 6472,
+    "likes": 323,
+    "comments": 60,
+    "view_multiple": 0.65,
+    "is_trending": false,
+    "trending_score": 6.5,
+    "recorded_at": "2025-05-31T17:35:02.641033"
+  },
+  {
+    "video_id": "fM4O9bModsE",
+    "views": 9093,
+    "likes": 653,
+    "comments": 48,
+    "view_multiple": 0.91,
+    "is_trending": false,
+    "trending_score": 9.1,
+    "recorded_at": "2025-05-31T17:35:02.646869"
+  },
+  {
+    "video_id": "AMdG7IjgSPM",
+    "views": 105275,
+    "likes": 3900,
+    "comments": 253,
+    "view_multiple": 10.53,
+    "is_trending": true,
+    "trending_score": 105.3,
+    "recorded_at": "2025-05-31T17:35:02.653313"
+  },
+  {
+    "video_id": "4TFQD0ok5Ao",
+    "views": 14569,
+    "likes": 507,
+    "comments": 57,
+    "view_multiple": 1.46,
+    "is_trending": false,
+    "trending_score": 14.6,
+    "recorded_at": "2025-05-31T17:35:02.659576"
+  },
+  {
+    "video_id": "jNoTEiI2cVU",
+    "views": 55056,
+    "likes": 1800,
+    "comments": 161,
+    "view_multiple": 5.51,
+    "is_trending": true,
+    "trending_score": 55.1,
+    "recorded_at": "2025-05-31T17:35:02.665393"
+  },
+  {
+    "video_id": "epDKamC-V-8",
+    "views": 100707,
+    "likes": 2800,
+    "comments": 207,
+    "view_multiple": 10.07,
+    "is_trending": true,
+    "trending_score": 100.7,
+    "recorded_at": "2025-05-31T17:35:02.671962"
+  },
+  {
+    "video_id": "FSx5tqUlPqc",
+    "views": 322,
+    "likes": 18,
+    "comments": 1,
+    "view_multiple": 0.03,
+    "is_trending": false,
+    "trending_score": 0.3,
+    "recorded_at": "2025-05-31T17:35:02.678349"
+  },
+  {
+    "video_id": "VyseRArtl5E",
+    "views": 40847,
+    "likes": 1700,
+    "comments": 366,
+    "view_multiple": 4.08,
+    "is_trending": true,
+    "trending_score": 40.8,
+    "recorded_at": "2025-05-31T17:35:02.684186"
+  },
+  {
+    "video_id": "mxyebiMkfiw",
+    "views": 179,
+    "likes": 1,
+    "comments": 1,
+    "view_multiple": 0.02,
+    "is_trending": false,
+    "trending_score": 0.2,
+    "recorded_at": "2025-05-31T17:35:02.690694"
+  },
+  {
+    "video_id": "ChfEO8l-fas",
+    "views": 51188,
+    "likes": 1400,
+    "comments": 51,
+    "view_multiple": 5.12,
+    "is_trending": true,
+    "trending_score": 51.2,
+    "recorded_at": "2025-05-31T17:35:02.697109"
+  },
+  {
+    "video_id": "YTYoGUhNZ-k",
+    "views": 133,
+    "likes": 2,
+    "comments": 0,
+    "view_multiple": 0.01,
+    "is_trending": false,
+    "trending_score": 0.1,
+    "recorded_at": "2025-05-31T17:35:02.704109"
+  },
+  {
+    "video_id": "ZJsOTOV9yvg",
+    "views": 76,
+    "likes": 3,
+    "comments": 0,
+    "view_multiple": 0.01,
+    "is_trending": false,
+    "trending_score": 0.1,
+    "recorded_at": "2025-05-31T17:35:02.711657"
+  },
+  {
+    "video_id": "MeHWIXLV3Zo",
+    "views": 13413,
+    "likes": 427,
+    "comments": 93,
+    "view_multiple": 1.34,
+    "is_trending": false,
+    "trending_score": 13.4,
+    "recorded_at": "2025-05-31T17:35:02.718010"
+  },
+  {
+    "video_id": "WKF__cJTxvg",
+    "views": 105998,
+    "likes": 3700,
+    "comments": 287,
+    "view_multiple": 10.6,
+    "is_trending": true,
+    "trending_score": 106.0,
+    "recorded_at": "2025-05-31T17:35:02.724621"
+  },
+  {
+    "video_id": "pCX_3p40Efc",
+    "views": 66797,
+    "likes": 1500,
+    "comments": 80,
+    "view_multiple": 6.68,
+    "is_trending": true,
+    "trending_score": 66.8,
+    "recorded_at": "2025-05-31T17:35:02.732773"
+  },
+  {
+    "video_id": "pPTo62O__CU",
+    "views": 150251,
+    "likes": 3600,
+    "comments": 525,
+    "view_multiple": 15.03,
+    "is_trending": true,
+    "trending_score": 150.3,
+    "recorded_at": "2025-05-31T17:35:02.740399"
+  },
+  {
+    "video_id": "Dlsa9EBKDGI",
+    "views": 412214,
+    "likes": 20000,
+    "comments": 1761,
+    "view_multiple": 41.22,
+    "is_trending": true,
+    "trending_score": 412.2,
+    "recorded_at": "2025-05-31T17:35:02.747681"
+  },
+  {
+    "video_id": "YA5S8YdwaDU",
+    "views": 315,
+    "likes": 10,
+    "comments": 2,
+    "view_multiple": 0.03,
+    "is_trending": false,
+    "trending_score": 0.3,
+    "recorded_at": "2025-05-31T17:35:02.755018"
+  },
+  {
+    "video_id": "5jMEf2-CPDY",
+    "views": 145,
+    "likes": 3,
+    "comments": 0,
+    "view_multiple": 0.01,
+    "is_trending": false,
+    "trending_score": 0.1,
+    "recorded_at": "2025-05-31T17:35:02.761465"
+  },
+  {
+    "video_id": "wYibF4aezZ4",
+    "views": 238,
+    "likes": 11,
+    "comments": 0,
+    "view_multiple": 0.02,
+    "is_trending": false,
+    "trending_score": 0.2,
+    "recorded_at": "2025-05-31T17:35:02.768051"
+  },
+  {
+    "video_id": "aJrsSAxUIVs",
+    "views": 177,
+    "likes": 7,
+    "comments": 0,
+    "view_multiple": 0.02,
+    "is_trending": false,
+    "trending_score": 0.2,
+    "recorded_at": "2025-05-31T17:35:02.776493"
+  },
+  {
+    "video_id": "j5WwaknZVDY",
+    "views": 143,
+    "likes": 1,
+    "comments": 0,
+    "view_multiple": 0.01,
+    "is_trending": false,
+    "trending_score": 0.1,
+    "recorded_at": "2025-05-31T17:35:02.782817"
+  },
+  {
+    "video_id": "_9Rvb46Pbmg",
+    "views": 132,
+    "likes": 4,
+    "comments": 0,
+    "view_multiple": 0.01,
+    "is_trending": false,
+    "trending_score": 0.1,
+    "recorded_at": "2025-05-31T17:35:02.788988"
+  },
+  {
+    "video_id": "RQWpF2Gb-gU",
+    "views": 1432321,
+    "likes": 59000,
+    "comments": 2793,
+    "view_multiple": 143.23,
+    "is_trending": true,
+    "trending_score": 1432.3,
+    "recorded_at": "2025-05-31T17:35:02.795787"
+  },
+  {
+    "video_id": "hFMaT9oRbs4",
+    "views": 851872,
+    "likes": 41000,
+    "comments": 1707,
+    "view_multiple": 85.19,
+    "is_trending": true,
+    "trending_score": 851.9,
+    "recorded_at": "2025-05-31T17:35:02.802101"
+  },
+  {
+    "video_id": "3foYyPDp0Ho",
+    "views": 97903,
+    "likes": 5000,
+    "comments": 347,
+    "view_multiple": 9.79,
+    "is_trending": true,
+    "trending_score": 97.9,
+    "recorded_at": "2025-05-31T17:35:02.808790"
+  },
+  {
+    "video_id": "6dTyOl1fmDo",
+    "views": 2984033,
+    "likes": 83000,
+    "comments": 2446,
+    "view_multiple": 298.4,
+    "is_trending": true,
+    "trending_score": 2984.0,
+    "recorded_at": "2025-05-31T17:35:02.815868"
+  },
+  {
+    "video_id": "YdOXS_9_P4U",
+    "views": 2466980,
+    "likes": 100000,
+    "comments": 3329,
+    "view_multiple": 246.7,
+    "is_trending": true,
+    "trending_score": 2467.0,
+    "recorded_at": "2025-05-31T17:35:02.822100"
+  },
+  {
+    "video_id": "IQqtsm-bBRU",
+    "views": 1615799,
+    "likes": 61000,
+    "comments": 2099,
+    "view_multiple": 161.58,
+    "is_trending": true,
+    "trending_score": 1615.8,
+    "recorded_at": "2025-05-31T17:35:02.828635"
+  },
+  {
+    "video_id": "rbu7Zu5X1zI",
+    "views": 1874959,
+    "likes": 73000,
+    "comments": 2062,
+    "view_multiple": 187.5,
+    "is_trending": true,
+    "trending_score": 1875.0,
+    "recorded_at": "2025-05-31T17:35:02.835560"
+  },
+  {
+    "video_id": "piJkuavhV50",
+    "views": 1487792,
+    "likes": 57000,
+    "comments": 2374,
+    "view_multiple": 148.78,
+    "is_trending": true,
+    "trending_score": 1487.8,
+    "recorded_at": "2025-05-31T17:35:02.841875"
+  },
+  {
+    "video_id": "LPZh9BOjkQs",
+    "views": 2745313,
+    "likes": 100000,
+    "comments": 1505,
+    "view_multiple": 274.53,
+    "is_trending": true,
+    "trending_score": 2745.3,
+    "recorded_at": "2025-05-31T17:35:02.848355"
+  },
+  {
+    "video_id": "lqOrULJvYXg",
+    "views": 42172,
+    "likes": 1400,
+    "comments": 96,
+    "view_multiple": 4.22,
+    "is_trending": true,
+    "trending_score": 42.2,
+    "recorded_at": "2025-05-31T17:35:02.855901"
+  },
+  {
+    "video_id": "T_-0l0ORi5I",
+    "views": 18057,
+    "likes": 606,
+    "comments": 64,
+    "view_multiple": 1.81,
+    "is_trending": false,
+    "trending_score": 18.1,
+    "recorded_at": "2025-05-31T17:35:02.862292"
+  },
+  {
+    "video_id": "Hyhfa7z0jTk",
+    "views": 4488,
+    "likes": 92,
+    "comments": 25,
+    "view_multiple": 0.45,
+    "is_trending": false,
+    "trending_score": 4.5,
+    "recorded_at": "2025-05-31T17:35:02.868672"
+  },
+  {
+    "video_id": "M1I5HlzQges",
+    "views": 6703,
+    "likes": 425,
+    "comments": 78,
+    "view_multiple": 0.67,
+    "is_trending": false,
+    "trending_score": 6.7,
+    "recorded_at": "2025-05-31T17:35:02.875557"
+  },
+  {
+    "video_id": "L5Cis5bOwgw",
+    "views": 2603,
+    "likes": 97,
+    "comments": 23,
+    "view_multiple": 0.26,
+    "is_trending": false,
+    "trending_score": 2.6,
+    "recorded_at": "2025-05-31T17:35:02.882216"
+  },
+  {
+    "video_id": "w13zJB_jyBI",
+    "views": 109593,
+    "likes": 2600,
+    "comments": 287,
+    "view_multiple": 10.96,
+    "is_trending": true,
+    "trending_score": 109.6,
+    "recorded_at": "2025-05-31T17:35:02.888869"
+  },
+  {
+    "video_id": "6BrYKdqq4uA",
+    "views": 4715,
+    "likes": 137,
+    "comments": 48,
+    "view_multiple": 0.47,
+    "is_trending": false,
+    "trending_score": 4.7,
+    "recorded_at": "2025-05-31T17:35:02.896121"
+  },
+  {
+    "video_id": "oZ9rMrqyTbI",
+    "views": 6933,
+    "likes": 262,
+    "comments": 42,
+    "view_multiple": 0.69,
+    "is_trending": false,
+    "trending_score": 6.9,
+    "recorded_at": "2025-05-31T17:35:02.902503"
+  },
+  {
+    "video_id": "QEDZaBMozIo",
+    "views": 12126,
+    "likes": 497,
+    "comments": 91,
+    "view_multiple": 1.21,
+    "is_trending": false,
+    "trending_score": 12.1,
+    "recorded_at": "2025-05-31T17:35:02.908979"
+  },
+  {
+    "video_id": "1dAvbIMrLos",
+    "views": 4981,
+    "likes": 203,
+    "comments": 37,
+    "view_multiple": 0.5,
+    "is_trending": false,
+    "trending_score": 5.0,
+    "recorded_at": "2025-05-31T17:35:02.916160"
+  },
+  {
+    "video_id": "LUgH74SMsyM",
+    "views": 89,
+    "likes": 1,
+    "comments": 1,
+    "view_multiple": 0.01,
+    "is_trending": false,
+    "trending_score": 0.1,
+    "recorded_at": "2025-05-31T17:35:02.922909"
+  },
+  {
+    "video_id": "t2yzphrKZqY",
+    "views": 34,
+    "likes": 1,
+    "comments": 1,
+    "view_multiple": 0.0,
+    "is_trending": false,
+    "trending_score": 0.0,
+    "recorded_at": "2025-05-31T17:35:02.929417"
+  },
+  {
+    "video_id": "KhgRMr6algQ",
+    "views": 22,
+    "likes": 1,
+    "comments": 0,
+    "view_multiple": 0.0,
+    "is_trending": false,
+    "trending_score": 0.0,
+    "recorded_at": "2025-05-31T17:35:02.936866"
+  },
+  {
+    "video_id": "S995NW_55BA",
+    "views": 10,
+    "likes": 1,
+    "comments": 1,
+    "view_multiple": 0.0,
+    "is_trending": false,
+    "trending_score": 0.0,
+    "recorded_at": "2025-05-31T17:35:02.943443"
+  },
+  {
+    "video_id": "YUREMB_POHs",
+    "views": 69,
+    "likes": 1,
+    "comments": 1,
+    "view_multiple": 0.01,
+    "is_trending": false,
+    "trending_score": 0.1,
+    "recorded_at": "2025-05-31T17:35:02.950097"
+  },
+  {
+    "video_id": "_aeMbMWE8bE",
+    "views": 33,
+    "likes": 1,
+    "comments": 2,
+    "view_multiple": 0.0,
+    "is_trending": false,
+    "trending_score": 0.0,
+    "recorded_at": "2025-05-31T17:35:02.957310"
+  },
+  {
+    "video_id": "P-R1GjE5zII",
+    "views": 54,
+    "likes": 1,
+    "comments": 0,
+    "view_multiple": 0.01,
+    "is_trending": false,
+    "trending_score": 0.1,
+    "recorded_at": "2025-05-31T17:35:02.963977"
+  },
+  {
+    "video_id": "OH_wBny2krg",
+    "views": 60,
+    "likes": 1,
+    "comments": 1,
+    "view_multiple": 0.01,
+    "is_trending": false,
+    "trending_score": 0.1,
+    "recorded_at": "2025-05-31T17:35:02.970740"
+  },
+  {
+    "video_id": "Xn_5aIhrJOE",
+    "views": 90050,
+    "likes": 4200,
+    "comments": 502,
+    "view_multiple": 9.01,
+    "is_trending": true,
+    "trending_score": 90.1,
+    "recorded_at": "2025-05-31T17:35:02.977591"
+  },
+  {
+    "video_id": "LiLXT21JoII",
+    "views": 100,
+    "likes": 1,
+    "comments": 2,
+    "view_multiple": 0.01,
+    "is_trending": false,
+    "trending_score": 0.1,
+    "recorded_at": "2025-05-31T17:35:02.984833"
+  },
+  {
+    "video_id": "ordedK86DxQ",
+    "views": 35441,
+    "likes": 643,
+    "comments": 0,
+    "view_multiple": 3.54,
+    "is_trending": true,
+    "trending_score": 35.4,
+    "recorded_at": "2025-05-31T17:35:02.991916"
+  },
+  {
+    "video_id": "rDyicPPLMF0",
+    "views": 97,
+    "likes": 1,
+    "comments": 1,
+    "view_multiple": 0.01,
+    "is_trending": false,
+    "trending_score": 0.1,
+    "recorded_at": "2025-05-31T17:35:02.998986"
+  },
+  {
+    "video_id": "i_cskqmWA3U",
+    "views": 40729,
+    "likes": 905,
+    "comments": 0,
+    "view_multiple": 4.07,
+    "is_trending": true,
+    "trending_score": 40.7,
+    "recorded_at": "2025-05-31T17:35:03.005836"
+  },
+  {
+    "video_id": "O-ZfXbfAMKU",
+    "views": 35179,
+    "likes": 663,
+    "comments": 144,
+    "view_multiple": 3.52,
+    "is_trending": true,
+    "trending_score": 35.2,
+    "recorded_at": "2025-05-31T17:35:03.013527"
+  },
+  {
+    "video_id": "W09bIpc_3ms",
+    "views": 717792,
+    "likes": 24000,
+    "comments": 3506,
+    "view_multiple": 71.78,
+    "is_trending": true,
+    "trending_score": 717.8,
+    "recorded_at": "2025-05-31T17:35:03.020610"
+  },
+  {
+    "video_id": "ydJNqND6N_Y",
+    "views": 153290,
+    "likes": 2600,
+    "comments": 0,
+    "view_multiple": 15.33,
+    "is_trending": true,
+    "trending_score": 153.3,
+    "recorded_at": "2025-05-31T17:35:03.027712"
+  },
+  {
+    "video_id": "yHzfc1Ih7jw",
+    "views": 61948,
+    "likes": 1300,
+    "comments": 167,
+    "view_multiple": 6.19,
+    "is_trending": true,
+    "trending_score": 61.9,
+    "recorded_at": "2025-05-31T17:35:03.034805"
+  },
+  {
+    "video_id": "ZWwquOvw5Bk",
+    "views": 17606,
+    "likes": 366,
+    "comments": 0,
+    "view_multiple": 1.76,
+    "is_trending": false,
+    "trending_score": 17.6,
+    "recorded_at": "2025-05-31T17:35:03.041467"
+  },
+  {
+    "video_id": "9nT_t9pZHg8",
+    "views": 60333,
+    "likes": 1300,
+    "comments": 128,
+    "view_multiple": 6.03,
+    "is_trending": true,
+    "trending_score": 60.3,
+    "recorded_at": "2025-05-31T17:35:03.048564"
+  },
+  {
+    "video_id": "wSAkqlzSZyw",
+    "views": 222918,
+    "likes": 4800,
+    "comments": 365,
+    "view_multiple": 22.29,
+    "is_trending": true,
+    "trending_score": 222.9,
+    "recorded_at": "2025-05-31T17:35:03.055541"
+  },
+  {
+    "video_id": "8bAtx3WuRZw",
+    "views": 33280,
+    "likes": 590,
+    "comments": 0,
+    "view_multiple": 3.33,
+    "is_trending": true,
+    "trending_score": 33.3,
+    "recorded_at": "2025-05-31T17:35:03.062353"
+  },
+  {
+    "video_id": "HdTCDxX-UnQ",
+    "views": 2689195,
+    "likes": 70000,
+    "comments": 7369,
+    "view_multiple": 268.92,
+    "is_trending": true,
+    "trending_score": 2689.2,
+    "recorded_at": "2025-05-31T17:35:03.069277"
+  },
+  {
+    "video_id": "8h1G6Dm1uQc",
+    "views": 902316,
+    "likes": 22000,
+    "comments": 2218,
+    "view_multiple": 90.23,
+    "is_trending": true,
+    "trending_score": 902.3,
+    "recorded_at": "2025-05-31T17:35:03.076281"
+  },
+  {
+    "video_id": "Bhn5Tke5aQ8",
+    "views": 636496,
+    "likes": 28000,
+    "comments": 2558,
+    "view_multiple": 63.65,
+    "is_trending": true,
+    "trending_score": 636.5,
+    "recorded_at": "2025-05-31T17:35:03.083423"
+  },
+  {
+    "video_id": "Pqx-gSiogjM",
+    "views": 76079,
+    "likes": 3300,
+    "comments": 384,
+    "view_multiple": 7.61,
+    "is_trending": true,
+    "trending_score": 76.1,
+    "recorded_at": "2025-05-31T17:35:03.090418"
+  },
+  {
+    "video_id": "mU3g2YPKlsA",
+    "views": 41000,
+    "likes": 1300,
+    "comments": 89,
+    "view_multiple": 4.1,
+    "is_trending": true,
+    "trending_score": 41.0,
+    "recorded_at": "2025-05-31T17:35:03.097484"
+  },
+  {
+    "video_id": "8HBipmBWx-c",
+    "views": 9940,
+    "likes": 228,
+    "comments": 12,
+    "view_multiple": 0.99,
+    "is_trending": false,
+    "trending_score": 9.9,
+    "recorded_at": "2025-05-31T17:35:03.104652"
+  },
+  {
+    "video_id": "Uc1nhT8beTU",
+    "views": 21239,
+    "likes": 680,
+    "comments": 168,
+    "view_multiple": 2.12,
+    "is_trending": true,
+    "trending_score": 21.2,
+    "recorded_at": "2025-05-31T17:35:03.111839"
+  },
+  {
+    "video_id": "2lnHv0zyP8U",
+    "views": 1592,
+    "likes": 51,
+    "comments": 8,
+    "view_multiple": 0.16,
+    "is_trending": false,
+    "trending_score": 1.6,
+    "recorded_at": "2025-05-31T17:35:03.118944"
+  },
+  {
+    "video_id": "LAvCVJ-pNpM",
+    "views": 12277,
+    "likes": 717,
+    "comments": 224,
+    "view_multiple": 1.23,
+    "is_trending": false,
+    "trending_score": 12.3,
+    "recorded_at": "2025-05-31T17:35:03.126267"
+  },
+  {
+    "video_id": "w9TxKASFvIE",
+    "views": 7368,
+    "likes": 254,
+    "comments": 42,
+    "view_multiple": 0.74,
+    "is_trending": false,
+    "trending_score": 7.4,
+    "recorded_at": "2025-05-31T17:35:03.133521"
+  },
+  {
+    "video_id": "K3CR6RiWS2U",
+    "views": 6731089,
+    "likes": 187000,
+    "comments": 13944,
+    "view_multiple": 673.11,
+    "is_trending": true,
+    "trending_score": 6731.1,
+    "recorded_at": "2025-05-31T17:35:03.140838"
+  },
+  {
+    "video_id": "57cPmzwCqd4",
+    "views": 12866,
+    "likes": 484,
+    "comments": 93,
+    "view_multiple": 1.29,
+    "is_trending": false,
+    "trending_score": 12.9,
+    "recorded_at": "2025-05-31T17:35:03.147812"
+  },
+  {
+    "video_id": "VBamzxfYHgA",
+    "views": 2889,
+    "likes": 131,
+    "comments": 20,
+    "view_multiple": 0.29,
+    "is_trending": false,
+    "trending_score": 2.9,
+    "recorded_at": "2025-05-31T17:35:03.155061"
+  },
+  {
+    "video_id": "vid_@MrBeast_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.402215"
+  },
+  {
+    "video_id": "vid_@MrBeast_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.417928"
+  },
+  {
+    "video_id": "vid_@MrBeast_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.430534"
+  },
+  {
+    "video_id": "vid_@MrBeast_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.441165"
+  },
+  {
+    "video_id": "vid_@MrBeast_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.449418"
+  },
+  {
+    "video_id": "vid_@mkbhd_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.457037"
+  },
+  {
+    "video_id": "vid_@mkbhd_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.463882"
+  },
+  {
+    "video_id": "vid_@mkbhd_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.470090"
+  },
+  {
+    "video_id": "vid_@mkbhd_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.476057"
+  },
+  {
+    "video_id": "vid_@mkbhd_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.481686"
+  },
+  {
+    "video_id": "vid_@testchannel_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.487038"
+  },
+  {
+    "video_id": "vid_@testchannel_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.492205"
+  },
+  {
+    "video_id": "vid_@testchannel_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.497562"
+  },
+  {
+    "video_id": "vid_@testchannel_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.502554"
+  },
+  {
+    "video_id": "vid_@testchannel_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.507401"
+  },
+  {
+    "video_id": "vid_@test_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.512857"
+  },
+  {
+    "video_id": "vid_@test_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.517939"
+  },
+  {
+    "video_id": "vid_@test_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.522754"
+  },
+  {
+    "video_id": "vid_@test_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.527809"
+  },
+  {
+    "video_id": "vid_@test_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.532561"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.537588"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.542391"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.547229"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.552018"
+  },
+  {
+    "video_id": "vid_@TwoMinutePapers_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.557132"
+  },
+  {
+    "video_id": "vid_@lexfridman_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.562159"
+  },
+  {
+    "video_id": "vid_@lexfridman_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.567117"
+  },
+  {
+    "video_id": "vid_@lexfridman_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.572063"
+  },
+  {
+    "video_id": "vid_@lexfridman_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.577296"
+  },
+  {
+    "video_id": "vid_@lexfridman_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.582431"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.587527"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.592761"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.598516"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.604062"
+  },
+  {
+    "video_id": "vid_@murtazasworkshop_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.609970"
+  },
+  {
+    "video_id": "vid_@mattwolfe_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.615440"
+  },
+  {
+    "video_id": "vid_@mattwolfe_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.620967"
+  },
+  {
+    "video_id": "vid_@mattwolfe_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.626185"
+  },
+  {
+    "video_id": "vid_@mattwolfe_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.631984"
+  },
+  {
+    "video_id": "vid_@mattwolfe_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.638746"
+  },
+  {
+    "video_id": "vid_@yannickilcher_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.643908"
+  },
+  {
+    "video_id": "vid_@yannickilcher_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.649418"
+  },
+  {
+    "video_id": "vid_@yannickilcher_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.654905"
+  },
+  {
+    "video_id": "vid_@yannickilcher_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.660487"
+  },
+  {
+    "video_id": "vid_@yannickilcher_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.665753"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.671251"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.677920"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.683292"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.688544"
+  },
+  {
+    "video_id": "vid_@aiexplained-official_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.693821"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.699836"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.705283"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.710561"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.716151"
+  },
+  {
+    "video_id": "vid_@AllAboutAI_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.722112"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.727569"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.732940"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.739011"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.744494"
+  },
+  {
+    "video_id": "vid_@smartpassiveincome_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.749873"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.755884"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.761821"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.768872"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.774634"
+  },
+  {
+    "video_id": "vid_@GrahamStephan_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.780373"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.785830"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.791635"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.798657"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.804104"
+  },
+  {
+    "video_id": "vid_@RobertoBlake_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.809814"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.815486"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.821565"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.827367"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.832869"
+  },
+  {
+    "video_id": "vid_@IncomeschoolOfficial_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.838777"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.844434"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.849501"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.854677"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.861345"
+  },
+  {
+    "video_id": "vid_@theaiadvantage_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.867018"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.872565"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.878742"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.884322"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.889823"
+  },
+  {
+    "video_id": "vid_@aiandysomethingtech_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.895773"
+  },
+  {
+    "video_id": "vid_@coreyms_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.901872"
+  },
+  {
+    "video_id": "vid_@coreyms_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.907576"
+  },
+  {
+    "video_id": "vid_@coreyms_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.913418"
+  },
+  {
+    "video_id": "vid_@coreyms_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.919482"
+  },
+  {
+    "video_id": "vid_@coreyms_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.925044"
+  },
+  {
+    "video_id": "vid_@3blue1brown_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.930763"
+  },
+  {
+    "video_id": "vid_@3blue1brown_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.936669"
+  },
+  {
+    "video_id": "vid_@3blue1brown_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.942190"
+  },
+  {
+    "video_id": "vid_@3blue1brown_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.948301"
+  },
+  {
+    "video_id": "vid_@3blue1brown_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.954012"
+  },
+  {
+    "video_id": "vid_@sentdex_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.959524"
+  },
+  {
+    "video_id": "vid_@sentdex_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.964921"
+  },
+  {
+    "video_id": "vid_@sentdex_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.970107"
+  },
+  {
+    "video_id": "vid_@sentdex_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:31.975471"
+  },
+  {
+    "video_id": "vid_@sentdex_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:31.980758"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:31.986023"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:31.991243"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:31.997883"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:32.003496"
+  },
+  {
+    "video_id": "vid_@datasciencedojo_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:32.009180"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:32.015355"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:32.021481"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:32.027183"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:32.032948"
+  },
+  {
+    "video_id": "vid_@kenjee_ds_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:32.038907"
+  },
+  {
+    "video_id": "vid_@webscraping_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:32.044635"
+  },
+  {
+    "video_id": "vid_@webscraping_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:32.050480"
+  },
+  {
+    "video_id": "vid_@webscraping_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:32.056553"
+  },
+  {
+    "video_id": "vid_@webscraping_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:32.062251"
+  },
+  {
+    "video_id": "vid_@webscraping_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:32.068373"
+  },
+  {
+    "video_id": "vid_@aibrews_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:32.074090"
+  },
+  {
+    "video_id": "vid_@aibrews_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:32.080138"
+  },
+  {
+    "video_id": "vid_@aibrews_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:32.085855"
+  },
+  {
+    "video_id": "vid_@aibrews_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:32.092030"
+  },
+  {
+    "video_id": "vid_@aibrews_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:32.098161"
+  },
+  {
+    "video_id": "vid_@openai_1",
+    "views": 6000,
+    "likes": 150,
+    "comments": 30,
+    "view_multiple": 0.6,
+    "is_trending": false,
+    "trending_score": 6.0,
+    "recorded_at": "2025-05-31T22:22:32.104250"
+  },
+  {
+    "video_id": "vid_@openai_2",
+    "views": 11000,
+    "likes": 250,
+    "comments": 50,
+    "view_multiple": 1.1,
+    "is_trending": false,
+    "trending_score": 11.0,
+    "recorded_at": "2025-05-31T22:22:32.109986"
+  },
+  {
+    "video_id": "vid_@openai_3",
+    "views": 16000,
+    "likes": 350,
+    "comments": 70,
+    "view_multiple": 1.6,
+    "is_trending": false,
+    "trending_score": 16.0,
+    "recorded_at": "2025-05-31T22:22:32.116051"
+  },
+  {
+    "video_id": "vid_@openai_4",
+    "views": 21000,
+    "likes": 450,
+    "comments": 90,
+    "view_multiple": 2.1,
+    "is_trending": true,
+    "trending_score": 21.0,
+    "recorded_at": "2025-05-31T22:22:32.121970"
+  },
+  {
+    "video_id": "vid_@openai_5",
+    "views": 26000,
+    "likes": 550,
+    "comments": 110,
+    "view_multiple": 2.6,
+    "is_trending": true,
+    "trending_score": 26.0,
+    "recorded_at": "2025-05-31T22:22:32.127705"
+  }
+]

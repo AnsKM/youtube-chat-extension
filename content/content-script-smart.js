@@ -113,8 +113,8 @@ class SmartYouTubeChatExtension {
     // Check for API key first
     const hasApiKey = await this.checkApiKey();
     if (!hasApiKey) {
-      console.log('No API key set, waiting for user to set it via popup');
-      return;
+      console.log('No API key set, but continuing with UI initialization');
+      // Don't return - continue with UI setup
     }
     
     // Initialize on YouTube watch pages
@@ -122,11 +122,9 @@ class SmartYouTubeChatExtension {
       this.detectVideo();
     }
     
-    // Create chat UI
-    this.createChatUI();
-    
-    // Create floating chat bubble
+    // Create chat UI and bubble
     this.createChatBubble();
+    this.createChatUI();
     
     // Hide chat initially
     this.hideChat();
@@ -291,13 +289,34 @@ class SmartYouTubeChatExtension {
     }
   }
 
+  createChatBubble() {
+    if (this.chatBubble) return;
+    
+    const bubble = document.createElement('div');
+    bubble.className = 'youtube-chat-bubble';
+    bubble.innerHTML = `
+      <svg fill="white" viewBox="0 0 24 24">
+        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+      </svg>
+    `;
+    bubble.title = 'Open YouTube Chat Assistant';
+    
+    document.body.appendChild(bubble);
+    this.chatBubble = bubble;
+    
+    // Add click handler
+    bubble.addEventListener('click', () => {
+      this.toggleChat();
+    });
+  }
+
   // Include all other methods from simple version
   createChatUI() {
     if (this.chatUI) return;
     
     const container = document.createElement('div');
     container.className = 'youtube-chat-extension';
-    container.style.display = 'none';
+    // Chat starts hidden by default
     
     container.innerHTML = `
       <div class="chat-header">
@@ -305,7 +324,7 @@ class SmartYouTubeChatExtension {
           <button class="new-chat" title="New chat">📝</button>
           <button class="history" title="Chat history">📚</button>
           <button class="export-chat" title="Export chat">💾</button>
-          <span class="chat-title">YouTube Chat Assistant</span>
+          <span class="chat-title">YouTube Chat</span>
         </div>
         <div class="header-controls">
           <button class="minimize">_</button>
@@ -324,7 +343,7 @@ class SmartYouTubeChatExtension {
         <input type="text" class="chat-input" placeholder="Ask about the video..." disabled />
         <button class="chat-send" disabled>Send</button>
       </div>
-      <div class="chat-history-panel" style="left: -320px;">
+      <div class="chat-history-panel">
         <div class="history-header">
           <h3>Chat History</h3>
           <button class="history-close" type="button">×</button>
@@ -380,38 +399,6 @@ class SmartYouTubeChatExtension {
     });
   }
 
-  createChatBubble() {
-    // Check if bubble already exists
-    if (document.querySelector('.youtube-chat-bubble')) return;
-    
-    const bubble = document.createElement('div');
-    bubble.className = 'youtube-chat-bubble';
-    bubble.innerHTML = `
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 2H4C2.9 2 2.01 2.9 2.01 4L2 22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM18 14H6V12H18V14ZM18 11H6V9H18V11ZM18 8H6V6H18V8Z" fill="white"/>
-      </svg>
-    `;
-    bubble.title = 'YouTube Chat Assistant';
-    
-    // Add click handler
-    bubble.addEventListener('click', () => {
-      console.log('[Smart] Chat bubble clicked');
-      if (!this.chatUI) {
-        console.log('[Smart] Chat UI not found, creating it');
-        this.createChatUI();
-      }
-      
-      // Toggle visibility
-      if (this.chatUI.style.display === 'none' || !this.chatUI.style.display) {
-        this.showChat();
-      } else {
-        this.hideChat();
-      }
-    });
-    
-    document.body.appendChild(bubble);
-  }
-
   // Include all other helper methods (addMessage, hideChat, etc.)
   addMessage(role, content, isTyping = false) {
     const messagesContainer = this.chatUI.querySelector('.chat-messages');
@@ -439,24 +426,38 @@ class SmartYouTubeChatExtension {
 
   hideChat() {
     if (this.chatUI) {
-      this.chatUI.style.display = 'none';
       this.chatUI.classList.remove('visible');
+      setTimeout(() => {
+        this.chatUI.style.display = 'none';
+      }, 200);
     }
   }
 
   showChat() {
     if (this.chatUI) {
-      this.chatUI.style.display = 'block';
-      this.chatUI.classList.add('visible');
+      this.chatUI.style.display = 'flex';
+      // Trigger animation
+      setTimeout(() => {
+        this.chatUI.classList.add('visible');
+      }, 10);
       const input = this.chatUI.querySelector('.chat-input');
       if (input && !input.disabled) {
-        setTimeout(() => input.focus(), 100); // Small delay for animation
+        setTimeout(() => input.focus(), 300);
       }
     }
   }
 
   toggleMinimize() {
     this.chatUI.classList.toggle('minimized');
+  }
+
+  toggleChat() {
+    if (!this.chatUI) return;
+    if (this.chatUI.classList.contains('visible')) {
+      this.hideChat();
+    } else {
+      this.showChat();
+    }
   }
 
   async checkApiKey() {
@@ -558,9 +559,105 @@ class SmartYouTubeChatExtension {
     }
   }
 
-  toggleHistory() {
+  async toggleHistory() {
     const panel = this.chatUI.querySelector('.chat-history-panel');
+    const isVisible = panel.classList.contains('visible');
+    
+    if (!isVisible) {
+      // Load and display chat history
+      await this.loadChatHistory();
+    }
+    
     panel.classList.toggle('visible');
+  }
+  
+  async loadChatHistory() {
+    try {
+      const response = await chrome.runtime.sendMessage({ action: 'getAllChats' });
+      if (response.success && response.chats) {
+        this.displayChatHistory(response.chats);
+      }
+    } catch (error) {
+      console.error('Error loading chat history:', error);
+    }
+  }
+  
+  displayChatHistory(chats) {
+    const historyList = this.chatUI.querySelector('.history-list');
+    
+    if (chats.length === 0) {
+      historyList.innerHTML = `
+        <div class="history-empty">
+          <p>No saved conversations yet</p>
+          <p class="history-hint">Your chat history will appear here</p>
+        </div>
+      `;
+      return;
+    }
+    
+    historyList.innerHTML = chats.map(chat => {
+      const date = new Date(chat.lastUpdated);
+      const dateStr = date.toLocaleDateString();
+      const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const messageCount = chat.messages ? chat.messages.length : 0;
+      const isCurrentVideo = chat.videoId === this.currentVideoId;
+      
+      return `
+        <div class="history-item ${isCurrentVideo ? 'current' : ''}" data-video-id="${chat.videoId}">
+          <div class="history-item-title">${chat.title || 'Untitled Video'}</div>
+          <div class="history-item-meta">
+            <span>${dateStr} at ${timeStr}</span>
+            <span>${messageCount} messages</span>
+          </div>
+          <div class="history-item-actions">
+            ${isCurrentVideo ? 
+              '<span class="history-current-badge">Current</span>' : 
+              '<button class="history-load-btn" data-video-id="' + chat.videoId + '">Load</button>'
+            }
+            <button class="history-delete-btn" data-video-id="${chat.videoId}" title="Delete chat">🗑️</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+    
+    // Add click handlers
+    historyList.querySelectorAll('.history-load-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const videoId = btn.getAttribute('data-video-id');
+        this.loadHistoryItem(videoId);
+      });
+    });
+    
+    historyList.querySelectorAll('.history-delete-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        const videoId = btn.getAttribute('data-video-id');
+        if (confirm('Delete this chat history?')) {
+          await this.deleteHistoryItem(videoId);
+        }
+      });
+    });
+  }
+  
+  async loadHistoryItem(videoId) {
+    // Navigate to the video
+    window.location.href = `https://www.youtube.com/watch?v=${videoId}`;
+    this.hideHistory();
+  }
+  
+  async deleteHistoryItem(videoId) {
+    try {
+      await chrome.runtime.sendMessage({ 
+        action: 'clearChat', 
+        videoId: videoId 
+      });
+      
+      // Reload the history
+      await this.loadChatHistory();
+    } catch (error) {
+      console.error('Error deleting chat:', error);
+    }
   }
 
   hideHistory() {
@@ -629,11 +726,7 @@ if (document.readyState === 'loading') {
 // Listen for messages from popup/background
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'toggleChat') {
-    if (smartExtension.chatUI.style.display === 'none') {
-      smartExtension.showChat();
-    } else {
-      smartExtension.hideChat();
-    }
+    smartExtension.toggleChat();
   }
 });
 

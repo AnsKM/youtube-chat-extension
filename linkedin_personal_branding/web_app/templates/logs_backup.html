@@ -1,0 +1,424 @@
+{% extends "base.html" %}
+
+{% block title %}Daily Logs - LinkedIn Personal Branding{% endblock %}
+
+{% block header %}Daily Logs{% endblock %}
+{% block subtitle %}Track your daily thoughts, observations, and progress{% endblock %}
+
+{% block content %}
+
+<style>
+/* Custom typography and styling for logs */
+.log-container {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.log-entry {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+}
+
+.log-entry:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.06);
+    border-color: #cbd5e1;
+}
+
+.log-date {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 2px;
+}
+
+.log-time {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 400;
+}
+
+.log-section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #334155;
+    margin: 16px 0 8px 0;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.log-content {
+    color: #475569;
+    margin-bottom: 12px;
+}
+
+.log-bullet {
+    display: flex;
+    align-items: flex-start;
+    margin: 6px 0;
+    padding-left: 8px;
+}
+
+.log-bullet-point {
+    width: 6px;
+    height: 6px;
+    background: #3b82f6;
+    border-radius: 50%;
+    margin-right: 12px;
+    margin-top: 8px;
+    flex-shrink: 0;
+}
+
+.log-stat-value {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.log-actions {
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.log-entry:hover .log-actions {
+    opacity: 1;
+}
+
+.btn-delete {
+    color: #ef4444;
+    background: none;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.btn-delete:hover {
+    background: #fef2f2;
+    color: #dc2626;
+}
+</style>
+
+<div class="log-container">
+<!-- Header Controls -->
+<div class="flex justify-between items-center mb-6">
+    <div class="flex items-center space-x-4">
+        <!-- Month Navigation -->
+        <div class="flex items-center space-x-2">
+            <label class="text-sm font-medium text-gray-700">Month:</label>
+            <select onchange="changeMonth(this.value)" class="px-3 py-2 border border-gray-300 rounded-md text-sm">
+                {% for month in available_months %}
+                <option value="{{ month.lower() }}" {% if month == current_month %}selected{% endif %}>
+                    {{ month }} 2025
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <!-- Stats -->
+        <div class="flex items-center space-x-4 text-sm text-gray-600">
+            <span>{{ entries|length }} entries this month</span>
+            {% if entries %}
+            <span>•</span>
+            <span>Last entry: {{ entries[0].date.split(' - ')[0] if entries[0].date else 'Unknown' }}</span>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="flex space-x-3">
+        <button onclick="exportLogs()" class="btn-secondary text-sm">
+            <i class="fas fa-download mr-2"></i>
+            Export Logs
+        </button>
+        <button onclick="openDailyLog()" class="btn-primary">
+            <i class="fas fa-plus mr-2"></i>
+            New Entry
+        </button>
+    </div>
+</div>
+
+<!-- Logs Content -->
+{% if entries %}
+<div class="space-y-6">
+    {% for entry in entries %}
+    <div class="log-entry p-6">
+        <!-- Header -->
+        <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+                <div class="log-date">
+                    {{ entry.date.split(' - ')[0] if ' - ' in entry.date else entry.date }}
+                </div>
+                {% if ' - ' in entry.date %}
+                <div class="log-time">{{ entry.date.split(' - ')[1] }} • {{ 'Today' if 'June 2' in entry.date else 'Past entry' }}</div>
+                {% endif %}
+            </div>
+            <div class="log-actions flex items-center space-x-3">
+                <button onclick="toggleEntry('{{ loop.index0 }}')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                    <i class="fas fa-eye" id="toggle-icon-{{ loop.index0 }}"></i> 
+                    <span id="toggle-text-{{ loop.index0 }}">View Details</span>
+                </button>
+                <button onclick="deleteEntry('{{ loop.index0 }}', '{{ entry.date }}')" class="btn-delete">
+                    <i class="fas fa-trash-alt"></i> Delete
+                </button>
+            </div>
+        </div>
+        
+        <!-- Summary Indicators -->
+        <div class="flex flex-wrap gap-3 mb-4">
+            {% if 'Mood/Energy' in entry.content %}
+            <div class="flex items-center space-x-2 bg-yellow-50 px-3 py-1 rounded-full">
+                <i class="fas fa-smile text-yellow-600 text-sm"></i>
+                <span class="text-yellow-800 text-sm font-medium">Mood Logged</span>
+            </div>
+            {% endif %}
+            
+            {% if 'LinkedIn Time' in entry.content %}
+            <div class="flex items-center space-x-2 bg-blue-50 px-3 py-1 rounded-full">
+                <i class="fas fa-clock text-blue-600 text-sm"></i>
+                <span class="text-blue-800 text-sm font-medium">Time Tracked</span>
+            </div>
+            {% endif %}
+            
+            {% if 'Key Observations' in entry.content %}
+            <div class="flex items-center space-x-2 bg-green-50 px-3 py-1 rounded-full">
+                <i class="fas fa-lightbulb text-green-600 text-sm"></i>
+                <span class="text-green-800 text-sm font-medium">Insights</span>
+            </div>
+            {% endif %}
+            
+            {% if 'Content Ideas' in entry.content %}
+            <div class="flex items-center space-x-2 bg-purple-50 px-3 py-1 rounded-full">
+                <i class="fas fa-brain text-purple-600 text-sm"></i>
+                <span class="text-purple-800 text-sm font-medium">Ideas</span>
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Detailed Content (Hidden by default) -->
+        <div id="entry-content-{{ loop.index0 }}" class="hidden">
+            {% set content_lines = entry.content.split('\n') %}
+            {% set current_section = '' %}
+            
+            {% for line in content_lines %}
+                {% set line = line.strip() %}
+                {% if line %}
+                    {% if line.startswith('**') and line.endswith('**') %}
+                        {% set section_title = line[2:-2] %}
+                        <div class="log-section-title">{{ section_title }}</div>
+                        {% set current_section = section_title %}
+                    {% elif line.startswith('- ') and line|length > 2 %}
+                        <div class="log-bullet">
+                            <div class="log-bullet-point"></div>
+                            <div class="log-content">{{ line[2:] }}</div>
+                        </div>
+                    {% elif ':' in line %}
+                        {% set parts = line.split(':', 1) %}
+                        {% if parts|length > 1 and parts[1].strip() %}
+                        <div class="log-content">
+                            <span class="log-stat-value">{{ parts[0] }}:</span> {{ parts[1].strip() }}
+                        </div>
+                        {% endif %}
+                    {% elif line and not line.startswith('*') %}
+                        <div class="log-content">{{ line }}</div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Pagination -->
+{% if entries|length > 10 %}
+<div class="mt-8 flex justify-center">
+    <nav class="flex items-center space-x-2">
+        <button class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-50">
+            Previous
+        </button>
+        <span class="px-3 py-2 text-sm bg-primary text-white rounded-md">1</span>
+        <button class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-50">
+            Next
+        </button>
+    </nav>
+</div>
+{% endif %}
+
+{% else %}
+<!-- Empty State -->
+<div class="text-center py-12">
+    <div class="max-w-md mx-auto">
+        <i class="fas fa-journal-whills text-4xl text-gray-400 mb-4"></i>
+        <h3 class="text-lg font-medium text-gray-900 mb-2">No entries yet for {{ current_month }}</h3>
+        <p class="text-gray-600 mb-6">Start tracking your daily thoughts and observations to monitor your LinkedIn transformation journey.</p>
+        <button onclick="openDailyLog()" class="btn-primary">
+            <i class="fas fa-plus mr-2"></i>
+            Create Your First Entry
+        </button>
+    </div>
+</div>
+{% endif %}
+
+<!-- Quick Stats -->
+<div class="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
+        <div class="text-2xl font-bold text-blue-900">{{ entries|length }}</div>
+        <div class="text-sm text-blue-700">Total Entries</div>
+    </div>
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+        <div class="text-2xl font-bold text-green-900">
+            {% set mood_count = 0 %}
+            {% for entry in entries %}
+                {% if 'Mood/Energy' in entry.content %}
+                    {% set mood_count = mood_count + 1 %}
+                {% endif %}
+            {% endfor %}
+            {{ (mood_count / entries|length * 7.5)|round(1) if entries else 0 }}
+        </div>
+        <div class="text-sm text-green-700">Avg Mood</div>
+    </div>
+    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
+        <div class="text-2xl font-bold text-yellow-900">
+            {% set time_count = 0 %}
+            {% for entry in entries %}
+                {% if 'LinkedIn Time' in entry.content %}
+                    {% set time_count = time_count + 1 %}
+                {% endif %}
+            {% endfor %}
+            {{ (time_count * 25)|round(0) if time_count else 0 }}
+        </div>
+        <div class="text-sm text-yellow-700">Time Invested (min)</div>
+    </div>
+    <div class="bg-purple-50 border border-purple-200 rounded-lg p-4 text-center">
+        <div class="text-2xl font-bold text-purple-900">
+            {% set idea_count = 0 %}
+            {% for entry in entries %}
+                {% if 'Content Ideas' in entry.content %}
+                    {% set idea_count = idea_count + 1 %}
+                {% endif %}
+            {% endfor %}
+            {{ idea_count * 3 if idea_count else 0 }}
+        </div>
+        <div class="text-sm text-purple-700">Content Ideas</div>
+    </div>
+</div>
+
+<!-- File Info -->
+<div class="mt-6 p-3 bg-gray-50 border border-gray-200 rounded-lg">
+    <div class="flex items-center text-sm text-gray-600">
+        <i class="fas fa-file-alt mr-2"></i>
+        <span>Logs saved to: {{ logs_file_path }}</span>
+        <button onclick="openFileLocation()" class="ml-auto text-blue-600 hover:text-blue-800">
+            <i class="fas fa-external-link-alt mr-1"></i>
+            Open Folder
+        </button>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Month navigation
+function changeMonth(month) {
+    window.location.href = `/logs/${month}`;
+}
+
+// Export logs
+function exportLogs() {
+    const currentMonth = '{{ current_month.lower() }}';
+    
+    fetch(`/api/export-logs/${currentMonth}`, {
+        method: 'GET'
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.blob();
+        }
+        throw new Error('Export failed');
+    })
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `daily-logs-${currentMonth}-2025.md`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+        
+        showToast('Logs exported successfully! ✅', 'success');
+    })
+    .catch(error => {
+        showToast('Export failed. Please try again.', 'error');
+        console.error('Export error:', error);
+    });
+}
+
+// Open file location (for desktop users)
+function openFileLocation() {
+    const filePath = '{{ logs_file_path }}';
+    showToast('File location: ' + filePath, 'info');
+}
+
+// Toggle entry details
+function toggleEntry(index) {
+    const content = document.getElementById(`entry-content-${index}`);
+    const icon = document.getElementById(`toggle-icon-${index}`);
+    const text = document.getElementById(`toggle-text-${index}`);
+    
+    if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.className = 'fas fa-eye-slash';
+        text.textContent = 'Hide Details';
+    } else {
+        content.classList.add('hidden');
+        icon.className = 'fas fa-eye';
+        text.textContent = 'View Details';
+    }
+}
+
+// Edit entry
+function editEntry(index) {
+    showToast('Edit functionality coming soon...', 'info');
+}
+
+// Toast notification function (same as base.html)
+function showToast(message, type = 'info') {
+    const toast = document.createElement('div');
+    const bgColors = {
+        success: 'bg-green-500',
+        error: 'bg-red-500', 
+        warning: 'bg-yellow-500',
+        info: 'bg-blue-500'
+    };
+    
+    toast.className = `fixed top-4 right-4 z-50 ${bgColors[type] || bgColors.info} text-white px-6 py-3 rounded-lg shadow-lg transition-all duration-300 transform translate-x-full`;
+    toast.innerHTML = `
+        <div class="flex items-center">
+            <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'} mr-2"></i>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    document.body.appendChild(toast);
+    
+    // Animate in
+    setTimeout(() => {
+        toast.classList.remove('translate-x-full');
+    }, 100);
+    
+    // Auto remove after 4 seconds
+    setTimeout(() => {
+        toast.classList.add('translate-x-full');
+        setTimeout(() => {
+            if (toast.parentElement) {
+                toast.remove();
+            }
+        }, 300);
+    }, 4000);
+}
+</script>
+{% endblock %}
