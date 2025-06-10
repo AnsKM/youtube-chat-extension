@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Chat Assistant",
+  "version": "1.1.0",
+  "description": "Chat with any YouTube video using AI. Powered by Gemini 2.5 Flash Preview with 1M token context.",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://youtube.com/*",
+    "https://generativelanguage.googleapis.com/*",
+    "https://*.googleapis.com/*",
+    "https://*.googlevideo.com/*"
+  ],
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://youtube.com/*"
+      ],
+      "js": ["content/transcript-fetcher.js", "content/content-script-simple.js"],
+      "css": ["content/styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "assets/icons/icon16.png",
+      "128": "assets/icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "128": "assets/icons/icon128.png"
+  }
+}
