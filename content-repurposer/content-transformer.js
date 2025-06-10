@@ -102,16 +102,18 @@ Remember: Great LinkedIn posts feel like conversations, not broadcasts.
 
 ${transcript}
 
-Extract and format as JSON:
-1. mainInsight: The ONE most important/interesting point (be specific, not generic)
-2. supportingPoints: Array of 3-5 specific supporting points or examples
-3. personalStory: Any personal story or specific example mentioned
-4. problemSolved: The core problem or challenge being addressed
-5. actionableTakeaways: Array of 2-3 specific, actionable takeaways
+Extract the MOST INTERESTING and ENGAGING insights from this content.
 
-${this.humanStylePrompt}
+Format as JSON:
+1. mainInsight: What's the ONE thing that would make someone stop scrolling? (be specific and intriguing)
+2. supportingPoints: Array of 3-5 fascinating details that support or expand on this
+3. personalStory: Any compelling story, example, or surprising fact
+4. problemSolved: What pain point or curiosity does this address?
+5. actionableTakeaways: Array of 2-3 things people can actually DO with this info
 
-Return ONLY valid JSON. Focus on the ACTUAL content provided, not generic insights.`;
+Think like a viral content creator - what's the HOOK? What's SURPRISING? What's USEFUL?
+
+Return ONLY valid JSON. Extract the juiciest, most share-worthy insights.`;
 
       const insights = await this.callAI(prompt, { 
         temperature: 0.8,  // Slightly higher for more creative insight extraction
@@ -381,42 +383,34 @@ This is attempt #${generationAttempt}. Create something fresh and unexpected:
 
 ` : '';
 
-    const prompt = `You're sharing insights from a YouTube video on LinkedIn.
+    const prompt = `Transform these insights into a LinkedIn post that people will actually want to read.
 
 ${variationInstructions}
 
-Video insights:
-${insights.mainInsight}
+The hook: ${insights.mainInsight}
 
-Supporting points:
-${insights.supportingPoints.join('\n')}
+Supporting gems:
+${insights.supportingPoints.map(p => `- ${p}`).join('\n')}
 
-Problem addressed: ${insights.problemSolved}
-Source: ${insights.personalStory || 'YouTube video'}
+The bigger picture: ${insights.problemSolved}
 
-Create an engaging LinkedIn post that:
-- Captures what's genuinely interesting about this
-- Feels like you're sharing with professional friends
-- Provides real value to readers
-- Invites authentic discussion
-
-Write in whatever style feels most natural for this content. 
-Be creative. Be yourself.
+DON'T just list these points. Instead:
+- Find the story or angle that connects them
+- Share it like you're telling a friend something fascinating
+- Make it about THEM (the reader), not just information
+- Create curiosity, surprise, or "aha" moments
 
 ${this.humanStylePrompt}
 
-Some things that work well on LinkedIn:
-- Opening with curiosity or a bold statement
-- Sharing specific insights or examples
-- Using → for easy-to-scan points
-- Ending with a thoughtful question
-- Keeping it conversational yet valuable
+Remember:
+- Your first line determines if people keep reading
+- Specific examples > generic statements  
+- Personal insights > obvious observations
+- Questions that make people think > generic CTAs
 
-But feel free to structure it however serves the content best.
+Tone: ${tone}
 
-Tone preference: ${tone}
-
-Aim for about 150-300 words, but let the content guide the length:`;
+Write something you'd actually stop scrolling to read:`;
 
     const draft = await this.callAI(prompt, {
       temperature: 1.0,  // Increased for more creative output
@@ -445,6 +439,62 @@ Aim for about 150-300 words, but let the content guide the length:`;
     let coreMessage = mainInsight || '';
     
     // Check for specific content patterns and create targeted LinkedIn posts
+    if (coreMessage.includes('Brett') && coreMessage.includes('Designjoy') && coreMessage.includes('AI')) {
+      // This is about AI design tools - create an engaging post
+      const hooks = [
+        `A solo designer making $2.8K/day just showed me something that changes everything about design...\n\n`,
+        `"There's no skill issue here at all if you're a non-creative."\n\nThis stopped me in my tracks.\n\n`,
+        `What if I told you that you could create professional designs in 30 seconds?\n\nNo design background needed.\n\n`,
+        `I just watched someone generate a $5,000 design in under a minute.\n\nHere's what most people don't realize:\n\n`,
+        `The design industry is about to be completely disrupted.\n\nAnd it's not what you think.\n\n`,
+        `$2,800 per day. One person. Zero employees.\n\nThe secret? It's simpler than you think.\n\n`,
+        `"Even someone without design knowledge can create value."\n\nThis changes the game completely.\n\n`,
+        `Forget everything you know about needing design skills.\n\nHere's what's actually happening:\n\n`
+      ];
+      
+      draft = hooks[(generationAttempt - 1) % hooks.length];
+      
+      // Build the story
+      draft += `Brett from Designjoy isn't just making millions—he's proving something revolutionary.\n\n`;
+      
+      if (supportingPoints && supportingPoints.length > 0) {
+        draft += `What blew my mind:\n\n`;
+        // Focus on the most impactful points
+        const impactfulPoints = supportingPoints.slice(0, 3).map(point => {
+          if (point.includes('non-creative')) {
+            return `→ You don't need ANY design background (yes, really)`;
+          } else if (point.includes('Higsfield')) {
+            return `→ Tools like Higsfield handle everything - even text placement`;
+          } else if (point.includes('template')) {
+            return `→ Pre-built templates that look like $5K custom work`;
+          } else {
+            return `→ ${point}`;
+          }
+        });
+        draft += impactfulPoints.join('\n') + '\n\n';
+      }
+      
+      const insights = [
+        `The barrier to entry just disappeared.\n\nAnyone can now create what used to require years of training.\n\n`,
+        `This isn't about replacing designers.\n\nIt's about democratizing creativity.\n\n`,
+        `The real skill now? Knowing what looks good.\n\nThe tools handle the rest.\n\n`,
+        `We're entering an era where ideas matter more than technical skills.\n\n`
+      ];
+      
+      draft += insights[(generationAttempt - 1) % insights.length];
+      
+      const questions = [
+        `Are you still hiring designers the traditional way?`,
+        `What would you create if design skills weren't a barrier?`,
+        `How is AI changing your industry?`,
+        `What "impossible" thing is now suddenly possible for you?`
+      ];
+      
+      draft += questions[(generationAttempt - 1) % questions.length];
+      
+      return draft;
+    }
+    
     if (coreMessage.includes('infinite') && (coreMessage.includes('code') || coreMessage.includes('loop') || coreMessage.includes('Claude'))) {
       // This is about the infinite code/loop pattern - vary based on attempt
       const hooks = [
@@ -452,7 +502,10 @@ Aim for about 150-300 words, but let the content guide the length:`;
         `Ever pushed an AI to its absolute limits? Here's what I found...\n\n`,
         `The "infinite agentic loop" sounds like sci-fi, but it's real:\n\n`,
         `I accidentally found a way to make AI code forever (kind of)...\n\n`,
-        `There's a hidden limit in every AI tool. Here's how to find it:\n\n`
+        `There's a hidden limit in every AI tool. Here's how to find it:\n\n`,
+        `What happens when you ask AI to improve itself infinitely?\n\n`,
+        `Found the exact point where AI hits a wall. It's fascinating...\n\n`,
+        `This simple experiment reveals everything about AI's limitations:\n\n`
       ];
       
       draft = hooks[(generationAttempt - 1) % hooks.length];
