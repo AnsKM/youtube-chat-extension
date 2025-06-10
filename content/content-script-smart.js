@@ -125,6 +125,9 @@ class SmartYouTubeChatExtension {
     // Create chat UI
     this.createChatUI();
     
+    // Create floating chat bubble
+    this.createChatBubble();
+    
     // Hide chat initially
     this.hideChat();
     
@@ -375,6 +378,31 @@ class SmartYouTubeChatExtension {
     container.querySelector('.history-search-input')?.addEventListener('input', (e) => {
       this.filterHistory(e.target.value);
     });
+  }
+
+  createChatBubble() {
+    // Check if bubble already exists
+    if (document.querySelector('.youtube-chat-bubble')) return;
+    
+    const bubble = document.createElement('div');
+    bubble.className = 'youtube-chat-bubble';
+    bubble.innerHTML = `
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 2H4C2.9 2 2.01 2.9 2.01 4L2 22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM18 14H6V12H18V14ZM18 11H6V9H18V11ZM18 8H6V6H18V8Z" fill="white"/>
+      </svg>
+    `;
+    bubble.title = 'YouTube Chat Assistant';
+    
+    // Add click handler
+    bubble.addEventListener('click', () => {
+      if (this.chatUI.style.display === 'none') {
+        this.showChat();
+      } else {
+        this.hideChat();
+      }
+    });
+    
+    document.body.appendChild(bubble);
   }
 
   // Include all other helper methods (addMessage, hideChat, etc.)

@@ -895,3 +895,31 @@
     opacity: 1;
   }
 }
+/* Chat Bubble - Floating Action Button */
+.youtube-chat-bubble {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background: var(--accent-blue);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition-base);
+  z-index: 9999;
+}
+
+.youtube-chat-bubble:hover {
+  background: var(--accent-blue-hover);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-xl);
+}
+
+.youtube-chat-bubble svg {
+  width: 28px;
+  height: 28px;
+}
