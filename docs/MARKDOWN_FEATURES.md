@@ -111,7 +111,16 @@ Importance: Why this matters
 
 These patterns are automatically styled as subheadings with blue color and proper spacing.
 
-### 10. Horizontal Rules
+### 10. Clickable Timestamps
+
+```markdown
+The speaker explains this [2:45] and demonstrates [5:20].
+For longer videos: The main topic starts [1:23:45].
+```
+
+Timestamps are automatically converted to clickable blue pills that seek to that moment in the video.
+
+### 11. Horizontal Rules
 
 ```markdown
 ---
@@ -137,7 +146,8 @@ const features = {
   keyboardShortcuts: true, // Set to false to disable keyboard shortcuts
   bold: true,            // Set to false to disable bold text
   lineBreaks: true,      // Set to false to disable line breaks
-  subheadings: true      // Set to false to disable subheading patterns
+  subheadings: true,     // Set to false to disable subheading patterns
+  timestamps: true       // Set to false to disable clickable timestamps
 };
 ```
 

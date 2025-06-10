@@ -414,6 +414,9 @@ class SmartYouTubeChatExtension {
     
     // Auto-scroll
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    
+    // Add click handlers for timestamps in the new message
+    this.addTimestampClickHandlers(contentDiv);
   }
 
   formatMessage(content) {
@@ -431,7 +434,8 @@ class SmartYouTubeChatExtension {
       keyboardShortcuts: true,
       bold: true,
       lineBreaks: true,
-      subheadings: true
+      subheadings: true,
+      timestamps: true
     };
 
     // Escape HTML to prevent XSS
@@ -658,6 +662,13 @@ class SmartYouTubeChatExtension {
       });
     }
 
+    // Process clickable timestamps
+    if (features.timestamps !== false) {
+      content = content.replace(/\[(\d{1,2}:\d{2}(?::\d{2})?)\]/g, (match, time) => {
+        return `<span class="markdown-timestamp" data-time="${time}" title="Click to jump to ${time}">${match}</span>`;
+      });
+    }
+
     // Restore code blocks and inline code
     codeStore.forEach((code, index) => {
       const blockPlaceholder = `__CODE_BLOCK_${index}__`;
@@ -702,8 +713,106 @@ class SmartYouTubeChatExtension {
     if (content.includes('**')) {
       console.log('[YouTube Chat] Warning: Bold markers still present in output');
     }
+    
+    // Log markdown elements detected
+    const elementsFound = {
+      headers: (content.match(/<h[1-6]/g) || []).length,
+      lists: (content.match(/<[ou]l/g) || []).length,
+      subheadings: (content.match(/markdown-subheading/g) || []).length,
+      codeBlocks: (content.match(/markdown-code-block/g) || []).length,
+      timestamps: (content.match(/markdown-timestamp/g) || []).length
+    };
+    console.log('[YouTube Chat] Markdown elements:', elementsFound);
 
     return content;
+  }
+
+  addTimestampClickHandlers(element) {
+    const timestamps = element.querySelectorAll('.markdown-timestamp');
+    timestamps.forEach(timestamp => {
+      timestamp.addEventListener('click', (e) => {
+        e.preventDefault();
+        const timeStr = timestamp.getAttribute('data-time');
+        this.seekToTimestamp(timeStr);
+      });
+    });
+  }
+
+  seekToTimestamp(timeStr) {
+    try {
+      // Convert timestamp string to seconds
+      const seconds = this.parseTimestamp(timeStr);
+      
+      // Try multiple methods to control YouTube player
+      this.controlYouTubePlayer(seconds);
+      
+      console.log(`[YouTube Chat] Seeking to ${timeStr} (${seconds} seconds)`);
+    } catch (error) {
+      console.error('[YouTube Chat] Error seeking to timestamp:', error);
+    }
+  }
+
+  parseTimestamp(timeStr) {
+    const parts = timeStr.split(':').map(part => parseInt(part, 10));
+    
+    if (parts.length === 2) {
+      // MM:SS format
+      return parts[0] * 60 + parts[1];
+    } else if (parts.length === 3) {
+      // H:MM:SS format
+      return parts[0] * 3600 + parts[1] * 60 + parts[2];
+    }
+    
+    throw new Error('Invalid timestamp format');
+  }
+
+  controlYouTubePlayer(seconds) {
+    // Method 1: Try to find and control the YouTube player directly
+    const player = document.querySelector('video');
+    if (player) {
+      player.currentTime = seconds;
+      console.log('[YouTube Chat] Controlled player directly');
+      return;
+    }
+
+    // Method 2: Try YouTube's postMessage API
+    const iframe = document.querySelector('iframe#movie_player');
+    if (iframe && iframe.contentWindow) {
+      try {
+        iframe.contentWindow.postMessage(
+          `{"event":"command","func":"seekTo","args":[${seconds}, true]}`,
+          'https://www.youtube.com'
+        );
+        console.log('[YouTube Chat] Used postMessage API');
+        return;
+      } catch (error) {
+        console.log('[YouTube Chat] postMessage failed:', error);
+      }
+    }
+
+    // Method 3: Try to trigger YouTube's internal player
+    if (window.ytInitialPlayerResponse && window.ytInitialPlayerResponse.videoDetails) {
+      // Try to access YouTube's internal player object
+      const ytPlayer = document.querySelector('#movie_player');
+      if (ytPlayer && ytPlayer.seekTo) {
+        ytPlayer.seekTo(seconds, true);
+        console.log('[YouTube Chat] Used YouTube internal API');
+        return;
+      }
+    }
+
+    // Method 4: Simulate URL hash change (fallback)
+    try {
+      const url = new URL(window.location);
+      url.searchParams.set('t', `${seconds}s`);
+      window.history.pushState({}, '', url);
+      
+      // Trigger a page navigation to the timestamp
+      window.dispatchEvent(new PopStateEvent('popstate'));
+      console.log('[YouTube Chat] Used URL parameter method');
+    } catch (error) {
+      console.error('[YouTube Chat] All timestamp methods failed:', error);
+    }
   }
 
   hideChat() {

@@ -47,3 +47,12 @@
 - Requests subheadings like "What it is:", "How to do it:"
 - Promotes use of bold text and structured responses
 - Should improve consistency of AI response formatting
+
+## 2025-01-10: Added clickable timestamps functionality
+- Comprehensive prompt engineering for Gemini to include timestamps
+- Automatic detection and parsing of [MM:SS] and [H:MM:SS] format timestamps
+- Clickable blue gradient timestamp pills with hover effects
+- Multiple YouTube player control methods for seeking to timestamp
+- Integration with video player through direct control, postMessage API, and URL parameters
+- Enhanced debug logging to track timestamp detection and click events
+- Updated all documentation with timestamp examples and usage guides
