@@ -23,10 +23,18 @@ class GeminiClient {
       
       fullPrompt = `You are a helpful AI assistant for YouTube videos. You have access to the complete transcript of the video and can answer questions about its content.
 
+When providing answers, please use clear formatting:
+- For lists or multiple points, use numbered format: "1. Title: Description"
+- For sub-points under main topics, use "What it is:", "How to do it:", "Key points:", etc.
+- Use **bold text** for emphasis when appropriate
+- Structure your response with clear headings and organized information
+
 Video Transcript:
 ${transcriptText}
 
-User Question: ${prompt}`;
+User Question: ${prompt}
+
+Please provide a well-structured, clearly formatted response:`;
     }
     
     try {
@@ -373,6 +381,11 @@ async function handleMessage(request, sender, sendResponse) {
         sendResponse({ success: true });
         break;
         
+      case 'getAllChats':
+        const allChats = await getAllChats();
+        sendResponse({ success: true, chats: allChats });
+        break;
+        
       case 'exportChat':
         const exportData = await exportVideoChat(request.videoId, request.format);
         sendResponse({ success: true, exportData });
@@ -461,6 +474,25 @@ async function loadVideoChat(videoId) {
 async function clearVideoChat(videoId) {
   const key = `chat_${videoId}`;
   await chrome.storage.local.remove(key);
+}
+
+async function getAllChats() {
+  const result = await chrome.storage.local.get();
+  const chats = [];
+  
+  for (const [key, value] of Object.entries(result)) {
+    if (key.startsWith('chat_')) {
+      const videoId = key.replace('chat_', '');
+      chats.push({
+        videoId,
+        ...value
+      });
+    }
+  }
+  
+  // Sort by last updated, most recent first
+  chats.sort((a, b) => new Date(b.lastUpdated) - new Date(a.lastUpdated));
+  return chats;
 }
 
 async function exportVideoChat(videoId, format = 'json') {
