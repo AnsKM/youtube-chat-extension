@@ -470,8 +470,15 @@ class SmartYouTubeChatExtension {
 
     // Process section headers BEFORE escaping HTML
     if (features.headers) {
+      // Headers with (Step X) format
       content = content.replace(/^(\d+)\.\s+(.+?)\s*\(Step\s+\d+\)$/gm, (match, num, title) => {
         return `__SECTION_HEADER__${num}. ${title}__END_SECTION_HEADER__`;
+      });
+      
+      // Simple numbered headers with colon (e.g., "1. The Framework Post:")
+      content = content.replace(/^(\d+)\.\s+(.+?):(?:\s|$)/gm, (match, num, title) => {
+        // Preserve any bold markers in the title for later processing
+        return `__SECTION_HEADER__${num}. ${title}:__END_SECTION_HEADER__`;
       });
     }
 
@@ -667,7 +674,9 @@ class SmartYouTubeChatExtension {
     // Replace section header placeholders (after line breaks)
     if (features.headers) {
       content = content.replace(/__SECTION_HEADER__(.+?)__END_SECTION_HEADER__/g, (match, text) => {
-        return `<h3 class="markdown-section-header">${text}</h3>`;
+        // Process any bold markers within the header
+        let processedText = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        return `<h3 class="markdown-section-header">${processedText}</h3>`;
       });
     }
 

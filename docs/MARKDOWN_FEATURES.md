@@ -21,14 +21,20 @@ Use `#` symbols to create headers:
 ###### Header 6
 ```
 
-### 2. Section Headers (Numbered with Steps)
+### 2. Section Headers (Numbered)
 
 ```markdown
+# With Step notation:
 1. Find a Core Insight (Step 1)
 2. Create the Content (Step 2)
+
+# Simple format with colon:
+1. The Framework Post:
+2. Educated Opinions:
+3. **Why You Should [Topic]:**
 ```
 
-These patterns are automatically styled as section headers with increased spacing and blue color.
+Both patterns are automatically styled as section headers with increased spacing and blue color. Bold text within headers is supported.
 
 ### 3. Lists
 

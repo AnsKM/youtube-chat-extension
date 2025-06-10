@@ -33,3 +33,10 @@
 - Fixed subheading CSS to use block display
 - Enhanced debug logging to detect remaining bold markers
 - Improved whitespace handling while preserving line breaks
+
+## 2025-01-10: Added support for simple numbered headers
+- Added pattern to recognize "1. Title:" format as headers
+- Support bold text within numbered headers
+- Created AI response formatting guide for better output
+- Headers now work with or without "(Step X)" suffix
+- Improved flexibility for various AI response formats
