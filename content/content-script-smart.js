@@ -99,12 +99,122 @@ class SmartYouTubeChatExtension {
     this.maxHistoryLength = 10;
     this.smartRoutingStrategy = null;
     
+    // Connection and state management
+    this.isProcessingRequest = false;
+    this.connectionStatus = 'connected';
+    this.lastConnectionCheck = Date.now();
+    this.retryAttempts = 0;
+    this.maxRetryAttempts = 3;
+    
     // Fullscreen tracking
     this.wasVisibleBeforeFullscreen = false;
     this.wasMinimizedBeforeFullscreen = false;
     this.isInFullscreen = false;
     
     this.initializeObservers();
+    this.startConnectionMonitoring();
+  }
+
+  startConnectionMonitoring() {
+    // Check connection health every 30 seconds
+    setInterval(async () => {
+      await this.checkConnectionHealth();
+    }, 30000);
+  }
+
+  async checkConnectionHealth() {
+    try {
+      const response = await chrome.runtime.sendMessage({ action: 'healthCheck' });
+      if (response && response.success) {
+        this.connectionStatus = 'connected';
+        this.retryAttempts = 0;
+        this.updateConnectionUI();
+      } else {
+        this.connectionStatus = 'disconnected';
+        this.updateConnectionUI();
+      }
+    } catch (error) {
+      console.error('[YouTube Chat] Connection health check failed:', error);
+      this.connectionStatus = 'disconnected';
+      this.updateConnectionUI();
+    }
+  }
+
+  updateConnectionUI() {
+    if (!this.chatUI) return;
+    
+    const statusIndicator = this.chatUI.querySelector('.connection-status');
+    if (statusIndicator) {
+      statusIndicator.className = `connection-status ${this.connectionStatus}`;
+      statusIndicator.title = this.connectionStatus === 'connected' 
+        ? 'Connected to extension background' 
+        : 'Connection lost - trying to reconnect...';
+    }
+  }
+
+  async attemptReconnection() {
+    if (this.retryAttempts >= this.maxRetryAttempts) {
+      console.log('[YouTube Chat] Max reconnection attempts reached');
+      this.showConnectionError();
+      return false;
+    }
+
+    this.retryAttempts++;
+    console.log(`[YouTube Chat] Attempting reconnection (${this.retryAttempts}/${this.maxRetryAttempts})`);
+    
+    try {
+      const response = await chrome.runtime.sendMessage({ action: 'reconnect' });
+      if (response && response.success) {
+        this.connectionStatus = 'connected';
+        this.retryAttempts = 0;
+        this.updateConnectionUI();
+        console.log('[YouTube Chat] Reconnection successful');
+        return true;
+      }
+    } catch (error) {
+      console.error('[YouTube Chat] Reconnection failed:', error);
+    }
+    
+    // Wait before next attempt (exponential backoff)
+    const delay = Math.pow(2, this.retryAttempts) * 1000;
+    setTimeout(() => this.attemptReconnection(), delay);
+    return false;
+  }
+
+  showConnectionError() {
+    this.addMessage('system', 'Connection lost. Please refresh the page to restore functionality.');
+    this.resetUIState();
+  }
+
+  resetUIState() {
+    // Always ensure UI is in a usable state
+    if (!this.chatUI) return;
+    
+    const input = this.chatUI.querySelector('.chat-input');
+    const sendBtn = this.chatUI.querySelector('.chat-send');
+    
+    if (input) {
+      input.disabled = false;
+      input.placeholder = 'Ask me anything about this video...';
+    }
+    if (sendBtn) {
+      sendBtn.disabled = false;
+    }
+    
+    // Remove any typing indicators
+    this.removeTypingIndicator();
+    
+    // Reset processing state
+    this.isProcessingRequest = false;
+  }
+
+  removeTypingIndicator() {
+    if (!this.chatUI) return;
+    const messages = this.chatUI.querySelectorAll('.message');
+    const typingMessage = Array.from(messages).find(m => 
+      m.querySelector('.content')?.textContent === '...thinking...'
+    );
+    if (typingMessage) typingMessage.remove();
   }
 
   async initialize() {
@@ -143,7 +253,9 @@ class SmartYouTubeChatExtension {
       // Get video duration for smart routing
       setTimeout(() => {
         this.videoDuration = getVideoDuration();
-        console.log('[Smart] Video duration:', this.videoDuration, 'seconds');
+        const durationMinutes = this.videoDuration ? Math.floor(this.videoDuration / 60) : 0;
+        const durationSeconds = this.videoDuration ? this.videoDuration % 60 : 0;
+        console.log(`[Smart] Video duration: ${this.videoDuration} seconds (${durationMinutes}:${durationSeconds.toString().padStart(2, '0')})`);
         this.loadVideoChat(videoId);
       }, 1000); // Give video time to load
     } else if (!videoId && this.currentVideoId) {
@@ -186,11 +298,27 @@ class SmartYouTubeChatExtension {
         }
       }
       
-      // Show success message with smart routing info
+      // Show success message with smart routing info and video details
       messagesContainer.innerHTML = '';
+      
+      const durationMinutes = this.videoDuration ? Math.floor(this.videoDuration / 60) : 0;
+      const durationSeconds = this.videoDuration ? this.videoDuration % 60 : 0;
+      const durationStr = this.videoDuration ? 
+        `${durationMinutes}:${durationSeconds.toString().padStart(2, '0')}` : 'unknown';
+      
       let welcomeMessage = this.transcript 
         ? `Transcript loaded! I can now answer questions about this video.`
         : `I'm ready to help! (Note: Transcript not available for this video)`;
+      
+      welcomeMessage += `\n\n📺 **Video Duration**: ${durationStr}`;
+      
+      // Add timestamp availability info
+      const validTimestamps = this.getValidTimestampsFromTranscript();
+      if (validTimestamps.length > 0) {
+        welcomeMessage += `\n⏱️ **Available Timestamps**: ${validTimestamps.length} precise time references`;
+      } else {
+        welcomeMessage += `\n⏱️ **Timestamps**: Smart validation enabled - invalid timestamps will be replaced with descriptive text`;
+      }
       
       if (this.smartRoutingStrategy) {
         welcomeMessage += `\n\n🚀 Smart routing enabled: ${this.smartRoutingStrategy.strategy} strategy (${this.smartRoutingStrategy.expectedSavings} cost savings)`;
@@ -198,12 +326,8 @@ class SmartYouTubeChatExtension {
       
       this.addMessage('assistant', welcomeMessage);
       
-      // Enable input
-      const input = this.chatUI.querySelector('.chat-input');
-      const sendBtn = this.chatUI.querySelector('.chat-send');
-      input.disabled = false;
-      sendBtn.disabled = false;
-      input.placeholder = 'Ask me anything about this video...';
+      // Enable input and ensure proper state
+      this.resetUIState();
       
       // Load saved chat if exists
       const savedChat = await this.loadSavedChat(videoId);
@@ -218,43 +342,76 @@ class SmartYouTubeChatExtension {
     } catch (error) {
       console.error('[Smart] Error loading video:', error);
       this.addMessage('system', 'Error loading video data. Please refresh and try again.');
+      // Ensure UI is still usable even after errors
+      this.resetUIState();
     }
   }
 
   async sendMessage() {
+    // Prevent multiple simultaneous requests
+    if (this.isProcessingRequest) {
+      console.log('[YouTube Chat] Request already in progress, ignoring new request');
+      return;
+    }
+
     const input = this.chatUI.querySelector('.chat-input');
+    const sendBtn = this.chatUI.querySelector('.chat-send');
     const message = input.value.trim();
-    if (!message) return;
     
-    // Add user message
-    this.addMessage('user', message);
-    input.value = '';
+    // Validate input and UI state
+    if (!message) {
+      input.focus();
+      return;
+    }
     
-    // Add to conversation history
-    this.conversationHistory.push({ role: 'user', content: message });
-    
-    // Show typing indicator
-    this.addMessage('assistant', '...thinking...', true);
+    if (!input || !sendBtn) {
+      console.error('[YouTube Chat] UI elements not found');
+      return;
+    }
+
+    // Validate connection before proceeding
+    if (this.connectionStatus !== 'connected') {
+      this.addMessage('system', 'Connection lost. Attempting to reconnect...');
+      const reconnected = await this.attemptReconnection();
+      if (!reconnected) {
+        return;
+      }
+    }
+
+    // Lock UI during processing
+    this.isProcessingRequest = true;
+    if (input) input.disabled = true;
+    if (sendBtn) sendBtn.disabled = true;
     
     try {
-      // Enhanced context with video ID for smart routing
-      const response = await chrome.runtime.sendMessage({
+      // Add user message
+      this.addMessage('user', message);
+      input.value = '';
+      
+      // Add to conversation history
+      this.conversationHistory.push({ role: 'user', content: message });
+      
+      // Show typing indicator
+      this.addMessage('assistant', '...thinking...', true);
+      
+      // Generate response with retry logic
+      const response = await this.generateResponseWithRetry({
         action: 'generateResponse',
         prompt: message,
-        videoId: this.currentVideoId, // Important for smart routing
+        videoId: this.currentVideoId,
         context: {
           transcript: this.transcript,
-          conversationHistory: this.conversationHistory.slice(-6)
+          conversationHistory: this.conversationHistory.slice(-6),
+          videoDuration: this.videoDuration
         }
       });
       
       if (response.success) {
         // Remove typing indicator
-        const messages = this.chatUI.querySelectorAll('.message');
-        const typingMessage = Array.from(messages).find(m => 
-          m.querySelector('.content')?.textContent === '...thinking...'
-        );
-        if (typingMessage) typingMessage.remove();
+        this.removeTypingIndicator();
+        
+        // Debug: Log the raw response from Gemini
+        console.log('[YouTube Chat] Raw Gemini response:', response.response.substring(0, 500));
         
         // Add assistant response
         this.addMessage('assistant', response.response);
@@ -273,19 +430,68 @@ class SmartYouTubeChatExtension {
         // Auto-save
         await this.autoSaveChat();
       } else {
+        // Handle different types of errors
+        if (response.needsReconnection) {
+          console.log('[YouTube Chat] Service worker needs reconnection');
+          await this.attemptReconnection();
+        }
         throw new Error(response.error || 'Failed to generate response');
       }
     } catch (error) {
       console.error('[Smart] Error sending message:', error);
       
       // Remove typing indicator
-      const messages = this.chatUI.querySelectorAll('.message');
-      const typingMessage = Array.from(messages).find(m => 
-        m.querySelector('.content')?.textContent === '...thinking...'
-      );
-      if (typingMessage) typingMessage.remove();
+      this.removeTypingIndicator();
       
-      this.addMessage('system', `Error: ${error.message}`);
+      // Show user-friendly error message
+      let errorMessage = 'Sorry, I encountered an error. Please try again.';
+      if (error.message.includes('API key')) {
+        errorMessage = 'Please set your Gemini API key in the extension settings.';
+      } else if (error.message.includes('Service unavailable')) {
+        errorMessage = 'Service temporarily unavailable. Please try again in a moment.';
+      } else if (error.message.includes('rate limit')) {
+        errorMessage = 'Rate limit exceeded. Please wait a moment before trying again.';
+      }
+      
+      this.addMessage('system', errorMessage);
+    } finally {
+      // Always restore UI state
+      this.resetUIState();
+    }
+  }
+
+  async generateResponseWithRetry(request, retryCount = 0) {
+    const maxRetries = 3;
+    
+    try {
+      const response = await chrome.runtime.sendMessage(request);
+      
+      // Check if response indicates connection issues
+      if (!response || response.needsReconnection) {
+        throw new Error('Connection lost');
+      }
+      
+      return response;
+    } catch (error) {
+      console.error(`[YouTube Chat] API request failed (attempt ${retryCount + 1}):`, error);
+      
+      if (retryCount < maxRetries) {
+        // Try to reconnect before retry
+        if (error.message.includes('Connection lost') || error.message.includes('Extension context invalidated')) {
+          const reconnected = await this.attemptReconnection();
+          if (!reconnected) {
+            throw new Error('Unable to reconnect to extension service');
+          }
+        }
+        
+        // Wait before retry with exponential backoff
+        const delay = Math.pow(2, retryCount) * 1000;
+        await new Promise(resolve => setTimeout(resolve, delay));
+        
+        return this.generateResponseWithRetry(request, retryCount + 1);
+      }
+      
+      throw error;
     }
   }
 
@@ -325,6 +531,7 @@ class SmartYouTubeChatExtension {
           <button class="history" title="Chat history">📚</button>
           <button class="export-chat" title="Export chat">💾</button>
           <span class="chat-title">YouTube Chat</span>
+          <div class="connection-status connected" title="Connected to extension background"></div>
         </div>
         <div class="header-controls">
           <button class="minimize">_</button>
@@ -407,21 +614,342 @@ class SmartYouTubeChatExtension {
     
     const contentDiv = document.createElement('div');
     contentDiv.className = 'content';
-    contentDiv.innerHTML = this.formatMessage(content);
+    
+    if (role === 'assistant') {
+      // Process timestamps first, then simple markdown (like the working archive version)
+      const originalContent = content;
+      content = this.processTimestamps(content);
+      content = this.processSimpleMarkdown(content);
+      
+      // Log timestamp validation to console only
+      if (role === 'assistant' && originalContent !== content && originalContent.includes('[') && originalContent.includes(']')) {
+        this.logTimestampValidation(originalContent, content);
+      }
+    } else {
+      // For user messages, escape HTML to prevent XSS
+      content = this.escapeHtml(content);
+    }
+    
+    contentDiv.innerHTML = content;
     
     messageDiv.appendChild(contentDiv);
     messagesContainer.appendChild(messageDiv);
     
     // Auto-scroll
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    
+    // Add click handlers for timestamps in the new message
+    this.addTimestampClickHandlers(contentDiv);
+  }
+
+  logTimestampValidation(originalContent, processedContent) {
+    // Count original vs processed timestamps
+    const originalTimestamps = (originalContent.match(/\[?\d{1,2}:\d{2}\]?/g) || []).length;
+    const processedTimestamps = (processedContent.match(/timestamp-link/g) || []).length;
+    const removedCount = originalTimestamps - processedTimestamps;
+    
+    if (removedCount > 0) {
+      console.log(`[YouTube Chat] Timestamp Validation: ${removedCount} invalid timestamp${removedCount > 1 ? 's' : ''} replaced with descriptive text`);
+      if (this.videoDuration) {
+        console.log(`[YouTube Chat] Video duration: ${this.secondsToTimestamp(this.videoDuration)}`);
+      }
+      
+      // Log details for debugging
+      const invalidTimestamps = originalContent.match(/\[?\d{1,2}:\d{2}\]?/g) || [];
+      invalidTimestamps.forEach(ts => {
+        const [minutes, seconds] = ts.replace(/[\[\]]/g, '').split(':').map(Number);
+        const totalSeconds = minutes * 60 + seconds;
+        if (totalSeconds > this.videoDuration) {
+          console.log(`[YouTube Chat] Invalid timestamp detected: ${ts} (${totalSeconds}s > ${this.videoDuration}s)`);
+        }
+      });
+    }
+  }
+
+  escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  processSimpleMarkdown(content) {
+    // Simple markdown processing like the working archive version
+    return content
+      .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+      .replace(/^## (.*$)/gim, '<h3>$1</h3>')
+      .replace(/^# (.*$)/gim, '<h3>$1</h3>')
+      .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/```(.*?)```/gs, '<pre><code>$1</code></pre>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/\n/g, '<br>');
   }
 
   formatMessage(content) {
-    return content
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/##\s+(.*?)(\n|$)/g, '<h3>$1</h3>')
-      .replace(/•/g, '&bull;')
-      .replace(/\n/g, '<br>');
+    // Just return the content as-is since timestamps are processed separately
+    return content;
+  }
+
+  processTimestamps(text) {
+    const validTimestamps = this.getValidTimestampsFromTranscript();
+    let invalidTimestampCount = 0;
+    
+    const processedText = text.replace(/\[?(\d{1,2}):(\d{2})\]?/g, (match, minutes, seconds) => {
+      const totalSeconds = parseInt(minutes) * 60 + parseInt(seconds);
+      const timestampStr = `${minutes}:${seconds}`;
+      
+      // Multi-layer validation
+      if (!this.isValidTimestamp(totalSeconds, timestampStr, validTimestamps)) {
+        invalidTimestampCount++;
+        console.warn(`[YouTube Chat] Removing invalid timestamp ${match} - not found in video`);
+        
+        // Replace with intelligent descriptive text
+        return this.getDescriptiveTimeReference(totalSeconds);
+      }
+      
+      return `<a href="#" class="timestamp-link" data-time="${totalSeconds}">[${minutes}:${seconds}]</a>`;
+    });
+    
+    // Log validation results
+    if (invalidTimestampCount > 0) {
+      console.log(`[YouTube Chat] Removed ${invalidTimestampCount} invalid timestamp(s), replaced with descriptive text`);
+    }
+    
+    return processedText;
+  }
+
+  isValidTimestamp(totalSeconds, timestampStr, validTimestamps) {
+    // Layer 1: Check against video duration
+    if (this.videoDuration && totalSeconds > this.videoDuration) {
+      return false;
+    }
+    
+    // Layer 2: Check against transcript timestamps (if available)
+    if (validTimestamps.length > 0) {
+      // Allow some tolerance for slight timing differences
+      const tolerance = 5; // 5 seconds
+      return validTimestamps.some(validTime => {
+        const [vMin, vSec] = validTime.split(':').map(Number);
+        const validTotalSeconds = vMin * 60 + vSec;
+        return Math.abs(validTotalSeconds - totalSeconds) <= tolerance;
+      });
+    }
+    
+    // Layer 3: If no transcript timestamps available, just check duration
+    return this.videoDuration ? totalSeconds <= this.videoDuration : true;
+  }
+
+  getValidTimestampsFromTranscript() {
+    if (!this.transcript) return [];
+    
+    const timestamps = [];
+    
+    if (Array.isArray(this.transcript.segments)) {
+      this.transcript.segments.forEach(segment => {
+        if (segment.start !== undefined) {
+          const minutes = Math.floor(segment.start / 60);
+          const seconds = Math.floor(segment.start % 60);
+          timestamps.push(`${minutes}:${seconds.toString().padStart(2, '0')}`);
+        }
+      });
+    } else if (this.transcript.fullTextWithTimestamps) {
+      // Extract from full text with timestamps
+      const timestampRegex = /\[(\d{1,2}):(\d{2})\]/g;
+      let match;
+      while ((match = timestampRegex.exec(this.transcript.fullTextWithTimestamps)) !== null) {
+        timestamps.push(`${match[1]}:${match[2]}`);
+      }
+    }
+    
+    return [...new Set(timestamps)]; // Remove duplicates
+  }
+
+  getDescriptiveTimeReference(totalSeconds) {
+    if (!this.videoDuration) {
+      return ''; // Remove timestamp entirely if no video duration
+    }
+    
+    const videoProgress = totalSeconds / this.videoDuration;
+    
+    if (videoProgress < 0.2) {
+      return '<span class="descriptive-time">early in the video</span>';
+    } else if (videoProgress < 0.4) {
+      return '<span class="descriptive-time">in the first part</span>';
+    } else if (videoProgress < 0.6) {
+      return '<span class="descriptive-time">around the middle</span>';
+    } else if (videoProgress < 0.8) {
+      return '<span class="descriptive-time">in the latter part</span>';
+    } else {
+      return '<span class="descriptive-time">towards the end</span>';
+    }
+  }
+
+  addTimestampClickHandlers(element) {
+    const timestamps = element.querySelectorAll('.timestamp-link');
+    console.log(`[YouTube Chat] Adding click handlers to ${timestamps.length} timestamps`);
+    
+    timestamps.forEach((timestamp, index) => {
+      const timeStr = timestamp.getAttribute('data-time');
+      console.log(`[YouTube Chat] Timestamp ${index + 1}: ${timeStr} seconds`);
+      
+      // Add new handler
+      timestamp.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log(`[YouTube Chat] Timestamp clicked: ${timeStr} seconds`);
+        this.seekToTimestamp(parseInt(timeStr));
+      });
+      
+      // Add visual feedback for debugging
+      timestamp.style.cursor = 'pointer';
+      timestamp.title = `Click to jump to ${this.secondsToTimestamp(parseInt(timeStr))}`;
+    });
+  }
+
+  seekToTimestamp(seconds) {
+    try {
+      // Try multiple methods to control YouTube player
+      this.controlYouTubePlayer(seconds);
+      
+      console.log(`[YouTube Chat] Seeking to ${this.secondsToTimestamp(seconds)} (${seconds} seconds)`);
+    } catch (error) {
+      console.error('[YouTube Chat] Error seeking to timestamp:', error);
+    }
+  }
+
+  parseTimestamp(timeStr) {
+    const parts = timeStr.split(':').map(part => parseInt(part, 10));
+    
+    if (parts.length === 2) {
+      // MM:SS format
+      return parts[0] * 60 + parts[1];
+    } else if (parts.length === 3) {
+      // H:MM:SS format
+      return parts[0] * 3600 + parts[1] * 60 + parts[2];
+    }
+    
+    throw new Error('Invalid timestamp format');
+  }
+
+  controlYouTubePlayer(seconds) {
+    console.log('[YouTube Chat] Attempting to seek to:', seconds, 'seconds');
+    
+    // Method 1: YouTube's global player object (most reliable)
+    if (window.ytPlayer && typeof window.ytPlayer.seekTo === 'function') {
+      try {
+        window.ytPlayer.seekTo(seconds, true);
+        console.log('[YouTube Chat] Used global ytPlayer');
+        return;
+      } catch (error) {
+        console.log('[YouTube Chat] Global ytPlayer failed:', error);
+      }
+    }
+
+    // Method 2: Direct video element control
+    const player = document.querySelector('video');
+    if (player) {
+      try {
+        player.currentTime = seconds;
+        console.log('[YouTube Chat] Controlled video element directly');
+        return;
+      } catch (error) {
+        console.log('[YouTube Chat] Direct video control failed:', error);
+      }
+    }
+
+    // Method 3: YouTube's movie_player element
+    const moviePlayer = document.querySelector('#movie_player');
+    if (moviePlayer && moviePlayer.seekTo) {
+      try {
+        moviePlayer.seekTo(seconds, true);
+        console.log('[YouTube Chat] Used movie_player.seekTo');
+        return;
+      } catch (error) {
+        console.log('[YouTube Chat] movie_player.seekTo failed:', error);
+      }
+    }
+
+    // Method 4: Try accessing YouTube's internal APIs
+    if (window.yt && window.yt.player && window.yt.player.getPlayerByElement) {
+      try {
+        const playerElement = document.querySelector('#movie_player');
+        const player = window.yt.player.getPlayerByElement(playerElement);
+        if (player && player.seekTo) {
+          player.seekTo(seconds, true);
+          console.log('[YouTube Chat] Used yt.player API');
+          return;
+        }
+      } catch (error) {
+        console.log('[YouTube Chat] yt.player API failed:', error);
+      }
+    }
+
+    // Method 5: Keyboard shortcut simulation (fallback)
+    try {
+      // Focus the video player first
+      const video = document.querySelector('video');
+      if (video) {
+        video.focus();
+        
+        // Create a synthetic key event for 't' which opens timestamp input
+        const keyEvent = new KeyboardEvent('keydown', {
+          key: 't',
+          code: 'KeyT',
+          keyCode: 84,
+          which: 84,
+          bubbles: true
+        });
+        document.dispatchEvent(keyEvent);
+        
+        // Wait a bit then try to input the timestamp
+        setTimeout(() => {
+          const timestampInput = document.querySelector('input[type="text"]');
+          if (timestampInput) {
+            timestampInput.value = this.secondsToTimestamp(seconds);
+            timestampInput.dispatchEvent(new Event('input', { bubbles: true }));
+            timestampInput.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+          }
+        }, 100);
+        
+        console.log('[YouTube Chat] Used keyboard shortcut method');
+        return;
+      }
+    } catch (error) {
+      console.log('[YouTube Chat] Keyboard shortcut failed:', error);
+    }
+
+    // Method 6: URL parameter change (last resort)
+    try {
+      const currentUrl = new URL(window.location);
+      currentUrl.searchParams.set('t', `${seconds}s`);
+      window.location.href = currentUrl.toString();
+      console.log('[YouTube Chat] Used URL reload method');
+    } catch (error) {
+      console.error('[YouTube Chat] All timestamp methods failed:', error);
+      
+      // Show user feedback
+      this.showTimestampError(seconds);
+    }
+  }
+
+  secondsToTimestamp(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = Math.floor(seconds % 60);
+    
+    if (hours > 0) {
+      return `${hours}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    } else {
+      return `${minutes}:${secs.toString().padStart(2, '0')}`;
+    }
+  }
+
+  showTimestampError(seconds) {
+    const timestamp = this.secondsToTimestamp(seconds);
+    console.warn(`[YouTube Chat] Could not seek to ${timestamp}. Try manually seeking to this time.`);
+    
+    // Could add a visual notification here if needed
   }
 
   hideChat() {
@@ -480,6 +1008,9 @@ class SmartYouTubeChatExtension {
     this.conversationHistory = [];
     
     this.addMessage('assistant', 'New chat started. How can I help you with this video?');
+    
+    // Ensure UI is ready for new input
+    this.resetUIState();
   }
 
   async autoSaveChat() {
@@ -522,6 +1053,9 @@ class SmartYouTubeChatExtension {
     this.conversationHistory = [];
     
     this.addMessage('assistant', 'Chat cleared. How can I help you?');
+    
+    // Ensure UI is ready for new input
+    this.resetUIState();
     
     if (this.currentVideoId) {
       await chrome.runtime.sendMessage({

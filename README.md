@@ -32,6 +32,7 @@ An AI-powered Chrome extension that enables intelligent conversations with YouTu
 - [Architecture](#-architecture)
 - [Contributing](#-contributing)
 - [Troubleshooting](#-troubleshooting)
+- [Connection Fixes](#-connection-fixes)
 
 ## 🔧 Installation
 
@@ -373,13 +374,76 @@ You'll see:
 - [ ] Chat with multiple videos
 - [ ] Integration with YouTube playlists
 
+## 🔧 Connection Fixes
+
+### Issue: Subsequent Questions Not Working
+
+If you experience issues where the first question works but subsequent questions fail, this has been resolved with the following improvements:
+
+#### ✅ Connection Issues Fixed:
+1. **Service Worker Lifecycle** - Chrome service workers become inactive after 30 seconds
+2. **Connection Health Monitoring** - Automatic detection of connection loss
+3. **Retry Logic** - Exponential backoff retry for failed requests
+4. **UI State Management** - Proper input field enabling/disabling
+5. **Error Recovery** - Graceful handling of connection errors
+
+## ⏱️ Timestamp Validation Fixes
+
+### Issue: Hallucinated/Invalid Timestamps
+
+The AI was generating timestamps that don't exist in the actual video (e.g., [15:30] for an 11-minute video).
+
+#### ✅ Timestamp Issues Fixed:
+1. **Enhanced Prompt Engineering** - AI receives explicit video duration constraints
+2. **Multi-Layer Validation** - Timestamps validated against video duration and transcript
+3. **Intelligent Replacement** - Invalid timestamps become descriptive text ("early in the video")
+4. **Transcript Integration** - Only timestamps from actual transcript are referenced
+5. **Visual Feedback** - Users see when invalid timestamps are detected and replaced
+
+#### 🎯 How It Works:
+- **Before**: AI generates `[15:30]` for 11-minute video ❌
+- **After**: AI uses `"around the middle"` or actual transcript timestamps ✅
+
+#### 🔍 Testing the Timestamp Fixes:
+
+Load the test script in browser console on any YouTube video:
+```javascript
+// Copy and paste test-timestamp-validation.js into console, then run:
+runTimestampValidationTests()
+```
+
+#### 🔍 Testing the Connection Fixes:
+
+Load the test script in your browser console on any YouTube video page:
+```javascript
+// Copy and paste test-connection-fix.js into console, then run:
+runAllTests()
+```
+
+#### 📊 Connection Status Indicator:
+- 🟢 **Green dot**: Connected and ready
+- 🟡 **Yellow dot**: Attempting to reconnect  
+- 🔴 **Red dot**: Connection lost
+
+#### 🛠️ Manual Testing:
+1. Ask a question and wait for response
+2. Wait 30+ seconds, then ask another question
+3. Reload the extension and test again
+4. Try rapid-fire questions to test race condition handling
+
+#### 🐛 If Issues Persist:
+1. Check browser console for error messages
+2. Verify your Gemini API key is set correctly
+3. Refresh the YouTube page
+4. Reload the extension in `chrome://extensions/`
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please:
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Test thoroughly
+4. Test thoroughly (including connection fixes)
 5. Submit a Pull Request
 
 ## 📄 License
