@@ -28,12 +28,29 @@ class GeminiClient {
         (durationMinutes > 0 ? `${durationMinutes}:${durationSeconds.toString().padStart(2, '0')}` : `0:${videoDuration.toString().padStart(2, '0')}`) 
         : 'unknown';
       
-      fullPrompt = `You are a helpful AI assistant for YouTube videos. You have access to the complete transcript of the video. When mentioning specific parts of the video, include timestamps in [MM:SS] format. Answer based on the video content and include relevant details.
+      // Extract valid timestamps from transcript for reference
+      const validTimestamps = this.extractValidTimestamps(transcript, videoDuration);
+      const timestampReference = validTimestamps.length > 0 
+        ? `\n\nAvailable timestamps in this video: ${validTimestamps.slice(0, 10).join(', ')}${validTimestamps.length > 10 ? '...' : ''}`
+        : '';
+      
+      fullPrompt = `You are a helpful AI assistant for YouTube videos. You have access to the complete transcript of a video that is exactly ${maxTimestamp} long.
+
+CRITICAL TIMESTAMP RULES:
+- ONLY use timestamps that exist in the provided transcript
+- NEVER create timestamps beyond ${maxTimestamp}
+- If referencing video content without exact timestamps, use descriptive phrases like "early in the video", "around the middle", "towards the end"
+- All timestamps must be in [MM:SS] format and correspond to actual content
+- When unsure about timing, describe the content without specific timestamps
+
+Video Duration: ${maxTimestamp}${timestampReference}
 
 Video Transcript:
 ${transcriptText}
 
-User Question: ${prompt}`;
+User Question: ${prompt}
+
+Remember: Only use timestamps that actually exist in the video transcript. Do not generate or hallucinate timestamps.`;
     }
     
     try {
@@ -89,6 +106,54 @@ User Question: ${prompt}`;
       console.error('Gemini API error:', error);
       throw error;
     }
+  }
+
+  extractValidTimestamps(transcript, videoDuration) {
+    const timestamps = [];
+    
+    if (!transcript || !videoDuration) return timestamps;
+    
+    // Handle both segment format and text format
+    if (Array.isArray(transcript)) {
+      // Transcript with segments
+      transcript.forEach(segment => {
+        if (segment.start !== undefined) {
+          const minutes = Math.floor(segment.start / 60);
+          const seconds = Math.floor(segment.start % 60);
+          const timestamp = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+          
+          // Validate against video duration
+          if (segment.start <= videoDuration) {
+            timestamps.push(timestamp);
+          }
+        }
+      });
+    } else if (typeof transcript === 'string') {
+      // Extract timestamps from transcript text
+      const timestampRegex = /\[?(\d{1,2}):(\d{2})\]?/g;
+      let match;
+      
+      while ((match = timestampRegex.exec(transcript)) !== null) {
+        const minutes = parseInt(match[1]);
+        const seconds = parseInt(match[2]);
+        const totalSeconds = minutes * 60 + seconds;
+        
+        // Validate against video duration
+        if (totalSeconds <= videoDuration) {
+          timestamps.push(`${minutes}:${seconds.toString().padStart(2, '0')}`);
+        }
+      }
+    }
+    
+    // Remove duplicates and sort
+    const uniqueTimestamps = [...new Set(timestamps)];
+    uniqueTimestamps.sort((a, b) => {
+      const [aMin, aSec] = a.split(':').map(Number);
+      const [bMin, bSec] = b.split(':').map(Number);
+      return (aMin * 60 + aSec) - (bMin * 60 + bSec);
+    });
+    
+    return uniqueTimestamps;
   }
 }
 
@@ -269,10 +334,65 @@ class SmartRouter {
   }
 }
 
+// Connection health tracking
+class ConnectionManager {
+  constructor() {
+    this.isHealthy = true;
+    this.lastHeartbeat = Date.now();
+    this.reconnectAttempts = 0;
+    this.maxReconnectAttempts = 3;
+    this.healthCheckInterval = null;
+    this.startHealthCheck();
+  }
+
+  startHealthCheck() {
+    // Check connection health every 10 seconds
+    this.healthCheckInterval = setInterval(() => {
+      const timeSinceLastHeartbeat = Date.now() - this.lastHeartbeat;
+      if (timeSinceLastHeartbeat > 30000) { // 30 seconds without activity
+        this.isHealthy = false;
+        console.log('[Service Worker] Connection may be stale');
+      }
+    }, 10000);
+  }
+
+  heartbeat() {
+    this.lastHeartbeat = Date.now();
+    this.isHealthy = true;
+    this.reconnectAttempts = 0;
+  }
+
+  getStatus() {
+    return {
+      healthy: this.isHealthy,
+      lastHeartbeat: this.lastHeartbeat,
+      reconnectAttempts: this.reconnectAttempts
+    };
+  }
+
+  cleanup() {
+    if (this.healthCheckInterval) {
+      clearInterval(this.healthCheckInterval);
+    }
+  }
+}
+
 // Initialize components
 let geminiClient = null;
 let smartRouter = new SmartRouter();
 let smartRoutingEnabled = true; // Can be toggled via settings
+let connectionManager = new ConnectionManager();
+
+// Service worker lifecycle management
+self.addEventListener('activate', () => {
+  console.log('[Service Worker] Activated');
+  connectionManager = new ConnectionManager();
+});
+
+self.addEventListener('beforeunload', () => {
+  console.log('[Service Worker] Before unload');
+  connectionManager.cleanup();
+});
 
 // Initialize extension
 chrome.runtime.onInstalled.addListener(() => {
@@ -288,11 +408,34 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
-// Message handler
+// Enhanced message handler with retry logic
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  handleMessage(request, sender, sendResponse);
-  return true;
+  connectionManager.heartbeat();
+  handleMessageWithRetry(request, sender, sendResponse);
+  return true; // Keep channel open for async response
 });
+
+async function handleMessageWithRetry(request, sender, sendResponse, retryCount = 0) {
+  try {
+    await handleMessage(request, sender, sendResponse);
+  } catch (error) {
+    console.error(`[Service Worker] Error handling message (attempt ${retryCount + 1}):`, error);
+    
+    if (retryCount < connectionManager.maxReconnectAttempts) {
+      // Wait before retry with exponential backoff
+      const delay = Math.pow(2, retryCount) * 1000;
+      setTimeout(() => {
+        handleMessageWithRetry(request, sender, sendResponse, retryCount + 1);
+      }, delay);
+    } else {
+      sendResponse({ 
+        success: false, 
+        error: `Service unavailable after ${connectionManager.maxReconnectAttempts} attempts: ${error.message}`,
+        needsReconnection: true
+      });
+    }
+  }
+}
 
 async function handleMessage(request, sender, sendResponse) {
   try {
@@ -393,6 +536,24 @@ async function handleMessage(request, sender, sendResponse) {
       case 'checkApiKey':
         const { apiKey } = await chrome.storage.local.get('apiKey');
         sendResponse({ success: true, hasApiKey: !!apiKey });
+        break;
+        
+      case 'healthCheck':
+        // Connection health check
+        const status = connectionManager.getStatus();
+        sendResponse({ 
+          success: true, 
+          status: status,
+          timestamp: Date.now()
+        });
+        break;
+        
+      case 'reconnect':
+        // Force reconnection
+        connectionManager.reconnectAttempts = 0;
+        connectionManager.heartbeat();
+        console.log('[Service Worker] Forced reconnection');
+        sendResponse({ success: true, message: 'Reconnected successfully' });
         break;
         
       default:

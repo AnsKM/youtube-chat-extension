@@ -44,6 +44,11 @@
   --transition-fast: all 0.15s ease;
   --transition-base: all 0.2s ease;
   --transition-slow: all 0.3s ease;
+
+  /* Status Colors */
+  --status-connected: #10b981;
+  --status-disconnected: #ef4444;
+  --status-connecting: #f59e0b;
 }
 
 /* Chat Container - Clean Card Design */
@@ -171,6 +176,50 @@
 
 .close {
   font-size: 20px;
+}
+
+/* Connection Status Indicator */
+.connection-status {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transition: var(--transition-base);
+  margin-left: 8px;
+}
+
+.connection-status.connected {
+  background: var(--status-connected);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.connection-status.disconnected {
+  background: var(--status-disconnected);
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+  animation: pulse-red 2s infinite;
+}
+
+.connection-status.connecting {
+  background: var(--status-connecting);
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+  animation: pulse-orange 1s infinite;
+}
+
+@keyframes pulse-red {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes pulse-orange {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 /* Messages Container */
@@ -637,33 +686,33 @@
 
 /* Clickable timestamps */
 .timestamp-link {
-  background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-light));
-  color: white !important;
-  padding: 0.2em 0.5em;
-  border-radius: 12px;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-  font-size: 0.85em;
-  font-weight: 600;
+  color: var(--accent-blue);
+  background: transparent;
+  padding: 1px 3px;
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 500;
   cursor: pointer;
-  display: inline-block;
-  margin: 0 0.2em;
-  transition: all 0.2s ease;
+  display: inline;
+  margin: 0;
+  transition: opacity 0.2s ease;
   border: none;
-  text-decoration: none !important;
-  user-select: none;
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-blue);
+  opacity: 0.75;
 }
 
 .timestamp-link:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
-  background: linear-gradient(135deg, var(--accent-blue-dark), var(--accent-blue));
-  color: white !important;
-  text-decoration: none !important;
+  opacity: 1;
+  background: rgba(59, 130, 246, 0.08);
+  border-bottom: 1px solid var(--accent-blue);
+  text-decoration: none;
 }
 
 .timestamp-link:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
+  opacity: 0.6;
+  background: rgba(59, 130, 246, 0.12);
 }
 
 @keyframes typingBounce {
@@ -1039,20 +1088,43 @@
   20%, 80% { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
-/* Timestamp Links */
+/* Timestamp Links - Subtle and Understated */
 .timestamp-link {
   color: var(--accent-blue);
-  text-decoration: none;
+  background: transparent;
+  padding: 1px 3px;
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-weight: 500;
   cursor: pointer;
-  padding: 2px 6px;
-  border-radius: var(--radius-sm);
-  transition: var(--transition-fast);
+  display: inline;
+  margin: 0;
+  transition: opacity 0.2s ease;
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-blue);
+  opacity: 0.75;
 }
 
 .timestamp-link:hover {
-  background: rgba(59, 130, 246, 0.1);
-  text-decoration: underline;
+  opacity: 1;
+  background: rgba(59, 130, 246, 0.08);
+  border-bottom: 1px solid var(--accent-blue);
+  text-decoration: none;
 }
+
+/* Descriptive Time References */
+.descriptive-time {
+  color: var(--text-secondary);
+  font-style: italic;
+  background: var(--bg-tertiary);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  border-left: 3px solid var(--accent-blue);
+  opacity: 0.8;
+  font-weight: 500;
+}
+
 
 /* Copy Button */
 .message-copy-btn {
