@@ -293,10 +293,14 @@ class ContentRepurposeHandler {
               }]
             }],
             generationConfig: {
-              temperature: options.temperature || 0.9,
+              temperature: options.temperature || 1.0,  // Increased for creativity
               maxOutputTokens: options.max_tokens || 4000,
-              topK: 40,
-              topP: 0.95
+              topK: 50,  // Increased for wider vocabulary
+              topP: 0.95,
+              candidateCount: 1,
+              stopSequences: [],
+              // Note: Gemini doesn't support frequency/presence penalties directly
+              // but higher temperature and topK achieve similar effects
             },
             safetySettings: [
               {

@@ -8,16 +8,16 @@ import { linkedInTemplates, humanPatterns, hookFormulas, simplifyLanguage } from
 export class ContentTransformer {
   constructor() {
     this.humanStylePrompt = `
-Writing Style Instructions:
-- Use simple language: Write plainly with short sentences.
-- Avoid AI-giveaway phrases: Don't use clichés like "dive into," "unleash your potential," etc.
-- Be direct and concise: Get to the point; remove unnecessary words.
-- Maintain a natural tone: Write as you normally speak; it's okay to start sentences with "and" or "but."
-- Avoid marketing language: Don't use hype or promotional words.
-- Keep it real: Be honest; don't force friendliness.
-- Simplify grammar: Don't stress about perfect grammar; it's fine not to capitalize "i" if that's your style.
-- Stay away from fluff: Avoid unnecessary adjectives and adverbs.
-- Focus on clarity: Make your message easy to understand.
+Write naturally and conversationally, as if sharing insights with a colleague.
+
+Guidelines (not rules):
+- Use your own voice and style
+- Share genuine insights and observations  
+- Feel free to be creative with structure
+- Focus on providing value and sparking discussion
+- Keep it authentic and relatable
+
+Remember: Great LinkedIn posts feel like conversations, not broadcasts.
     `;
   }
 
@@ -114,8 +114,8 @@ ${this.humanStylePrompt}
 Return ONLY valid JSON. Focus on the ACTUAL content provided, not generic insights.`;
 
       const insights = await this.callAI(prompt, { 
-        temperature: 0.7,
-        max_tokens: 1000
+        temperature: 0.8,  // Slightly higher for more creative insight extraction
+        max_tokens: 1500   // More room for detailed insights
       });
 
       // Check if we got a mock response trigger
@@ -372,65 +372,55 @@ Return ONLY valid JSON. Focus on the ACTUAL content provided, not generic insigh
   async generateDraftWithAI(insights, template, tone, generationAttempt = 1) {
     // Add variation instructions based on attempt number
     const variationInstructions = generationAttempt > 1 ? `
-IMPORTANT: This is attempt #${generationAttempt}. Create a DIFFERENT variation:
-- Use a different hook/opening line
-- Vary the structure and format
-- Change the perspective or angle
-- Use different examples or metaphors
-- End with a different question
+This is attempt #${generationAttempt}. Create something fresh and unexpected:
+- What would make YOU stop scrolling?
+- Try a completely different angle or perspective
+- Don't just rearrange - reimagine the approach
+- What emotion or insight hasn't been explored yet?
+- Surprise yourself with the format
 
 ` : '';
 
-    const prompt = `Create a LinkedIn post based on these YouTube video insights. DO NOT just repeat the insights - transform them into an engaging LinkedIn post.
+    const prompt = `You're sharing insights from a YouTube video on LinkedIn.
 
 ${variationInstructions}
 
-VIDEO INSIGHTS TO TRANSFORM:
-Main insight: ${insights.mainInsight}
+Video insights:
+${insights.mainInsight}
 
 Supporting points:
-${insights.supportingPoints.map((point, i) => `${i + 1}. ${point}`).join('\n')}
+${insights.supportingPoints.join('\n')}
 
 Problem addressed: ${insights.problemSolved}
-Video source: ${insights.personalStory || 'YouTube video'}
+Source: ${insights.personalStory || 'YouTube video'}
 
-IMPORTANT: Transform these insights into a NEW LinkedIn post following this structure:
-${template.structure || 'Standard LinkedIn post format'}
+Create an engaging LinkedIn post that:
+- Captures what's genuinely interesting about this
+- Feels like you're sharing with professional friends
+- Provides real value to readers
+- Invites authentic discussion
+
+Write in whatever style feels most natural for this content. 
+Be creative. Be yourself.
 
 ${this.humanStylePrompt}
 
-REQUIREMENTS:
-1. Start with an engaging hook
-2. Share the key insights in a natural, conversational way
-3. Use bullet points (→) for lists when appropriate
-4. End with a question to engage readers
-5. Keep paragraphs short and readable
-6. Add proper spacing between sections
-7. Write like a human would - natural and authentic
-8. Feel free to reframe the content creatively
+Some things that work well on LinkedIn:
+- Opening with curiosity or a bold statement
+- Sharing specific insights or examples
+- Using → for easy-to-scan points
+- Ending with a thoughtful question
+- Keeping it conversational yet valuable
 
-Tone: ${tone}
+But feel free to structure it however serves the content best.
 
-Example LinkedIn Post Structure:
-"Hook that grabs attention...
+Tone preference: ${tone}
 
-Context or story...
-
-Key insights:
-→ First important point
-→ Second valuable lesson
-→ Third key takeaway
-
-The bigger picture or main realization...
-
-Engaging question to end?"
-
-Create a natural, flowing LinkedIn post (150-250 words) that feels authentic and conversational:`;
+Aim for about 150-300 words, but let the content guide the length:`;
 
     const draft = await this.callAI(prompt, {
-      temperature: 0.9,
-      frequency_penalty: 0.3,
-      presence_penalty: 0.3
+      temperature: 1.0,  // Increased for more creative output
+      max_tokens: 2000   // Sufficient for LinkedIn posts
     });
 
     return draft;
@@ -442,7 +432,8 @@ Create a natural, flowing LinkedIn post (150-250 words) that feels authentic and
   generateMockDraft(insights, template, tone, generationAttempt = 1) {
     const { mainInsight, supportingPoints, problemSolved, personalStory } = insights;
     
-    console.log('[ContentTransformer] Generating mock draft with template:', template.name || template || 'default');
+    const templateInfo = typeof template === 'string' ? template : (template?.name || 'default');
+    console.log('[ContentTransformer] Generating mock draft with template:', templateInfo);
     console.log('[ContentTransformer] Main insight:', mainInsight);
     console.log('[ContentTransformer] Generation attempt:', generationAttempt);
     console.log('[ContentTransformer] Will use variation index:', (generationAttempt - 1) % 5);
@@ -537,7 +528,7 @@ Create a natural, flowing LinkedIn post (150-250 words) that feels authentic and
     }
     
     // Create different hooks based on the template type AND generation attempt
-    const templateName = typeof template === 'string' ? template : template.name;
+    const templateName = typeof template === 'string' ? template : (template?.name || 'default');
     
     // Multiple hook variations for each template
     const hookVariations = {

@@ -6,23 +6,19 @@
 export const linkedInTemplates = {
   // Problem → Agitate → Solution Framework
   problemAgitatesSolution: {
-    structure: `
-{hook_problem}
+    inspiration: `
+This template works well when you've identified a clear problem and solution.
+Feel free to adapt the structure to fit your content naturally.
 
-{agitate_pain_points}
-
-Here's what I discovered:
-
-{solution_points}
-
-{engagement_question}
+Example flow:
+- Start with a problem that resonates
+- Make it feel real and urgent
+- Share your discovery or solution
+- Invite discussion
     `,
-    instructions: {
-      hook_problem: "State a specific problem your audience faces",
-      agitate_pain_points: "2-3 short sentences making the problem feel urgent",
-      solution_points: "3-5 bullet points with actionable solutions",
-      engagement_question: "Ask about their experience with this problem"
-    },
+    flexibleStructure: `
+Adapt as needed - the key is problem → realization → solution → engagement
+    `,
     example: {
       hook_problem: "Most founders waste 80% of their marketing budget.\n\nAnd they don't even know it.",
       agitate_pain_points: "They try every new tactic.\nHire expensive agencies.\nBut revenue stays flat.",
@@ -33,83 +29,51 @@ Here's what I discovered:
 
   // Before → After → Bridge Framework
   beforeAfterBridge: {
-    structure: `
-{hook_transformation}
+    inspiration: `
+Great for transformation stories or showing progress.
+The contrast creates engagement.
 
-Before:
-{before_state}
-
-After:
-{after_state}
-
-The bridge?
-{bridge_explanation}
-
-{practical_steps}
-
-{engagement_question}
+Think about:
+- What changed?
+- What was the turning point?
+- How can others apply this?
     `,
-    instructions: {
-      hook_transformation: "Tease a transformation with specific timeframe/numbers",
-      before_state: "2-3 lines describing the struggle",
-      after_state: "2-3 lines showing the result",
-      bridge_explanation: "One key insight that made the difference",
-      practical_steps: "3-4 actionable steps",
-      engagement_question: "Ask about their journey"
-    }
+    flexibleStructure: `
+Your story of change → The key insight → How others can benefit
+    `
   },
 
   // Storytelling Framework
   personalStory: {
-    structure: `
-{hook_story}
+    inspiration: `
+Stories connect. Share authentically.
 
-{story_setup}
-
-{conflict_moment}
-
-Then something changed:
-
-{resolution}
-
-The lesson?
-{key_takeaway}
-
-{application}
-
-{engagement_question}
+Elements that work:
+- A moment of realization
+- Specific details that paint a picture
+- A lesson others can apply
+- Vulnerability builds trust
     `,
-    instructions: {
-      hook_story: "Start with intriguing moment or confession",
-      story_setup: "Set the scene in 2-3 lines",
-      conflict_moment: "The challenge or mistake",
-      resolution: "What happened next",
-      key_takeaway: "One clear lesson",
-      application: "How readers can use this",
-      engagement_question: "Relate to their experience"
-    }
+    flexibleStructure: `
+Hook with intrigue → Build tension → Share the insight → Connect to reader
+    `
   },
 
   // List/Tips Framework
   numberList: {
-    structure: `
-{hook_number_promise}
+    inspiration: `
+Lists are scannable and shareable.
 
-{context_line}
+Make each point:
+- Specific and actionable
+- Easy to remember
+- Valuable on its own
 
-{numbered_points}
-
-{bonus_tip}
-
-{engagement_question}
+Bonus points for unexpected insights.
     `,
-    instructions: {
-      hook_number_promise: "X things/ways/lessons with specific benefit",
-      context_line: "One line of context or credibility",
-      numbered_points: "Each point: number + emoji + tip + one-line explanation",
-      bonus_tip: "Unexpected additional insight",
-      engagement_question: "Ask what they'd add"
-    },
+    flexibleStructure: `
+Promise value → Deliver concisely → Add surprise → Invite additions
+    `,
     example: {
       hook_number_promise: "7 YouTube features that 99% of people don't know exist:\n\n(#3 saved me 10 hours last week)",
       context_line: "I've analyzed 1,000+ hours of content. These are game-changers:",
@@ -121,29 +85,18 @@ The lesson?
 
   // Contrarian/Surprising Insight
   contrarian: {
-    structure: `
-{hook_contrarian}
+    inspiration: `
+Challenge assumptions respectfully.
 
-Everyone thinks:
-{common_belief}
-
-But here's what I learned:
-{contrarian_truth}
-
-{evidence_points}
-
-{practical_application}
-
-{engagement_question}
+What makes this work:
+- Acknowledge the common view
+- Share your different experience
+- Back it up with evidence
+- Show how it's useful
     `,
-    instructions: {
-      hook_contrarian: "Challenge a common belief",
-      common_belief: "What most people believe",
-      contrarian_truth: "The surprising reality",
-      evidence_points: "3-4 points backing your claim",
-      practical_application: "How to apply this insight",
-      engagement_question: "Challenge their assumptions"
-    }
+    flexibleStructure: `
+Conventional wisdom → Your discovery → Why it matters → New perspective
+    `
   }
 };
 
