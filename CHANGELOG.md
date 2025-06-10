@@ -1,5 +1,19 @@
 # Changelog
 
+## 2025-06-10: Major Project Cleanup
+- Removed 6 unrelated project folders to focus solely on YouTube Chat Extension:
+  - ai_job_hunter (AI job hunting application)
+  - ai_offers_intel (AI offers analysis tool)
+  - linkedin_personal_branding (LinkedIn automation project)
+  - meta_ad_analyzer (Facebook ads analyzer)
+  - youtube_educator (Separate YouTube education tool)
+  - youtube_trends (YouTube trends analysis project)
+- Removed empty youtube_chat_extension duplicate folder
+- Removed duplicate src/smart-router folder
+- Removed Python __init__.py file (not needed for JavaScript Chrome extension)
+- Removed 10 test/demo files from root directory
+- Project is now a clean, focused Chrome extension without unrelated code
+
 ## 2025-01-10: Enhanced markdown formatting with blue theme
 - Implemented comprehensive markdown parser with modular feature flags
 - Added support for H1-H6 headers with gradient blue styling and icons

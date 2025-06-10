@@ -1,1 +1,0 @@
-# Meta Ad Scraper Package
