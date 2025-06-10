@@ -26,3 +26,10 @@
 - Added support for multi-word subheading patterns (Key Rule:, Three Roles of a Hook:)
 - Fixed section header regex to work with multiline content
 - Added debug logging to help troubleshoot formatting issues
+
+## 2025-01-10: Fixed table-like column splitting
+- Added tab character normalization to prevent column-like display
+- Normalized multiple spaces to prevent text splitting
+- Fixed subheading CSS to use block display
+- Enhanced debug logging to detect remaining bold markers
+- Improved whitespace handling while preserving line breaks

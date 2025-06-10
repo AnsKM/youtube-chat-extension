@@ -475,11 +475,16 @@ class SmartYouTubeChatExtension {
       });
     }
 
+    // Clean up tabs and normalize whitespace first
+    content = content.replace(/\t+/g, ' ');
+    // Normalize multiple spaces (but preserve single line breaks)
+    content = content.split('\n').map(line => line.replace(/\s{2,}/g, ' ').trim()).join('\n');
+    
     // Process subheadings with bold BEFORE escaping
     if (features.subheadings) {
       // Handle multi-word patterns more carefully
-      content = content.replace(/^\*\*((?:What|How|When|Why|Where|Who|Key|Hard|Three|Advice|Pro|Bonus|Types)(?:\s+\w+)*\s*:)\*\*(.*)$/gm, 
-        '__SUBHEADING__$1__END_SUBHEADING__$2');
+      content = content.replace(/^\*\*((?:What|How|When|Why|Where|Who|Key|Hard|Three|Advice|Pro|Bonus|Types)(?:\s+\w+)*\s*:)\*\*\s*(.*)$/gm, 
+        '__SUBHEADING__$1__END_SUBHEADING__ $2');
     }
 
     // Escape HTML in the remaining content
@@ -495,8 +500,15 @@ class SmartYouTubeChatExtension {
 
     // Subheadings/Labels without bold (e.g., "What it is:") - do this before placeholders
     if (features.subheadings) {
-      content = content.replace(/^((?:What|How|When|Why|Where|Who|Key|Hard|Three|Advice|Pro|Bonus|Types|Importance|Ending)(?:\s+\w+)*\s*:)(.*)$/gm, 
-        '<div class="markdown-subheading">$1</div>$2');
+      content = content.replace(/^((?:What|How|When|Why|Where|Who|Key|Hard|Three|Advice|Pro|Bonus|Types|Importance|Ending)(?:\s+\w+)*\s*:)\s*(.*)$/gm, (match, label, rest) => {
+        if (rest.trim()) {
+          // If there's content after the label on the same line
+          return `<div class="markdown-subheading">${label}</div> ${rest}`;
+        } else {
+          // If the label is alone on the line
+          return `<div class="markdown-subheading">${label}</div>`;
+        }
+      });
     }
 
     // Horizontal rules
@@ -675,7 +687,12 @@ class SmartYouTubeChatExtension {
     content = content.replace(/(<div class="markdown-subheading">.*?<\/div>)<br>/g, '$1');
     
     // Debug logging
-    console.log('[YouTube Chat] Content sample:', content.substring(0, 200));
+    console.log('[YouTube Chat] Formatted content sample:', content.substring(0, 500));
+    
+    // Log any remaining bold markers
+    if (content.includes('**')) {
+      console.log('[YouTube Chat] Warning: Bold markers still present in output');
+    }
 
     return content;
   }
