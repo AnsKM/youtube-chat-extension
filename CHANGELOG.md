@@ -19,3 +19,10 @@
 - Expanded subheading patterns to include Key Rule, Hard Truth, Importance, etc.
 - Fixed numbered list parsing to exclude section headers
 - Updated documentation with new features
+
+## 2025-01-10: Fixed parsing order issues
+- Fixed bold subheading patterns (**What it is:**) by processing before HTML escaping
+- Moved placeholder replacements after line break conversion
+- Added support for multi-word subheading patterns (Key Rule:, Three Roles of a Hook:)
+- Fixed section header regex to work with multiline content
+- Added debug logging to help troubleshoot formatting issues

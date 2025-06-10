@@ -468,6 +468,20 @@ class SmartYouTubeChatExtension {
       });
     }
 
+    // Process section headers BEFORE escaping HTML
+    if (features.headers) {
+      content = content.replace(/^(\d+)\.\s+(.+?)\s*\(Step\s+\d+\)$/gm, (match, num, title) => {
+        return `__SECTION_HEADER__${num}. ${title}__END_SECTION_HEADER__`;
+      });
+    }
+
+    // Process subheadings with bold BEFORE escaping
+    if (features.subheadings) {
+      // Handle multi-word patterns more carefully
+      content = content.replace(/^\*\*((?:What|How|When|Why|Where|Who|Key|Hard|Three|Advice|Pro|Bonus|Types)(?:\s+\w+)*\s*:)\*\*(.*)$/gm, 
+        '__SUBHEADING__$1__END_SUBHEADING__$2');
+    }
+
     // Escape HTML in the remaining content
     content = escapeHtml(content);
 
@@ -479,16 +493,9 @@ class SmartYouTubeChatExtension {
       });
     }
 
-    // Numbered section headers (e.g., "1. Find a Core Insight (Step 1)")
-    if (features.headers) {
-      content = content.replace(/^(\d+)\.\s+(.+?)\s*\(Step\s+\d+\)\s*$/gmi, (match, num, title) => {
-        return `<h3 class="markdown-section-header">${num}. ${title}</h3>`;
-      });
-    }
-
-    // Subheadings/Labels (e.g., "What it is:", "How to do:", etc.)
+    // Subheadings/Labels without bold (e.g., "What it is:") - do this before placeholders
     if (features.subheadings) {
-      content = content.replace(/^(What .+:|How .+:|When .+:|Why .+:|Where .+:|Who .+:|Key Rule:|Hard Truth:|Importance:|Three Roles .+:|Advice .+:|Ending:|Why:|Types .+:|Pro Tip:|Bonus .+:)(.*)$/gmi, 
+      content = content.replace(/^((?:What|How|When|Why|Where|Who|Key|Hard|Three|Advice|Pro|Bonus|Types|Importance|Ending)(?:\s+\w+)*\s*:)(.*)$/gm, 
         '<div class="markdown-subheading">$1</div>$2');
     }
 
@@ -531,7 +538,7 @@ class SmartYouTubeChatExtension {
           currentNum = numberedMatch[1];
           currentItem = numberedMatch[2];
           inList = true;
-        } else if (inList && line.trim() && !line.match(/^[\*\-•]\s+/) && !line.match(/^(What .+:|How .+:|When .+:|Why .+:|Where .+:|Who .+:)/i)) {
+        } else if (inList && line.trim() && !line.match(/^[\*\-•]\s+/) && !line.match(/^(What .+:|How .+:|When .+:|Why .+:|Where .+:|Who .+:|Key\s+Rule:|Hard\s+Truth:|Importance:|Three Roles .+:|Advice .+:|Ending:|Why:|Types .+:|Pro Tip:|Bonus .+:)/i)) {
           // Continuation of current list item
           currentItem += ' ' + line.trim();
         } else {
@@ -640,9 +647,35 @@ class SmartYouTubeChatExtension {
       content = content.replace(inlinePlaceholder, code);
     });
 
+    // Line breaks (do this near the end to preserve newlines for regex matching)
+    if (features.lineBreaks) {
+      content = content.replace(/\n/g, '<br>');
+    }
+
+    // Replace section header placeholders (after line breaks)
+    if (features.headers) {
+      content = content.replace(/__SECTION_HEADER__(.+?)__END_SECTION_HEADER__/g, (match, text) => {
+        return `<h3 class="markdown-section-header">${text}</h3>`;
+      });
+    }
+
+    // Replace subheading placeholders (after line breaks)
+    if (features.subheadings) {
+      content = content.replace(/__SUBHEADING__(.+?)__END_SUBHEADING__/g, (match, text) => {
+        return `<div class="markdown-subheading">${text}</div>`;
+      });
+    }
+
     // Clean up excessive line breaks
     content = content.replace(/(<br>){3,}/g, '<br><br>');
     content = content.replace(/(<\/[^>]+>)<br>(<[^>]+>)/g, '$1$2');
+    
+    // Clean up line breaks after headings and subheadings
+    content = content.replace(/(<\/h[1-6]>)<br>/g, '$1');
+    content = content.replace(/(<div class="markdown-subheading">.*?<\/div>)<br>/g, '$1');
+    
+    // Debug logging
+    console.log('[YouTube Chat] Content sample:', content.substring(0, 200));
 
     return content;
   }
