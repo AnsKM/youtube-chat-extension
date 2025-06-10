@@ -143,7 +143,9 @@ class SmartYouTubeChatExtension {
       // Get video duration for smart routing
       setTimeout(() => {
         this.videoDuration = getVideoDuration();
-        console.log('[Smart] Video duration:', this.videoDuration, 'seconds');
+        const durationMinutes = this.videoDuration ? Math.floor(this.videoDuration / 60) : 0;
+        const durationSeconds = this.videoDuration ? this.videoDuration % 60 : 0;
+        console.log(`[Smart] Video duration: ${this.videoDuration} seconds (${durationMinutes}:${durationSeconds.toString().padStart(2, '0')})`);
         this.loadVideoChat(videoId);
       }, 1000); // Give video time to load
     } else if (!videoId && this.currentVideoId) {
@@ -244,7 +246,8 @@ class SmartYouTubeChatExtension {
         videoId: this.currentVideoId, // Important for smart routing
         context: {
           transcript: this.transcript,
-          conversationHistory: this.conversationHistory.slice(-6)
+          conversationHistory: this.conversationHistory.slice(-6),
+          videoDuration: this.videoDuration // Pass duration for timestamp validation
         }
       });
       
@@ -255,6 +258,9 @@ class SmartYouTubeChatExtension {
           m.querySelector('.content')?.textContent === '...thinking...'
         );
         if (typingMessage) typingMessage.remove();
+        
+        // Debug: Log the raw response from Gemini
+        console.log('[YouTube Chat] Raw Gemini response:', response.response.substring(0, 500));
         
         // Add assistant response
         this.addMessage('assistant', response.response);
@@ -407,7 +413,17 @@ class SmartYouTubeChatExtension {
     
     const contentDiv = document.createElement('div');
     contentDiv.className = 'content';
-    contentDiv.innerHTML = this.formatMessage(content);
+    
+    if (role === 'assistant') {
+      // Process timestamps first, then simple markdown (like the working archive version)
+      content = this.processTimestamps(content);
+      content = this.processSimpleMarkdown(content);
+    } else {
+      // For user messages, escape HTML to prevent XSS
+      content = this.escapeHtml(content);
+    }
+    
+    contentDiv.innerHTML = content;
     
     messageDiv.appendChild(contentDiv);
     messagesContainer.appendChild(messageDiv);
@@ -419,348 +435,74 @@ class SmartYouTubeChatExtension {
     this.addTimestampClickHandlers(contentDiv);
   }
 
+  escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  processSimpleMarkdown(content) {
+    // Simple markdown processing like the working archive version
+    return content
+      .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+      .replace(/^## (.*$)/gim, '<h3>$1</h3>')
+      .replace(/^# (.*$)/gim, '<h3>$1</h3>')
+      .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/```(.*?)```/gs, '<pre><code>$1</code></pre>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/\n/g, '<br>');
+  }
+
   formatMessage(content) {
-    // Configuration for features - easily enable/disable
-    const features = {
-      headers: true,
-      lists: true,
-      codeBlocks: true,
-      inlineCode: true,
-      taskLists: true,
-      blockquotes: true,
-      horizontalRules: true,
-      links: true,
-      highlighting: true,
-      keyboardShortcuts: true,
-      bold: true,
-      lineBreaks: true,
-      subheadings: true,
-      timestamps: true
-    };
-
-    // Escape HTML to prevent XSS
-    function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
-    }
-
-    // Store code blocks and inline code temporarily to avoid conflicts
-    const codeStore = [];
-    let codeIndex = 0;
-
-    // Process code blocks first (to protect their content)
-    if (features.codeBlocks) {
-      content = content.replace(/```(\w*)\n([\s\S]*?)```/g, (match, lang, code) => {
-        const placeholder = `__CODE_BLOCK_${codeIndex}__`;
-        codeStore[codeIndex] = `<div class="markdown-code-block">
-          ${lang ? `<span class="markdown-code-lang">${escapeHtml(lang)}</span>` : ''}
-          <pre>${escapeHtml(code.trim())}</pre>
-        </div>`;
-        codeIndex++;
-        return placeholder;
-      });
-    }
-
-    // Process inline code
-    if (features.inlineCode) {
-      content = content.replace(/`([^`]+)`/g, (match, code) => {
-        const placeholder = `__INLINE_CODE_${codeIndex}__`;
-        codeStore[codeIndex] = `<code class="markdown-code">${escapeHtml(code)}</code>`;
-        codeIndex++;
-        return placeholder;
-      });
-    }
-
-    // Process section headers BEFORE escaping HTML
-    if (features.headers) {
-      // Headers with (Step X) format
-      content = content.replace(/^(\d+)\.\s+(.+?)\s*\(Step\s+\d+\)$/gm, (match, num, title) => {
-        return `__SECTION_HEADER__${num}. ${title}__END_SECTION_HEADER__`;
-      });
-      
-      // Simple numbered headers with colon (e.g., "1. The Framework Post:")
-      content = content.replace(/^(\d+)\.\s+(.+?):(?:\s|$)/gm, (match, num, title) => {
-        // Preserve any bold markers in the title for later processing
-        return `__SECTION_HEADER__${num}. ${title}:__END_SECTION_HEADER__`;
-      });
-    }
-
-    // Clean up tabs and normalize whitespace first
-    content = content.replace(/\t+/g, ' ');
-    // Normalize multiple spaces (but preserve single line breaks)
-    content = content.split('\n').map(line => line.replace(/\s{2,}/g, ' ').trim()).join('\n');
-    
-    // Process subheadings with bold BEFORE escaping
-    if (features.subheadings) {
-      // Handle multi-word patterns more carefully
-      content = content.replace(/^\*\*((?:What|How|When|Why|Where|Who|Key|Hard|Three|Advice|Pro|Bonus|Types)(?:\s+\w+)*\s*:)\*\*\s*(.*)$/gm, 
-        '__SUBHEADING__$1__END_SUBHEADING__ $2');
-    }
-
-    // Escape HTML in the remaining content
-    content = escapeHtml(content);
-
-    // Headers (H1-H6)
-    if (features.headers) {
-      content = content.replace(/^(#{1,6})\s+(.+)$/gm, (match, hashes, text) => {
-        const level = hashes.length;
-        return `<h${level} class="markdown-h${level}">${text}</h${level}>`;
-      });
-    }
-
-    // Subheadings/Labels without bold (e.g., "What it is:") - do this before placeholders
-    if (features.subheadings) {
-      content = content.replace(/^((?:What|How|When|Why|Where|Who|Key|Hard|Three|Advice|Pro|Bonus|Types|Importance|Ending)(?:\s+\w+)*\s*:)\s*(.*)$/gm, (match, label, rest) => {
-        if (rest.trim()) {
-          // If there's content after the label on the same line
-          return `<div class="markdown-subheading">${label}</div> ${rest}`;
-        } else {
-          // If the label is alone on the line
-          return `<div class="markdown-subheading">${label}</div>`;
-        }
-      });
-    }
-
-    // Horizontal rules
-    if (features.horizontalRules) {
-      content = content.replace(/^---+$/gm, '<hr class="markdown-hr">');
-    }
-
-    // Task lists
-    if (features.taskLists) {
-      content = content.replace(/^- \[([ x])\] (.+)$/gm, (match, checked, text) => {
-        const isChecked = checked === 'x';
-        return `<div class="markdown-task-item">
-          <input type="checkbox" class="markdown-checkbox" ${isChecked ? 'checked' : ''} onclick="return false;">
-          <span>${text}</span>
-        </div>`;
-      });
-    }
-
-    // Ordered lists - improved to handle multi-line items
-    if (features.lists) {
-      // First, identify all numbered list items and their content
-      let listItems = [];
-      let inList = false;
-      let currentItem = '';
-      let currentNum = '';
-      
-      const lines = content.split('<br>');
-      const processedLines = [];
-      
-      for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
-        const numberedMatch = line.match(/^(\d+)\.\s+(.+)$/);
-        
-        if (numberedMatch && !line.match(/\(Step\s+\d+\)\s*$/)) {
-          // Start of a numbered item (but not section headers)
-          if (currentItem) {
-            listItems.push({ num: currentNum, content: currentItem.trim() });
-          }
-          currentNum = numberedMatch[1];
-          currentItem = numberedMatch[2];
-          inList = true;
-        } else if (inList && line.trim() && !line.match(/^[\*\-•]\s+/) && !line.match(/^(What .+:|How .+:|When .+:|Why .+:|Where .+:|Who .+:|Key\s+Rule:|Hard\s+Truth:|Importance:|Three Roles .+:|Advice .+:|Ending:|Why:|Types .+:|Pro Tip:|Bonus .+:)/i)) {
-          // Continuation of current list item
-          currentItem += ' ' + line.trim();
-        } else {
-          // Not part of list
-          if (currentItem) {
-            listItems.push({ num: currentNum, content: currentItem.trim() });
-            currentItem = '';
-            currentNum = '';
-          }
-          
-          if (listItems.length > 0) {
-            // Output accumulated list
-            processedLines.push('<ol class="markdown-ol">');
-            listItems.forEach(item => {
-              processedLines.push(`<li class="markdown-ol-item" data-number="${item.num}">${item.content}</li>`);
-            });
-            processedLines.push('</ol>');
-            listItems = [];
-            inList = false;
-          }
-          
-          processedLines.push(line);
-        }
-      }
-      
-      // Handle any remaining list items
-      if (currentItem) {
-        listItems.push({ num: currentNum, content: currentItem.trim() });
-      }
-      if (listItems.length > 0) {
-        processedLines.push('<ol class="markdown-ol">');
-        listItems.forEach(item => {
-          processedLines.push(`<li class="markdown-ol-item" data-number="${item.num}">${item.content}</li>`);
-        });
-        processedLines.push('</ol>');
-      }
-      
-      content = processedLines.join('<br>');
-    }
-
-    // Unordered lists - skip items that are subheadings
-    if (features.lists) {
-      content = content.replace(/^[\*\-•]\s+(.+)$/gm, (match, text) => {
-        // Skip task list items
-        if (text.startsWith('[') && (text.startsWith('[ ]') || text.startsWith('[x]'))) {
-          return match;
-        }
-        // Skip subheading patterns
-        if (text.match(/^(What .+:|How .+:|When .+:|Why .+:|Where .+:|Who .+:)/i)) {
-          return match;
-        }
-        return `<li class="markdown-ul-item">${text}</li>`;
-      });
-      
-      // Wrap consecutive ul items
-      content = content.replace(/(<li class="markdown-ul-item">[\s\S]*?<\/li>(<br>)?)+/g, (match) => {
-        const items = match.replace(/<br>/g, '');
-        return `<ul class="markdown-ul">${items}</ul>`;
-      });
-    }
-
-    // Blockquotes
-    if (features.blockquotes) {
-      content = content.replace(/^>\s+(.+)$/gm, '<blockquote class="markdown-blockquote">$1</blockquote>');
-      
-      // Merge consecutive blockquotes
-      content = content.replace(/(<blockquote class="markdown-blockquote">[\s\S]*?<\/blockquote>(<br>)?)+/g, (match) => {
-        const quotes = match.match(/>([^<]+)</g).map(q => q.slice(1, -1)).join('<br>');
-        return `<blockquote class="markdown-blockquote">${quotes}</blockquote>`;
-      });
-    }
-
-    // Text highlighting
-    if (features.highlighting) {
-      content = content.replace(/==(.*?)==/g, '<span class="markdown-highlight">$1</span>');
-    }
-
-    // Links
-    if (features.links) {
-      content = content.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
-        return `<a href="${url}" class="markdown-link" target="_blank" rel="noopener noreferrer">${text}</a>`;
-      });
-    }
-
-    // Keyboard shortcuts
-    if (features.keyboardShortcuts) {
-      content = content.replace(/\[\[([^\]]+)\]\]/g, '<kbd class="markdown-kbd">$1</kbd>');
-    }
-
-    // Bold text - but not for subheadings
-    if (features.bold) {
-      content = content.replace(/\*\*([^*]+)\*\*/g, (match, text) => {
-        // Don't bold subheadings
-        if (text.match(/^(What .+:|How .+:|When .+:|Why .+:|Where .+:|Who .+:)/i)) {
-          return match;
-        }
-        return `<strong>${text}</strong>`;
-      });
-    }
-
-    // Process clickable timestamps
-    if (features.timestamps !== false) {
-      content = content.replace(/\[(\d{1,2}:\d{2}(?::\d{2})?)\]/g, (match, time) => {
-        return `<span class="markdown-timestamp" data-time="${time}" title="Click to jump to ${time}">${match}</span>`;
-      });
-    }
-
-    // Restore code blocks and inline code
-    codeStore.forEach((code, index) => {
-      const blockPlaceholder = `__CODE_BLOCK_${index}__`;
-      const inlinePlaceholder = `__INLINE_CODE_${index}__`;
-      content = content.replace(blockPlaceholder, code);
-      content = content.replace(inlinePlaceholder, code);
-    });
-
-    // Line breaks (do this near the end to preserve newlines for regex matching)
-    if (features.lineBreaks) {
-      content = content.replace(/\n/g, '<br>');
-    }
-
-    // Replace section header placeholders (after line breaks)
-    if (features.headers) {
-      content = content.replace(/__SECTION_HEADER__(.+?)__END_SECTION_HEADER__/g, (match, text) => {
-        // Process any bold markers within the header
-        let processedText = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-        return `<h3 class="markdown-section-header">${processedText}</h3>`;
-      });
-    }
-
-    // Replace subheading placeholders (after line breaks)
-    if (features.subheadings) {
-      content = content.replace(/__SUBHEADING__(.+?)__END_SUBHEADING__/g, (match, text) => {
-        return `<div class="markdown-subheading">${text}</div>`;
-      });
-    }
-
-    // Clean up excessive line breaks
-    content = content.replace(/(<br>){3,}/g, '<br><br>');
-    content = content.replace(/(<\/[^>]+>)<br>(<[^>]+>)/g, '$1$2');
-    
-    // Clean up line breaks after headings and subheadings
-    content = content.replace(/(<\/h[1-6]>)<br>/g, '$1');
-    content = content.replace(/(<div class="markdown-subheading">.*?<\/div>)<br>/g, '$1');
-    
-    // Debug logging
-    console.log('[YouTube Chat] Formatted content sample:', content.substring(0, 500));
-    
-    // Log any remaining bold markers
-    if (content.includes('**')) {
-      console.log('[YouTube Chat] Warning: Bold markers still present in output');
-    }
-    
-    // Log markdown elements detected
-    const elementsFound = {
-      headers: (content.match(/<h[1-6]/g) || []).length,
-      lists: (content.match(/<[ou]l/g) || []).length,
-      subheadings: (content.match(/markdown-subheading/g) || []).length,
-      codeBlocks: (content.match(/markdown-code-block/g) || []).length,
-      timestamps: (content.match(/markdown-timestamp/g) || []).length
-    };
-    console.log('[YouTube Chat] Markdown elements:', elementsFound);
-
+    // Just return the content as-is since timestamps are processed separately
     return content;
   }
 
+  processTimestamps(text) {
+    // Simple timestamp processing like the working archive version
+    return text.replace(/\[?(\d{1,2}):(\d{2})\]?/g, (match, minutes, seconds) => {
+      const totalSeconds = parseInt(minutes) * 60 + parseInt(seconds);
+      
+      // Validate against video duration if available
+      if (this.videoDuration && totalSeconds > this.videoDuration) {
+        console.warn(`[YouTube Chat] Invalid timestamp ${match} - exceeds video duration`);
+        return match; // Return as plain text
+      }
+      
+      return `<a href="#" class="timestamp-link" data-time="${totalSeconds}">[${minutes}:${seconds}]</a>`;
+    });
+  }
+
   addTimestampClickHandlers(element) {
-    const timestamps = element.querySelectorAll('.markdown-timestamp');
+    const timestamps = element.querySelectorAll('.timestamp-link');
     console.log(`[YouTube Chat] Adding click handlers to ${timestamps.length} timestamps`);
     
     timestamps.forEach((timestamp, index) => {
       const timeStr = timestamp.getAttribute('data-time');
-      console.log(`[YouTube Chat] Timestamp ${index + 1}: ${timeStr}`);
-      
-      // Remove any existing handlers
-      timestamp.removeEventListener('click', this.timestampClickHandler);
+      console.log(`[YouTube Chat] Timestamp ${index + 1}: ${timeStr} seconds`);
       
       // Add new handler
       timestamp.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        console.log(`[YouTube Chat] Timestamp clicked: ${timeStr}`);
-        this.seekToTimestamp(timeStr);
+        console.log(`[YouTube Chat] Timestamp clicked: ${timeStr} seconds`);
+        this.seekToTimestamp(parseInt(timeStr));
       });
       
       // Add visual feedback for debugging
       timestamp.style.cursor = 'pointer';
-      timestamp.title = `Click to jump to ${timeStr}`;
+      timestamp.title = `Click to jump to ${this.secondsToTimestamp(parseInt(timeStr))}`;
     });
   }
 
-  seekToTimestamp(timeStr) {
+  seekToTimestamp(seconds) {
     try {
-      // Convert timestamp string to seconds
-      const seconds = this.parseTimestamp(timeStr);
-      
       // Try multiple methods to control YouTube player
       this.controlYouTubePlayer(seconds);
       
-      console.log(`[YouTube Chat] Seeking to ${timeStr} (${seconds} seconds)`);
+      console.log(`[YouTube Chat] Seeking to ${this.secondsToTimestamp(seconds)} (${seconds} seconds)`);
     } catch (error) {
       console.error('[YouTube Chat] Error seeking to timestamp:', error);
     }

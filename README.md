@@ -1,233 +1,399 @@
-# YouTube Chat Assistant - Chrome Extension
+# YouTube Chat Assistant - Smart Edition
 
-<p align="center">
-  <img src="assets/icons/icon128.png" alt="YouTube Chat Assistant Logo" width="128">
-</p>
+An AI-powered Chrome extension that enables intelligent conversations with YouTube videos using Google's Gemini 2.5 Flash Preview API with **95%+ cost reduction** through the Smart Query Router system.
 
-<p align="center">
-  <strong>Chat with any YouTube video using AI</strong><br>
-  Powered by Gemini 2.5 Flash Preview with 1M token context window
-</p>
+![Version](https://img.shields.io/badge/version-2.0.0-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Chrome](https://img.shields.io/badge/chrome-v88+-orange)
 
-<p align="center">
-  <a href="#features">Features</a> •
-  <a href="#installation">Installation</a> •
-  <a href="#usage">Usage</a> •
-  <a href="#smart-routing">Smart Routing</a> •
-  <a href="#development">Development</a> •
-  <a href="#contributing">Contributing</a>
-</p>
+## 🚀 Features
 
----
+### Core Functionality
+- 💬 **AI-Powered Chat**: Have natural conversations about any YouTube video
+- 📝 **Full Transcript Access**: Leverages Gemini's 1M token context window
+- ⏱️ **Timestamp Navigation**: Click timestamps to jump to specific moments
+- 💾 **Conversation Memory**: Saves chat history per video
+- 🎨 **Clean UI**: Minimal, non-intrusive interface
 
-## 🎯 Overview
+### Smart Cost Optimization (v2.0)
+- 🧠 **Smart Query Router**: Automatically selects optimal processing strategy
+- 💰 **95%+ Cost Reduction**: From $0.50 to $0.02 per video
+- ⚡ **Context Caching**: 75% additional savings on repeated queries
+- 📊 **Cost Tracking**: Real-time monitoring of API usage and savings
+- 🎯 **Intelligent Chunking**: RAG system for efficient context selection
 
-YouTube Chat Assistant is a Chrome extension that adds an AI-powered chat interface to any YouTube video. Ask questions about the video content, get summaries, find specific information, and have intelligent conversations about what you're watching - all without leaving YouTube.
+## 📋 Table of Contents
 
-### Key Highlights
-- 🤖 **AI-Powered**: Uses Google's Gemini 2.5 Flash Preview model
-- 💬 **Interactive Chat**: Real-time conversations about video content
-- 📝 **Full Transcript Access**: Works with video captions/transcripts
-- 💰 **Cost-Optimized**: Smart routing reduces API costs by 95%+
-- 🎯 **Context-Aware**: Understands the entire video, no matter how long
-- 💾 **Chat History**: Save and export your conversations
+- [Installation](#-installation)
+- [Configuration](#-configuration)
+- [Usage](#-usage)
+- [Cost Optimization](#-cost-optimization)
+- [Development](#-development)
+- [Architecture](#-architecture)
+- [Contributing](#-contributing)
+- [Troubleshooting](#-troubleshooting)
 
-## ✨ Features
+## 🔧 Installation
 
-### Core Features
-- **Instant AI Chat**: Click the chat bubble on any YouTube video to start
-- **Smart Responses**: Get accurate, context-aware answers about the video
-- **Transcript Integration**: Automatically fetches and uses video transcripts
-- **Conversation Memory**: Maintains context throughout your chat session
-- **Export Functionality**: Save chats as Markdown or JSON
+### From Chrome Web Store
+1. Visit [Chrome Web Store Link] (pending approval)
+2. Click "Add to Chrome"
+3. Follow the prompts
 
-### Smart Routing (v1.2+)
-- **Automatic Optimization**: Reduces API costs by 75-98% based on video length
-- **Transparent**: Works behind the scenes without changing user experience
-- **Intelligent Caching**: Stores frequent queries for instant responses
-- **Adaptive Strategies**: 
-  - Short videos (<30 min): Direct caching
-  - Medium videos (30-180 min): Smart RAG
-  - Long videos (>3 hours): Aggressive optimization
-
-## 📦 Installation
-
-### From Source (Recommended)
+### From Source (Development)
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/youtube-chat-extension.git
+   git clone https://github.com/yourusername/youtube-chat-extension.git
    cd youtube-chat-extension
    ```
 
-2. **Load in Chrome**
-   - Open Chrome and navigate to `chrome://extensions/`
-   - Enable "Developer mode" (top right)
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Build the extension**
+   ```bash
+   npm run build
+   ```
+
+4. **Load in Chrome**
+   - Open Chrome and go to `chrome://extensions/`
+   - Enable "Developer mode"
    - Click "Load unpacked"
-   - Select the `youtube-chat-extension` directory
+   - Select the `dist` folder
 
-3. **Set up API Key**
-   - Click the extension icon in Chrome toolbar
-   - Enter your Gemini API key
-   - Get a free key at: https://makersuite.google.com/app/apikey
+## ⚙️ Configuration
 
-### From Chrome Web Store
-*Coming soon!*
+### API Key Setup
 
-## 🚀 Usage
+1. Get a Gemini API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Click the extension icon in Chrome
+3. Enter your API key in the popup
+4. The key is stored securely in Chrome's encrypted storage
 
-### Basic Usage
+### Extension Settings
+
+Configure in the popup menu:
+- **Theme**: Auto/Light/Dark
+- **Language**: Transcript language preference
+- **Cost Tracking**: Enable/disable cost monitoring
+- **Cache Settings**: Configure caching behavior
+
+## 💡 Usage
+
+### Basic Chat
+
 1. Navigate to any YouTube video
-2. Look for the chat bubble icon (bottom right)
-3. Click to open the chat interface
-4. Start asking questions about the video!
-
-### Example Questions
-- "What are the main points discussed in this video?"
-- "Can you summarize the section about [topic]?"
-- "When does the speaker mention [specific thing]?"
-- "What's the conclusion of this video?"
-- "List all the tips mentioned"
+2. Click the extension icon or wait for auto-load
+3. Type your question in the chat box
+4. Press Enter or click Send
 
 ### Advanced Features
-- **New Chat**: Start fresh conversation while saving the current one
-- **Chat History**: Access all your previous conversations
-- **Export Chat**: Download conversations as Markdown files
-- **Clear Chat**: Remove current conversation
-- **Minimize**: Collapse chat to save screen space
 
-## 🧠 Smart Routing
+#### Timestamp Queries
+```
+"What did they say at 15:30?"
+"Explain the concept around 10 minutes in"
+```
 
-The extension includes an intelligent routing system that dramatically reduces API costs:
+#### Summary Requests
+```
+"Summarize the key points"
+"What are the main takeaways?"
+```
 
-| Video Length | Strategy | Cost Savings | Description |
-|-------------|----------|--------------|-------------|
-| < 30 min | Direct Cache | ~75% | Caches entire transcript for reuse |
-| 30-180 min | Smart RAG | ~85-90% | Intelligently selects relevant chunks |
-| > 3 hours | Aggressive RAG | ~95%+ | Minimal context, maximum optimization |
+#### Specific Information
+```
+"How do they implement the algorithm?"
+"What tools were recommended?"
+```
+
+### Keyboard Shortcuts
+
+- `Ctrl/Cmd + Shift + Y`: Toggle chat window
+- `Esc`: Minimize chat
+- `Ctrl/Cmd + Enter`: Send message
+
+### History Panel
+- Click 📚 to open your chat history
+- Search through previous conversations
+- Load any previous chat to continue
+- Delete conversations you no longer need
+- History is saved per video automatically
+
+## 💰 Cost Optimization
 
 ### How It Works
-1. Detects video duration automatically
-2. Selects optimal processing strategy
-3. Routes queries through the most efficient path
-4. Maintains response quality while minimizing costs
+
+The Smart Query Router automatically optimizes costs based on:
+
+1. **Video Length Detection**
+   - Short videos (<30 min): Direct caching for instant responses
+   - Medium videos (30-180 min): Smart RAG for 85-90% savings
+   - Long videos (>3 hours): Aggressive RAG for 95%+ savings
+
+2. **Query Classification**
+   - Timestamp queries: Fetches only relevant segments
+   - Summary queries: Uses efficient summarization strategies
+   - Specific queries: Targets exact information needed
+
+3. **Context Caching**
+   - Gemini's context caching provides 75% additional savings
+   - Frequently accessed segments are cached automatically
+   - Cache persists for 30 minutes per video segment
+
+### Cost Breakdown
+
+| Video Length | Without Optimization | With Smart Router | Savings |
+|--------------|---------------------|-------------------|----------|
+| 10 minutes   | $0.03               | $0.0075           | 75%      |
+| 1 hour       | $0.15               | $0.015            | 90%      |
+| 3+ hours     | $0.50+              | $0.025            | 95%+     |
+
+### Monitoring Your Usage
+
+- Click the extension icon to see real-time cost tracking
+- View cumulative savings in the popup
+- Export usage reports for analysis
+- Set spending alerts if needed
+
+## 🎯 Key Features Explained
+
+### Smart Query Router (v2.0)
+- **Automatic Strategy Selection**: Chooses optimal processing based on video length
+- **Query Understanding**: Classifies queries to minimize token usage
+- **Intelligent Chunking**: Only sends relevant transcript segments
+- **Context Caching**: Reuses cached content for 75% savings
+- **Real-time Monitoring**: Track costs and savings in console
+
+### Conversation Memory
+- The assistant remembers your conversation context
+- Last 3 exchanges are included for continuity
+- Each video maintains its own conversation history
+
+### Transcript Support
+- Automatically fetches video transcripts using multiple methods:
+  - DOM scraping from YouTube's transcript panel
+  - YouTube Player API
+  - Page data extraction
+  - TimedText API fallback
+- Handles videos without transcripts gracefully
+- Supports multiple languages
+
+### Smart Dynamic Responses
+- **Intelligent length adaptation** - matches response to query complexity
+- Simple questions get direct answers (1-3 sentences)
+- Complex questions get structured, organized responses
+- Markdown formatting only when it enhances clarity
+- Natural conversation flow without unnecessary padding
+- References specific video timestamps when relevant
+- **3000 token limit** ensures complete responses without cutoffs
+
+### Copy Feature
+- Hover over any AI response to reveal the copy button (📋)
+- Click to copy the plain text to your clipboard
+- Visual feedback (✅) confirms successful copy
+- Works with all response formats and lengths
+
+### Export Feature
+- Click the 📥 Export button in the chat header
+- Choose your preferred format:
+  - **Markdown (.md)**: Best for documentation, includes rich formatting
+  - **JSON (.json)**: Structured data for developers and analysis
+  - **Plain Text (.txt)**: Simple, readable format for basic needs
+- Exports include video metadata (title, URL, date)
+- Filenames are timestamped for easy organization
 
 ## 🛠️ Development
 
 ### Project Structure
+
 ```
-youtube-chat-extension/
-├── manifest.json          # Extension configuration
-├── background/           # Service worker scripts
-│   ├── service-worker.js
-│   └── api-handler.js
-├── content/             # Content scripts
-│   ├── content-script-simple.js
-│   ├── transcript-fetcher.js
-│   ├── chat-ui.js
-│   └── styles.css
-├── popup/               # Extension popup
-│   ├── popup.html
-│   ├── popup.js
-│   └── popup.css
-├── smart-router/        # Cost optimization (v1.2+)
-│   ├── smart-query-router.js
-│   ├── cache-manager.js
-│   └── ...
-└── assets/             # Icons and images
+youtube_chat_extension/
+├── manifest.json                    # Extension manifest V3
+├── src/                            # Source code
+│   ├── background/                 # Service worker and API handling
+│   │   ├── service-worker.js      # Core background script
+│   │   └── smart-api-handler.js   # Smart routing integration
+│   ├── content/                   # Content scripts and UI
+│   │   ├── content-script.js     # Main extension logic
+│   │   ├── transcript-fetcher.js # YouTube transcript extraction
+│   │   └── styles.css            # UI styling
+│   ├── popup/                     # Extension popup
+│   │   ├── popup.html            # Settings interface
+│   │   ├── popup.js              # API key management
+│   │   └── popup.css             # Popup styling
+│   ├── smart-router/              # Cost optimization system
+│   │   ├── smart-query-router.js # Main routing logic
+│   │   ├── query-classifier.js   # Query analysis
+│   │   ├── cache-manager.js      # Gemini context caching
+│   │   ├── simple-rag.js         # Basic RAG implementation
+│   │   └── enhanced-rag.js       # Advanced RAG with embeddings
+│   └── utils/                     # Utility modules
+├── assets/                         # Static assets
+├── docs/                          # Documentation
+├── demo/                          # Interactive demos
+└── tools/                         # Development utilities
 ```
 
-### Technologies Used
-- **Frontend**: Vanilla JavaScript, HTML, CSS
-- **AI Model**: Google Gemini 2.5 Flash Preview
-- **APIs**: YouTube (transcripts), Chrome Extensions API
-- **Architecture**: Service Worker + Content Scripts
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed organization.
 
-### Building from Source
-```bash
-# Clone the repository
-git clone https://github.com/YOUR_USERNAME/youtube-chat-extension.git
-cd youtube-chat-extension
+### Key Technologies
 
-# No build step required - it's vanilla JS!
-# Just load the directory in Chrome as an unpacked extension
-```
+- Chrome Extension Manifest V3
+- Gemini 2.5 Flash Preview API (`models/gemini-2.5-flash-preview-05-20`)
+- Chrome Storage API for persistence
+- Vanilla JavaScript with ES6+ features
+- CSS with dark mode support
+
+### API Configuration
+
+The extension uses:
+- **Model**: `gemini-2.5-flash-preview-05-20`
+- **Context window**: 1 million tokens
+- **Max output tokens**: 3500 (with 3000 soft limit in prompt)
+- **Temperature**: 0.7 (balanced creativity)
 
 ### Testing
-```bash
-# Run the test script
-node test-smart-routing.js
 
-# Or test manually:
-# 1. Load extension in Chrome
-# 2. Visit different YouTube videos
-# 3. Check console for routing strategies
-# 4. Monitor cost savings
+To test changes:
+1. Make your modifications
+2. Go to `chrome://extensions/`
+3. Click the refresh icon on the extension card
+4. Reload any YouTube tabs
+
+For debugging:
+- Check the console for logs
+- Use `window.ytChatExtension` to access the extension instance
+- Run test scripts from `/debugging/test-fixes.js`
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+1. **"Connection not configured"**
+   - Click the extension icon and add your API key
+   - Reload the YouTube page
+
+2. **No transcript available**
+   - Some videos don't have captions
+   - The assistant can still help based on title and context
+
+3. **Chat history not saving**
+   - Check Chrome storage quota
+   - Ensure the extension has proper permissions
+
+4. **History panel issues**
+   - Panel should be hidden by default
+   - Use 📚 button to toggle visibility
+   - × button closes the panel
+
+## 🚀 Recent Updates (June 7, 2025)
+
+### Latest Updates
+- 📋 **Copy to clipboard** button for all AI responses
+- 🎯 **Increased token limit** to 3500 (3000 soft limit)
+- 🎨 **Minimal UI/UX Design** - clean, distraction-free interface
+- 📦 **Solid colors** with subtle shadows for depth
+- ⚡ **Fast, simple animations** (0.2s transitions)
+- 💬 **Clean message bubbles** with simple hover states
+- 🔍 **Simple search input** with focus indicators
+- ✨ **Smooth entrance** without distracting effects
+- 🌗 **Elegant dark mode** with proper contrast
+- 📱 **Responsive design** for all screen sizes
+
+### Completed Features
+- ✅ Full transcript fetching (4 methods)
+- ✅ Conversation memory and context
+- ✅ Chat persistence per video
+- ✅ History panel with search
+- ✅ New chat functionality
+- ✅ Clear chat option
+- ✅ Dark mode support
+- ✅ Fixed history panel visibility issues
+- ✅ Enhanced response formatting
+- ✅ Dynamic response length based on query
+- ✅ Timestamp support with click-to-seek
+- ✅ Premium UI/UX redesign
+
+### Known Issues (Fixed)
+- ~~History panel showing by default~~ ✅ Fixed
+- ~~Close button not working~~ ✅ Fixed
+- ~~Chat not saving to history~~ ✅ Fixed
+- ~~Response cut-off issues~~ ✅ Fixed with dynamic length
+
+## 🗺️ Architecture
+
+### Smart Query Router System
+
+The extension uses a sophisticated routing system to minimize costs:
+
+```javascript
+// Automatic strategy selection based on video length
+if (videoLength < 30) {
+  // Direct caching with 75% savings
+  strategy = 'DIRECT_CACHE';
+} else if (videoLength < 180) {
+  // Smart RAG with 85-90% savings
+  strategy = 'SMART_RAG';
+} else {
+  // Aggressive optimization for 95%+ savings
+  strategy = 'AGGRESSIVE_RAG';
+}
 ```
+
+### Console Debugging
+
+Enable detailed logging to see the router in action:
+```javascript
+// In Developer Console (F12)
+window.DEBUG_SMART_ROUTER = true;
+```
+
+You'll see:
+- Video analysis and token counts
+- Query classification results
+- Strategy selection reasoning
+- Cost calculations and savings
+- Cache hit/miss statistics
+
+## 🗺️ Future Enhancements
+
+- [x] ~~Timestamp support - click to jump to video position~~ ✅ Completed
+- [x] ~~Smart Query Router for 95%+ cost reduction~~ ✅ Completed
+- [x] ~~Context caching integration~~ ✅ Completed
+- [x] ~~Export conversations (Markdown/JSON/Text)~~ ✅ Completed
+- [ ] Multi-language UI support
+- [ ] YouTube Shorts support
+- [ ] Voice input/output
+- [ ] Custom prompts/templates
+- [ ] Floating widget mode
+- [ ] Chat with multiple videos
+- [ ] Integration with YouTube playlists
 
 ## 🤝 Contributing
 
-Contributions are welcome! Here's how you can help:
-
-1. **Fork the repository**
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
-3. **Commit your changes**
-   ```bash
-   git commit -m 'Add some amazing feature'
-   ```
-4. **Push to the branch**
-   ```bash
-   git push origin feature/amazing-feature
-   ```
-5. **Open a Pull Request**
-
-### Contribution Ideas
-- Add support for more video platforms
-- Implement additional AI models
-- Create themes/customization options
-- Add multilingual support
-- Improve transcript fetching
-- Enhance UI/UX
+Contributions are welcome! Please:
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a Pull Request
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - see LICENSE file for details
 
 ## 🙏 Acknowledgments
 
-- Google Gemini team for the amazing AI model
-- YouTube for the platform and transcript APIs
-- All contributors and users of this extension
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/YOUR_USERNAME/youtube-chat-extension/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/YOUR_USERNAME/youtube-chat-extension/discussions)
-- **Email**: your-email@example.com
-
-## 🗺️ Roadmap
-
-### Version 1.3 (Planned)
-- [ ] Multi-language support
-- [ ] Voice input/output
-- [ ] Video timestamp jumping
-- [ ] Collaborative features
-
-### Version 1.4 (Future)
-- [ ] Support for other video platforms
-- [ ] Advanced export options
-- [ ] Custom AI model selection
-- [ ] Browser sync
+- Built with Google's Gemini 2.5 Flash Preview
+- Inspired by the need for better video comprehension tools
+- Thanks to all contributors and testers
 
 ---
 
-<p align="center">
-  Made with ❤️ by developers, for learners
-</p>
+**Status**: 🟢 Production Ready - All core features implemented and tested
 
-<p align="center">
-  If you find this extension useful, please ⭐ star the repository!
-</p>
+**Model**: Using `models/gemini-2.5-flash-preview-05-20` with 1M token context

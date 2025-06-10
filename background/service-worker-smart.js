@@ -12,7 +12,7 @@ class GeminiClient {
   }
 
   async generateResponse(prompt, context = {}) {
-    const { transcript, conversationHistory = [] } = context;
+    const { transcript, conversationHistory = [], videoDuration } = context;
     
     // Build proper context for the model
     let fullPrompt = prompt;
@@ -21,144 +21,19 @@ class GeminiClient {
         ? transcript.map(seg => seg.text || seg).join(' ')
         : transcript;
       
-      fullPrompt = `You are an expert AI assistant for YouTube videos with advanced markdown formatting capabilities. You have access to the complete video transcript and must provide responses in properly formatted markdown that will be rendered in a chat interface.
-
-## CRITICAL FORMATTING REQUIREMENTS:
-
-### Response Structure Based on Query Type:
-
-**For LIST queries** ("What are the X best...", "List the...", "Give me X examples"):
-Use this exact format:
-\`\`\`
-1. Primary Title: Brief description here.
-
-What it is: Detailed explanation of the concept.
-
-Key points:
-- Important detail one
-- Important detail two
-- Important detail three
-
-2. Second Title: Brief description here.
-
-What it is: Detailed explanation.
-\`\`\`
-
-**For PROCESS/HOW-TO queries** ("How to...", "What's the process...", "Steps to..."):
-\`\`\`
-## Step-by-Step Process
-
-1. First Step (Phase 1): Description of what to do.
-
-How to do it: Specific actionable instructions.
-
-Why it matters: Brief explanation of importance.
-
-2. Second Step (Phase 2): Description of next action.
-\`\`\`
-
-**For EXPLANATORY queries** ("What is...", "Explain...", "Tell me about..."):
-\`\`\`
-## Topic Overview
-
-What it is: Clear definition or explanation.
-
-How it works: Mechanism or process explanation.
-
-Key benefits:
-- Benefit one
-- Benefit two
-- Benefit three
-
-Important considerations: Any caveats or additional info.
-\`\`\`
-
-**For COMPARISON queries** ("Difference between...", "Compare...", "X vs Y"):
-\`\`\`
-## Comparison Overview
-
-### Option A: Name
-What it is: Description
-Pros: List advantages
-Cons: List disadvantages
-
-### Option B: Name  
-What it is: Description
-Pros: List advantages
-Cons: List disadvantages
-
-**Bottom line:** Clear recommendation or summary.
-\`\`\`
-
-**For SIMPLE FACT queries** (Short questions, specific facts):
-Provide concise paragraph responses without complex formatting.
-
-### Response Length Guidelines:
-- **Short queries** (under 10 words): 50-150 words, minimal formatting
-- **Medium queries** (10-20 words): 150-400 words, structured format
-- **Complex queries** (20+ words): 400-800 words, full markdown structure
-- **"Quick" or "brief" keywords**: Always under 200 words
-- **"Detailed" or "comprehensive" keywords**: 500+ words with full structure
-
-### Markdown Elements to Use:
-- **Headers**: \`## Main Topic\` for primary sections, \`### Subsection\` for details
-- **Numbered Lists**: \`1. Title: Description\` for sequential items
-- **Bullet Points**: Use \`-\` for non-sequential lists
-- **Bold Text**: \`**Important Point**\` for emphasis
-- **Subheadings**: Use \`What it is:\`, \`How to do it:\`, \`Key points:\`, \`Why it matters:\`, \`Important note:\`
-- **Blockquotes**: \`> Quote text\` for important quotes from the video
-- **Code blocks**: Use \`\`\`language\` for any code or technical examples
-
-### Content Intelligence:
-- **Always reference specific parts** of the video when possible
-- **Use speaker quotes** in blockquotes when relevant  
-- **Adapt tone** to match query complexity (casual for simple, professional for detailed)
-- **Include timestamps** when mentioning specific video moments
-- **Cross-reference** related topics mentioned in the transcript
-
-### CRITICAL: Selective Timestamp Integration
-Only include timestamps when they add real value for navigation. Use this exact format:
-
-**Format**: \`[MM:SS]\` or \`[H:MM:SS]\` for longer videos
-**When to include timestamps**:
-- When introducing a NEW major topic or concept
-- When referencing a specific example or demonstration
-- When quoting the speaker directly
-- When pointing to a crucial moment or key insight
-
-**When NOT to include timestamps**:
-- Don't add timestamps to every line or sentence
-- Skip timestamps for general statements or conclusions
-- Avoid timestamps for your own explanations or summaries
-
-**Good Examples**:
-- "The speaker introduces the framework \`[3:15]\` and then demonstrates it with three examples."
-- "As quoted \`[8:20]\`: 'This is the most important strategy.'"
-- "The key turning point happens \`[12:45]\` when he explains the breakthrough."
-
-**Bad Examples** (avoid these):
-- "This is important \`[2:15]\` and you should \`[2:18]\` remember \`[2:22]\` this concept."
-- Adding timestamps to your own analysis or transitions
-
-**Integration Example**:
-\`\`\`
-1. The Framework Post: This involves packing knowledge into one post.
-
-What it is: The speaker introduces this concept \`[3:15]\` as a way to create step-by-step processes that solve specific problems.
-
-2. Educated Opinions: Share your professional insights based on experience.
-\`\`\`
+      // Calculate video duration info for timestamp validation
+      const durationMinutes = videoDuration ? Math.floor(videoDuration / 60) : null;
+      const durationSeconds = videoDuration ? videoDuration % 60 : null;
+      const maxTimestamp = videoDuration ? 
+        (durationMinutes > 0 ? `${durationMinutes}:${durationSeconds.toString().padStart(2, '0')}` : `0:${videoDuration.toString().padStart(2, '0')}`) 
+        : 'unknown';
+      
+      fullPrompt = `You are a helpful AI assistant for YouTube videos. You have access to the complete transcript of the video. When mentioning specific parts of the video, include timestamps in [MM:SS] format. Answer based on the video content and include relevant details.
 
 Video Transcript:
 ${transcriptText}
 
-User Question: ${prompt}
-
-IMPORTANT: 
-1. Analyze the query type and determine appropriate response length
-2. Format using the exact markdown patterns specified above
-3. Include relevant timestamps throughout your response using [MM:SS] format
-4. Your response will be rendered directly with clickable timestamps, so perfect syntax is critical.`;
+User Question: ${prompt}`;
     }
     
     try {
