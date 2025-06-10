@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Chat Assistant",
-  "version": "1.1.0",
-  "description": "Chat with any YouTube video using AI. Powered by Gemini 2.5 Flash Preview with 1M token context.",
+  "name": "YouTube Chat Assistant (Smart Edition)",
+  "version": "1.2.0",
+  "description": "Chat with any YouTube video using AI with 95%+ cost savings. Smart routing powered by Gemini 2.5 Flash Preview.",
   "permissions": [
     "storage",
     "activeTab"
@@ -15,7 +15,7 @@
     "https://*.googlevideo.com/*"
   ],
   "background": {
-    "service_worker": "background/service-worker.js"
+    "service_worker": "background/service-worker-smart.js"
   },
   "content_scripts": [
     {
@@ -23,7 +23,7 @@
         "https://www.youtube.com/*",
         "https://youtube.com/*"
       ],
-      "js": ["content/transcript-fetcher.js", "content/content-script-simple.js"],
+      "js": ["content/transcript-fetcher.js", "content/content-script-smart.js"],
       "css": ["content/styles.css"],
       "run_at": "document_idle"
     }
