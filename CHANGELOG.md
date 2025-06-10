@@ -40,3 +40,10 @@
 - Created AI response formatting guide for better output
 - Headers now work with or without "(Step X)" suffix
 - Improved flexibility for various AI response formats
+
+## 2025-01-10: Enhanced Gemini prompt for better formatting
+- Added formatting instructions to Gemini prompt
+- Encourages numbered lists with colons (1. Title: Description)
+- Requests subheadings like "What it is:", "How to do it:"
+- Promotes use of bold text and structured responses
+- Should improve consistency of AI response formatting
