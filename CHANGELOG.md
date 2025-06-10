@@ -1,5 +1,15 @@
 # Changelog
 
+## 2025-06-10: Optimized Gemini Flash for Better LinkedIn Posts
+- Updated prompting philosophy from rigid rules to flexible guidelines
+- Increased temperature from 0.9 to 1.0 for more creative output
+- Expanded vocabulary with topK: 50 (from 40) for richer language
+- Simplified templates to be inspirational examples rather than strict structures
+- Enhanced insight extraction to focus on viral-worthy content
+- Improved prompting to avoid literal point listing
+- Added specific content handlers for different topics (AI design, coding patterns)
+- Emphasized storytelling and reader engagement over information dumping
+
 ## 2025-06-10: LinkedIn Repurposing Feature Fixes
 - Fixed timestamp removal: Added cleanTimestamps method to remove [MM:SS] patterns from transcripts
 - Fixed content cutoff: Changed display method to use textContent instead of innerHTML to avoid truncation

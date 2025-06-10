@@ -439,6 +439,58 @@ Write something you'd actually stop scrolling to read:`;
     let coreMessage = mainInsight || '';
     
     // Check for specific content patterns and create targeted LinkedIn posts
+    if (coreMessage.includes('Runner H') || (coreMessage.includes('browser agent') && coreMessage.includes('web'))) {
+      // This is about browser automation agents
+      const hooks = [
+        `AI agents can now browse the web like humans.\n\nThis changes everything.\n\n`,
+        `What if your AI assistant could actually USE websites for you?\n\nIt's no longer "what if."\n\n`,
+        `The internet was built for humans, not AI.\n\nUntil now.\n\n`,
+        `Forget APIs. Forget integrations.\n\nAI can now click, scroll, and browse like you do.\n\n`,
+        `Just saw an AI agent book a flight by itself.\n\nNo API. No code. Just... browsing.\n\n`,
+        `"Computer use agents" sound like sci-fi.\n\nThey're here, and they're free.\n\n`,
+        `The barrier between AI and the web just disappeared.\n\nHere's what that means:\n\n`,
+        `Your AI can now do anything you can do online.\n\nLet that sink in.\n\n`
+      ];
+      
+      draft = hooks[(generationAttempt - 1) % hooks.length];
+      
+      // Build the narrative
+      draft += `Runner H (currently in beta and FREE) is doing something revolutionary:\n\n`;
+      draft += `Instead of waiting for companies to build APIs, it just... uses websites.\n\n`;
+      
+      const capabilities = [
+        `→ Screenshots websites like a human would see them\n→ Clicks buttons, fills forms, navigates pages\n→ No coding required - just tell it what to do`,
+        `→ Browses ANY website - no API needed\n→ Handles dynamic content and complex interactions\n→ Works with sites that were "human-only" until now`,
+        `→ Powered by visual AI that "sees" websites\n→ Simulates real user actions\n→ Breaks through the API bottleneck`
+      ];
+      
+      draft += capabilities[(generationAttempt - 1) % capabilities.length] + '\n\n';
+      
+      const implications = [
+        `Think about what this unlocks:\n\nEvery website becomes programmable. Every online task becomes automatable.\n\n`,
+        `The implications are staggering:\n\nAnything you can do online, AI can now do for you.\n\n`,
+        `This isn't just automation.\n\nIt's democratizing access to the entire web.\n\n`,
+        `We just went from "AI needs special access" to "AI can use anything."\n\n`
+      ];
+      
+      draft += implications[(generationAttempt - 1) % implications.length];
+      
+      const ctas = [
+        `What repetitive web task would you automate first?`,
+        `Which "impossible" automation just became possible for you?`,
+        `How many hours could this save you per week?`,
+        `What website do you wish had an API? (Doesn't matter anymore)`
+      ];
+      
+      draft += ctas[(generationAttempt - 1) % ctas.length];
+      
+      if (personalStory && personalStory.includes('Source:')) {
+        draft += `\n\n${personalStory}`;
+      }
+      
+      return draft;
+    }
+    
     if (coreMessage.includes('Brett') && coreMessage.includes('Designjoy') && coreMessage.includes('AI')) {
       // This is about AI design tools - create an engaging post
       const hooks = [
@@ -631,7 +683,11 @@ Write something you'd actually stop scrolling to read:`;
       `This completely changed my perspective...\n\n`,
       `I need to talk about what I just learned...\n\n`,
       `Can we discuss this for a second?\n\n`,
-      `This insight hit different...\n\n`
+      `This insight hit different...\n\n`,
+      `Plot twist: Everything you know about ${mainInsight?.split(' ').slice(0, 5).join(' ')}... might be wrong.\n\n`,
+      `I wasn't ready for this revelation...\n\n`,
+      `Sometimes a single insight changes everything.\n\n`,
+      `This is why I love the internet.\n\n`
     ];
     
     // Select hook based on template and generation attempt
@@ -641,15 +697,19 @@ Write something you'd actually stop scrolling to read:`;
     
     // Add the main insight in a conversational way with variation
     if (mainInsight && mainInsight.length > 20) {
+      // Extract the core concept to build a story around
+      let storyAngle = mainInsight;
+      
+      // Don't just state the insight - create intrigue around it
       const insightIntros = [
-        `Here's what struck me: ${mainInsight}\n\n`,
-        `The key insight: ${mainInsight}\n\n`,
-        `What caught my attention: ${mainInsight}\n\n`,
-        `The real game-changer: ${mainInsight}\n\n`,
-        `This is what matters: ${mainInsight}\n\n`,
-        `The breakthrough moment: ${mainInsight}\n\n`,
-        `Here's the thing: ${mainInsight}\n\n`,
-        `What I realized: ${mainInsight}\n\n`
+        `Here's what struck me: ${storyAngle}\n\nBut it's bigger than that.\n\n`,
+        `${storyAngle}\n\nSit with that for a second.\n\n`,
+        `Everyone's talking about the tech.\n\nBut they're missing this: ${storyAngle}\n\n`,
+        `${storyAngle}\n\nAnd no, this isn't hype.\n\n`,
+        `I had to reread this three times:\n\n"${storyAngle}"\n\n`,
+        `${storyAngle}\n\nHere's why that matters:\n\n`,
+        `Forget what you think you know.\n\n${storyAngle}\n\n`,
+        `${storyAngle}\n\nThe implications? Staggering.\n\n`
       ];
       const insightIndex = (generationAttempt - 1) % insightIntros.length;
       draft += insightIntros[insightIndex];
@@ -659,33 +719,50 @@ Write something you'd actually stop scrolling to read:`;
     if (supportingPoints && supportingPoints.length > 0) {
       const validPoints = supportingPoints.filter(p => p && p.length > 10);
       if (validPoints.length > 0) {
-        const pointIntros = [
-          `Key takeaways:\n\n`,
-          `What I learned:\n\n`,
-          `The breakdown:\n\n`,
-          `Here's what matters:\n\n`,
-          `Let me break this down:\n\n`,
-          `The important bits:\n\n`,
-          `Main points:\n\n`,
-          `What stood out:\n\n`
-        ];
-        const pointIntroIndex = (generationAttempt - 1) % pointIntros.length;
-        draft += pointIntros[pointIntroIndex];
-        
-        validPoints.slice(0, 5).forEach((point) => {
-          // Clean up each point - remove any remaining asterisks or formatting issues
-          let cleanPoint = point.trim()
-            .replace(/\*+/g, '') // Remove any asterisks
-            .replace(/^[:\-\s]+/, '') // Remove leading colons, dashes, spaces
-            .replace(/\s+/g, ' ') // Normalize spaces
-            .trim();
-          
-          // Only add if point is meaningful
-          if (cleanPoint.length > 20) {
-            draft += `→ ${cleanPoint}\n`;
+        // Different ways to present insights based on content
+        const presentationStyles = [
+          // Style 1: Narrative flow
+          () => {
+            let narrative = `Think about it:\n\n`;
+            validPoints.slice(0, 3).forEach((point, index) => {
+              const cleaned = point.replace(/[*:]/g, '').trim();
+              if (index === 0) narrative += `First, ${cleaned.toLowerCase()}\n\n`;
+              else if (index === 1) narrative += `Then, ${cleaned.toLowerCase()}\n\n`;
+              else narrative += `Finally, ${cleaned.toLowerCase()}\n\n`;
+            });
+            return narrative;
+          },
+          // Style 2: Clean bullets
+          () => {
+            let bullets = `Here's what's actually happening:\n\n`;
+            validPoints.slice(0, 4).forEach(point => {
+              const cleaned = point.replace(/[*:]/g, '').trim();
+              bullets += `→ ${cleaned}\n`;
+            });
+            return bullets + '\n';
+          },
+          // Style 3: Question format
+          () => {
+            let questions = `Ask yourself:\n\n`;
+            validPoints.slice(0, 3).forEach(point => {
+              const cleaned = point.replace(/[*:]/g, '').trim();
+              questions += `What if ${cleaned.toLowerCase()}?\n\n`;
+            });
+            return questions;
+          },
+          // Style 4: Realization format
+          () => {
+            let realizations = `The pieces fell into place:\n\n`;
+            validPoints.slice(0, 3).forEach((point, index) => {
+              const cleaned = point.replace(/[*:]/g, '').trim();
+              realizations += `${index + 1}. ${cleaned}\n\n`;
+            });
+            return realizations;
           }
-        });
-        draft += '\n';
+        ];
+        
+        const styleIndex = (generationAttempt - 1) % presentationStyles.length;
+        draft += presentationStyles[styleIndex]();
       }
     }
     
