@@ -395,7 +395,14 @@ class SmartYouTubeChatExtension {
     
     // Add click handler
     bubble.addEventListener('click', () => {
-      if (this.chatUI.style.display === 'none') {
+      console.log('[Smart] Chat bubble clicked');
+      if (!this.chatUI) {
+        console.log('[Smart] Chat UI not found, creating it');
+        this.createChatUI();
+      }
+      
+      // Toggle visibility
+      if (this.chatUI.style.display === 'none' || !this.chatUI.style.display) {
         this.showChat();
       } else {
         this.hideChat();
@@ -433,15 +440,17 @@ class SmartYouTubeChatExtension {
   hideChat() {
     if (this.chatUI) {
       this.chatUI.style.display = 'none';
+      this.chatUI.classList.remove('visible');
     }
   }
 
   showChat() {
     if (this.chatUI) {
       this.chatUI.style.display = 'block';
+      this.chatUI.classList.add('visible');
       const input = this.chatUI.querySelector('.chat-input');
       if (input && !input.disabled) {
-        input.focus();
+        setTimeout(() => input.focus(), 100); // Small delay for animation
       }
     }
   }
