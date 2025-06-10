@@ -80,7 +80,20 @@ Use `console.log()` to debug
 [[Ctrl+S]] keyboard shortcut
 ```
 
-### 8. Horizontal Rules
+### 8. Subheadings/Labels
+
+```markdown
+What it is: Description text
+How to do it: Step-by-step guide
+When to use: Timing information
+Why it matters: Explanation
+Where to apply: Location details
+Who benefits: Target audience
+```
+
+These patterns are automatically styled as subheadings with blue color and proper spacing.
+
+### 9. Horizontal Rules
 
 ```markdown
 ---
@@ -105,7 +118,8 @@ const features = {
   highlighting: true,    // Set to false to disable text highlighting
   keyboardShortcuts: true, // Set to false to disable keyboard shortcuts
   bold: true,            // Set to false to disable bold text
-  lineBreaks: true       // Set to false to disable line breaks
+  lineBreaks: true,      // Set to false to disable line breaks
+  subheadings: true      // Set to false to disable subheading patterns
 };
 ```
 

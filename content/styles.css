@@ -386,12 +386,20 @@
 .markdown-h5 { font-size: 1em; }
 .markdown-h6 { font-size: 0.95em; opacity: 0.9; }
 
+/* Subheadings/Labels */
+.markdown-subheading {
+  font-weight: 600;
+  color: var(--accent-blue-dark);
+  margin: 0.6em 0 0.2em 0;
+  font-size: 1.05em;
+}
+
 /* Ordered lists with gradient badges */
 .markdown-ol {
   counter-reset: item;
   list-style: none;
   padding-left: 0;
-  margin: 0.5em 0;
+  margin: 0.3em 0;
 }
 
 .markdown-ol li {
@@ -399,9 +407,10 @@
   display: flex;
   align-items: flex-start;
   gap: 0.5em;
-  margin: 0.4em 0;
+  margin: 0.2em 0;
   position: relative;
   padding-left: 2em;
+  line-height: 1.4;
 }
 
 .markdown-ol li::before {
@@ -430,16 +439,17 @@
 .markdown-ul {
   list-style: none;
   padding-left: 0;
-  margin: 0.5em 0;
+  margin: 0.3em 0;
 }
 
 .markdown-ul li {
   display: flex;
   align-items: flex-start;
   gap: 0.5em;
-  margin: 0.4em 0;
+  margin: 0.2em 0;
   position: relative;
   padding-left: 1.5em;
+  line-height: 1.4;
 }
 
 .markdown-ul li::before {

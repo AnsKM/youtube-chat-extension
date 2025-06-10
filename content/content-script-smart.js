@@ -430,7 +430,8 @@ class SmartYouTubeChatExtension {
       highlighting: true,
       keyboardShortcuts: true,
       bold: true,
-      lineBreaks: true
+      lineBreaks: true,
+      subheadings: true
     };
 
     // Escape HTML to prevent XSS
@@ -478,6 +479,12 @@ class SmartYouTubeChatExtension {
       });
     }
 
+    // Subheadings/Labels (e.g., "What it is:", "How to do:", etc.)
+    if (features.subheadings) {
+      content = content.replace(/^(What .+:|How .+:|When .+:|Why .+:|Where .+:|Who .+:)(.*)$/gmi, 
+        '<div class="markdown-subheading">$1</div>$2');
+    }
+
     // Horizontal rules
     if (features.horizontalRules) {
       content = content.replace(/^---+$/gm, '<hr class="markdown-hr">');
@@ -494,31 +501,88 @@ class SmartYouTubeChatExtension {
       });
     }
 
-    // Ordered lists
+    // Ordered lists - improved to handle multi-line items
     if (features.lists) {
-      content = content.replace(/^(\d+)\.\s+(.+)$/gm, (match, num, text) => {
-        return `<li class="markdown-ol-item" data-number="${num}">${text}</li>`;
-      });
+      // First, identify all numbered list items and their content
+      let listItems = [];
+      let inList = false;
+      let currentItem = '';
+      let currentNum = '';
       
-      // Wrap consecutive ol items
-      content = content.replace(/(<li class="markdown-ol-item"[\s\S]*?<\/li>\n?)+/g, (match) => {
-        return `<ol class="markdown-ol">${match}</ol>`;
-      });
+      const lines = content.split('<br>');
+      const processedLines = [];
+      
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        const numberedMatch = line.match(/^(\d+)\.\s+(.+)$/);
+        
+        if (numberedMatch) {
+          // Start of a numbered item
+          if (currentItem) {
+            listItems.push({ num: currentNum, content: currentItem.trim() });
+          }
+          currentNum = numberedMatch[1];
+          currentItem = numberedMatch[2];
+          inList = true;
+        } else if (inList && line.trim() && !line.match(/^[\*\-•]\s+/) && !line.match(/^(What .+:|How .+:|When .+:|Why .+:|Where .+:|Who .+:)/i)) {
+          // Continuation of current list item
+          currentItem += ' ' + line.trim();
+        } else {
+          // Not part of list
+          if (currentItem) {
+            listItems.push({ num: currentNum, content: currentItem.trim() });
+            currentItem = '';
+            currentNum = '';
+          }
+          
+          if (listItems.length > 0) {
+            // Output accumulated list
+            processedLines.push('<ol class="markdown-ol">');
+            listItems.forEach(item => {
+              processedLines.push(`<li class="markdown-ol-item" data-number="${item.num}">${item.content}</li>`);
+            });
+            processedLines.push('</ol>');
+            listItems = [];
+            inList = false;
+          }
+          
+          processedLines.push(line);
+        }
+      }
+      
+      // Handle any remaining list items
+      if (currentItem) {
+        listItems.push({ num: currentNum, content: currentItem.trim() });
+      }
+      if (listItems.length > 0) {
+        processedLines.push('<ol class="markdown-ol">');
+        listItems.forEach(item => {
+          processedLines.push(`<li class="markdown-ol-item" data-number="${item.num}">${item.content}</li>`);
+        });
+        processedLines.push('</ol>');
+      }
+      
+      content = processedLines.join('<br>');
     }
 
-    // Unordered lists
+    // Unordered lists - skip items that are subheadings
     if (features.lists) {
-      content = content.replace(/^[\*\-]\s+(.+)$/gm, (match, text) => {
+      content = content.replace(/^[\*\-•]\s+(.+)$/gm, (match, text) => {
         // Skip task list items
         if (text.startsWith('[') && (text.startsWith('[ ]') || text.startsWith('[x]'))) {
+          return match;
+        }
+        // Skip subheading patterns
+        if (text.match(/^(What .+:|How .+:|When .+:|Why .+:|Where .+:|Who .+:)/i)) {
           return match;
         }
         return `<li class="markdown-ul-item">${text}</li>`;
       });
       
       // Wrap consecutive ul items
-      content = content.replace(/(<li class="markdown-ul-item"[\s\S]*?<\/li>\n?)+/g, (match) => {
-        return `<ul class="markdown-ul">${match}</ul>`;
+      content = content.replace(/(<li class="markdown-ul-item">[\s\S]*?<\/li>(<br>)?)+/g, (match) => {
+        const items = match.replace(/<br>/g, '');
+        return `<ul class="markdown-ul">${items}</ul>`;
       });
     }
 
@@ -527,7 +591,7 @@ class SmartYouTubeChatExtension {
       content = content.replace(/^>\s+(.+)$/gm, '<blockquote class="markdown-blockquote">$1</blockquote>');
       
       // Merge consecutive blockquotes
-      content = content.replace(/(<blockquote class="markdown-blockquote">[\s\S]*?<\/blockquote>\n?)+/g, (match) => {
+      content = content.replace(/(<blockquote class="markdown-blockquote">[\s\S]*?<\/blockquote>(<br>)?)+/g, (match) => {
         const quotes = match.match(/>([^<]+)</g).map(q => q.slice(1, -1)).join('<br>');
         return `<blockquote class="markdown-blockquote">${quotes}</blockquote>`;
       });
@@ -550,9 +614,15 @@ class SmartYouTubeChatExtension {
       content = content.replace(/\[\[([^\]]+)\]\]/g, '<kbd class="markdown-kbd">$1</kbd>');
     }
 
-    // Bold text
+    // Bold text - but not for subheadings
     if (features.bold) {
-      content = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      content = content.replace(/\*\*([^*]+)\*\*/g, (match, text) => {
+        // Don't bold subheadings
+        if (text.match(/^(What .+:|How .+:|When .+:|Why .+:|Where .+:|Who .+:)/i)) {
+          return match;
+        }
+        return `<strong>${text}</strong>`;
+      });
     }
 
     // Restore code blocks and inline code
@@ -563,18 +633,9 @@ class SmartYouTubeChatExtension {
       content = content.replace(inlinePlaceholder, code);
     });
 
-    // Line breaks
-    if (features.lineBreaks) {
-      content = content.replace(/\n/g, '<br>');
-    }
-
-    // Clean up any orphaned list items
-    content = content.replace(/<li class="markdown-[ou]l-item"[^>]*>[\s\S]*?<\/li>/g, (match) => {
-      if (!match.includes('<ol') && !match.includes('<ul')) {
-        return match;
-      }
-      return '';
-    });
+    // Clean up excessive line breaks
+    content = content.replace(/(<br>){3,}/g, '<br><br>');
+    content = content.replace(/(<\/[^>]+>)<br>(<[^>]+>)/g, '$1$2');
 
     return content;
   }
