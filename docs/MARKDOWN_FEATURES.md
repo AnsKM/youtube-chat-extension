@@ -21,7 +21,16 @@ Use `#` symbols to create headers:
 ###### Header 6
 ```
 
-### 2. Lists
+### 2. Section Headers (Numbered with Steps)
+
+```markdown
+1. Find a Core Insight (Step 1)
+2. Create the Content (Step 2)
+```
+
+These patterns are automatically styled as section headers with increased spacing and blue color.
+
+### 3. Lists
 
 #### Ordered Lists
 ```markdown
@@ -37,7 +46,7 @@ Use `#` symbols to create headers:
 - Alternative bullet syntax
 ```
 
-### 3. Code
+### 4. Code
 
 #### Code Blocks
 ````markdown
@@ -52,27 +61,27 @@ console.log(greeting);
 Use `console.log()` to debug
 ```
 
-### 4. Task Lists
+### 5. Task Lists
 
 ```markdown
 - [ ] Unchecked task
 - [x] Completed task
 ```
 
-### 5. Blockquotes
+### 6. Blockquotes
 
 ```markdown
 > This is a blockquote with a blue gradient border
 > It can span multiple lines
 ```
 
-### 6. Links
+### 7. Links
 
 ```markdown
 [Visit Google](https://google.com)
 ```
 
-### 7. Text Formatting
+### 8. Text Formatting
 
 ```markdown
 **Bold text**
@@ -80,7 +89,7 @@ Use `console.log()` to debug
 [[Ctrl+S]] keyboard shortcut
 ```
 
-### 8. Subheadings/Labels
+### 9. Subheadings/Labels
 
 ```markdown
 What it is: Description text
@@ -89,11 +98,14 @@ When to use: Timing information
 Why it matters: Explanation
 Where to apply: Location details
 Who benefits: Target audience
+Key Rule: Important principle
+Hard Truth: Reality check
+Importance: Why this matters
 ```
 
 These patterns are automatically styled as subheadings with blue color and proper spacing.
 
-### 9. Horizontal Rules
+### 10. Horizontal Rules
 
 ```markdown
 ---

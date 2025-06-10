@@ -479,9 +479,16 @@ class SmartYouTubeChatExtension {
       });
     }
 
+    // Numbered section headers (e.g., "1. Find a Core Insight (Step 1)")
+    if (features.headers) {
+      content = content.replace(/^(\d+)\.\s+(.+?)\s*\(Step\s+\d+\)\s*$/gmi, (match, num, title) => {
+        return `<h3 class="markdown-section-header">${num}. ${title}</h3>`;
+      });
+    }
+
     // Subheadings/Labels (e.g., "What it is:", "How to do:", etc.)
     if (features.subheadings) {
-      content = content.replace(/^(What .+:|How .+:|When .+:|Why .+:|Where .+:|Who .+:)(.*)$/gmi, 
+      content = content.replace(/^(What .+:|How .+:|When .+:|Why .+:|Where .+:|Who .+:|Key Rule:|Hard Truth:|Importance:|Three Roles .+:|Advice .+:|Ending:|Why:|Types .+:|Pro Tip:|Bonus .+:)(.*)$/gmi, 
         '<div class="markdown-subheading">$1</div>$2');
     }
 
@@ -516,8 +523,8 @@ class SmartYouTubeChatExtension {
         const line = lines[i];
         const numberedMatch = line.match(/^(\d+)\.\s+(.+)$/);
         
-        if (numberedMatch) {
-          // Start of a numbered item
+        if (numberedMatch && !line.match(/\(Step\s+\d+\)\s*$/)) {
+          // Start of a numbered item (but not section headers)
           if (currentItem) {
             listItems.push({ num: currentNum, content: currentItem.trim() });
           }

@@ -386,6 +386,20 @@
 .markdown-h5 { font-size: 1em; }
 .markdown-h6 { font-size: 0.95em; opacity: 0.9; }
 
+/* Section Headers (numbered with Step) */
+.markdown-section-header {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 1.5em 0 0.6em 0;
+  color: var(--accent-blue-dark);
+  padding-top: 0.5em;
+}
+
+/* First section header - less top margin */
+.markdown-section-header:first-child {
+  margin-top: 0.5em;
+}
+
 /* Subheadings/Labels */
 .markdown-subheading {
   font-weight: 600;

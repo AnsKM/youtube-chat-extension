@@ -11,3 +11,11 @@
 - Reduced excessive spacing between list items for better readability
 - All features use configurable blue color scheme with smooth animations
 - Created comprehensive documentation in docs/MARKDOWN_FEATURES.md
+
+## 2025-01-10: Added section headers and improved spacing
+- Added pattern recognition for numbered headers with (Step X) format
+- Created markdown-section-header CSS class with proper spacing
+- Section headers now have 1.5em top margin for clear separation
+- Expanded subheading patterns to include Key Rule, Hard Truth, Importance, etc.
+- Fixed numbered list parsing to exclude section headers
+- Updated documentation with new features
