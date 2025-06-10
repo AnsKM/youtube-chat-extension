@@ -1,1 +1,0 @@
-# Meta Ad Scrapers Module
