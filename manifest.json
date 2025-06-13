@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "YouTube Chat Assistant (Smart Edition)",
   "version": "1.2.0",
-  "description": "Chat with any YouTube video using AI with 95%+ cost savings. Smart routing powered by Gemini 2.5 Flash Preview.",
+  "description": "Chat with any YouTube video using AI. Choose between Gemini 2.5 Flash or DeepSeek R1 (free via OpenRouter).",
   "permissions": [
     "storage",
     "activeTab"
@@ -12,10 +12,11 @@
     "https://youtube.com/*",
     "https://generativelanguage.googleapis.com/*",
     "https://*.googleapis.com/*",
-    "https://*.googlevideo.com/*"
+    "https://*.googlevideo.com/*",
+    "https://openrouter.ai/*"
   ],
   "background": {
-    "service_worker": "background/service-worker-smart.js"
+    "service_worker": "background/service-worker.js"
   },
   "content_scripts": [
     {

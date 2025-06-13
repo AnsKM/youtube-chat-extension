@@ -5,13 +5,24 @@
 
 document.addEventListener('DOMContentLoaded', async () => {
   // Element references
-  const apiKeyInput = document.getElementById('apiKey');
-  const saveApiKeyBtn = document.getElementById('saveApiKey');
+  const modelSelect = document.getElementById('modelSelect');
+  const geminiApiKeyInput = document.getElementById('geminiApiKey');
+  const openrouterApiKeyInput = document.getElementById('openrouterApiKey');
+  const saveGeminiKeyBtn = document.getElementById('saveGeminiKey');
+  const saveOpenrouterKeyBtn = document.getElementById('saveOpenrouterKey');
   const connectionStatus = document.getElementById('connectionStatus');
   const languageSelect = document.getElementById('language');
   const themeSelect = document.getElementById('theme');
   const clearAllBtn = document.getElementById('clearAllChats');
   const exportAllBtn = document.getElementById('exportAllChats');
+  const modelDescription = document.getElementById('modelDescription');
+  const apiKeyHelp = document.getElementById('apiKeyHelp');
+  const apiKeyLink = document.getElementById('apiKeyLink');
+  const geminiKeyGroup = document.getElementById('geminiKeyGroup');
+  const openrouterKeyGroup = document.getElementById('openrouterKeyGroup');
+  const poweredBy = document.getElementById('poweredBy');
+  const currentModel = document.getElementById('currentModel');
+  const contextWindow = document.getElementById('contextWindow');
 
   // Load current settings
   await loadSettings();
@@ -20,7 +31,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   await updateUIBasedOnContext();
 
   // Event listeners
-  saveApiKeyBtn.addEventListener('click', saveApiKey);
+  modelSelect.addEventListener('change', handleModelChange);
+  saveGeminiKeyBtn.addEventListener('click', () => saveApiKey('gemini'));
+  saveOpenrouterKeyBtn.addEventListener('click', () => saveApiKey('openrouter'));
   languageSelect.addEventListener('change', saveSettings);
   themeSelect.addEventListener('change', saveSettings);
   clearAllBtn.addEventListener('click', clearAllChats);
@@ -29,7 +42,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Load settings from storage
   async function loadSettings() {
     const result = await chrome.storage.sync.get(['settings']);
-    const localResult = await chrome.storage.local.get(['apiKey']);
+    const localResult = await chrome.storage.local.get(['geminiApiKey', 'openrouterApiKey', 'selectedModel']);
     
     const settings = result.settings || {
       language: 'en',
@@ -40,17 +53,67 @@ document.addEventListener('DOMContentLoaded', async () => {
     languageSelect.value = settings.language;
     themeSelect.value = settings.theme;
     
-    // Check if API key exists
-    if (localResult.apiKey) {
-      apiKeyInput.value = '••••••••••••••••••••••••';
-      checkConnection(localResult.apiKey);
+    // Set selected model
+    const selectedModel = localResult.selectedModel || 'gemini';
+    modelSelect.value = selectedModel;
+    handleModelChange();
+    
+    // Check if API keys exist
+    if (selectedModel === 'gemini' && localResult.geminiApiKey) {
+      geminiApiKeyInput.value = '••••••••••••••••••••••••';
+      checkConnection(localResult.geminiApiKey, 'gemini');
+    } else if (selectedModel === 'deepseek' && localResult.openrouterApiKey) {
+      openrouterApiKeyInput.value = '••••••••••••••••••••••••';
+      checkConnection(localResult.openrouterApiKey, 'openrouter');
     } else {
       updateConnectionStatus('not-configured', 'Not configured');
     }
   }
 
+  // Handle model selection change
+  async function handleModelChange() {
+    const selectedModel = modelSelect.value;
+    
+    // Update UI based on selected model
+    if (selectedModel === 'gemini') {
+      geminiKeyGroup.style.display = 'block';
+      openrouterKeyGroup.style.display = 'none';
+      modelDescription.textContent = 'Fast and efficient model from Google';
+      apiKeyHelp.innerHTML = 'Get your API key from <a href="https://makersuite.google.com/app/apikey" target="_blank" id="apiKeyLink">Google AI Studio</a>';
+      poweredBy.textContent = 'Powered by Gemini 2.5 Flash';
+      currentModel.textContent = 'Gemini 2.5 Flash';
+      contextWindow.textContent = '1 Million Tokens';
+    } else if (selectedModel === 'deepseek') {
+      geminiKeyGroup.style.display = 'none';
+      openrouterKeyGroup.style.display = 'block';
+      modelDescription.textContent = 'Advanced reasoning model - Free via OpenRouter';
+      apiKeyHelp.innerHTML = 'Get your API key from <a href="https://openrouter.ai/keys" target="_blank" id="apiKeyLink">OpenRouter</a>';
+      poweredBy.textContent = 'Powered by DeepSeek R1';
+      currentModel.textContent = 'DeepSeek R1';
+      contextWindow.textContent = '64K Tokens';
+    }
+    
+    // Save selected model
+    await chrome.storage.local.set({ selectedModel });
+    
+    // Update connection status based on existing API key
+    const localResult = await chrome.storage.local.get(['geminiApiKey', 'openrouterApiKey']);
+    if (selectedModel === 'gemini' && localResult.geminiApiKey) {
+      checkConnection(localResult.geminiApiKey, 'gemini');
+    } else if (selectedModel === 'deepseek' && localResult.openrouterApiKey) {
+      checkConnection(localResult.openrouterApiKey, 'openrouter');
+    } else {
+      updateConnectionStatus('not-configured', 'Not configured');
+    }
+    
+    // Update chat control visibility
+    await updateUIBasedOnContext();
+  }
+
   // Save API key
-  async function saveApiKey() {
+  async function saveApiKey(type) {
+    const apiKeyInput = type === 'gemini' ? geminiApiKeyInput : openrouterApiKeyInput;
+    const saveBtn = type === 'gemini' ? saveGeminiKeyBtn : saveOpenrouterKeyBtn;
     const apiKey = apiKeyInput.value.trim();
     
     // Don't save if it's the placeholder
@@ -59,21 +122,24 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
     
-    saveApiKeyBtn.disabled = true;
-    saveApiKeyBtn.textContent = 'Saving...';
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Saving...';
     
     try {
       // Test the API key first
-      const isValid = await testApiKey(apiKey);
+      const isValid = await testApiKey(apiKey, type);
       
       if (isValid) {
         // Save to storage
-        await chrome.storage.local.set({ apiKey });
+        const storageKey = type === 'gemini' ? 'geminiApiKey' : 'openrouterApiKey';
+        await chrome.storage.local.set({ [storageKey]: apiKey });
         
-        // Initialize Gemini client in background
+        // Initialize AI client in background
         await chrome.runtime.sendMessage({
-          action: 'initializeGemini',
-          apiKey: apiKey
+          action: 'initializeAI',
+          apiKey: apiKey,
+          type: type,
+          model: type === 'gemini' ? 'gemini-2.5-flash-preview-05-20' : 'deepseek/deepseek-r1-0528:free'
         });
         
         showMessage('API key saved successfully!', 'success');
@@ -88,52 +154,90 @@ document.addEventListener('DOMContentLoaded', async () => {
       showMessage(`Error: ${error.message}`, 'error');
       updateConnectionStatus('error', 'Invalid key');
     } finally {
-      saveApiKeyBtn.disabled = false;
-      saveApiKeyBtn.textContent = 'Save';
+      saveBtn.disabled = false;
+      saveBtn.textContent = 'Save';
     }
   }
 
   // Test API key validity
-  async function testApiKey(apiKey) {
+  async function testApiKey(apiKey, type) {
     try {
-      // First, let's try to list available models to test the key
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
+      if (type === 'gemini') {
+        // Test Gemini API key
+        const response = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`,
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            }
           }
+        );
+        
+        if (!response.ok) {
+          console.error('API test response:', response.status, response.statusText);
+          return false;
         }
-      );
-      
-      if (!response.ok) {
-        console.error('API test response:', response.status, response.statusText);
-        return false;
+        
+        // If that works, try a simple generation
+        const genResponse = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              contents: [{
+                role: 'user',
+                parts: [{ text: 'Hi' }]
+              }],
+              generationConfig: {
+                temperature: 0.1,
+                maxOutputTokens: 10
+              }
+            })
+          }
+        );
+        
+        return genResponse.ok;
+      } else if (type === 'openrouter') {
+        // Test OpenRouter API key
+        const response = await fetch(
+          'https://openrouter.ai/api/v1/chat/completions',
+          {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${apiKey}`,
+              'Content-Type': 'application/json',
+              'HTTP-Referer': 'chrome-extension://youtube-chat-assistant',
+              'X-Title': 'YouTube Chat Assistant'
+            },
+            body: JSON.stringify({
+              model: 'deepseek/deepseek-r1-0528:free',
+              messages: [{
+                role: 'user',
+                content: 'Hi'
+              }],
+              max_tokens: 10,
+              temperature: 0.1
+            })
+          }
+        );
+        
+        if (!response.ok) {
+          const error = await response.json();
+          console.error('OpenRouter API test response:', error);
+          if (error.error?.message) {
+            showMessage(`OpenRouter error: ${error.error.message}`, 'error');
+          }
+          return false;
+        }
+        
+        return true;
       }
       
-      // If that works, try a simple generation
-      const genResponse = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            contents: [{
-              role: 'user',
-              parts: [{ text: 'Hi' }]
-            }],
-            generationConfig: {
-              temperature: 0.1,
-              maxOutputTokens: 10
-            }
-          })
-        }
-      );
-      
-      return genResponse.ok;
+      return false;
     } catch (error) {
       console.error('API test error:', error);
       // Show more detailed error
@@ -145,10 +249,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Check connection status
-  async function checkConnection(apiKey) {
+  async function checkConnection(apiKey, type) {
     updateConnectionStatus('checking', 'Checking...');
     
-    const isValid = await testApiKey(apiKey);
+    const isValid = await testApiKey(apiKey, type);
     if (isValid) {
       updateConnectionStatus('connected', 'Connected');
     } else {
@@ -265,8 +369,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
       const isYouTube = tab?.url?.includes('youtube.com/watch');
-      const localResult = await chrome.storage.local.get(['apiKey']);
-      const hasApiKey = !!localResult.apiKey;
+      const localResult = await chrome.storage.local.get(['geminiApiKey', 'openrouterApiKey', 'selectedModel']);
+      const selectedModel = localResult.selectedModel || 'gemini';
+      const hasApiKey = (selectedModel === 'gemini' && !!localResult.geminiApiKey) || 
+                       (selectedModel === 'deepseek' && !!localResult.openrouterApiKey);
       
       const chatControlSection = document.getElementById('chatControlSection');
       const openChatBtn = document.getElementById('openChat');
@@ -280,10 +386,14 @@ document.addEventListener('DOMContentLoaded', async () => {
           openChatBtn.setAttribute('data-listener-added', 'true');
         }
       } else if (!hasApiKey && isYouTube) {
-        // Show helpful message in API section
-        const helpText = document.querySelector('.help-text');
-        if (helpText) {
-          helpText.innerHTML = 'Get your API key from <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a> to start chatting!';
+        // Show helpful message based on selected model
+        const apiKeyHelp = document.getElementById('apiKeyHelp');
+        if (apiKeyHelp) {
+          if (selectedModel === 'gemini') {
+            apiKeyHelp.innerHTML = 'Get your API key from <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a> to start chatting!';
+          } else {
+            apiKeyHelp.innerHTML = 'Get your API key from <a href="https://openrouter.ai/keys" target="_blank">OpenRouter</a> to start chatting!';
+          }
         }
       }
     } catch (error) {

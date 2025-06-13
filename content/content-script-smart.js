@@ -292,6 +292,19 @@ class SmartYouTubeChatExtension {
       // Fetch transcript
       this.transcript = await this.transcriptFetcher.fetchTranscript(videoId);
       
+      // Debug logging for fetched transcript
+      console.log('[ChatUI] Transcript fetched:', {
+        hasTranscript: !!this.transcript,
+        transcriptType: this.transcript ? typeof this.transcript : 'undefined',
+        transcriptKeys: this.transcript ? Object.keys(this.transcript) : [],
+        fullTextLength: this.transcript?.fullText?.length || 0,
+        segmentsCount: this.transcript?.segments?.length || 0,
+        hasFullText: !!this.transcript?.fullText,
+        hasSegments: !!this.transcript?.segments,
+        firstSegment: this.transcript?.segments?.[0],
+        transcriptSample: this.transcript?.fullText?.substring(0, 100) || 'No transcript text'
+      });
+      
       // Initialize smart routing if we have duration
       if (this.videoDuration) {
         const initResult = await chrome.runtime.sendMessage({
@@ -315,25 +328,42 @@ class SmartYouTubeChatExtension {
       const durationStr = this.videoDuration ? 
         `${durationMinutes}:${durationSeconds.toString().padStart(2, '0')}` : 'unknown';
       
-      let welcomeMessage = this.transcript 
-        ? `Transcript loaded! I can now answer questions about this video.`
-        : `I'm ready to help! (Note: Transcript not available for this video)`;
-      
-      welcomeMessage += `\n\n📺 **Video Duration**: ${durationStr}`;
-      
-      // Add timestamp availability info
-      const validTimestamps = this.getValidTimestampsFromTranscript();
-      if (validTimestamps.length > 0) {
-        welcomeMessage += `\n⏱️ **Available Timestamps**: ${validTimestamps.length} precise time references`;
+      // Check if transcript is properly loaded
+      if (!this.transcript || (!this.transcript.fullText && !this.transcript.segments)) {
+        console.warn('[ChatUI] No transcript available for this video');
+        let errorMessage = `⚠️ Transcript not available for this video.\n\nPossible reasons:\n`;
+        errorMessage += `• The video doesn't have captions/subtitles\n`;
+        errorMessage += `• The transcript is still loading\n`;
+        errorMessage += `• There was an error fetching the transcript\n\n`;
+        errorMessage += `I can still try to help based on general knowledge, but I won't have specific information about this video's content.`;
+        
+        this.addMessage('assistant', errorMessage);
       } else {
-        welcomeMessage += `\n⏱️ **Timestamps**: Smart validation enabled - invalid timestamps will be replaced with descriptive text`;
+        let welcomeMessage = `✅ Transcript loaded successfully! I can now answer questions about this video.`;
+        
+        // Add transcript stats
+        const transcriptLength = this.transcript.fullText?.length || 0;
+        const segmentCount = this.transcript.segments?.length || 0;
+        welcomeMessage += `\n\n📊 **Transcript Stats**:`;
+        welcomeMessage += `\n• ${transcriptLength.toLocaleString()} characters`;
+        welcomeMessage += `\n• ${segmentCount} segments`;
+        
+        welcomeMessage += `\n\n📺 **Video Duration**: ${durationStr}`;
+        
+        // Add timestamp availability info
+        const validTimestamps = this.getValidTimestampsFromTranscript();
+        if (validTimestamps.length > 0) {
+          welcomeMessage += `\n⏱️ **Available Timestamps**: ${validTimestamps.length} precise time references`;
+        } else {
+          welcomeMessage += `\n⏱️ **Timestamps**: Smart validation enabled`;
+        }
+        
+        if (this.smartRoutingStrategy) {
+          welcomeMessage += `\n\n🚀 Smart routing enabled: ${this.smartRoutingStrategy.strategy} strategy (${this.smartRoutingStrategy.expectedSavings} cost savings)`;
+        }
+        
+        this.addMessage('assistant', welcomeMessage);
       }
-      
-      if (this.smartRoutingStrategy) {
-        welcomeMessage += `\n\n🚀 Smart routing enabled: ${this.smartRoutingStrategy.strategy} strategy (${this.smartRoutingStrategy.expectedSavings} cost savings)`;
-      }
-      
-      this.addMessage('assistant', welcomeMessage);
       
       // Enable input and ensure proper state
       this.resetUIState();
@@ -350,7 +380,18 @@ class SmartYouTubeChatExtension {
       
     } catch (error) {
       console.error('[Smart] Error loading video:', error);
-      this.addMessage('system', 'Error loading video data. Please refresh and try again.');
+      console.error('[Smart] Error details:', {
+        message: error.message,
+        stack: error.stack,
+        transcriptStatus: this.transcript ? 'partially loaded' : 'not loaded'
+      });
+      
+      let errorMessage = 'Error loading video data: ' + error.message;
+      if (!this.transcript) {
+        errorMessage += '\n\nThe transcript could not be loaded. You can still chat, but I won\'t have specific information about this video.';
+      }
+      
+      this.addMessage('system', errorMessage);
       // Ensure UI is still usable even after errors
       this.resetUIState();
     }
@@ -402,6 +443,17 @@ class SmartYouTubeChatExtension {
       
       // Show typing indicator
       this.addMessage('assistant', '...thinking...', true);
+      
+      // Debug logging for transcript
+      console.log('[ChatUI] Sending message with context:', {
+        hasTranscript: !!this.transcript,
+        transcriptType: this.transcript ? typeof this.transcript : 'undefined',
+        transcriptKeys: this.transcript ? Object.keys(this.transcript) : [],
+        transcriptFullTextLength: this.transcript?.fullText?.length || 0,
+        transcriptSegmentsCount: this.transcript?.segments?.length || 0,
+        conversationHistoryLength: this.conversationHistory.length,
+        videoDuration: this.videoDuration
+      });
       
       // Generate response with retry logic
       const response = await this.generateResponseWithRetry({

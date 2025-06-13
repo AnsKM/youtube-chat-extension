@@ -10,26 +10,53 @@
   <div class="popup-container">
     <header>
       <h1>YouTube Chat Assistant</h1>
-      <p class="subtitle">Powered by Gemini 2.5 Flash Preview</p>
+      <p class="subtitle" id="poweredBy">Powered by Gemini 2.5 Flash</p>
     </header>
 
     <main>
+      <!-- Model Selection Section -->
+      <section class="settings-section">
+        <h2>AI Model</h2>
+        <div class="input-group">
+          <label for="modelSelect">Select Model</label>
+          <select id="modelSelect">
+            <option value="gemini">Gemini 2.5 Flash</option>
+            <option value="deepseek">DeepSeek R1 (Free)</option>
+          </select>
+        </div>
+        <p class="help-text" id="modelDescription">
+          Fast and efficient model from Google
+        </p>
+      </section>
+
       <!-- API Key Section -->
       <section class="settings-section">
         <h2>API Configuration</h2>
-        <div class="input-group">
-          <label for="apiKey">Gemini API Key</label>
+        <!-- Gemini API Key -->
+        <div class="input-group" id="geminiKeyGroup">
+          <label for="geminiApiKey">Gemini API Key</label>
           <input 
             type="password" 
-            id="apiKey" 
-            placeholder="Enter your API key"
+            id="geminiApiKey" 
+            placeholder="Enter your Gemini API key"
             autocomplete="off"
           />
-          <button id="saveApiKey" class="btn btn-primary">Save</button>
+          <button id="saveGeminiKey" class="btn btn-primary">Save</button>
         </div>
-        <p class="help-text">
+        <!-- OpenRouter API Key -->
+        <div class="input-group" id="openrouterKeyGroup" style="display: none;">
+          <label for="openrouterApiKey">OpenRouter API Key</label>
+          <input 
+            type="password" 
+            id="openrouterApiKey" 
+            placeholder="Enter your OpenRouter API key"
+            autocomplete="off"
+          />
+          <button id="saveOpenrouterKey" class="btn btn-primary">Save</button>
+        </div>
+        <p class="help-text" id="apiKeyHelp">
           Get your API key from 
-          <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a>
+          <a href="https://makersuite.google.com/app/apikey" target="_blank" id="apiKeyLink">Google AI Studio</a>
         </p>
       </section>
 
@@ -49,11 +76,11 @@
         </div>
         <div class="status-item">
           <span class="status-label">Model:</span>
-          <span class="status-value">Gemini 2.5 Flash Preview</span>
+          <span class="status-value" id="currentModel">Gemini 2.5 Flash</span>
         </div>
         <div class="status-item">
           <span class="status-label">Context Window:</span>
-          <span class="status-value">1 Million Tokens</span>
+          <span class="status-value" id="contextWindow">1 Million Tokens</span>
         </div>
       </section>
 

@@ -1,80 +1,65 @@
 /**
- * API Handlers for YouTube Chat Extension
- * Manages communication with multiple AI providers
+ * OpenRouter API Client
+ * Manages communication with OpenRouter API for DeepSeek R1 and other models
  */
 
-// Import OpenRouterClient
-import { OpenRouterClient } from './openrouter-client.js';
-
-export { OpenRouterClient };
-
-export class GeminiClient {
-  constructor(apiKey, modelName = 'models/gemini-2.5-flash-preview-05-20') {
+export class OpenRouterClient {
+  constructor(apiKey, modelName = 'deepseek/deepseek-r1-0528:free') {
     this.apiKey = apiKey;
     this.modelName = modelName;
-    this.baseUrl = 'https://generativelanguage.googleapis.com/v1beta';
+    this.baseUrl = 'https://openrouter.ai/api/v1';
     this.conversationHistory = [];
   }
 
   async generateResponse(prompt, context = {}) {
     const { transcript, conversationHistory = [] } = context;
     
-    // Build the conversation context
+    // Build the conversation messages
     const messages = this.buildMessages(prompt, transcript, conversationHistory);
     
     try {
       const response = await fetch(
-        `${this.baseUrl}/${this.modelName}:generateContent?key=${this.apiKey}`,
+        `${this.baseUrl}/chat/completions`,
         {
           method: 'POST',
           headers: {
+            'Authorization': `Bearer ${this.apiKey}`,
             'Content-Type': 'application/json',
+            'HTTP-Referer': 'chrome-extension://youtube-chat-assistant',
+            'X-Title': 'YouTube Chat Assistant'
           },
           body: JSON.stringify({
-            contents: messages,
-            generationConfig: {
-              temperature: 0.7,
-              topK: 40,
-              topP: 0.95,
-              maxOutputTokens: 2048,
-            },
-            safetySettings: [
-              {
-                category: 'HARM_CATEGORY_HARASSMENT',
-                threshold: 'BLOCK_NONE'
-              },
-              {
-                category: 'HARM_CATEGORY_HATE_SPEECH',
-                threshold: 'BLOCK_NONE'
-              },
-              {
-                category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
-                threshold: 'BLOCK_NONE'
-              },
-              {
-                category: 'HARM_CATEGORY_DANGEROUS_CONTENT',
-                threshold: 'BLOCK_NONE'
-              }
-            ]
+            model: this.modelName,
+            messages: messages,
+            temperature: 0.7,
+            max_tokens: 4096,
+            top_p: 0.95,
+            stream: false
           })
         }
       );
 
       if (!response.ok) {
         const error = await response.json();
-        throw new Error(error.error?.message || 'API request failed');
+        throw new Error(error.error?.message || `API request failed: ${response.status}`);
       }
 
       const data = await response.json();
       
-      if (data.candidates && data.candidates[0]) {
-        const content = data.candidates[0].content.parts[0].text;
+      if (data.choices && data.choices[0] && data.choices[0].message) {
+        let content = data.choices[0].message.content;
+        
+        // Handle DeepSeek R1's special reasoning format
+        if (this.modelName.includes('deepseek-r1')) {
+          content = this.parseDeepSeekResponse(content);
+        }
+        
         return content;
       }
       
       throw new Error('No response generated');
     } catch (error) {
-      console.error('Gemini API error:', error);
+      console.error('OpenRouter API error:', error);
       throw error;
     }
   }
@@ -82,28 +67,17 @@ export class GeminiClient {
   buildMessages(prompt, transcript, conversationHistory) {
     const messages = [];
     
-    // System context with transcript
+    // System message with transcript context
     if (transcript && transcript.length > 0) {
       const transcriptText = this.formatTranscript(transcript);
-      const systemMessage = {
-        role: 'user',
-        parts: [{
-          text: `You are a helpful AI assistant for YouTube videos. You have access to the complete transcript of the video and can answer questions about its content. Be concise but thorough in your responses.
+      messages.push({
+        role: 'system',
+        content: `You are a helpful AI assistant for YouTube videos. You have access to the complete transcript of the video and can answer questions about its content. Be concise but thorough in your responses.
 
 Video Transcript:
 ${transcriptText}
 
-Important: You have access to the COMPLETE transcript thanks to Gemini 2.5's 1 million token context window. You can discuss any part of the video, no matter how long it is.`
-        }]
-      };
-      messages.push(systemMessage);
-      
-      // Add a model acknowledgment
-      messages.push({
-        role: 'model',
-        parts: [{
-          text: 'I understand. I have access to the complete video transcript and can help you with any questions about its content.'
-        }]
+Important: You have access to the COMPLETE transcript. You can discuss any part of the video in detail.`
       });
     }
     
@@ -112,8 +86,8 @@ Important: You have access to the COMPLETE transcript thanks to Gemini 2.5's 1 m
       const recentHistory = conversationHistory.slice(-10);
       for (const msg of recentHistory) {
         messages.push({
-          role: msg.role === 'user' ? 'user' : 'model',
-          parts: [{ text: msg.content }]
+          role: msg.role,
+          content: msg.content
         });
       }
     }
@@ -121,7 +95,7 @@ Important: You have access to the COMPLETE transcript thanks to Gemini 2.5's 1 m
     // Add current user prompt
     messages.push({
       role: 'user',
-      parts: [{ text: prompt }]
+      content: prompt
     });
     
     return messages;
@@ -141,6 +115,23 @@ Important: You have access to the COMPLETE transcript thanks to Gemini 2.5's 1 m
     }
     // If transcript is already a string
     return transcript;
+  }
+
+  // Parse DeepSeek R1's response format which may include reasoning tags
+  parseDeepSeekResponse(content) {
+    // DeepSeek R1 may include <think> tags for reasoning
+    // Extract the final answer outside of think tags
+    const thinkRegex = /<think>([\s\S]*?)<\/think>/g;
+    
+    // Remove think tags to get the final response
+    let finalResponse = content.replace(thinkRegex, '').trim();
+    
+    // If the entire response was in think tags, return the original content
+    if (!finalResponse) {
+      return content;
+    }
+    
+    return finalResponse;
   }
 
   // Estimate token count (rough approximation)
@@ -164,8 +155,8 @@ Important: You have access to the COMPLETE transcript thanks to Gemini 2.5's 1 m
       totalTokens += this.estimateTokenCount(msg.content);
     }
     
-    // 1 million token context window for Gemini 2.5 Flash Preview
-    const maxTokens = 1000000;
+    // DeepSeek R1 has a large context window
+    const maxTokens = 64000; // Conservative estimate for DeepSeek R1
     const safetyMargin = 0.9; // Use 90% of max to be safe
     
     return {

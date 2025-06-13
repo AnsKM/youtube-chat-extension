@@ -1,5 +1,25 @@
 # Changelog
 
+## 2025-01-13: Fixed Transcript Context Not Being Passed to AI Models
+- Fixed critical bug where video transcript was not being included in AI context
+- Updated GeminiClient to build enhanced prompts with transcript data
+- Updated OpenRouterClient to properly include transcript in message context
+- Added formatTranscript method to handle various transcript formats
+- Added debug logging to track transcript passing through the system
+- Both Gemini and DeepSeek models now receive full video transcript for accurate responses
+
+## 2025-01-13: Added DeepSeek R1 Integration via OpenRouter
+- Added model selection dropdown in popup to choose between Gemini 2.5 Flash and DeepSeek R1
+- Integrated OpenRouter API to enable free access to DeepSeek R1 during promotion
+- Created OpenRouterClient class with support for DeepSeek's reasoning format
+- Updated popup UI to show/hide appropriate API key fields based on selected model
+- Modified service worker to support multiple AI providers
+- Updated storage schema to handle dual API keys (geminiApiKey, openrouterApiKey)
+- Added selectedModel preference to remember user's choice
+- Updated manifest.json to include OpenRouter in host permissions
+- Dynamic UI updates: model description, context window info, and API key help links
+- Maintained all existing functionality while adding multi-model support
+
 ## 2025-01-13: Added Copy-to-Clipboard Button for AI Responses
 - Added copy button at bottom-right corner of assistant messages
 - Button appears on hover with subtle opacity transition

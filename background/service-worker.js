@@ -4,7 +4,138 @@
  */
 
 // Since Chrome extensions don't support ES6 modules in service workers,
-// we'll include the GeminiClient inline or load it differently
+// we'll include the AI clients inline
+
+// OpenRouter Client for DeepSeek R1 and other models
+class OpenRouterClient {
+  constructor(apiKey, modelName = 'deepseek/deepseek-r1-0528:free') {
+    this.apiKey = apiKey;
+    this.modelName = modelName;
+    this.baseUrl = 'https://openrouter.ai/api/v1';
+  }
+
+  async generateResponse(prompt, context = {}) {
+    try {
+      // Build messages array with transcript context
+      const messages = this.buildMessages(prompt, context);
+      
+      const response = await fetch(
+        `${this.baseUrl}/chat/completions`,
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${this.apiKey}`,
+            'Content-Type': 'application/json',
+            'HTTP-Referer': 'chrome-extension://youtube-chat-assistant',
+            'X-Title': 'YouTube Chat Assistant'
+          },
+          body: JSON.stringify({
+            model: this.modelName,
+            messages: messages,
+            temperature: 0.7,
+            max_tokens: 4096,
+            top_p: 0.95
+          })
+        }
+      );
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error?.message || `API request failed: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
+      if (data.choices && data.choices[0] && data.choices[0].message) {
+        let content = data.choices[0].message.content;
+        
+        // Handle DeepSeek R1's special reasoning format
+        if (this.modelName.includes('deepseek-r1')) {
+          content = this.parseDeepSeekResponse(content);
+        }
+        
+        return content;
+      }
+      
+      throw new Error('No response generated');
+    } catch (error) {
+      console.error('OpenRouter API error:', error);
+      throw error;
+    }
+  }
+
+  parseDeepSeekResponse(content) {
+    // DeepSeek R1 may include <think> tags for reasoning
+    const thinkRegex = /<think>([\s\S]*?)<\/think>/g;
+    
+    // Remove think tags to get the final response
+    let finalResponse = content.replace(thinkRegex, '').trim();
+    
+    // If the entire response was in think tags, return the original content
+    if (!finalResponse) {
+      return content;
+    }
+    
+    return finalResponse;
+  }
+
+  buildMessages(prompt, context) {
+    const messages = [];
+    
+    // Add system message with transcript if available
+    if (context.transcript) {
+      const transcriptText = this.formatTranscript(context.transcript);
+      if (transcriptText) {
+        messages.push({
+          role: 'system',
+          content: `You are a helpful AI assistant for YouTube videos. You have access to the complete transcript of the video and can answer questions about its content. Be concise but thorough in your responses.
+
+Video Transcript:
+${transcriptText}
+
+Important: You have access to the COMPLETE transcript. You can discuss any part of the video in detail.`
+        });
+      }
+    }
+    
+    // Add conversation history if available
+    if (context.conversationHistory && context.conversationHistory.length > 0) {
+      for (const msg of context.conversationHistory) {
+        messages.push({
+          role: msg.role === 'user' ? 'user' : 'assistant',
+          content: msg.content
+        });
+      }
+    }
+    
+    // Add current user prompt
+    messages.push({
+      role: 'user',
+      content: prompt
+    });
+    
+    return messages;
+  }
+
+  formatTranscript(transcript) {
+    if (!transcript) return '';
+    
+    // Handle different transcript formats
+    if (transcript.fullText) {
+      return transcript.fullText;
+    } else if (transcript.segments && Array.isArray(transcript.segments)) {
+      return transcript.segments.map(seg => seg.text || seg).join(' ');
+    } else if (typeof transcript === 'string') {
+      return transcript;
+    } else if (Array.isArray(transcript)) {
+      return transcript.map(seg => seg.text || seg).join(' ');
+    }
+    
+    return '';
+  }
+}
+
+// Gemini Client
 class GeminiClient {
   constructor(apiKey, modelName = 'gemini-2.5-flash-preview-05-20') {
     this.apiKey = apiKey;
@@ -14,6 +145,9 @@ class GeminiClient {
 
   async generateResponse(prompt, context = {}) {
     try {
+      // Build enhanced prompt with transcript context
+      const enhancedPrompt = this.buildEnhancedPrompt(prompt, context);
+      
       const response = await fetch(
         `${this.baseUrl}/models/${this.modelName}:generateContent?key=${this.apiKey}`,
         {
@@ -24,7 +158,7 @@ class GeminiClient {
           body: JSON.stringify({
             contents: [{
               parts: [{
-                text: prompt
+                text: enhancedPrompt
               }]
             }],
             generationConfig: {
@@ -71,10 +205,78 @@ class GeminiClient {
       throw error;
     }
   }
+
+  buildEnhancedPrompt(prompt, context) {
+    let enhancedPrompt = '';
+    
+    // Debug logging
+    console.log('[GeminiClient] Building enhanced prompt with context:', {
+      hasTranscript: !!context.transcript,
+      transcriptKeys: context.transcript ? Object.keys(context.transcript) : [],
+      hasFullText: !!(context.transcript?.fullText),
+      hasSegments: !!(context.transcript?.segments)
+    });
+    
+    // Add transcript context if available
+    if (context.transcript) {
+      const transcriptText = this.formatTranscript(context.transcript);
+      console.log('[GeminiClient] Formatted transcript length:', transcriptText.length);
+      
+      if (transcriptText) {
+        enhancedPrompt = `You are a helpful AI assistant for YouTube videos. You have access to the complete transcript of the video and can answer questions about its content. Be concise but thorough in your responses.
+
+Video Transcript:
+${transcriptText}
+
+Important: You have access to the COMPLETE transcript thanks to Gemini's large context window. You can discuss any part of the video in detail.
+
+`;
+      }
+    }
+    
+    // Add conversation history if available
+    if (context.conversationHistory && context.conversationHistory.length > 0) {
+      enhancedPrompt += 'Previous conversation:\n';
+      for (const msg of context.conversationHistory) {
+        const role = msg.role === 'user' ? 'User' : 'Assistant';
+        enhancedPrompt += `${role}: ${msg.content}\n\n`;
+      }
+      enhancedPrompt += '\n';
+    }
+    
+    // Add the current prompt
+    enhancedPrompt += `Current question: ${prompt}`;
+    
+    // If no transcript was available, just return the prompt
+    if (!context.transcript) {
+      return prompt;
+    }
+    
+    return enhancedPrompt;
+  }
+
+  formatTranscript(transcript) {
+    if (!transcript) return '';
+    
+    // Handle different transcript formats
+    if (transcript.fullText) {
+      return transcript.fullText;
+    } else if (transcript.segments && Array.isArray(transcript.segments)) {
+      return transcript.segments.map(seg => seg.text || seg).join(' ');
+    } else if (typeof transcript === 'string') {
+      return transcript;
+    } else if (Array.isArray(transcript)) {
+      return transcript.map(seg => seg.text || seg).join(' ');
+    }
+    
+    return '';
+  }
 }
 
-// Initialize Gemini client
+// Initialize AI clients
 let geminiClient = null;
+let openrouterClient = null;
+let currentAIProvider = 'gemini';
 
 // Initialize extension on install
 chrome.runtime.onInstalled.addListener(() => {
@@ -104,7 +306,20 @@ async function handleMessage(request, sender, sendResponse) {
         sendResponse({ success: true });
         break;
         
+      case 'initializeAI':
+        await initializeAIClient(request.apiKey, request.type, request.model);
+        sendResponse({ success: true });
+        break;
+        
       case 'generateResponse':
+        console.log('[Service Worker] Received generateResponse request:', {
+          hasPrompt: !!request.prompt,
+          promptLength: request.prompt?.length || 0,
+          hasContext: !!request.context,
+          contextKeys: request.context ? Object.keys(request.context) : [],
+          hasTranscript: !!request.context?.transcript,
+          transcriptType: request.context?.transcript ? typeof request.context.transcript : 'undefined'
+        });
         const response = await generateAIResponse(request.prompt, request.context);
         sendResponse({ success: true, response });
         break;
@@ -136,8 +351,10 @@ async function handleMessage(request, sender, sendResponse) {
         break;
         
       case 'checkApiKey':
-        const { apiKey } = await chrome.storage.local.get('apiKey');
-        sendResponse({ success: true, hasApiKey: !!apiKey });
+        const { geminiApiKey, openrouterApiKey, selectedModel } = await chrome.storage.local.get(['geminiApiKey', 'openrouterApiKey', 'selectedModel']);
+        const model = selectedModel || 'gemini';
+        const hasApiKey = (model === 'gemini' && !!geminiApiKey) || (model === 'deepseek' && !!openrouterApiKey);
+        sendResponse({ success: true, hasApiKey, selectedModel: model });
         break;
         
       default:
@@ -158,26 +375,77 @@ async function initializeGeminiClient(apiKey) {
   await chrome.storage.local.set({ apiKey: apiKey });
 }
 
+async function initializeAIClient(apiKey, type, model) {
+  if (!apiKey) {
+    throw new Error('API key is required');
+  }
+  
+  if (type === 'gemini') {
+    geminiClient = new GeminiClient(apiKey, model);
+    currentAIProvider = 'gemini';
+    await chrome.storage.local.set({ geminiApiKey: apiKey, selectedModel: 'gemini' });
+  } else if (type === 'openrouter') {
+    openrouterClient = new OpenRouterClient(apiKey, model);
+    currentAIProvider = 'deepseek';
+    await chrome.storage.local.set({ openrouterApiKey: apiKey, selectedModel: 'deepseek' });
+  }
+}
+
 async function generateAIResponse(prompt, context) {
   try {
-    if (!geminiClient) {
-      // Try to load API key from storage
-      const { apiKey } = await chrome.storage.local.get('apiKey');
-      if (!apiKey) {
-        throw new Error('Please set your Gemini API key in the extension settings');
+    // Debug logging
+    console.log('[Service Worker] Generating AI response with context:', {
+      hasTranscript: !!context?.transcript,
+      transcriptType: context?.transcript ? typeof context.transcript : 'none',
+      transcriptKeys: context?.transcript ? Object.keys(context.transcript) : [],
+      transcriptFullTextLength: context?.transcript?.fullText?.length || 0,
+      transcriptSegmentsCount: context?.transcript?.segments?.length || 0,
+      hasConversationHistory: !!context?.conversationHistory,
+      historyLength: context?.conversationHistory?.length || 0,
+      videoDuration: context?.videoDuration
+    });
+    
+    // Load current model selection and API keys if clients not initialized
+    const { selectedModel, geminiApiKey, openrouterApiKey } = await chrome.storage.local.get(['selectedModel', 'geminiApiKey', 'openrouterApiKey']);
+    currentAIProvider = selectedModel || 'gemini';
+    
+    if (currentAIProvider === 'gemini') {
+      if (!geminiClient) {
+        if (!geminiApiKey) {
+          throw new Error('Please set your Gemini API key in the extension settings');
+        }
+        geminiClient = new GeminiClient(geminiApiKey);
       }
-      geminiClient = new GeminiClient(apiKey);
+      
+      const response = await geminiClient.generateResponse(prompt, context);
+      
+      // Ensure response is valid
+      if (!response || typeof response !== 'string') {
+        console.error('Invalid response from Gemini:', response);
+        throw new Error('Received invalid response from AI');
+      }
+      
+      return response;
+    } else if (currentAIProvider === 'deepseek') {
+      if (!openrouterClient) {
+        if (!openrouterApiKey) {
+          throw new Error('Please set your OpenRouter API key in the extension settings');
+        }
+        openrouterClient = new OpenRouterClient(openrouterApiKey);
+      }
+      
+      const response = await openrouterClient.generateResponse(prompt, context);
+      
+      // Ensure response is valid
+      if (!response || typeof response !== 'string') {
+        console.error('Invalid response from OpenRouter:', response);
+        throw new Error('Received invalid response from AI');
+      }
+      
+      return response;
+    } else {
+      throw new Error('Invalid AI provider selected');
     }
-    
-    const response = await geminiClient.generateResponse(prompt, context);
-    
-    // Ensure response is valid
-    if (!response || typeof response !== 'string') {
-      console.error('Invalid response from Gemini:', response);
-      throw new Error('Received invalid response from AI');
-    }
-    
-    return response;
   } catch (error) {
     console.error('Error generating AI response:', error);
     throw error;
