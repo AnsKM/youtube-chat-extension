@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Chat Extension - Chat with Any YouTube Video in Seconds</title>
+    <meta name="description" content="Turn 3-hour videos into 3-minute conversations. Ask questions, get summaries, jump to any moment - powered by Gemini AI's 1M token context.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/icon128.png">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-logo">
+                    <img src="assets/icon128.png" alt="Logo" class="logo-icon">
+                    <span class="logo-text">YouTube Chat</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How it Works</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <div class="nav-cta">
+                    <a href="https://chrome.google.com/webstore" class="btn btn-primary">Add to Chrome - Free</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-icon">🎉</span>
+                    <span>Launch Special - 73% Off Lifetime Deal</span>
+                </div>
+                <h1 class="hero-title">
+                    Chat with Any YouTube Video <span class="gradient-text">in Seconds</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Ask questions, get summaries, jump to any moment - powered by your choice of AI: 
+                    Gemini 2.5 Flash or DeepSeek R1 (free!). Transform hours of video content into instant knowledge.
+                </p>
+                <div class="hero-cta">
+                    <a href="https://chrome.google.com/webstore" class="btn btn-large btn-primary">
+                        <img src="assets/chrome-icon.svg" alt="Chrome" class="btn-icon">
+                        Add to Chrome - It's Free
+                    </a>
+                    <div class="hero-stats">
+                        <div class="stat">⭐⭐⭐⭐⭐ 4.9 rating</div>
+                        <div class="stat">10,000+ active users</div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="browser-mockup">
+                        <div class="browser-bar">
+                            <div class="browser-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="browser-url">youtube.com/watch?v=dQw4w9WgXcQ</div>
+                        </div>
+                        <div class="browser-content">
+                            <img src="assets/hero-demo.gif" alt="YouTube Chat Extension Demo" class="hero-demo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2 class="section-title">We've All Been There...</h2>
+            <div class="pain-points">
+                <div class="pain-point">
+                    <div class="pain-icon">😩</div>
+                    <h3>Endless Scrubbing</h3>
+                    <p>Searching through a 3-hour podcast to find that one golden nugget</p>
+                </div>
+                <div class="pain-point">
+                    <div class="pain-icon">📚</div>
+                    <h3>Lost Notes</h3>
+                    <p>Taking notes from videos but never finding them when you need them</p>
+                </div>
+                <div class="pain-point">
+                    <div class="pain-icon">⏰</div>
+                    <h3>Time Wasted</h3>
+                    <p>Rewatching entire tutorials because you forgot one crucial step</p>
+                </div>
+                <div class="pain-point">
+                    <div class="pain-icon">🤯</div>
+                    <h3>Info Overload</h3>
+                    <p>Information overload from binge-watching educational content</p>
+                </div>
+            </div>
+            <div class="problem-bridge">
+                <h3>What if you could just <span class="gradient-text">ASK</span> the video?</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Models Section -->
+    <section class="models">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Choose Your AI Model</h2>
+                <p class="section-subtitle">Pick the perfect AI assistant for your needs</p>
+            </div>
+            <div class="models-grid">
+                <div class="model-card">
+                    <div class="model-icon">⚡</div>
+                    <h3>Gemini 2.5 Flash</h3>
+                    <p class="model-provider">by Google</p>
+                    <ul class="model-features">
+                        <li>1 Million token context window</li>
+                        <li>Lightning fast responses</li>
+                        <li>Smart cost optimization</li>
+                        <li>Perfect for long videos</li>
+                    </ul>
+                    <p class="model-note">Requires Google AI Studio API key</p>
+                </div>
+                <div class="model-card featured">
+                    <div class="free-badge">FREE</div>
+                    <div class="model-icon">🧠</div>
+                    <h3>DeepSeek R1 Distilled</h3>
+                    <p class="model-provider">via OpenRouter</p>
+                    <ul class="model-features">
+                        <li>64K token context window</li>
+                        <li>Advanced reasoning</li>
+                        <li>Completely free (limited time)</li>
+                        <li>Great for complex questions</li>
+                    </ul>
+                    <p class="model-note">Requires OpenRouter API key</p>
+                </div>
+            </div>
+            <p class="models-note">Switch between models anytime in the extension settings</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Meet Your YouTube Learning Assistant</h2>
+                <p class="section-subtitle">Everything you need to learn faster and remember more</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Answers</h3>
+                    <p>Ask any question about the video and get accurate, contextual responses in seconds</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Smart Timestamps</h3>
+                    <p>Every answer includes clickable timestamps - jump to the exact moment instantly</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Never Lose Insights</h3>
+                    <p>Save conversations, export summaries, build your personal video knowledge base</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Deep Search</h3>
+                    <p>Find any concept, search across transcript, like Ctrl+F for videos but smarter</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💭</div>
+                    <h3>Context Aware</h3>
+                    <p>Understands video fully, references specific parts, maintains conversation flow</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacy First</h3>
+                    <p>Data stays in your browser, no video uploads, your chats under your control</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases">
+        <div class="container">
+            <h2 class="section-title">Built for How You Actually Use YouTube</h2>
+            <div class="use-cases-grid">
+                <div class="use-case">
+                    <div class="use-case-header">
+                        <div class="user-avatar">🎓</div>
+                        <div>
+                            <h4>Student Sarah</h4>
+                            <p class="user-role">Medical Student</p>
+                        </div>
+                    </div>
+                    <blockquote>"I watch 20+ hours of lectures weekly. This extension turned my 5-hour review sessions into 30-minute power sessions."</blockquote>
+                    <div class="workflow">
+                        <span>→ Watches at 2x speed</span>
+                        <span>→ Asks for concepts</span>
+                        <span>→ Creates study guides</span>
+                    </div>
+                </div>
+                <div class="use-case">
+                    <div class="use-case-header">
+                        <div class="user-avatar">🔬</div>
+                        <div>
+                            <h4>Researcher Ryan</h4>
+                            <p class="user-role">PhD Candidate</p>
+                        </div>
+                    </div>
+                    <blockquote>"Finding specific quotes in hour-long interviews was killing my productivity. Now I just ask and jump directly."</blockquote>
+                    <div class="workflow">
+                        <span>→ Searches topics</span>
+                        <span>→ Extracts quotes</span>
+                        <span>→ Builds database</span>
+                    </div>
+                </div>
+                <div class="use-case">
+                    <div class="use-case-header">
+                        <div class="user-avatar">🎥</div>
+                        <div>
+                            <h4>Creator Carlos</h4>
+                            <p class="user-role">Content Creator</p>
+                        </div>
+                    </div>
+                    <blockquote>"I analyze competitor videos for content ideas. What took hours now takes minutes of chatting."</blockquote>
+                    <div class="workflow">
+                        <span>→ Analyzes videos</span>
+                        <span>→ Extracts patterns</span>
+                        <span>→ Plans content</span>
+                    </div>
+                </div>
+                <div class="use-case">
+                    <div class="use-case-header">
+                        <div class="user-avatar">💼</div>
+                        <div>
+                            <h4>Professional Paula</h4>
+                            <p class="user-role">Product Manager</p>
+                        </div>
+                    </div>
+                    <blockquote>"I learn new skills through YouTube. This is like having a tutor who watched everything for me."</blockquote>
+                    <div class="workflow">
+                        <span>→ Learns at pace</span>
+                        <span>→ Asks questions</span>
+                        <span>→ Reviews concepts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Get Started in 3 Simple Steps</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Add to Chrome</h3>
+                        <p>One-click install from Chrome Web Store. Takes 30 seconds.</p>
+                    </div>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Open Any Video</h3>
+                        <p>The chat appears automatically on YouTube videos.</p>
+                    </div>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Start Learning</h3>
+                        <p>Ask questions, get answers, save hours of time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Start Free, Upgrade When You're Ready</h2>
+                <p class="section-subtitle">Choose the plan that fits your learning style</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free Forever</h3>
+                    <div class="price">
+                        <span class="currency">$</span>
+                        <span class="amount">0</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <ul class="features-list">
+                        <li class="included">30 conversations per day</li>
+                        <li class="included">Full transcript access</li>
+                        <li class="included">Timestamp navigation</li>
+                        <li class="included">Copy responses</li>
+                        <li class="included">Basic support</li>
+                        <li class="excluded">Conversation history</li>
+                        <li class="excluded">Export features</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">Start Free</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <h3>Pro</h3>
+                    <div class="price">
+                        <span class="currency">$</span>
+                        <span class="amount">9</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="price-note">Save 25% vs monthly</p>
+                    <ul class="features-list">
+                        <li class="included">Unlimited conversations</li>
+                        <li class="included">Full transcript access</li>
+                        <li class="included">Timestamp navigation</li>
+                        <li class="included">Copy responses</li>
+                        <li class="included">Save all conversations</li>
+                        <li class="included">Export to Notion/Docs</li>
+                        <li class="included">Priority support</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Start Free Trial</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="limited-badge">47 spots left</div>
+                    <h3>Lifetime Deal</h3>
+                    <div class="price">
+                        <span class="currency">$</span>
+                        <span class="amount">79</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <p class="price-note">Save 73% vs yearly</p>
+                    <ul class="features-list">
+                        <li class="included">Everything in Pro</li>
+                        <li class="included">Forever access</li>
+                        <li class="included">All future features</li>
+                        <li class="included">Founding member perks</li>
+                        <li class="included">1-on-1 onboarding</li>
+                        <li class="included">Shape the roadmap</li>
+                        <li class="included">Exclusive Discord</li>
+                    </ul>
+                    <a href="#" class="btn btn-gradient">Get Lifetime Access</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="container">
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500,000+</div>
+                    <div class="stat-label">Questions Answered</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.9</div>
+                    <div class="stat-label">Chrome Store Rating</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Languages Supported</div>
+                </div>
+            </div>
+            <div class="reviews-marquee">
+                <div class="marquee-content">
+                    <div class="review">⭐⭐⭐⭐⭐ "Game changer for online learning" - Alex M.</div>
+                    <div class="review">⭐⭐⭐⭐⭐ "Saves me hours every week" - Jessica L.</div>
+                    <div class="review">⭐⭐⭐⭐⭐ "Should be built into YouTube!" - David K.</div>
+                    <div class="review">⭐⭐⭐⭐⭐ "My secret weapon for research" - Maria S.</div>
+                    <div class="review">⭐⭐⭐⭐⭐ "Worth every penny of the lifetime deal" - Tom R.</div>
+                    <div class="review">⭐⭐⭐⭐⭐ "Can't imagine YouTube without it now" - Sarah B.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>Is it really free?</h3>
+                    <p>Yes! Free tier includes 30 conversations daily - enough for most users. No credit card required.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How does it work with long videos?</h3>
+                    <p>Our Gemini AI integration handles videos up to 10+ hours using a 1 million token context window.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is my data private?</h3>
+                    <p>Absolutely. Conversations stay in your browser. We never store or upload video content.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I use it for any YouTube video?</h3>
+                    <p>Works with 99% of YouTube videos that have captions (auto-generated or manual).</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What makes it different?</h3>
+                    <p>Built specifically for YouTube with features like timestamp jumping and video-aware context.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do I need technical knowledge?</h3>
+                    <p>Not at all! If you can use YouTube, you can use our extension.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to Transform How You Learn from YouTube?</h2>
+            <p>Join thousands who've already upgraded their YouTube experience</p>
+            <a href="https://chrome.google.com/webstore" class="btn btn-large btn-primary">
+                Add to Chrome Free - 30 Seconds to Install
+            </a>
+            <div class="urgency">
+                🎉 Launch Special: Get lifetime access for $79 (only 47 spots left)
+            </div>
+            <div class="trust-signals">
+                <span>🔒 Secure</span>
+                <span>🚀 No slowdown</span>
+                <span>💳 No credit card</span>
+                <span>⭐ 4.9/5 rating</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <a href="#">Features</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Roadmap</a>
+                    <a href="#">Changelog</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Status</a>
+                    <a href="#">API Docs</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <a href="#">About</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="#">Twitter/X</a>
+                    <a href="#">Reddit</a>
+                    <a href="#">Discord</a>
+                    <a href="#">YouTube</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 YouTube Chat Extension. All rights reserved.</p>
+                <div class="footer-badges">
+                    <span>Featured on Product Hunt</span>
+                    <span>Chrome Web Store Editor's Choice</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
