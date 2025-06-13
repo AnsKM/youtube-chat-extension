@@ -1,5 +1,15 @@
 # Changelog
 
+## 2025-01-13: Added Copy-to-Clipboard Button for AI Responses
+- Added copy button at bottom-right corner of assistant messages
+- Button appears on hover with subtle opacity transition
+- Click to copy full message content to clipboard
+- Shows green checkmark icon for 2 seconds on successful copy
+- Red error state if clipboard operation fails
+- Works with all message content including formatted text
+- No conflict with repurpose button positioning
+- Smooth animations and visual feedback
+
 ## 2025-01-13: Added Chat Maximize Overlay and Fullscreen Auto-hide
 - Added maximize button to expand chat to fullscreen overlay mode
 - Chat expands to 90% of viewport with semi-transparent backdrop
