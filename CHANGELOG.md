@@ -1,5 +1,12 @@
 # Changelog
 
+## 2025-01-13: Fixed Chat History Not Loading
+- Fixed missing getAllChats handler in service-worker.js
+- Added getAllChats function to retrieve all saved chat conversations
+- Enhanced error handling and debugging for chat history loading
+- Added console logging to help diagnose history loading issues
+- Improved error UI when chat history fails to load
+
 ## 2025-01-13: Switched to DeepSeek R1 Distilled for Faster Response Generation
 - Replaced slow DeepSeek R1 model with faster distilled version (deepseek-r1-0528-qwen3-8b:free)
 - Significantly improved token generation speed for better chat experience

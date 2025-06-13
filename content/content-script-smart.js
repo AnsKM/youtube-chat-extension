@@ -1232,13 +1232,18 @@ class SmartYouTubeChatExtension {
   }
 
   async autoSaveChat() {
-    if (!this.currentVideoId || this.conversationHistory.length === 0) return;
+    if (!this.currentVideoId || this.conversationHistory.length === 0) {
+      console.log('[YouTube Chat] Not saving - videoId:', this.currentVideoId, 'history length:', this.conversationHistory.length);
+      return;
+    }
     
     const videoTitle = document.querySelector('h1.ytd-video-primary-info-renderer')?.textContent || 
                       document.querySelector('#title h1')?.textContent || 
                       'Unknown video';
     
     const channelName = this.getChannelName();
+    
+    console.log('[YouTube Chat] Auto-saving chat for video:', this.currentVideoId, 'with', this.conversationHistory.length, 'messages');
     
     await chrome.runtime.sendMessage({
       action: 'saveChat',
@@ -1343,13 +1348,29 @@ class SmartYouTubeChatExtension {
   
   async loadChatHistory() {
     try {
+      console.log('[YouTube Chat] Loading chat history...');
       const response = await chrome.runtime.sendMessage({ action: 'getAllChats' });
+      console.log('[YouTube Chat] Chat history response:', response);
+      
       if (response.success && response.chats) {
         this.allChats = response.chats; // Store for filtering
+        console.log('[YouTube Chat] Loaded chats:', this.allChats.length);
         this.displayChatHistory(response.chats);
+      } else {
+        console.error('[YouTube Chat] Failed to load chats:', response);
       }
     } catch (error) {
-      console.error('Error loading chat history:', error);
+      console.error('[YouTube Chat] Error loading chat history:', error);
+      // Show error in UI
+      const historyList = this.chatUI.querySelector('.history-list');
+      if (historyList) {
+        historyList.innerHTML = `
+          <div class="history-empty">
+            <p>Error loading chat history</p>
+            <p class="history-hint">${error.message}</p>
+          </div>
+        `;
+      }
     }
   }
   

@@ -345,6 +345,11 @@ async function handleMessage(request, sender, sendResponse) {
         sendResponse({ success: true });
         break;
         
+      case 'getAllChats':
+        const allChats = await getAllChats();
+        sendResponse({ success: true, chats: allChats });
+        break;
+        
       case 'exportChat':
         const exportData = await exportVideoChat(request.videoId, request.format);
         sendResponse({ success: true, exportData });
@@ -469,6 +474,7 @@ async function saveVideoChat(videoId, chatData) {
     ...chatData,
     lastUpdated: new Date().toISOString()
   };
+  console.log('[Service Worker] Saving chat:', key, data);
   await chrome.storage.local.set({ [key]: data });
 }
 
@@ -481,6 +487,30 @@ async function loadVideoChat(videoId) {
 async function clearVideoChat(videoId) {
   const key = `chat_${videoId}`;
   await chrome.storage.local.remove(key);
+}
+
+async function getAllChats() {
+  const result = await chrome.storage.local.get();
+  console.log('[Service Worker] getAllChats - Storage keys:', Object.keys(result));
+  
+  const chats = [];
+  
+  for (const [key, value] of Object.entries(result)) {
+    if (key.startsWith('chat_')) {
+      console.log('[Service Worker] Found chat:', key, value);
+      const videoId = key.replace('chat_', '');
+      chats.push({
+        videoId,
+        ...value
+      });
+    }
+  }
+  
+  console.log('[Service Worker] Total chats found:', chats.length);
+  
+  // Sort by last updated, most recent first
+  chats.sort((a, b) => new Date(b.lastUpdated || b.timestamp) - new Date(a.lastUpdated || a.timestamp));
+  return chats;
 }
 
 async function exportVideoChat(videoId, format = 'json') {
