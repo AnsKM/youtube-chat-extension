@@ -856,7 +856,7 @@ class SmartYouTubeChatExtension {
     processed = processed
       .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      .replace(/(?<!\*)\*([^\*\n]+?)\*(?!\*)/g, '<em>$1</em>');
+      .replace(/\*([^\*\n]+?)\*/g, '<em>$1</em>');
     
     // Blockquotes
     processed = processed.replace(/^> (.+)$/gm, '<blockquote class="chat-blockquote">$1</blockquote>');
