@@ -8,6 +8,9 @@
 - Chat automatically hides when entering fullscreen mode
 - Chat restores to previous state when exiting fullscreen
 - Added smooth animations for maximize/minimize transitions
+- Fixed message layout in maximized mode - messages now stack vertically
+- Messages area constrained to 800px width for optimal readability
+- Proper message alignment maintained (user right, assistant left)
 
 ## 2025-01-13: Fixed Chat History Search and Added Channel Names
 - Fixed non-functional search in Chat History panel
