@@ -4,7 +4,7 @@
  */
 
 export class OpenRouterClient {
-  constructor(apiKey, modelName = 'deepseek/deepseek-r1-0528:free') {
+  constructor(apiKey, modelName = 'deepseek/deepseek-r1-0528-qwen3-8b:free') {
     this.apiKey = apiKey;
     this.modelName = modelName;
     this.baseUrl = 'https://openrouter.ai/api/v1';

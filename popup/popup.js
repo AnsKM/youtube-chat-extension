@@ -86,10 +86,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else if (selectedModel === 'deepseek') {
       geminiKeyGroup.style.display = 'none';
       openrouterKeyGroup.style.display = 'block';
-      modelDescription.textContent = 'Advanced reasoning model - Free via OpenRouter';
+      modelDescription.textContent = 'Fast distilled reasoning model - Free via OpenRouter';
       apiKeyHelp.innerHTML = 'Get your API key from <a href="https://openrouter.ai/keys" target="_blank" id="apiKeyLink">OpenRouter</a>';
-      poweredBy.textContent = 'Powered by DeepSeek R1';
-      currentModel.textContent = 'DeepSeek R1';
+      poweredBy.textContent = 'Powered by DeepSeek R1 Distilled';
+      currentModel.textContent = 'DeepSeek R1 Distilled';
       contextWindow.textContent = '64K Tokens';
     }
     
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           action: 'initializeAI',
           apiKey: apiKey,
           type: type,
-          model: type === 'gemini' ? 'gemini-2.5-flash-preview-05-20' : 'deepseek/deepseek-r1-0528:free'
+          model: type === 'gemini' ? 'gemini-2.5-flash-preview-05-20' : 'deepseek/deepseek-r1-0528-qwen3-8b:free'
         });
         
         showMessage('API key saved successfully!', 'success');
@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               'X-Title': 'YouTube Chat Assistant'
             },
             body: JSON.stringify({
-              model: 'deepseek/deepseek-r1-0528:free',
+              model: 'deepseek/deepseek-r1-0528-qwen3-8b:free',
               messages: [{
                 role: 'user',
                 content: 'Hi'

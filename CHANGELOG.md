@@ -1,5 +1,12 @@
 # Changelog
 
+## 2025-01-13: Switched to DeepSeek R1 Distilled for Faster Response Generation
+- Replaced slow DeepSeek R1 model with faster distilled version (deepseek-r1-0528-qwen3-8b:free)
+- Significantly improved token generation speed for better chat experience
+- Updated UI labels to indicate "DeepSeek R1 Distilled"
+- Model description now shows "Fast distilled reasoning model"
+- Maintains same free access through OpenRouter promotion
+
 ## 2025-01-13: Fixed Transcript Context Not Being Passed to AI Models
 - Fixed critical bug where video transcript was not being included in AI context
 - Updated GeminiClient to build enhanced prompts with transcript data
@@ -7,6 +14,14 @@
 - Added formatTranscript method to handle various transcript formats
 - Added debug logging to track transcript passing through the system
 - Both Gemini and DeepSeek models now receive full video transcript for accurate responses
+
+## 2025-01-13: Fixed Transcript Context Not Being Passed to AI Models
+- Added comprehensive logging throughout transcript pipeline
+- Enhanced error handling when transcript fetch fails
+- Added visual feedback showing transcript loading status and stats
+- Improved user messaging when transcript is unavailable
+- Added detailed debug logging to trace context flow from content script to service worker
+- Clear indication of transcript availability before allowing chat
 
 ## 2025-01-13: Added DeepSeek R1 Integration via OpenRouter
 - Added model selection dropdown in popup to choose between Gemini 2.5 Flash and DeepSeek R1
