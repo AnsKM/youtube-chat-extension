@@ -7,7 +7,7 @@
 
 ### Short Description (132 characters max)
 ```
-Chat with YouTube videos using AI. Ask questions, get summaries, jump to timestamps. Free extension powered by Gemini AI.
+Chat with YouTube videos using AI. Choose Gemini or DeepSeek R1 (free!). Ask questions, get summaries, jump to timestamps.
 ```
 
 ### Detailed Description
@@ -18,7 +18,12 @@ Transform how you learn from YouTube with AI-powered conversations.
 🚀 WHAT IT DOES
 YouTube Chat AI lets you have intelligent conversations with any YouTube video. Instead of scrubbing through hours of content, simply ask questions and get instant, accurate answers with clickable timestamps.
 
+🤖 CHOOSE YOUR AI MODEL
+• Gemini 2.5 Flash - Google's lightning-fast AI with 1M token context
+• DeepSeek R1 Distilled - Advanced reasoning model (FREE via OpenRouter!)
+
 ✨ KEY FEATURES
+• 🔄 Multi-Model Support - Switch between AI models anytime
 • 💬 Chat Interface - Natural conversation with any video
 • 🎯 Instant Answers - Get specific information without watching entire videos  
 • ⏱️ Smart Timestamps - Click to jump to exact moments
@@ -38,9 +43,10 @@ YouTube Chat AI lets you have intelligent conversations with any YouTube video. 
 
 🎮 HOW TO USE
 1. Install the extension
-2. Add your Gemini API key (free from Google)
-3. Visit any YouTube video
-4. Start chatting!
+2. Choose your AI model (Gemini or DeepSeek)
+3. Add your API key (Gemini from Google, DeepSeek from OpenRouter)
+4. Visit any YouTube video
+5. Start chatting!
 
 💡 EXAMPLE QUESTIONS
 • "What are the main points of this video?"
@@ -49,19 +55,20 @@ YouTube Chat AI lets you have intelligent conversations with any YouTube video. 
 • "What tools does she recommend?"
 • "Find the part about Python functions"
 
-🔥 LAUNCH WEEK SPECIAL
-First 1000 users get lifetime Pro features when we launch premium!
+🆓 FREE OPTIONS
+• DeepSeek R1: Completely FREE during promotion (via OpenRouter)
+• Gemini: Free tier with Google AI Studio API key
+• 30 conversations per day with free tier
 
-⚡ POWERED BY
-Google's Gemini 2.5 Flash Preview with 1 million token context window - handles even the longest videos with ease.
-
-🆓 PRICING
-Free: 30 chats per day
-Pro: Unlimited chats (coming soon)
+🔥 NEW IN v2.1
+• DeepSeek R1 integration - Free advanced reasoning!
+• Model selection dropdown - Switch AI models instantly
+• Improved response speed with distilled model
+• Enhanced transcript handling
 
 📧 SUPPORT
 Email: support@youtubechat.ai
-Documentation: github.com/yourusername/youtube-chat-extension
+Documentation: github.com/AnsKM/youtube-chat-extension
 
 🔄 REGULAR UPDATES
 We ship new features weekly based on your feedback!
@@ -70,7 +77,7 @@ We ship new features weekly based on your feedback!
 Please leave a review - it helps other learners discover the extension!
 
 ---
-Version 1.1.0 | Last updated: June 2025
+Version 2.1.0 | Last updated: January 2025
 ```
 
 ### Category
@@ -81,22 +88,27 @@ Version 1.1.0 | Last updated: June 2025
 
 ### Screenshots (5 required, 1280x800 or 640x400)
 
-#### Screenshot 1: "Chat with Any YouTube Video"
+#### Screenshot 1: "Choose Your AI Model"
+- Show the extension popup with model selection dropdown
+- Highlight both Gemini and DeepSeek R1 options
+- Display the "FREE" badge on DeepSeek option
+
+#### Screenshot 2: "Chat with Any YouTube Video"
 - Show the chat interface on a popular educational video
 - Include a user asking "What are the main points?"
-- Show AI response with bullet points
+- Show AI response with bullet points and model indicator
 
-#### Screenshot 2: "Instant Answers with Timestamps"
+#### Screenshot 3: "Instant Answers with Timestamps"
 - Display a specific question being asked
 - Show the response with clickable timestamps
 - Highlight the timestamp feature
 
-#### Screenshot 3: "Smart Summaries"
+#### Screenshot 4: "Smart Summaries"
 - Show the AI providing a structured summary
 - Include markdown formatting
 - Display the copy button
 
-#### Screenshot 4: "Chat History & Search"
+#### Screenshot 5: "Chat History & Search"
 - Show the history panel open
 - Display multiple saved conversations
 - Show search functionality
@@ -142,7 +154,7 @@ DATA COLLECTION
 
 LOCAL STORAGE ONLY
 - Conversations are stored locally in your browser
-- Your Gemini API key is encrypted and stored locally
+- Your API keys (Gemini/OpenRouter) are encrypted and stored locally
 - All data can be deleted at any time
 
 PERMISSIONS USED
@@ -151,6 +163,7 @@ PERMISSIONS USED
 
 THIRD-PARTY SERVICES
 - Google Gemini API: Used for AI responses (see Google's privacy policy)
+- OpenRouter API: Used for DeepSeek model access (see OpenRouter's privacy policy)
 - No analytics or tracking services are used
 
 CONTACT
