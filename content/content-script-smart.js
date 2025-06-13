@@ -698,10 +698,10 @@ class SmartYouTubeChatExtension {
   addMessage(role, content, isTyping = false) {
     const messagesContainer = this.chatUI.querySelector('.chat-messages');
     const messageDiv = document.createElement('div');
-    messageDiv.className = `message ${role}`;
+    messageDiv.className = `message ${role} chat-message`;
     
     const contentDiv = document.createElement('div');
-    contentDiv.className = 'content';
+    contentDiv.className = 'content chat-content';
     
     // Store original content for repurpose feature
     const originalContent = content;
@@ -792,21 +792,74 @@ class SmartYouTubeChatExtension {
   }
 
   processSimpleMarkdown(content) {
-    // Simple markdown processing like the working archive version
-    return content
-      // First, convert bullet points to proper bullet characters
-      .replace(/^\* (.+)$/gm, '• $1')
-      .replace(/^- (.+)$/gm, '• $1')  // Also handle dash bullets
-      // Then process other markdown
-      .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-      .replace(/^## (.*$)/gim, '<h3>$1</h3>')
-      .replace(/^# (.*$)/gim, '<h3>$1</h3>')
+    // ChatGPT-4o inspired markdown processing with cleaner output
+    let processed = content;
+    
+    // Process code blocks first to protect their content
+    const codeBlocks = [];
+    processed = processed.replace(/```(\w*)\n([\s\S]*?)```/g, (match, lang, code) => {
+      const placeholder = `__CODE_BLOCK_${codeBlocks.length}__`;
+      codeBlocks.push(`<pre class="chat-code-block" data-lang="${lang || 'plaintext'}"><code>${this.escapeHtml(code.trim())}</code></pre>`);
+      return placeholder;
+    });
+    
+    // Process inline code to protect from further processing
+    const inlineCode = [];
+    processed = processed.replace(/`([^`]+)`/g, (match, code) => {
+      const placeholder = `__INLINE_CODE_${inlineCode.length}__`;
+      inlineCode.push(`<code class="chat-inline-code">${this.escapeHtml(code)}</code>`);
+      return placeholder;
+    });
+    
+    // Headers (reduced hierarchy like GPT-4o)
+    processed = processed
+      .replace(/^#{1,2} (.+)$/gm, '<h2 class="chat-heading">$1</h2>')
+      .replace(/^#{3,6} (.+)$/gm, '<h3 class="chat-subheading">$1</h3>');
+    
+    // Lists with better structure
+    processed = processed.replace(/^[\*\-] (.+)$/gm, '<li class="chat-list-item">$1</li>');
+    processed = processed.replace(/^\d+\. (.+)$/gm, '<li class="chat-numbered-item">$1</li>');
+    
+    // Wrap consecutive list items
+    processed = processed.replace(/(<li class="chat-list-item">[\s\S]*?<\/li>\s*)+/g, (match) => {
+      return `<ul class="chat-list">${match}</ul>`;
+    });
+    
+    processed = processed.replace(/(<li class="chat-numbered-item">[\s\S]*?<\/li>\s*)+/g, (match) => {
+      return `<ol class="chat-list" style="counter-reset: list-counter;">${match}</ol>`;
+    });
+    
+    // Bold and italic
+    processed = processed
       .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.+?)\*/g, '<em>$1</em>')
-      .replace(/```(.*?)```/gs, '<pre><code>$1</code></pre>')
-      .replace(/`([^`]+)`/g, '<code>$1</code>')
-      .replace(/\n/g, '<br>');
+      .replace(/(?<!\*)\*([^\*\n]+?)\*(?!\*)/g, '<em>$1</em>');
+    
+    // Blockquotes
+    processed = processed.replace(/^> (.+)$/gm, '<blockquote class="chat-blockquote">$1</blockquote>');
+    
+    // Horizontal rules
+    processed = processed.replace(/^---+$/gm, '<hr class="chat-hr">');
+    
+    // Links
+    processed = processed.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    
+    // Paragraphs and line breaks
+    processed = processed
+      .split('\n\n')
+      .map(para => para.trim() ? `<p>${para.replace(/\n/g, '<br>')}</p>` : '')
+      .join('');
+    
+    // Restore code blocks and inline code
+    codeBlocks.forEach((block, i) => {
+      processed = processed.replace(`__CODE_BLOCK_${i}__`, block);
+    });
+    
+    inlineCode.forEach((code, i) => {
+      processed = processed.replace(`__INLINE_CODE_${i}__`, code);
+    });
+    
+    return processed;
   }
 
   formatMessage(content) {
