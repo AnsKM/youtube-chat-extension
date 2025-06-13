@@ -252,6 +252,29 @@ class SmartYouTubeChatExtension {
     console.log('[Smart YouTube Chat] Initialization complete');
   }
 
+  createChatBubble() {
+    // Check if bubble already exists
+    if (document.querySelector('.youtube-chat-bubble')) {
+      return;
+    }
+
+    const bubble = document.createElement('div');
+    bubble.className = 'youtube-chat-bubble';
+    bubble.innerHTML = `
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+    `;
+    
+    // Add click handler
+    bubble.addEventListener('click', () => {
+      this.toggleChat();
+    });
+    
+    document.body.appendChild(bubble);
+    console.log('[Smart YouTube Chat] Chat bubble created');
+  }
+
   detectVideo() {
     const videoId = extractVideoIdFromPage();
     
