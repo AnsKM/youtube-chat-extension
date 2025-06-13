@@ -87,6 +87,66 @@
   display: none;
 }
 
+/* Backdrop for maximized mode */
+.youtube-chat-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2147483646;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  backdrop-filter: blur(2px);
+}
+
+.youtube-chat-backdrop.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Maximized state */
+.youtube-chat-extension.maximized {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 1200px;
+  height: 90vh;
+  max-height: 900px;
+  bottom: auto;
+  right: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  animation: maximizeIn 0.3s ease-out;
+}
+
+/* Ensure minimized state doesn't conflict with maximized */
+.youtube-chat-extension.maximized.minimized {
+  height: 90vh;
+  max-height: 900px;
+}
+
+.youtube-chat-extension.maximized .chat-messages,
+.youtube-chat-extension.maximized .chat-input-container {
+  display: flex !important;
+}
+
+/* Animation for maximize */
+@keyframes maximizeIn {
+  from {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.8;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
 /* Header - Simple and Clean */
 .chat-header {
   padding: 16px 20px;
@@ -151,6 +211,7 @@
 }
 
 /* Window Control Buttons */
+.maximize,
 .minimize,
 .close {
   background: transparent;
@@ -168,10 +229,15 @@
   height: 28px;
 }
 
+.maximize:hover,
 .minimize:hover,
 .close:hover {
   background: var(--bg-secondary);
   color: var(--text-primary);
+}
+
+.maximize {
+  font-size: 18px;
 }
 
 .close {

@@ -1,5 +1,14 @@
 # Changelog
 
+## 2025-01-13: Added Chat Maximize Overlay and Fullscreen Auto-hide
+- Added maximize button to expand chat to fullscreen overlay mode
+- Chat expands to 90% of viewport with semi-transparent backdrop
+- Click outside or press ESC to return to normal size
+- Enhanced fullscreen detection for both native and YouTube fullscreen
+- Chat automatically hides when entering fullscreen mode
+- Chat restores to previous state when exiting fullscreen
+- Added smooth animations for maximize/minimize transitions
+
 ## 2025-01-13: Fixed Chat History Search and Added Channel Names
 - Fixed non-functional search in Chat History panel
 - Added YouTube channel name extraction and storage

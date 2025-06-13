@@ -109,7 +109,12 @@ class SmartYouTubeChatExtension {
     // Fullscreen tracking
     this.wasVisibleBeforeFullscreen = false;
     this.wasMinimizedBeforeFullscreen = false;
+    this.wasMaximizedBeforeFullscreen = false;
     this.isInFullscreen = false;
+    
+    // Maximize state
+    this.isMaximized = false;
+    this.backdrop = null;
     
     // Chat history
     this.allChats = [];
@@ -538,6 +543,7 @@ class SmartYouTubeChatExtension {
           <div class="connection-status connected" title="Connected to extension background"></div>
         </div>
         <div class="header-controls">
+          <button class="maximize" title="Maximize chat">⛶</button>
           <button class="minimize">_</button>
           <button class="close">×</button>
         </div>
@@ -571,6 +577,12 @@ class SmartYouTubeChatExtension {
       </div>
     `;
     
+    // Create backdrop for maximized mode
+    const backdrop = document.createElement('div');
+    backdrop.className = 'youtube-chat-backdrop';
+    document.body.appendChild(backdrop);
+    this.backdrop = backdrop;
+    
     document.body.appendChild(container);
     this.chatUI = container;
     
@@ -584,6 +596,7 @@ class SmartYouTubeChatExtension {
     // Header controls
     container.querySelector('.close')?.addEventListener('click', () => this.hideChat());
     container.querySelector('.minimize')?.addEventListener('click', () => this.toggleMinimize());
+    container.querySelector('.maximize')?.addEventListener('click', () => this.toggleMaximize());
     container.querySelector('.new-chat')?.addEventListener('click', () => this.startNewChat());
     container.querySelector('.history')?.addEventListener('click', () => this.toggleHistory());
     container.querySelector('.export-chat')?.addEventListener('click', () => this.exportChat());
@@ -610,6 +623,22 @@ class SmartYouTubeChatExtension {
     searchInput?.addEventListener('input', (e) => {
       console.log('[YouTube Chat] Search input changed:', e.target.value);
       this.filterHistory(e.target.value);
+    });
+    
+    // Backdrop click handler
+    if (this.backdrop) {
+      this.backdrop.addEventListener('click', () => {
+        if (this.isMaximized) {
+          this.toggleMaximize();
+        }
+      });
+    }
+    
+    // ESC key handler for maximized mode
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.isMaximized) {
+        this.toggleMaximize();
+      }
     });
   }
 
@@ -994,6 +1023,42 @@ class SmartYouTubeChatExtension {
     this.chatUI.classList.toggle('minimized');
   }
 
+  toggleMaximize() {
+    if (!this.chatUI || !this.backdrop) return;
+    
+    this.isMaximized = !this.isMaximized;
+    
+    if (this.isMaximized) {
+      // Entering maximized mode
+      this.chatUI.classList.add('maximized');
+      this.backdrop.classList.add('visible');
+      document.body.style.overflow = 'hidden'; // Prevent body scroll
+      
+      // Update maximize button
+      const maximizeBtn = this.chatUI.querySelector('.maximize');
+      if (maximizeBtn) {
+        maximizeBtn.textContent = '⊡'; // Restore icon
+        maximizeBtn.title = 'Restore chat';
+      }
+      
+      console.log('[YouTube Chat] Entered maximized mode');
+    } else {
+      // Exiting maximized mode
+      this.chatUI.classList.remove('maximized');
+      this.backdrop.classList.remove('visible');
+      document.body.style.overflow = ''; // Restore body scroll
+      
+      // Update maximize button
+      const maximizeBtn = this.chatUI.querySelector('.maximize');
+      if (maximizeBtn) {
+        maximizeBtn.textContent = '⛶'; // Maximize icon
+        maximizeBtn.title = 'Maximize chat';
+      }
+      
+      console.log('[YouTube Chat] Exited maximized mode');
+    }
+  }
+
   toggleChat() {
     if (!this.chatUI) return;
     if (this.chatUI.classList.contains('visible')) {
@@ -1311,21 +1376,54 @@ class SmartYouTubeChatExtension {
     
     // Watch for fullscreen changes
     document.addEventListener('fullscreenchange', () => this.handleFullscreenChange());
+    document.addEventListener('webkitfullscreenchange', () => this.handleFullscreenChange());
+    
+    // Watch for YouTube-specific fullscreen changes
+    const observer = new MutationObserver(() => {
+      this.handleFullscreenChange();
+    });
+    
+    // Observe changes to the movie player
+    const checkPlayer = setInterval(() => {
+      const player = document.querySelector('#movie_player');
+      if (player) {
+        observer.observe(player, {
+          attributes: true,
+          attributeFilter: ['class']
+        });
+        clearInterval(checkPlayer);
+      }
+    }, 1000);
     
     // Initial detection
     setTimeout(() => this.detectVideo(), 1000);
   }
 
   handleFullscreenChange() {
-    const isFullscreen = !!document.fullscreenElement;
+    // Check both native fullscreen and YouTube's theater mode
+    const isFullscreen = !!(
+      document.fullscreenElement || 
+      document.webkitFullscreenElement ||
+      document.querySelector('.ytp-fullscreen-button.ytp-button[aria-label*="Exit"]') ||
+      document.querySelector('#movie_player.ytp-fullscreen')
+    );
     
     if (isFullscreen && !this.isInFullscreen) {
       // Entering fullscreen
       this.isInFullscreen = true;
       if (this.chatUI) {
-        this.wasVisibleBeforeFullscreen = this.chatUI.style.display !== 'none';
+        this.wasVisibleBeforeFullscreen = this.chatUI.classList.contains('visible');
         this.wasMinimizedBeforeFullscreen = this.chatUI.classList.contains('minimized');
+        this.wasMaximizedBeforeFullscreen = this.isMaximized;
+        
+        // Exit maximized mode if active
+        if (this.isMaximized) {
+          this.toggleMaximize();
+        }
+        
+        // Hide the chat
         this.hideChat();
+        console.log('[YouTube Chat] Hiding chat for fullscreen mode');
       }
     } else if (!isFullscreen && this.isInFullscreen) {
       // Exiting fullscreen
@@ -1335,6 +1433,7 @@ class SmartYouTubeChatExtension {
         if (!this.wasMinimizedBeforeFullscreen) {
           this.chatUI.classList.remove('minimized');
         }
+        console.log('[YouTube Chat] Restoring chat after fullscreen exit');
       }
     }
   }
