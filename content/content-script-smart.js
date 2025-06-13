@@ -86,9 +86,13 @@ function debounce(func, wait) {
   };
 }
 
+// Add immediate visual feedback
+console.log('%c[Smart YouTube Chat] Extension loaded!', 'background: #4CAF50; color: white; font-size: 14px; padding: 5px;');
+
 // Enhanced extension class with smart routing support
 class SmartYouTubeChatExtension {
   constructor() {
+    console.log('[Smart YouTube Chat] Constructor called');
     this.currentVideoId = null;
     this.videoDuration = null;
     this.chatUI = null;
@@ -228,51 +232,82 @@ class SmartYouTubeChatExtension {
   async initialize() {
     console.log('[Smart YouTube Chat] Initializing... v2.1 with search fix');
     console.log('[Smart YouTube Chat] Features: Channel extraction, History search, Debug logging');
+    console.log('[Smart YouTube Chat] Current URL:', window.location.href);
+    console.log('[Smart YouTube Chat] Current pathname:', window.location.pathname);
     
-    // Check for API key first
-    const hasApiKey = await this.checkApiKey();
-    if (!hasApiKey) {
-      console.log('No API key set, but continuing with UI initialization');
-      // Don't return - continue with UI setup
+    try {
+      // Check for API key first
+      const hasApiKey = await this.checkApiKey();
+      if (!hasApiKey) {
+        console.log('No API key set, but continuing with UI initialization');
+        // Don't return - continue with UI setup
+      }
+      
+      // Initialize on YouTube watch pages
+      if (window.location.pathname.includes('/watch')) {
+        console.log('[Smart YouTube Chat] On watch page, detecting video');
+        this.detectVideo();
+      } else {
+        console.log('[Smart YouTube Chat] Not on watch page, still creating UI');
+      }
+      
+      // Create chat UI and bubble
+      console.log('[Smart YouTube Chat] Creating chat bubble...');
+      this.createChatBubble();
+      
+      console.log('[Smart YouTube Chat] Creating chat UI...');
+      this.createChatUI();
+      
+      // Hide chat initially
+      this.hideChat();
+      
+      this.isInitialized = true;
+      console.log('[Smart YouTube Chat] Initialization complete');
+      console.log('[Smart YouTube Chat] Checking final DOM state:');
+      console.log('[Smart YouTube Chat] - Bubble exists:', !!document.querySelector('.youtube-chat-bubble'));
+      console.log('[Smart YouTube Chat] - Chat UI exists:', !!document.querySelector('.youtube-chat-extension'));
+    } catch (error) {
+      console.error('[Smart YouTube Chat] Initialization error:', error);
+      console.error('[Smart YouTube Chat] Error stack:', error.stack);
     }
-    
-    // Initialize on YouTube watch pages
-    if (window.location.pathname.includes('/watch')) {
-      this.detectVideo();
-    }
-    
-    // Create chat UI and bubble
-    this.createChatBubble();
-    this.createChatUI();
-    
-    // Hide chat initially
-    this.hideChat();
-    
-    this.isInitialized = true;
-    console.log('[Smart YouTube Chat] Initialization complete');
   }
 
   createChatBubble() {
+    console.log('[Smart YouTube Chat] createChatBubble called');
+    
     // Check if bubble already exists
-    if (document.querySelector('.youtube-chat-bubble')) {
+    const existingBubble = document.querySelector('.youtube-chat-bubble');
+    if (existingBubble) {
+      console.log('[Smart YouTube Chat] Bubble already exists');
       return;
     }
 
+    console.log('[Smart YouTube Chat] Creating new bubble element');
     const bubble = document.createElement('div');
     bubble.className = 'youtube-chat-bubble';
     bubble.innerHTML = `
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2">
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
       </svg>
     `;
+    bubble.title = 'Open YouTube Chat Assistant';
     
+    console.log('[Smart YouTube Chat] Adding click handler to bubble');
     // Add click handler
     bubble.addEventListener('click', () => {
+      console.log('[Smart YouTube Chat] Bubble clicked');
       this.toggleChat();
     });
     
+    console.log('[Smart YouTube Chat] Appending bubble to body');
     document.body.appendChild(bubble);
-    console.log('[Smart YouTube Chat] Chat bubble created');
+    
+    // Store reference
+    this.chatBubble = bubble;
+    
+    console.log('[Smart YouTube Chat] Chat bubble created successfully');
+    console.log('[Smart YouTube Chat] Bubble element:', bubble);
+    console.log('[Smart YouTube Chat] Bubble in DOM:', document.querySelector('.youtube-chat-bubble'));
   }
 
   detectVideo() {
@@ -579,26 +614,6 @@ class SmartYouTubeChatExtension {
     }
   }
 
-  createChatBubble() {
-    if (this.chatBubble) return;
-    
-    const bubble = document.createElement('div');
-    bubble.className = 'youtube-chat-bubble';
-    bubble.innerHTML = `
-      <svg fill="white" viewBox="0 0 24 24">
-        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
-      </svg>
-    `;
-    bubble.title = 'Open YouTube Chat Assistant';
-    
-    document.body.appendChild(bubble);
-    this.chatBubble = bubble;
-    
-    // Add click handler
-    bubble.addEventListener('click', () => {
-      this.toggleChat();
-    });
-  }
 
   // Include all other methods from simple version
   createChatUI() {
@@ -1152,11 +1167,11 @@ class SmartYouTubeChatExtension {
   }
 
   hideChat() {
+    console.log('[Smart YouTube Chat] hideChat called');
     if (this.chatUI) {
       this.chatUI.classList.remove('visible');
-      setTimeout(() => {
-        this.chatUI.style.display = 'none';
-      }, 200);
+      this.chatUI.style.display = 'none';
+      console.log('[Smart YouTube Chat] Chat UI hidden');
     }
   }
 
@@ -1711,13 +1726,23 @@ class SmartYouTubeChatExtension {
 }
 
 // Initialize smart extension
+console.log('[Smart YouTube Chat] Creating extension instance...');
 const smartExtension = new SmartYouTubeChatExtension();
 
 // Wait for DOM and initialize
+console.log('[Smart YouTube Chat] Document readyState:', document.readyState);
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => smartExtension.initialize());
+  console.log('[Smart YouTube Chat] Waiting for DOMContentLoaded...');
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('[Smart YouTube Chat] DOMContentLoaded fired, initializing...');
+    smartExtension.initialize();
+  });
 } else {
-  smartExtension.initialize();
+  console.log('[Smart YouTube Chat] DOM already loaded, initializing immediately...');
+  // Small delay to ensure YouTube's elements are loaded
+  setTimeout(() => {
+    smartExtension.initialize();
+  }, 100);
 }
 
 // Debug helper for testing

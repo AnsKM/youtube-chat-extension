@@ -1,5 +1,14 @@
 # Changelog
 
+## 2025-01-13: Debugging Chat Bubble Not Appearing
+- Added extensive debug logging throughout initialization pipeline
+- Fixed duplicate createChatBubble method causing conflicts
+- Changed content script injection from document_idle to document_end
+- Added visual console feedback to verify extension loading
+- Created test-extension.html for debugging initialization issues
+- Added fallback initialization for already-loaded DOM
+- Enhanced error logging with stack traces
+
 ## 2025-01-13: Fixed Chat History Not Loading
 - Fixed missing getAllChats handler in service-worker.js
 - Added getAllChats function to retrieve all saved chat conversations
