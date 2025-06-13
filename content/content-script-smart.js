@@ -671,6 +671,29 @@ class SmartYouTubeChatExtension {
     contentDiv.innerHTML = content;
     messageDiv.appendChild(contentDiv);
     
+    // Add copy button for assistant messages
+    if (role === 'assistant') {
+      const copyButton = document.createElement('button');
+      copyButton.className = 'message-copy-btn';
+      copyButton.innerHTML = `
+        <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      `;
+      copyButton.title = 'Copy to clipboard';
+      
+      // Add click handler
+      copyButton.addEventListener('click', () => {
+        this.copyMessageToClipboard(originalContent, copyButton);
+      });
+      
+      messageDiv.appendChild(copyButton);
+    }
+    
     messagesContainer.appendChild(messageDiv);
     
     // Add repurpose button AFTER the message is added to DOM
@@ -1056,6 +1079,40 @@ class SmartYouTubeChatExtension {
       }
       
       console.log('[YouTube Chat] Exited maximized mode');
+    }
+  }
+
+  async copyMessageToClipboard(content, button) {
+    try {
+      // Copy to clipboard
+      await navigator.clipboard.writeText(content);
+      
+      // Show success state
+      const copyIcon = button.querySelector('.copy-icon');
+      const checkIcon = button.querySelector('.check-icon');
+      
+      // Hide copy icon, show check icon
+      copyIcon.style.display = 'none';
+      checkIcon.style.display = 'block';
+      
+      // Add success class for green color
+      button.classList.add('success');
+      
+      // Reset after 2 seconds
+      setTimeout(() => {
+        copyIcon.style.display = 'block';
+        checkIcon.style.display = 'none';
+        button.classList.remove('success');
+      }, 2000);
+      
+      console.log('[YouTube Chat] Message copied to clipboard');
+    } catch (error) {
+      console.error('[YouTube Chat] Failed to copy to clipboard:', error);
+      // Show error feedback
+      button.classList.add('error');
+      setTimeout(() => {
+        button.classList.remove('error');
+      }, 1000);
     }
   }
 

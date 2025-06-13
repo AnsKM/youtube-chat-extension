@@ -1251,28 +1251,72 @@
 /* Copy Button */
 .message-copy-btn {
   position: absolute;
-  bottom: var(--space-xs);
-  right: var(--space-xs);
-  background: transparent;
-  border: none;
+  bottom: 8px;
+  right: 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
   font-size: 14px;
   cursor: pointer;
   opacity: 0;
-  transition: var(--transition-fast);
-  padding: 4px;
+  transition: all 0.2s ease;
+  padding: 6px;
   border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
 }
 
-.chat-message.assistant:hover .message-copy-btn {
-  opacity: 1;
+/* Position relative for parent message to contain absolute button */
+.message.assistant {
+  position: relative;
+}
+
+/* Show button on hover */
+.message.assistant:hover .message-copy-btn {
+  opacity: 0.7;
 }
 
 .message-copy-btn:hover {
-  background: var(--bg-secondary);
+  background: var(--bg-tertiary);
+  opacity: 1 !important;
+  border-color: var(--border-default);
 }
 
 .message-copy-btn:active {
   transform: scale(0.9);
+}
+
+/* Success state - green color */
+.message-copy-btn.success {
+  color: var(--accent-green);
+  border-color: var(--accent-green);
+  background: rgba(16, 185, 129, 0.1);
+}
+
+/* Error state */
+.message-copy-btn.error {
+  color: var(--accent-red);
+  border-color: var(--accent-red);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Icon styling */
+.message-copy-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Ensure repurpose wrapper doesn't interfere */
+.repurpose-wrapper {
+  clear: both;
+}
+
+/* Adjust copy button position when message has repurpose button */
+.message.assistant:has(+ .repurpose-wrapper) .message-copy-btn {
+  bottom: 8px;
 }
 
 /* Dark Mode */
