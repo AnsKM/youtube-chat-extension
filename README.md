@@ -1,8 +1,8 @@
 # YouTube Chat Assistant - Smart Edition
 
-An AI-powered Chrome extension that enables intelligent conversations with YouTube videos using Google's Gemini 2.5 Flash Preview API with **95%+ cost reduction** through the Smart Query Router system.
+An AI-powered Chrome extension that enables intelligent conversations with YouTube videos using multiple AI models including Google's Gemini 2.5 Flash and DeepSeek R1 Distilled (free via OpenRouter).
 
-![Version](https://img.shields.io/badge/version-2.0.0-blue)
+![Version](https://img.shields.io/badge/version-2.1.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Chrome](https://img.shields.io/badge/chrome-v88+-orange)
 
@@ -10,14 +10,21 @@ An AI-powered Chrome extension that enables intelligent conversations with YouTu
 
 ### Core Functionality
 - 💬 **AI-Powered Chat**: Have natural conversations about any YouTube video
-- 📝 **Full Transcript Access**: Leverages Gemini's 1M token context window
+- 🤖 **Multiple AI Models**: Choose between Gemini 2.5 Flash or DeepSeek R1 Distilled
+- 📝 **Full Transcript Access**: Leverages large context windows for complete video understanding
 - ⏱️ **Timestamp Navigation**: Click timestamps to jump to specific moments
 - 💾 **Conversation Memory**: Saves chat history per video
 - 🎨 **Clean UI**: Minimal, non-intrusive interface
 
+### New in v2.1: Multi-Model Support
+- 🔄 **Model Selection**: Easy switching between Gemini and DeepSeek models
+- 🆓 **Free DeepSeek Access**: Use DeepSeek R1 Distilled for free via OpenRouter
+- ⚡ **Fast Response Generation**: Distilled model provides quick responses
+- 🔑 **Dual API Key Support**: Manage separate keys for each provider
+
 ### Smart Cost Optimization (v2.0)
 - 🧠 **Smart Query Router**: Automatically selects optimal processing strategy
-- 💰 **95%+ Cost Reduction**: From $0.50 to $0.02 per video
+- 💰 **95%+ Cost Reduction**: From $0.50 to $0.02 per video (with Gemini)
 - ⚡ **Context Caching**: 75% additional savings on repeated queries
 - 📊 **Cost Tracking**: Real-time monitoring of API usage and savings
 - 🎯 **Intelligent Chunking**: RAG system for efficient context selection
@@ -69,17 +76,33 @@ An AI-powered Chrome extension that enables intelligent conversations with YouTu
 
 ### API Key Setup
 
+#### For Gemini 2.5 Flash (Default)
 1. Get a Gemini API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
 2. Click the extension icon in Chrome
-3. Enter your API key in the popup
-4. The key is stored securely in Chrome's encrypted storage
+3. Select "Gemini 2.5 Flash" from the model dropdown
+4. Enter your Gemini API key in the popup
+5. The key is stored securely in Chrome's encrypted storage
+
+#### For DeepSeek R1 Distilled (Free Alternative)
+1. Get an OpenRouter API key from [OpenRouter](https://openrouter.ai/keys)
+2. Click the extension icon in Chrome
+3. Select "DeepSeek R1 Distilled (Free)" from the model dropdown
+4. Enter your OpenRouter API key in the popup
+5. Enjoy free AI responses during the promotion period!
+
+### Model Selection
+
+Switch between models anytime:
+- **Gemini 2.5 Flash**: Fast, efficient, 1M token context window
+- **DeepSeek R1 Distilled**: Free via OpenRouter, fast reasoning model, 64K token context
 
 ### Extension Settings
 
 Configure in the popup menu:
+- **Model Selection**: Choose your preferred AI model
 - **Theme**: Auto/Light/Dark
 - **Language**: Transcript language preference
-- **Cost Tracking**: Enable/disable cost monitoring
+- **Cost Tracking**: Enable/disable cost monitoring (Gemini only)
 - **Cache Settings**: Configure caching behavior
 
 ## 💡 Usage

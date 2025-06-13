@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "YouTube Chat Assistant (Smart Edition)",
-  "version": "1.2.0",
+  "version": "2.1.0",
   "description": "Chat with any YouTube video using AI. Choose between Gemini 2.5 Flash or DeepSeek R1 (free via OpenRouter).",
   "permissions": [
     "storage",
