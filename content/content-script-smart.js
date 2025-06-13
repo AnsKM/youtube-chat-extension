@@ -111,6 +111,9 @@ class SmartYouTubeChatExtension {
     this.wasMinimizedBeforeFullscreen = false;
     this.isInFullscreen = false;
     
+    // Chat history
+    this.allChats = [];
+    
     this.initializeObservers();
     this.startConnectionMonitoring();
   }
@@ -1021,6 +1024,19 @@ class SmartYouTubeChatExtension {
     this.resetUIState();
   }
 
+  getChannelName() {
+    // Try multiple selectors for channel name
+    const channelName = 
+      document.querySelector('#channel-name #text')?.textContent?.trim() ||
+      document.querySelector('#owner #channel-name yt-formatted-string')?.textContent?.trim() ||
+      document.querySelector('ytd-video-owner-renderer #channel-name a')?.textContent?.trim() ||
+      document.querySelector('.ytd-video-owner-renderer #text.ytd-channel-name')?.textContent?.trim() ||
+      document.querySelector('yt-formatted-string#owner-name')?.textContent?.trim() ||
+      'Unknown Channel';
+    
+    return channelName;
+  }
+
   async autoSaveChat() {
     if (!this.currentVideoId || this.conversationHistory.length === 0) return;
     
@@ -1028,12 +1044,15 @@ class SmartYouTubeChatExtension {
                       document.querySelector('#title h1')?.textContent || 
                       'Unknown video';
     
+    const channelName = this.getChannelName();
+    
     await chrome.runtime.sendMessage({
       action: 'saveChat',
       videoId: this.currentVideoId,
       chatData: {
         videoId: this.currentVideoId,
         title: videoTitle,
+        channelName: channelName,
         messages: this.conversationHistory,
         smartRouting: this.smartRoutingStrategy
       }
@@ -1117,6 +1136,7 @@ class SmartYouTubeChatExtension {
     try {
       const response = await chrome.runtime.sendMessage({ action: 'getAllChats' });
       if (response.success && response.chats) {
+        this.allChats = response.chats; // Store for filtering
         this.displayChatHistory(response.chats);
       }
     } catch (error) {
@@ -1147,6 +1167,7 @@ class SmartYouTubeChatExtension {
       return `
         <div class="history-item ${isCurrentVideo ? 'current' : ''}" data-video-id="${chat.videoId}">
           <div class="history-item-title">${chat.title || 'Untitled Video'}</div>
+          <div class="history-item-channel">${chat.channelName || ''}</div>
           <div class="history-item-meta">
             <span>${dateStr} at ${timeStr}</span>
             <span>${messageCount} messages</span>
@@ -1208,8 +1229,22 @@ class SmartYouTubeChatExtension {
   }
 
   filterHistory(searchTerm) {
-    // Implementation for filtering history
-    console.log('Filtering history:', searchTerm);
+    if (!this.allChats) return;
+    
+    const filtered = searchTerm.trim() === '' 
+      ? this.allChats 
+      : this.allChats.filter(chat => {
+          const searchLower = searchTerm.toLowerCase();
+          const titleMatch = (chat.title || '').toLowerCase().includes(searchLower);
+          const channelMatch = (chat.channelName || '').toLowerCase().includes(searchLower);
+          const messageMatch = chat.messages?.some(msg => 
+            msg.content.toLowerCase().includes(searchLower)
+          );
+          
+          return titleMatch || channelMatch || messageMatch;
+        });
+    
+    this.displayChatHistory(filtered);
   }
 
   initializeObservers() {

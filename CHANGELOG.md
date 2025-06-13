@@ -1,5 +1,23 @@
 # Changelog
 
+## 2025-01-13: Fixed Chat History Search and Added Channel Names
+- Fixed non-functional search in Chat History panel
+- Added YouTube channel name extraction and storage
+- Display channel name as subtitle under video title in history
+- Search now works across video titles, channel names, and message content
+- Updated chat data structure to include channelName field
+- Added CSS styling for channel name display
+- Improved visual hierarchy in chat history items
+
+## 2025-06-10: Added AI-Powered Infographic Prompt Generation
+- Added new "Infographic Prompt" section below visual suggestions
+- Intelligent content type detection (AI creative, automation, data, process, comparison, concept)
+- Dynamic visual styles that vary with each regeneration
+- Content-specific visual elements and color schemes
+- Copy-to-clipboard functionality for easy use in image generators
+- Prompts optimized for DALL-E 3, Midjourney, and other AI tools
+- Professional guidelines for mobile-optimized, shareable designs
+
 ## 2025-06-10: Optimized Gemini Flash for Better LinkedIn Posts
 - Updated prompting philosophy from rigid rules to flexible guidelines
 - Increased temperature from 0.9 to 1.0 for more creative output

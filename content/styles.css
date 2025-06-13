@@ -925,6 +925,15 @@
   font-size: 14px;
   font-weight: 500;
   color: var(--text-primary);
+  margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.history-item-channel {
+  font-size: 12px;
+  color: var(--text-secondary);
   margin-bottom: var(--space-xs);
   overflow: hidden;
   text-overflow: ellipsis;
