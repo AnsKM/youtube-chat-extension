@@ -794,6 +794,10 @@ class SmartYouTubeChatExtension {
   processSimpleMarkdown(content) {
     // Simple markdown processing like the working archive version
     return content
+      // First, convert bullet points to proper bullet characters
+      .replace(/^\* (.+)$/gm, '• $1')
+      .replace(/^- (.+)$/gm, '• $1')  // Also handle dash bullets
+      // Then process other markdown
       .replace(/^### (.*$)/gim, '<h3>$1</h3>')
       .replace(/^## (.*$)/gim, '<h3>$1</h3>')
       .replace(/^# (.*$)/gim, '<h3>$1</h3>')

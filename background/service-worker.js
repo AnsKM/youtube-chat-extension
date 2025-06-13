@@ -93,7 +93,12 @@ class OpenRouterClient {
 Video Transcript:
 ${transcriptText}
 
-Important: You have access to the COMPLETE transcript. You can discuss any part of the video in detail.`
+Important: You have access to the COMPLETE transcript. You can discuss any part of the video in detail.
+
+Formatting guidelines:
+- Use bullet points with * or - at the start of lines for lists
+- Use **bold** for emphasis and *italic* for slight emphasis
+- Keep responses well-structured and easy to read`
         });
       }
     }
@@ -229,6 +234,11 @@ Video Transcript:
 ${transcriptText}
 
 Important: You have access to the COMPLETE transcript thanks to Gemini's large context window. You can discuss any part of the video in detail.
+
+Formatting guidelines:
+- Use bullet points with * or - at the start of lines for lists
+- Use **bold** for emphasis and *italic* for slight emphasis
+- Keep responses well-structured and easy to read
 
 `;
       }
