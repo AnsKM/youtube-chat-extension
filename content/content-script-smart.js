@@ -221,7 +221,8 @@ class SmartYouTubeChatExtension {
   }
 
   async initialize() {
-    console.log('[Smart YouTube Chat] Initializing...');
+    console.log('[Smart YouTube Chat] Initializing... v2.1 with search fix');
+    console.log('[Smart YouTube Chat] Features: Channel extraction, History search, Debug logging');
     
     // Check for API key first
     const hasApiKey = await this.checkApiKey();
@@ -604,7 +605,10 @@ class SmartYouTubeChatExtension {
     clearBtn?.addEventListener('click', () => this.clearCurrentChat());
     
     // History search
-    container.querySelector('.history-search-input')?.addEventListener('input', (e) => {
+    const searchInput = container.querySelector('.history-search-input');
+    console.log('[YouTube Chat] Setting up search input listener:', searchInput);
+    searchInput?.addEventListener('input', (e) => {
+      console.log('[YouTube Chat] Search input changed:', e.target.value);
       this.filterHistory(e.target.value);
     });
   }
@@ -1026,15 +1030,31 @@ class SmartYouTubeChatExtension {
 
   getChannelName() {
     // Try multiple selectors for channel name
-    const channelName = 
-      document.querySelector('#channel-name #text')?.textContent?.trim() ||
-      document.querySelector('#owner #channel-name yt-formatted-string')?.textContent?.trim() ||
-      document.querySelector('ytd-video-owner-renderer #channel-name a')?.textContent?.trim() ||
-      document.querySelector('.ytd-video-owner-renderer #text.ytd-channel-name')?.textContent?.trim() ||
-      document.querySelector('yt-formatted-string#owner-name')?.textContent?.trim() ||
-      'Unknown Channel';
+    const selectors = [
+      '#channel-name #text',
+      '#owner #channel-name yt-formatted-string',
+      'ytd-video-owner-renderer #channel-name a',
+      '.ytd-video-owner-renderer #text.ytd-channel-name',
+      'yt-formatted-string#owner-name',
+      '#upload-info #channel-name .yt-simple-endpoint',
+      '#owner-container yt-formatted-string.ytd-channel-name',
+      'ytd-channel-name yt-formatted-string',
+      '#meta #channel-name'
+    ];
     
-    return channelName;
+    for (const selector of selectors) {
+      const element = document.querySelector(selector);
+      if (element && element.textContent) {
+        const channelName = element.textContent.trim();
+        if (channelName) {
+          console.log(`[YouTube Chat] Found channel name: "${channelName}" using selector: ${selector}`);
+          return channelName;
+        }
+      }
+    }
+    
+    console.log('[YouTube Chat] Could not find channel name with any selector');
+    return 'Unknown Channel';
   }
 
   async autoSaveChat() {
@@ -1124,9 +1144,24 @@ class SmartYouTubeChatExtension {
     const panel = this.chatUI.querySelector('.chat-history-panel');
     const isVisible = panel.classList.contains('visible');
     
+    console.log('[YouTube Chat] Toggling history panel, currently visible:', isVisible);
+    
     if (!isVisible) {
       // Load and display chat history
       await this.loadChatHistory();
+      
+      // Re-attach search listener after panel is shown
+      setTimeout(() => {
+        const searchInput = this.chatUI.querySelector('.history-search-input');
+        console.log('[YouTube Chat] Re-attaching search listener to:', searchInput);
+        if (searchInput && !searchInput.hasAttribute('data-listener-attached')) {
+          searchInput.addEventListener('input', (e) => {
+            console.log('[YouTube Chat] History search input:', e.target.value);
+            this.filterHistory(e.target.value);
+          });
+          searchInput.setAttribute('data-listener-attached', 'true');
+        }
+      }, 100);
     }
     
     panel.classList.toggle('visible');
@@ -1146,6 +1181,9 @@ class SmartYouTubeChatExtension {
   
   displayChatHistory(chats) {
     const historyList = this.chatUI.querySelector('.history-list');
+    
+    console.log('[YouTube Chat] Displaying chat history:', chats.length, 'chats');
+    console.log('[YouTube Chat] Sample chat data:', chats[0]);
     
     if (chats.length === 0) {
       historyList.innerHTML = `
@@ -1167,7 +1205,7 @@ class SmartYouTubeChatExtension {
       return `
         <div class="history-item ${isCurrentVideo ? 'current' : ''}" data-video-id="${chat.videoId}">
           <div class="history-item-title">${chat.title || 'Untitled Video'}</div>
-          <div class="history-item-channel">${chat.channelName || ''}</div>
+          ${chat.channelName ? `<div class="history-item-channel">${chat.channelName}</div>` : ''}
           <div class="history-item-meta">
             <span>${dateStr} at ${timeStr}</span>
             <span>${messageCount} messages</span>
@@ -1229,7 +1267,13 @@ class SmartYouTubeChatExtension {
   }
 
   filterHistory(searchTerm) {
-    if (!this.allChats) return;
+    console.log('[YouTube Chat] Filtering history with term:', searchTerm);
+    console.log('[YouTube Chat] All chats available:', this.allChats?.length);
+    
+    if (!this.allChats || this.allChats.length === 0) {
+      console.log('[YouTube Chat] No chats to filter');
+      return;
+    }
     
     const filtered = searchTerm.trim() === '' 
       ? this.allChats 
@@ -1241,9 +1285,15 @@ class SmartYouTubeChatExtension {
             msg.content.toLowerCase().includes(searchLower)
           );
           
-          return titleMatch || channelMatch || messageMatch;
+          const matches = titleMatch || channelMatch || messageMatch;
+          if (matches) {
+            console.log('[YouTube Chat] Match found in chat:', chat.title, { titleMatch, channelMatch, messageMatch });
+          }
+          
+          return matches;
         });
     
+    console.log('[YouTube Chat] Filtered results:', filtered.length);
     this.displayChatHistory(filtered);
   }
 
@@ -1360,6 +1410,22 @@ if (document.readyState === 'loading') {
 } else {
   smartExtension.initialize();
 }
+
+// Debug helper for testing
+window.debugYouTubeChat = {
+  getChannelName: () => smartExtension.getChannelName(),
+  filterHistory: (term) => smartExtension.filterHistory(term),
+  getAllChats: () => smartExtension.allChats,
+  updateCurrentChatWithChannel: async () => {
+    if (smartExtension.currentVideoId) {
+      const channelName = smartExtension.getChannelName();
+      console.log('[Debug] Updating current chat with channel:', channelName);
+      await smartExtension.autoSaveChat();
+      return channelName;
+    }
+    return 'No video loaded';
+  }
+};
 
 // Listen for messages from popup/background
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
