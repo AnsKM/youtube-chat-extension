@@ -98,7 +98,16 @@ class SmartYouTubeChatExtension {
     this.chatUI = null;
     this.transcript = null;
     this.isInitialized = false;
-    this.transcriptFetcher = new TranscriptFetcher();
+    
+    // Check if TranscriptFetcher is available
+    if (typeof TranscriptFetcher !== 'undefined') {
+      console.log('[Smart YouTube Chat] TranscriptFetcher found, creating instance');
+      this.transcriptFetcher = new TranscriptFetcher();
+    } else {
+      console.error('[Smart YouTube Chat] TranscriptFetcher not found!');
+      this.transcriptFetcher = null;
+    }
+    
     this.conversationHistory = [];
     this.maxHistoryLength = 10;
     this.smartRoutingStrategy = null;
@@ -236,12 +245,11 @@ class SmartYouTubeChatExtension {
     console.log('[Smart YouTube Chat] Current pathname:', window.location.pathname);
     
     try {
-      // Check for API key first
-      const hasApiKey = await this.checkApiKey();
-      if (!hasApiKey) {
-        console.log('No API key set, but continuing with UI initialization');
-        // Don't return - continue with UI setup
-      }
+      // Skip API key check for now to ensure UI loads
+      console.log('[Smart YouTube Chat] Skipping API key check to ensure UI loads');
+      
+      // We'll check API key later when user tries to send a message
+      const hasApiKey = false;
       
       // Initialize on YouTube watch pages
       if (window.location.pathname.includes('/watch')) {
@@ -1273,11 +1281,14 @@ class SmartYouTubeChatExtension {
   }
 
   async checkApiKey() {
+    console.log('[Smart YouTube Chat] checkApiKey called');
     try {
+      console.log('[Smart YouTube Chat] Sending checkApiKey message to background...');
       const response = await chrome.runtime.sendMessage({ action: 'checkApiKey' });
-      return response.success && response.hasApiKey;
+      console.log('[Smart YouTube Chat] checkApiKey response:', response);
+      return response && response.success && response.hasApiKey;
     } catch (error) {
-      console.error('Error checking API key:', error);
+      console.error('[Smart YouTube Chat] Error checking API key:', error);
       return false;
     }
   }
