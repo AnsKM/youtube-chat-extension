@@ -135,6 +135,47 @@
   display: flex !important;
 }
 
+/* Specific layout fixes for maximized mode */
+.youtube-chat-extension.maximized .chat-messages {
+  flex-direction: column !important;
+  align-items: center;
+  padding: var(--space-xl) var(--space-lg);
+}
+
+/* Create a centered content area in maximized mode */
+.youtube-chat-extension.maximized .message {
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Ensure proper message alignment in maximized mode */
+.youtube-chat-extension.maximized .message.user {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.youtube-chat-extension.maximized .message.assistant,
+.youtube-chat-extension.maximized .message.system {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Maintain message bubble max-width in maximized mode */
+.youtube-chat-extension.maximized .content {
+  max-width: 70%;
+}
+
+/* Center the input container content in maximized mode */
+.youtube-chat-extension.maximized .chat-input-container {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 16px 20px;
+  box-sizing: border-box;
+}
+
 /* Animation for maximize */
 @keyframes maximizeIn {
   from {
@@ -1069,6 +1110,12 @@
   color: var(--text-secondary);
 }
 
+/* Constrain welcome message width in maximized mode */
+.youtube-chat-extension.maximized .welcome-message {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 .welcome-message h3 {
   font-size: 18px;
   margin-bottom: 8px;
@@ -1471,6 +1518,17 @@
   transition: opacity 0.2s ease;
 }
 
+/* Ensure repurpose wrapper is properly aligned in maximized mode */
+.youtube-chat-extension.maximized .repurpose-wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 30%;
+}
+
 /* Show button on hover of the message or the wrapper */
 .message.assistant:hover + .repurpose-wrapper,
 .repurpose-wrapper:hover {
@@ -1509,8 +1567,8 @@
 }
 
 .message .content {
-  display: block;
-  width: 100%;
+  display: inline-block;
+  width: auto;
 }
 EOF < /dev/null
 /* Infographic Prompt Styles */
