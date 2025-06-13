@@ -3,9 +3,11 @@
 ## 🎯 Listing Details
 
 ### Extension Name
+
 **YouTube Chat AI - Chat with Any Video**
 
 ### Short Description (132 characters max)
+
 ```
 Chat with YouTube videos using AI. Choose Gemini or DeepSeek R1 (free!). Ask questions, get summaries, jump to timestamps.
 ```
@@ -81,39 +83,47 @@ Version 2.1.0 | Last updated: January 2025
 ```
 
 ### Category
+
 **Productivity**
 
 ### Language
+
 **English (United States)**
 
 ### Screenshots (5 required, 1280x800 or 640x400)
 
 #### Screenshot 1: "Choose Your AI Model"
+
 - Show the extension popup with model selection dropdown
 - Highlight both Gemini and DeepSeek R1 options
 - Display the "FREE" badge on DeepSeek option
 
 #### Screenshot 2: "Chat with Any YouTube Video"
+
 - Show the chat interface on a popular educational video
 - Include a user asking "What are the main points?"
 - Show AI response with bullet points and model indicator
 
 #### Screenshot 3: "Instant Answers with Timestamps"
+
 - Display a specific question being asked
 - Show the response with clickable timestamps
 - Highlight the timestamp feature
 
 #### Screenshot 4: "Smart Summaries"
+
 - Show the AI providing a structured summary
 - Include markdown formatting
 - Display the copy button
 
 #### Screenshot 5: "Chat History & Search"
+
 - Show the history panel open
 - Display multiple saved conversations
 - Show search functionality
 
 #### Screenshot 5: "Export Your Conversations"
+
 - Show the export dialog
 - Display the three format options
 - Include success message
@@ -121,18 +131,22 @@ Version 2.1.0 | Last updated: January 2025
 ### Promotional Images
 
 #### Small Promo Tile (440x280)
+
 **Text**: "Chat with YouTube Videos"
 **Subtext**: "AI-Powered Learning Assistant"
 
 #### Large Promo Tile (920x680)
+
 **Headline**: "Never Lose Important Information in Videos Again"
-**Features**: 
+**Features**:
+
 - Instant Answers
-- Smart Timestamps  
+- Smart Timestamps
 - Save Conversations
-**CTA**: "Add to Chrome - It's Free"
+  **CTA**: "Add to Chrome - It's Free"
 
 #### Marquee Promo Tile (1400x560)
+
 **Hero Text**: "YouTube + AI = Supercharged Learning"
 **Visual**: Split screen showing video on left, chat on right
 
@@ -189,18 +203,21 @@ Host Permissions: Required to communicate with Google's Gemini API for AI respon
 ## 📊 SEO Keywords to Include
 
 Primary:
+
 - youtube ai
 - youtube chat
 - youtube assistant
 - chat with youtube
 
 Secondary:
+
 - youtube summary
 - youtube transcript ai
 - video chat ai
 - youtube learning tool
 
 Long-tail:
+
 - chat with youtube videos
 - ai assistant for youtube
 - youtube video question answering
@@ -211,16 +228,17 @@ Long-tail:
 Test these variations after launch:
 
 1. **Name Variations**
+
    - "YouTube Chat AI - Chat with Any Video"
    - "ChatTube - AI Assistant for YouTube"
    - "YouTube AI Assistant - Chat & Learn"
-
 2. **Short Description Variations**
+
    - Current: Focus on features
    - Alt 1: "Turn 3-hour videos into 3-minute conversations with AI"
    - Alt 2: "Your AI study buddy for YouTube. Ask questions, get instant answers."
-
 3. **Screenshot Order**
+
    - Test different first screenshots
    - Try video thumbnails from popular channels
    - Test dark mode vs light mode screenshots
@@ -228,6 +246,7 @@ Test these variations after launch:
 ## ✅ Submission Checklist
 
 Before submitting:
+
 - [ ] All 5 screenshots uploaded (1280x800)
 - [ ] Icon files in all sizes (16, 32, 48, 128)
 - [ ] Detailed description under 5000 characters
@@ -241,12 +260,13 @@ Before submitting:
 ## 🚀 Post-Submission
 
 1. **While waiting for approval (1-3 days)**:
+
    - Build Reddit karma
    - Create demo video
    - Set up landing page
    - Prepare launch emails
-
 2. **Once approved**:
+
    - Share link with friends/family immediately
    - Update all marketing materials with live link
    - Start collecting reviews from early users

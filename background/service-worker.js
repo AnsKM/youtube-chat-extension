@@ -95,10 +95,17 @@ ${transcriptText}
 
 Important: You have access to the COMPLETE transcript. You can discuss any part of the video in detail.
 
-Formatting guidelines:
-- Use bullet points with * or - at the start of lines for lists
-- Use **bold** for emphasis and *italic* for slight emphasis
-- Keep responses well-structured and easy to read`
+Formatting guidelines (GPT-4o style):
+- Use clear, concise language without excessive formatting
+- Limit headers to ## for main sections and ### for subsections only
+- Use bullet points with * or - for unordered lists
+- Use numbered lists (1.) for sequential steps
+- Use **bold** sparingly, only for key terms or important emphasis
+- Use *italic* rarely, only when truly needed
+- Avoid excessive emojis or decorative elements
+- Structure responses for maximum readability and clarity
+- Keep paragraphs short and focused
+- Use code blocks with language hints: ```javascript`
         });
       }
     }
@@ -235,10 +242,17 @@ ${transcriptText}
 
 Important: You have access to the COMPLETE transcript thanks to Gemini's large context window. You can discuss any part of the video in detail.
 
-Formatting guidelines:
-- Use bullet points with * or - at the start of lines for lists
-- Use **bold** for emphasis and *italic* for slight emphasis
-- Keep responses well-structured and easy to read
+Formatting guidelines (GPT-4o style):
+- Use clear, concise language without excessive formatting
+- Limit headers to ## for main sections and ### for subsections only
+- Use bullet points with * or - for unordered lists
+- Use numbered lists (1.) for sequential steps
+- Use **bold** sparingly, only for key terms or important emphasis
+- Use *italic* rarely, only when truly needed
+- Avoid excessive emojis or decorative elements
+- Structure responses for maximum readability and clarity
+- Keep paragraphs short and focused
+- Use code blocks with language hints: ```javascript
 
 `;
       }
