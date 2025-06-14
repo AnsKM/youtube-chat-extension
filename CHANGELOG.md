@@ -1,5 +1,13 @@
 # Changelog
 
+## 2025-01-15: Fixed Styling Issues from ChatGPT Formatting Merge
+- Fixed purple/gradient background bleeding into user message bubbles
+- Added proper counter-reset CSS for numbered lists to increment correctly
+- Fixed markdown processing order to handle bullet points before italic conversion
+- Improved italic regex to avoid conflicts with list markers (asterisks)
+- Added !important flags to ensure solid blue background for user messages
+- Removed webkit-text-fill-color gradient inheritance from user messages
+
 ## 2025-01-15: Fixed Extension Not Loading and Transcript Issues
 - Fixed extension not loading due to incorrect content script in manifest.json
 - Changed from test file (hello-world.js) to actual content scripts
