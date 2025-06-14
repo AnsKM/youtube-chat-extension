@@ -1,5 +1,17 @@
 # Changelog
 
+## 2025-01-15: Fixed Extension Not Loading and Transcript Issues
+- Fixed extension not loading due to incorrect content script in manifest.json
+- Changed from test file (hello-world.js) to actual content scripts
+- Fixed transcript loading hanging when transcript is unavailable
+- Added proper null handling for transcripts
+- Extension now shows appropriate message when transcript cannot be fetched
+- Chat UI remains functional even without transcript
+- Fixed critical service worker syntax error preventing background script from loading
+- Added proper URL change detection for YouTube's single-page application navigation
+- Added handleUrlChange method to detect video navigation
+- Fixed history panel rapid toggle issue with debouncing
+
 ## 2025-01-13: Debugging Chat Bubble Not Appearing
 - Added extensive debug logging throughout initialization pipeline
 - Fixed duplicate createChatBubble method causing conflicts

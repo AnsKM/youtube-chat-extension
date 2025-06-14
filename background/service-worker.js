@@ -105,7 +105,7 @@ Formatting guidelines (GPT-4o style):
 - Avoid excessive emojis or decorative elements
 - Structure responses for maximum readability and clarity
 - Keep paragraphs short and focused
-- Use code blocks with language hints: ```javascript`
+- Use code blocks with language hints: \`\`\`javascript\`\`\``
         });
       }
     }
@@ -252,7 +252,7 @@ Formatting guidelines (GPT-4o style):
 - Avoid excessive emojis or decorative elements
 - Structure responses for maximum readability and clarity
 - Keep paragraphs short and focused
-- Use code blocks with language hints: ```javascript
+- Use code blocks with language hints: \`\`\`javascript
 
 `;
       }

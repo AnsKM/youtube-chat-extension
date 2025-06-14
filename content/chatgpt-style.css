@@ -37,6 +37,11 @@
   list-style: none;
 }
 
+/* Ensure ordered lists have proper counter reset */
+ol.chat-list {
+  counter-reset: list-counter;
+}
+
 .chat-list-item {
   display: flex;
   align-items: flex-start;

@@ -3,6 +3,8 @@
  * Enhanced version with video duration detection for smart routing
  */
 
+console.log('[YouTube Chat] Content script loading...');
+
 // Include all the base functionality from simple version
 // (In a real implementation, we'd import/extend, but for Chrome extension we inline)
 
@@ -253,8 +255,12 @@ class SmartYouTubeChatExtension {
       
       // Initialize on YouTube watch pages
       if (window.location.pathname.includes('/watch')) {
-        console.log('[Smart YouTube Chat] On watch page, detecting video');
-        this.detectVideo();
+        console.log('[Smart YouTube Chat] On watch page, will detect video after delay');
+        // Delay video detection to ensure player is ready
+        setTimeout(() => {
+          console.log('[Smart YouTube Chat] Starting delayed video detection');
+          this.detectVideo();
+        }, 2000);
       } else {
         console.log('[Smart YouTube Chat] Not on watch page, still creating UI');
       }
@@ -320,6 +326,7 @@ class SmartYouTubeChatExtension {
 
   detectVideo() {
     const videoId = extractVideoIdFromPage();
+    console.log('[Smart] detectVideo called, videoId:', videoId, 'currentVideoId:', this.currentVideoId);
     
     if (videoId && videoId !== this.currentVideoId) {
       console.log('[Smart] New video detected:', videoId);
@@ -338,6 +345,8 @@ class SmartYouTubeChatExtension {
       this.hideChat();
       this.currentVideoId = null;
       this.videoDuration = null;
+    } else if (videoId && videoId === this.currentVideoId) {
+      console.log('[Smart] Same video, no reload needed');
     }
   }
 
@@ -356,7 +365,18 @@ class SmartYouTubeChatExtension {
     
     try {
       // Fetch transcript
+      console.log('[Smart] Starting transcript fetch for video:', videoId);
       this.transcript = await this.transcriptFetcher.fetchTranscript(videoId);
+      console.log('[Smart] Transcript fetch completed:', {
+        hasTranscript: !!this.transcript,
+        transcriptResult: this.transcript
+      });
+      
+      // Handle null transcript
+      if (!this.transcript) {
+        console.log('[Smart] Transcript is null, continuing without transcript');
+        this.transcript = null;
+      }
       
       // Debug logging for fetched transcript
       console.log('[ChatUI] Transcript fetched:', {
@@ -862,7 +882,8 @@ class SmartYouTubeChatExtension {
       .replace(/^#{1,2} (.+)$/gm, '<h2 class="chat-heading">$1</h2>')
       .replace(/^#{3,6} (.+)$/gm, '<h3 class="chat-subheading">$1</h3>');
     
-    // Lists with better structure
+    // Lists with better structure - process before other markdown
+    // First, handle bullet points at the start of lines
     processed = processed.replace(/^[\*\-] (.+)$/gm, '<li class="chat-list-item">$1</li>');
     processed = processed.replace(/^\d+\. (.+)$/gm, '<li class="chat-numbered-item">$1</li>');
     
@@ -875,11 +896,12 @@ class SmartYouTubeChatExtension {
       return `<ol class="chat-list" style="counter-reset: list-counter;">${match}</ol>`;
     });
     
-    // Bold and italic
+    // Bold and italic - process after lists to avoid conflicts
     processed = processed
       .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*([^\*\n]+?)\*/g, '<em>$1</em>');
+      // Match italic only when not at start of line and not part of bold
+      .replace(/([^*\n])\*([^*\n]+?)\*([^*])/g, '$1<em>$2</em>$3');
     
     // Blockquotes
     processed = processed.replace(/^> (.+)$/gm, '<blockquote class="chat-blockquote">$1</blockquote>');
@@ -1427,6 +1449,15 @@ class SmartYouTubeChatExtension {
 
   async toggleHistory() {
     const panel = this.chatUI.querySelector('.chat-history-panel');
+    if (!panel) return;
+    
+    // Prevent multiple rapid toggles
+    if (this.isTogglingHistory) {
+      console.log('[YouTube Chat] Already toggling history, skipping');
+      return;
+    }
+    this.isTogglingHistory = true;
+    
     const isVisible = panel.classList.contains('visible');
     
     console.log('[YouTube Chat] Toggling history panel, currently visible:', isVisible);
@@ -1450,6 +1481,11 @@ class SmartYouTubeChatExtension {
     }
     
     panel.classList.toggle('visible');
+    
+    // Reset flag after a short delay
+    setTimeout(() => {
+      this.isTogglingHistory = false;
+    }, 300);
   }
   
   async loadChatHistory() {
@@ -1598,15 +1634,68 @@ class SmartYouTubeChatExtension {
     this.displayChatHistory(filtered);
   }
 
+  handleUrlChange() {
+    console.log('[Smart] Handling URL change to:', location.href);
+    if (window.location.pathname.includes('/watch')) {
+      console.log('[Smart] Navigated to watch page, detecting video');
+      debounce(() => this.detectVideo(), 500)();
+    } else {
+      console.log('[Smart] Not on watch page, hiding chat if visible');
+      if (this.currentVideoId) {
+        this.hideChat();
+        this.currentVideoId = null;
+        this.videoDuration = null;
+      }
+    }
+  }
+
   initializeObservers() {
-    // Watch for URL changes
+    // Watch for URL changes using multiple methods
     let lastUrl = location.href;
+    const self = this;  // Store reference to this
+    
+    // Method 1: Override pushState and replaceState
+    const originalPushState = history.pushState;
+    const originalReplaceState = history.replaceState;
+    
+    history.pushState = function() {
+      originalPushState.apply(history, arguments);
+      console.log('[Smart] URL changed via pushState');
+      setTimeout(() => {
+        if (location.href !== lastUrl) {
+          lastUrl = location.href;
+          self.handleUrlChange();
+        }
+      }, 100);
+    };
+    
+    history.replaceState = function() {
+      originalReplaceState.apply(history, arguments);
+      console.log('[Smart] URL changed via replaceState');
+      setTimeout(() => {
+        if (location.href !== lastUrl) {
+          lastUrl = location.href;
+          self.handleUrlChange();
+        }
+      }, 100);
+    };
+    
+    // Method 2: Listen for popstate
+    window.addEventListener('popstate', () => {
+      console.log('[Smart] URL changed via popstate');
+      if (location.href !== lastUrl) {
+        lastUrl = location.href;
+        self.handleUrlChange();
+      }
+    });
+    
+    // Method 3: Mutation observer as fallback
     new MutationObserver(() => {
       const url = location.href;
       if (url !== lastUrl) {
         lastUrl = url;
-        console.log('[Smart] URL changed, checking for video');
-        debounce(() => this.detectVideo(), 500)();
+        console.log('[Smart] URL changed via DOM mutation');
+        self.handleUrlChange();
       }
     }).observe(document, { subtree: true, childList: true });
     

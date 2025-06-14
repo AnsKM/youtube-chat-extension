@@ -3,6 +3,8 @@
  * Fetches captions directly from YouTube
  */
 
+console.log('[YouTube Chat] Transcript fetcher loading...');
+
 class TranscriptFetcher {
   constructor() {
     this.captionTracks = null;

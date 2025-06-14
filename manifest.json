@@ -24,7 +24,7 @@
         "https://www.youtube.com/*",
         "https://youtube.com/*"
       ],
-      "js": ["content/minimal-init.js"],
+      "js": ["content/transcript-fetcher.js", "content/content-script-smart.js"],
       "css": ["content/styles.css", "content/chatgpt-style.css"],
       "run_at": "document_end"
     }
